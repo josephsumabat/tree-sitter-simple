@@ -23,8 +23,8 @@ library:
     - base                  >= 4.14.3.0 && < 5
     - text >= 2.0 && < 2.2
     - bytestring            >= 0.10.8.2 && < 0.13
-    - containers           ^>= 0.6.0.1
-    - unordered-containers ^>= 0.2.9
+    - containers           >= 0.6.0.1 && < 0.8
+    - unordered-containers >= 0.2.9 && < 0.3
     - deepseq
     - text-range
   include-dirs:      
@@ -36,4 +36,3 @@ library:
     - vendor/tree-sitter/lib/src/lib.c
   cc-options:
     - -std=c99
-    
