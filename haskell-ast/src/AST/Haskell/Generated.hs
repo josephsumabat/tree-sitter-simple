@@ -1,5 +1,7 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DerivingVia #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE UndecidableInstances #-}
 -- This file was generated! DO NOT EDIT!
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# OPTIONS_GHC -Wno-name-shadowing #-}
@@ -9,336 +11,697 @@
 
 module AST.Haskell.Generated
   ( ClassDecl (..),
+    ClassDeclP,
     Constraint (..),
+    ConstraintP,
     Constraints (..),
+    ConstraintsP,
     Decl (..),
+    DeclP,
     Declaration (..),
+    DeclarationP,
     Expression (..),
+    ExpressionP,
     Guard (..),
+    GuardP,
     InstanceDecl (..),
+    InstanceDeclP,
     Pattern (..),
+    PatternP,
     Qualifier (..),
+    QualifierP,
     QuantifiedType (..),
+    QuantifiedTypeP,
     Statement (..),
+    StatementP,
     Type (..),
+    TypeP,
     TypeParam (..),
+    TypeParamP,
     AbstractFamily (..),
+    AbstractFamilyP,
+    XAbstractFamily,
     Alternative (..),
     AlternativeU (..),
+    AlternativeUP (..),
+    AlternativeP,
     Alternatives (..),
     AlternativesU (..),
+    AlternativesUP (..),
+    AlternativesP,
     Annotated (..),
     AnnotatedU (..),
+    AnnotatedUP (..),
+    AnnotatedP,
     Apply (..),
     ApplyU (..),
+    ApplyUP (..),
+    ApplyP,
     ArithmeticSequence (..),
     ArithmeticSequenceU (..),
+    ArithmeticSequenceUP (..),
+    ArithmeticSequenceP,
     As (..),
     AsU (..),
+    AsUP (..),
+    AsP,
     AssociatedType (..),
     AssociatedTypeU (..),
+    AssociatedTypeUP (..),
+    AssociatedTypeP,
     Bind (..),
     BindU (..),
+    BindUP (..),
+    BindP,
     BindingList (..),
     BindingListU (..),
+    BindingListUP (..),
+    BindingListP,
     Boolean (..),
     BooleanU (..),
+    BooleanUP (..),
+    BooleanP,
     Case (..),
     CaseU (..),
+    CaseUP (..),
+    CaseP,
     Children (..),
     ChildrenU (..),
+    ChildrenUP (..),
+    ChildrenP,
     Class (..),
     ClassU (..),
+    ClassUP (..),
+    ClassP,
     ClassDeclarations (..),
     ClassDeclarationsU (..),
+    ClassDeclarationsUP (..),
+    ClassDeclarationsP,
     Conditional (..),
     ConditionalU (..),
+    ConditionalUP (..),
+    ConditionalP,
     ConstructorOperator (..),
+    ConstructorOperatorP,
+    XConstructorOperator,
     ConstructorSynonym (..),
     ConstructorSynonymU (..),
+    ConstructorSynonymUP (..),
+    ConstructorSynonymP,
     ConstructorSynonyms (..),
     ConstructorSynonymsU (..),
+    ConstructorSynonymsUP (..),
+    ConstructorSynonymsP,
     Context (..),
     ContextU (..),
+    ContextUP (..),
+    ContextP,
     DataConstructor (..),
     DataConstructorU (..),
+    DataConstructorUP (..),
+    DataConstructorP,
     DataConstructors (..),
     DataConstructorsU (..),
+    DataConstructorsUP (..),
+    DataConstructorsP,
     DataFamily (..),
     DataFamilyU (..),
+    DataFamilyUP (..),
+    DataFamilyP,
     DataInstance (..),
     DataInstanceU (..),
+    DataInstanceUP (..),
+    DataInstanceP,
     DataType (..),
     DataTypeU (..),
+    DataTypeUP (..),
+    DataTypeP,
     Declarations (..),
     DeclarationsU (..),
+    DeclarationsUP (..),
+    DeclarationsP,
     DefaultSignature (..),
     DefaultSignatureU (..),
+    DefaultSignatureUP (..),
+    DefaultSignatureP,
     DefaultTypes (..),
     DefaultTypesU (..),
+    DefaultTypesUP (..),
+    DefaultTypesP,
     Deriving (..),
     DerivingU (..),
+    DerivingUP (..),
+    DerivingP,
     DerivingInstance (..),
     DerivingInstanceU (..),
+    DerivingInstanceUP (..),
+    DerivingInstanceP,
     DerivingStrategy (..),
+    DerivingStrategyP,
+    XDerivingStrategy,
     Do (..),
     DoU (..),
+    DoUP (..),
+    DoP,
     DoModule (..),
     DoModuleU (..),
+    DoModuleUP (..),
+    DoModuleP,
     EmptyList (..),
+    EmptyListP,
+    XEmptyList,
     Entity (..),
     EntityU (..),
+    EntityUP (..),
+    EntityP,
     Equation (..),
     EquationU (..),
+    EquationUP (..),
+    EquationP,
     Equations (..),
     EquationsU (..),
+    EquationsUP (..),
+    EquationsP,
     Exp (..),
     ExpU (..),
+    ExpUP (..),
+    ExpP,
     ExplicitType (..),
     ExplicitTypeU (..),
+    ExplicitTypeUP (..),
+    ExplicitTypeP,
     Export (..),
     ExportU (..),
+    ExportUP (..),
+    ExportP,
     Exports (..),
     ExportsU (..),
+    ExportsUP (..),
+    ExportsP,
     Field (..),
     FieldU (..),
+    FieldUP (..),
+    FieldP,
     FieldName (..),
     FieldNameU (..),
+    FieldNameUP (..),
+    FieldNameP,
     FieldPath (..),
     FieldPathU (..),
+    FieldPathUP (..),
+    FieldPathP,
     FieldPattern (..),
     FieldPatternU (..),
+    FieldPatternUP (..),
+    FieldPatternP,
     FieldUpdate (..),
     FieldUpdateU (..),
+    FieldUpdateUP (..),
+    FieldUpdateP,
     Fields (..),
     FieldsU (..),
+    FieldsUP (..),
+    FieldsP,
     Fixity (..),
     FixityU (..),
+    FixityUP (..),
+    FixityP,
     Forall (..),
     ForallU (..),
+    ForallUP (..),
+    ForallP,
     ForallRequired (..),
     ForallRequiredU (..),
+    ForallRequiredUP (..),
+    ForallRequiredP,
     ForeignExport (..),
     ForeignExportU (..),
+    ForeignExportUP (..),
+    ForeignExportP,
     ForeignImport (..),
     ForeignImportU (..),
+    ForeignImportUP (..),
+    ForeignImportP,
     Function (..),
     FunctionU (..),
+    FunctionUP (..),
+    FunctionP,
     FunctionHeadParens (..),
     FunctionHeadParensU (..),
+    FunctionHeadParensUP (..),
+    FunctionHeadParensP,
     Fundep (..),
     FundepU (..),
+    FundepUP (..),
+    FundepP,
     Fundeps (..),
     FundepsU (..),
+    FundepsUP (..),
+    FundepsP,
     GadtConstructor (..),
     GadtConstructorU (..),
+    GadtConstructorUP (..),
+    GadtConstructorP,
     GadtConstructors (..),
     GadtConstructorsU (..),
+    GadtConstructorsUP (..),
+    GadtConstructorsP,
     Generator (..),
     GeneratorU (..),
+    GeneratorUP (..),
+    GeneratorP,
     Group (..),
     GroupU (..),
+    GroupUP (..),
+    GroupP,
     Guards (..),
     GuardsU (..),
+    GuardsUP (..),
+    GuardsP,
     Haskell (..),
     HaskellU (..),
+    HaskellUP (..),
+    HaskellP,
     Header (..),
     HeaderU (..),
+    HeaderUP (..),
+    HeaderP,
     ImplicitParameter (..),
     ImplicitParameterU (..),
+    ImplicitParameterUP (..),
+    ImplicitParameterP,
     Import (..),
     ImportU (..),
+    ImportUP (..),
+    ImportP,
     ImportList (..),
     ImportListU (..),
+    ImportListUP (..),
+    ImportListP,
     ImportName (..),
     ImportNameU (..),
+    ImportNameUP (..),
+    ImportNameP,
     Imports (..),
     ImportsU (..),
+    ImportsUP (..),
+    ImportsP,
     Inferred (..),
     InferredU (..),
+    InferredUP (..),
+    InferredP,
     Infix (..),
     InfixU (..),
+    InfixUP (..),
+    InfixP,
     InfixId (..),
     InfixIdU (..),
+    InfixIdUP (..),
+    InfixIdP,
     Instance (..),
     InstanceU (..),
+    InstanceUP (..),
+    InstanceP,
     InstanceDeclarations (..),
     InstanceDeclarationsU (..),
+    InstanceDeclarationsUP (..),
+    InstanceDeclarationsP,
     Integer (..),
+    IntegerP,
+    XInteger,
     Invisible (..),
     InvisibleU (..),
+    InvisibleUP (..),
+    InvisibleP,
     Irrefutable (..),
     IrrefutableU (..),
+    IrrefutableUP (..),
+    IrrefutableP,
     KindApplication (..),
     KindApplicationU (..),
+    KindApplicationUP (..),
+    KindApplicationP,
     KindSignature (..),
     KindSignatureU (..),
+    KindSignatureUP (..),
+    KindSignatureP,
     Lambda (..),
     LambdaU (..),
+    LambdaUP (..),
+    LambdaP,
     LambdaCase (..),
     LambdaCaseU (..),
+    LambdaCaseUP (..),
+    LambdaCaseP,
     LambdaCases (..),
     LambdaCasesU (..),
+    LambdaCasesUP (..),
+    LambdaCasesP,
     LazyField (..),
     LazyFieldU (..),
+    LazyFieldUP (..),
+    LazyFieldP,
     LeftSection (..),
     LeftSectionU (..),
+    LeftSectionUP (..),
+    LeftSectionP,
     Let (..),
     LetU (..),
+    LetUP (..),
+    LetP,
     LetIn (..),
     LetInU (..),
+    LetInUP (..),
+    LetInP,
     LinearFunction (..),
     LinearFunctionU (..),
+    LinearFunctionUP (..),
+    LinearFunctionP,
     List (..),
     ListU (..),
+    ListUP (..),
+    ListP,
     ListComprehension (..),
     ListComprehensionU (..),
+    ListComprehensionUP (..),
+    ListComprehensionP,
     Literal (..),
     LiteralU (..),
+    LiteralUP (..),
+    LiteralP,
     LocalBinds (..),
     LocalBindsU (..),
+    LocalBindsUP (..),
+    LocalBindsP,
     Match (..),
     MatchU (..),
+    MatchUP (..),
+    MatchP,
     Modifier (..),
     ModifierU (..),
+    ModifierUP (..),
+    ModifierP,
     Module (..),
     ModuleU (..),
+    ModuleUP (..),
+    ModuleP,
     ModuleExport (..),
     ModuleExportU (..),
+    ModuleExportUP (..),
+    ModuleExportP,
     MultiWayIf (..),
     MultiWayIfU (..),
+    MultiWayIfUP (..),
+    MultiWayIfP,
     Namespace (..),
+    NamespaceP,
+    XNamespace,
     Negation (..),
     NegationU (..),
+    NegationUP (..),
+    NegationP,
     Newtype (..),
     NewtypeU (..),
+    NewtypeUP (..),
+    NewtypeP,
     NewtypeConstructor (..),
     NewtypeConstructorU (..),
+    NewtypeConstructorUP (..),
+    NewtypeConstructorP,
     Operator (..),
+    OperatorP,
+    XOperator,
     Parens (..),
     ParensU (..),
+    ParensUP (..),
+    ParensP,
     PatternGuard (..),
     PatternGuardU (..),
+    PatternGuardUP (..),
+    PatternGuardP,
     PatternSynonym (..),
     PatternSynonymU (..),
+    PatternSynonymUP (..),
+    PatternSynonymP,
     Patterns (..),
     PatternsU (..),
+    PatternsUP (..),
+    PatternsP,
     Prefix (..),
     PrefixU (..),
+    PrefixUP (..),
+    PrefixP,
     PrefixId (..),
     PrefixIdU (..),
+    PrefixIdUP (..),
+    PrefixIdP,
     PrefixList (..),
+    PrefixListP,
+    XPrefixList,
     PrefixTuple (..),
+    PrefixTupleP,
+    XPrefixTuple,
     PrefixUnboxedSum (..),
+    PrefixUnboxedSumP,
+    XPrefixUnboxedSum,
     PrefixUnboxedTuple (..),
+    PrefixUnboxedTupleP,
+    XPrefixUnboxedTuple,
     Projection (..),
     ProjectionU (..),
+    ProjectionUP (..),
+    ProjectionP,
     ProjectionSelector (..),
     ProjectionSelectorU (..),
+    ProjectionSelectorUP (..),
+    ProjectionSelectorP,
     Promoted (..),
     PromotedU (..),
+    PromotedUP (..),
+    PromotedP,
     Qualified (..),
     QualifiedU (..),
+    QualifiedUP (..),
+    QualifiedP,
     Qualifiers (..),
     QualifiersU (..),
+    QualifiersUP (..),
+    QualifiersP,
     QuantifiedVariables (..),
     QuantifiedVariablesU (..),
+    QuantifiedVariablesUP (..),
+    QuantifiedVariablesP,
     Quasiquote (..),
     QuasiquoteU (..),
+    QuasiquoteUP (..),
+    QuasiquoteP,
     Quote (..),
     QuoteU (..),
+    QuoteUP (..),
+    QuoteP,
     QuotedDecls (..),
     QuotedDeclsU (..),
+    QuotedDeclsUP (..),
+    QuotedDeclsP,
     QuotedExpression (..),
     QuotedExpressionU (..),
+    QuotedExpressionUP (..),
+    QuotedExpressionP,
     QuotedPattern (..),
     QuotedPatternU (..),
+    QuotedPatternUP (..),
+    QuotedPatternP,
     QuotedType (..),
     QuotedTypeU (..),
+    QuotedTypeUP (..),
+    QuotedTypeP,
     Quoter (..),
     QuoterU (..),
+    QuoterUP (..),
+    QuoterP,
     Rec (..),
     RecU (..),
+    RecUP (..),
+    RecP,
     Record (..),
     RecordU (..),
+    RecordUP (..),
+    RecordP,
     RightSection (..),
     RightSectionU (..),
+    RightSectionUP (..),
+    RightSectionP,
     RoleAnnotation (..),
     RoleAnnotationU (..),
+    RoleAnnotationUP (..),
+    RoleAnnotationP,
     Signature (..),
     SignatureU (..),
+    SignatureUP (..),
+    SignatureP,
     Special (..),
     SpecialU (..),
+    SpecialUP (..),
+    SpecialP,
     Splice (..),
     SpliceU (..),
+    SpliceUP (..),
+    SpliceP,
     Star (..),
+    StarP,
+    XStar,
     Strict (..),
     StrictU (..),
+    StrictUP (..),
+    StrictP,
     StrictField (..),
     StrictFieldU (..),
+    StrictFieldUP (..),
+    StrictFieldP,
     ThQuotedName (..),
     ThQuotedNameU (..),
+    ThQuotedNameUP (..),
+    ThQuotedNameP,
     TopSplice (..),
     TopSpliceU (..),
+    TopSpliceUP (..),
+    TopSpliceP,
     Transform (..),
     TransformU (..),
+    TransformUP (..),
+    TransformP,
     Tuple (..),
     TupleU (..),
+    TupleUP (..),
+    TupleP,
     TypeApplication (..),
     TypeApplicationU (..),
+    TypeApplicationUP (..),
+    TypeApplicationP,
     TypeBinder (..),
     TypeBinderU (..),
+    TypeBinderUP (..),
+    TypeBinderP,
     TypeFamily (..),
     TypeFamilyU (..),
+    TypeFamilyUP (..),
+    TypeFamilyP,
     TypeFamilyInjectivity (..),
     TypeFamilyInjectivityU (..),
+    TypeFamilyInjectivityUP (..),
+    TypeFamilyInjectivityP,
     TypeFamilyResult (..),
     TypeFamilyResultU (..),
+    TypeFamilyResultUP (..),
+    TypeFamilyResultP,
     TypeInstance (..),
     TypeInstanceU (..),
+    TypeInstanceUP (..),
+    TypeInstanceP,
     TypeParams (..),
     TypeParamsU (..),
+    TypeParamsUP (..),
+    TypeParamsP,
     TypePatterns (..),
     TypePatternsU (..),
+    TypePatternsUP (..),
+    TypePatternsP,
     TypeRole (..),
+    TypeRoleP,
+    XTypeRole,
     TypeSynomym (..),
     TypeSynomymU (..),
+    TypeSynomymUP (..),
+    TypeSynomymP,
     TypedQuote (..),
     TypedQuoteU (..),
+    TypedQuoteUP (..),
+    TypedQuoteP,
     UnboxedSum (..),
     UnboxedSumU (..),
+    UnboxedSumUP (..),
+    UnboxedSumP,
     UnboxedTuple (..),
     UnboxedTupleU (..),
+    UnboxedTupleUP (..),
+    UnboxedTupleP,
     UnboxedUnit (..),
+    UnboxedUnitP,
+    XUnboxedUnit,
     Unit (..),
+    UnitP,
+    XUnit,
     Via (..),
     ViaU (..),
+    ViaUP (..),
+    ViaP,
     ViewPattern (..),
     ViewPatternU (..),
+    ViewPatternUP (..),
+    ViewPatternP,
     Wildcard (..),
+    WildcardP,
+    XWildcard,
     AllNames (..),
+    AllNamesP,
+    XAllNames,
     CallingConvention (..),
+    CallingConventionP,
+    XCallingConvention,
     Char (..),
+    CharP,
+    XChar,
     Comment (..),
+    CommentP,
+    XComment,
     Constructor (..),
+    ConstructorP,
+    XConstructor,
     Cpp (..),
+    CppP,
+    XCpp,
     Float (..),
+    FloatP,
+    XFloat,
     Haddock (..),
+    HaddockP,
+    XHaddock,
     ImplicitVariable (..),
+    ImplicitVariableP,
+    XImplicitVariable,
     ImportPackage (..),
+    ImportPackageP,
+    XImportPackage,
     Label (..),
+    LabelP,
+    XLabel,
     ModuleId (..),
+    ModuleIdP,
+    XModuleId,
     Name (..),
+    NameP,
+    XName,
     Pragma (..),
+    PragmaP,
+    XPragma,
     QuasiquoteBody (..),
+    QuasiquoteBodyP,
+    XQuasiquoteBody,
     Safety (..),
+    SafetyP,
+    XSafety,
     String (..),
+    StringP,
+    XString,
     Variable (..),
+    VariableP,
+    XVariable,
   )
 where
 
 import AST.Cast qualified
 import AST.Err qualified
+import AST.Extension qualified
 import AST.Node qualified
 import AST.Runtime qualified
 import AST.Sum qualified as Sum
@@ -346,6 +709,8 @@ import AST.Token qualified
 import AST.Unwrap qualified
 import Control.DeepSeq qualified
 import Control.Monad qualified
+import Data.Dynamic qualified as Dynamic
+import Data.Kind qualified as Kind
 import Data.List.NonEmpty qualified
 import Data.Map.Strict qualified
 import Data.Text qualified
@@ -353,224 +718,268 @@ import GHC.Generics qualified
 import TreeSitter.Api qualified as Api
 import Prelude qualified
 
-data ClassDecl = ClassDecl {dynNode :: AST.Node.DynNode, getClassDecl :: (DataFamily Sum.:+ Decl Sum.:+ DefaultSignature Sum.:+ Fixity Sum.:+ TypeFamily Sum.:+ TypeInstance Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ClassDecl)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ClassDecl)
+data ClassDecl ext = ClassDecl {dynNode :: AST.Node.DynNode, getClassDecl :: ((DataFamily ext) Sum.:+ (Decl ext) Sum.:+ (DefaultSignature ext) Sum.:+ (Fixity ext) Sum.:+ (TypeFamily ext) Sum.:+ (TypeInstance ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ClassDecl ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ClassDecl ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast ClassDecl where
+type ClassDeclP = ClassDecl AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (ClassDecl ext) where
   cast dynNode = do
     getClassDecl <- AST.Cast.cast dynNode
     Prelude.pure (ClassDecl {dynNode = dynNode, getClassDecl})
 
-instance AST.Node.HasDynNode ClassDecl where
+instance AST.Node.HasDynNode (ClassDecl ext) where
   getDynNode (ClassDecl {dynNode}) = dynNode
 
-data Constraint = Constraint {dynNode :: AST.Node.DynNode, getConstraint :: (Apply Sum.:+ Infix Sum.:+ Literal Sum.:+ Name Sum.:+ Parens Sum.:+ PrefixId Sum.:+ PrefixTuple Sum.:+ PrefixUnboxedSum Sum.:+ PrefixUnboxedTuple Sum.:+ Promoted Sum.:+ Qualified Sum.:+ Quasiquote Sum.:+ Splice Sum.:+ Tuple Sum.:+ UnboxedUnit Sum.:+ Unit Sum.:+ Variable Sum.:+ Wildcard Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Constraint)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Constraint)
+data Constraint ext = Constraint {dynNode :: AST.Node.DynNode, getConstraint :: ((Apply ext) Sum.:+ (Infix ext) Sum.:+ (Literal ext) Sum.:+ (Name ext) Sum.:+ (Parens ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixTuple ext) Sum.:+ (PrefixUnboxedSum ext) Sum.:+ (PrefixUnboxedTuple ext) Sum.:+ (Promoted ext) Sum.:+ (Qualified ext) Sum.:+ (Quasiquote ext) Sum.:+ (Splice ext) Sum.:+ (Tuple ext) Sum.:+ (UnboxedUnit ext) Sum.:+ (Unit ext) Sum.:+ (Variable ext) Sum.:+ (Wildcard ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Constraint ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Constraint ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Constraint where
+type ConstraintP = Constraint AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Constraint ext) where
   cast dynNode = do
     getConstraint <- AST.Cast.cast dynNode
     Prelude.pure (Constraint {dynNode = dynNode, getConstraint})
 
-instance AST.Node.HasDynNode Constraint where
+instance AST.Node.HasDynNode (Constraint ext) where
   getDynNode (Constraint {dynNode}) = dynNode
 
-data Constraints = Constraints {dynNode :: AST.Node.DynNode, getConstraints :: (Constraint Sum.:+ Context Sum.:+ Forall Sum.:+ ImplicitParameter Sum.:+ Signature Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Constraints)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Constraints)
+data Constraints ext = Constraints {dynNode :: AST.Node.DynNode, getConstraints :: ((Constraint ext) Sum.:+ (Context ext) Sum.:+ (Forall ext) Sum.:+ (ImplicitParameter ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Constraints ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Constraints ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Constraints where
+type ConstraintsP = Constraints AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Constraints ext) where
   cast dynNode = do
     getConstraints <- AST.Cast.cast dynNode
     Prelude.pure (Constraints {dynNode = dynNode, getConstraints})
 
-instance AST.Node.HasDynNode Constraints where
+instance AST.Node.HasDynNode (Constraints ext) where
   getDynNode (Constraints {dynNode}) = dynNode
 
-data Decl = Decl {dynNode :: AST.Node.DynNode, getDecl :: (Bind Sum.:+ Function Sum.:+ Signature Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Decl)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Decl)
+data Decl ext = Decl {dynNode :: AST.Node.DynNode, getDecl :: ((Bind ext) Sum.:+ (Function ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Decl ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Decl ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Decl where
+type DeclP = Decl AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Decl ext) where
   cast dynNode = do
     getDecl <- AST.Cast.cast dynNode
     Prelude.pure (Decl {dynNode = dynNode, getDecl})
 
-instance AST.Node.HasDynNode Decl where
+instance AST.Node.HasDynNode (Decl ext) where
   getDynNode (Decl {dynNode}) = dynNode
 
-data Declaration = Declaration {dynNode :: AST.Node.DynNode, getDeclaration :: (Class Sum.:+ DataFamily Sum.:+ DataInstance Sum.:+ DataType Sum.:+ Decl Sum.:+ DefaultTypes Sum.:+ DerivingInstance Sum.:+ Fixity Sum.:+ ForeignExport Sum.:+ ForeignImport Sum.:+ Instance Sum.:+ KindSignature Sum.:+ Newtype Sum.:+ PatternSynonym Sum.:+ RoleAnnotation Sum.:+ TopSplice Sum.:+ TypeFamily Sum.:+ TypeInstance Sum.:+ TypeSynomym Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Declaration)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Declaration)
+data Declaration ext = Declaration {dynNode :: AST.Node.DynNode, getDeclaration :: ((Class ext) Sum.:+ (DataFamily ext) Sum.:+ (DataInstance ext) Sum.:+ (DataType ext) Sum.:+ (Decl ext) Sum.:+ (DefaultTypes ext) Sum.:+ (DerivingInstance ext) Sum.:+ (Fixity ext) Sum.:+ (ForeignExport ext) Sum.:+ (ForeignImport ext) Sum.:+ (Instance ext) Sum.:+ (KindSignature ext) Sum.:+ (Newtype ext) Sum.:+ (PatternSynonym ext) Sum.:+ (RoleAnnotation ext) Sum.:+ (TopSplice ext) Sum.:+ (TypeFamily ext) Sum.:+ (TypeInstance ext) Sum.:+ (TypeSynomym ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Declaration ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Declaration ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Declaration where
+type DeclarationP = Declaration AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Declaration ext) where
   cast dynNode = do
     getDeclaration <- AST.Cast.cast dynNode
     Prelude.pure (Declaration {dynNode = dynNode, getDeclaration})
 
-instance AST.Node.HasDynNode Declaration where
+instance AST.Node.HasDynNode (Declaration ext) where
   getDynNode (Declaration {dynNode}) = dynNode
 
-data Expression = Expression {dynNode :: AST.Node.DynNode, getExpression :: (Apply Sum.:+ ArithmeticSequence Sum.:+ Case Sum.:+ Conditional Sum.:+ Constructor Sum.:+ Do Sum.:+ ImplicitVariable Sum.:+ Infix Sum.:+ Label Sum.:+ Lambda Sum.:+ LambdaCase Sum.:+ LambdaCases Sum.:+ LeftSection Sum.:+ LetIn Sum.:+ List Sum.:+ ListComprehension Sum.:+ Literal Sum.:+ MultiWayIf Sum.:+ Negation Sum.:+ Parens Sum.:+ PrefixId Sum.:+ PrefixTuple Sum.:+ PrefixUnboxedSum Sum.:+ PrefixUnboxedTuple Sum.:+ Projection Sum.:+ ProjectionSelector Sum.:+ Qualified Sum.:+ Quasiquote Sum.:+ Quote Sum.:+ Record Sum.:+ RightSection Sum.:+ Splice Sum.:+ ThQuotedName Sum.:+ Tuple Sum.:+ TypedQuote Sum.:+ UnboxedSum Sum.:+ UnboxedTuple Sum.:+ UnboxedUnit Sum.:+ Unit Sum.:+ Variable Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Expression)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Expression)
+data Expression ext = Expression {dynNode :: AST.Node.DynNode, getExpression :: ((Apply ext) Sum.:+ (ArithmeticSequence ext) Sum.:+ (Case ext) Sum.:+ (Conditional ext) Sum.:+ (Constructor ext) Sum.:+ (Do ext) Sum.:+ (ImplicitVariable ext) Sum.:+ (Infix ext) Sum.:+ (Label ext) Sum.:+ (Lambda ext) Sum.:+ (LambdaCase ext) Sum.:+ (LambdaCases ext) Sum.:+ (LeftSection ext) Sum.:+ (LetIn ext) Sum.:+ (List ext) Sum.:+ (ListComprehension ext) Sum.:+ (Literal ext) Sum.:+ (MultiWayIf ext) Sum.:+ (Negation ext) Sum.:+ (Parens ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixTuple ext) Sum.:+ (PrefixUnboxedSum ext) Sum.:+ (PrefixUnboxedTuple ext) Sum.:+ (Projection ext) Sum.:+ (ProjectionSelector ext) Sum.:+ (Qualified ext) Sum.:+ (Quasiquote ext) Sum.:+ (Quote ext) Sum.:+ (Record ext) Sum.:+ (RightSection ext) Sum.:+ (Splice ext) Sum.:+ (ThQuotedName ext) Sum.:+ (Tuple ext) Sum.:+ (TypedQuote ext) Sum.:+ (UnboxedSum ext) Sum.:+ (UnboxedTuple ext) Sum.:+ (UnboxedUnit ext) Sum.:+ (Unit ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Expression ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Expression ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Expression where
+type ExpressionP = Expression AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Expression ext) where
   cast dynNode = do
     getExpression <- AST.Cast.cast dynNode
     Prelude.pure (Expression {dynNode = dynNode, getExpression})
 
-instance AST.Node.HasDynNode Expression where
+instance AST.Node.HasDynNode (Expression ext) where
   getDynNode (Expression {dynNode}) = dynNode
 
-data Guard = Guard {dynNode :: AST.Node.DynNode, getGuard :: (Boolean Sum.:+ Let Sum.:+ PatternGuard Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Guard)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Guard)
+data Guard ext = Guard {dynNode :: AST.Node.DynNode, getGuard :: ((Boolean ext) Sum.:+ (Let ext) Sum.:+ (PatternGuard ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Guard ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Guard ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Guard where
+type GuardP = Guard AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Guard ext) where
   cast dynNode = do
     getGuard <- AST.Cast.cast dynNode
     Prelude.pure (Guard {dynNode = dynNode, getGuard})
 
-instance AST.Node.HasDynNode Guard where
+instance AST.Node.HasDynNode (Guard ext) where
   getDynNode (Guard {dynNode}) = dynNode
 
-data InstanceDecl = InstanceDecl {dynNode :: AST.Node.DynNode, getInstanceDecl :: (DataInstance Sum.:+ Decl Sum.:+ TypeInstance Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InstanceDecl)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InstanceDecl)
+data InstanceDecl ext = InstanceDecl {dynNode :: AST.Node.DynNode, getInstanceDecl :: ((DataInstance ext) Sum.:+ (Decl ext) Sum.:+ (TypeInstance ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InstanceDecl ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InstanceDecl ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast InstanceDecl where
+type InstanceDeclP = InstanceDecl AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (InstanceDecl ext) where
   cast dynNode = do
     getInstanceDecl <- AST.Cast.cast dynNode
     Prelude.pure (InstanceDecl {dynNode = dynNode, getInstanceDecl})
 
-instance AST.Node.HasDynNode InstanceDecl where
+instance AST.Node.HasDynNode (InstanceDecl ext) where
   getDynNode (InstanceDecl {dynNode}) = dynNode
 
-data Pattern = Pattern {dynNode :: AST.Node.DynNode, getPattern :: (Apply Sum.:+ As Sum.:+ Constructor Sum.:+ Infix Sum.:+ Irrefutable Sum.:+ List Sum.:+ Literal Sum.:+ Negation Sum.:+ Parens Sum.:+ PrefixId Sum.:+ PrefixTuple Sum.:+ PrefixUnboxedSum Sum.:+ PrefixUnboxedTuple Sum.:+ Qualified Sum.:+ Quasiquote Sum.:+ Record Sum.:+ Splice Sum.:+ Strict Sum.:+ Tuple Sum.:+ UnboxedSum Sum.:+ UnboxedTuple Sum.:+ UnboxedUnit Sum.:+ Unit Sum.:+ Variable Sum.:+ Wildcard Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Pattern)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Pattern)
+data Pattern ext = Pattern {dynNode :: AST.Node.DynNode, getPattern :: ((Apply ext) Sum.:+ (As ext) Sum.:+ (Constructor ext) Sum.:+ (Infix ext) Sum.:+ (Irrefutable ext) Sum.:+ (List ext) Sum.:+ (Literal ext) Sum.:+ (Negation ext) Sum.:+ (Parens ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixTuple ext) Sum.:+ (PrefixUnboxedSum ext) Sum.:+ (PrefixUnboxedTuple ext) Sum.:+ (Qualified ext) Sum.:+ (Quasiquote ext) Sum.:+ (Record ext) Sum.:+ (Splice ext) Sum.:+ (Strict ext) Sum.:+ (Tuple ext) Sum.:+ (UnboxedSum ext) Sum.:+ (UnboxedTuple ext) Sum.:+ (UnboxedUnit ext) Sum.:+ (Unit ext) Sum.:+ (Variable ext) Sum.:+ (Wildcard ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Pattern ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Pattern ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Pattern where
+type PatternP = Pattern AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Pattern ext) where
   cast dynNode = do
     getPattern <- AST.Cast.cast dynNode
     Prelude.pure (Pattern {dynNode = dynNode, getPattern})
 
-instance AST.Node.HasDynNode Pattern where
+instance AST.Node.HasDynNode (Pattern ext) where
   getDynNode (Pattern {dynNode}) = dynNode
 
-data Qualifier = Qualifier {dynNode :: AST.Node.DynNode, getQualifier :: (Boolean Sum.:+ Generator Sum.:+ Group Sum.:+ Let Sum.:+ Transform Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Qualifier)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Qualifier)
+data Qualifier ext = Qualifier {dynNode :: AST.Node.DynNode, getQualifier :: ((Boolean ext) Sum.:+ (Generator ext) Sum.:+ (Group ext) Sum.:+ (Let ext) Sum.:+ (Transform ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Qualifier ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Qualifier ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Qualifier where
+type QualifierP = Qualifier AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Qualifier ext) where
   cast dynNode = do
     getQualifier <- AST.Cast.cast dynNode
     Prelude.pure (Qualifier {dynNode = dynNode, getQualifier})
 
-instance AST.Node.HasDynNode Qualifier where
+instance AST.Node.HasDynNode (Qualifier ext) where
   getDynNode (Qualifier {dynNode}) = dynNode
 
-data QuantifiedType = QuantifiedType {dynNode :: AST.Node.DynNode, getQuantifiedType :: (Context Sum.:+ Forall Sum.:+ ForallRequired Sum.:+ Function Sum.:+ ImplicitParameter Sum.:+ LinearFunction Sum.:+ Type Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuantifiedType)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuantifiedType)
+data QuantifiedType ext = QuantifiedType {dynNode :: AST.Node.DynNode, getQuantifiedType :: ((Context ext) Sum.:+ (Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ (Function ext) Sum.:+ (ImplicitParameter ext) Sum.:+ (LinearFunction ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuantifiedType ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuantifiedType ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast QuantifiedType where
+type QuantifiedTypeP = QuantifiedType AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (QuantifiedType ext) where
   cast dynNode = do
     getQuantifiedType <- AST.Cast.cast dynNode
     Prelude.pure (QuantifiedType {dynNode = dynNode, getQuantifiedType})
 
-instance AST.Node.HasDynNode QuantifiedType where
+instance AST.Node.HasDynNode (QuantifiedType ext) where
   getDynNode (QuantifiedType {dynNode}) = dynNode
 
-data Statement = Statement {dynNode :: AST.Node.DynNode, getStatement :: (Bind Sum.:+ Exp Sum.:+ Let Sum.:+ Rec Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Statement)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Statement)
+data Statement ext = Statement {dynNode :: AST.Node.DynNode, getStatement :: ((Bind ext) Sum.:+ (Exp ext) Sum.:+ (Let ext) Sum.:+ (Rec ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Statement ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Statement ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Statement where
+type StatementP = Statement AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Statement ext) where
   cast dynNode = do
     getStatement <- AST.Cast.cast dynNode
     Prelude.pure (Statement {dynNode = dynNode, getStatement})
 
-instance AST.Node.HasDynNode Statement where
+instance AST.Node.HasDynNode (Statement ext) where
   getDynNode (Statement {dynNode}) = dynNode
 
-data Type = Type {dynNode :: AST.Node.DynNode, getType :: (Apply Sum.:+ Infix Sum.:+ List Sum.:+ Literal Sum.:+ Name Sum.:+ Parens Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ PrefixTuple Sum.:+ PrefixUnboxedSum Sum.:+ PrefixUnboxedTuple Sum.:+ Promoted Sum.:+ Qualified Sum.:+ Quasiquote Sum.:+ Splice Sum.:+ Star Sum.:+ Tuple Sum.:+ UnboxedSum Sum.:+ UnboxedTuple Sum.:+ UnboxedUnit Sum.:+ Unit Sum.:+ Variable Sum.:+ Wildcard Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Type)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Type)
+data Type ext = Type {dynNode :: AST.Node.DynNode, getType :: ((Apply ext) Sum.:+ (Infix ext) Sum.:+ (List ext) Sum.:+ (Literal ext) Sum.:+ (Name ext) Sum.:+ (Parens ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (PrefixTuple ext) Sum.:+ (PrefixUnboxedSum ext) Sum.:+ (PrefixUnboxedTuple ext) Sum.:+ (Promoted ext) Sum.:+ (Qualified ext) Sum.:+ (Quasiquote ext) Sum.:+ (Splice ext) Sum.:+ (Star ext) Sum.:+ (Tuple ext) Sum.:+ (UnboxedSum ext) Sum.:+ (UnboxedTuple ext) Sum.:+ (UnboxedUnit ext) Sum.:+ (Unit ext) Sum.:+ (Variable ext) Sum.:+ (Wildcard ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Type ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Type ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast Type where
+type TypeP = Type AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (Type ext) where
   cast dynNode = do
     getType <- AST.Cast.cast dynNode
     Prelude.pure (Type {dynNode = dynNode, getType})
 
-instance AST.Node.HasDynNode Type where
+instance AST.Node.HasDynNode (Type ext) where
   getDynNode (Type {dynNode}) = dynNode
 
-data TypeParam = TypeParam {dynNode :: AST.Node.DynNode, getTypeParam :: (Invisible Sum.:+ Parens Sum.:+ Variable Sum.:+ Wildcard Sum.:+ Sum.Nil)}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeParam)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeParam)
+data TypeParam ext = TypeParam {dynNode :: AST.Node.DynNode, getTypeParam :: ((Invisible ext) Sum.:+ (Parens ext) Sum.:+ (Variable ext) Sum.:+ (Wildcard ext) Sum.:+ Sum.Nil)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeParam ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeParam ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Cast.Cast TypeParam where
+type TypeParamP = TypeParam AST.Extension.ParsePhase
+
+instance AST.Cast.Cast (TypeParam ext) where
   cast dynNode = do
     getTypeParam <- AST.Cast.cast dynNode
     Prelude.pure (TypeParam {dynNode = dynNode, getTypeParam})
 
-instance AST.Node.HasDynNode TypeParam where
+instance AST.Node.HasDynNode (TypeParam ext) where
   getDynNode (TypeParam {dynNode}) = dynNode
 
-data AbstractFamily = AbstractFamily {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AbstractFamily)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AbstractFamily)
+data AbstractFamily ext = AbstractFamily {dynNode :: AST.Node.DynNode, ext :: (XAbstractFamily ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AbstractFamily ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AbstractFamily ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode AbstractFamily where
+type AbstractFamilyP = AbstractFamily AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (AbstractFamily ext) where
   getDynNode (AbstractFamily {dynNode}) = dynNode
 
-instance AST.Cast.Cast AbstractFamily where
+instance AST.Cast.Cast (AbstractFamily ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "abstract_family")
-    Prelude.pure (AbstractFamily {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (AbstractFamily {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Alternative = Alternative
-  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (LocalBinds))),
-    match :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Match))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Patterns))),
+type family XAbstractFamily ext
+
+type instance XAbstractFamily ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XAbstractFamily ext)) => Dynamic.Typeable (AbstractFamily ext)
+
+data Alternative ext = Alternative
+  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
+    match :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Match ext)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Patterns ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Alternative)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Alternative)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Alternative ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Alternative ext))
   deriving (GHC.Generics.Generic)
 
-data AlternativeU = AlternativeU
-  { binds :: Prelude.Maybe (LocalBinds),
-    match :: Data.List.NonEmpty.NonEmpty (Match),
-    pattern' :: Prelude.Maybe ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (Patterns),
+type AlternativeP = Alternative AST.Extension.ParsePhase
+
+data AlternativeU ext = AlternativeU
+  { binds :: Prelude.Maybe ((LocalBinds ext)),
+    match :: Data.List.NonEmpty.NonEmpty ((Match ext)),
+    pattern' :: Prelude.Maybe (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((Patterns ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AlternativeU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AlternativeU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AlternativeU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AlternativeU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Alternative :: Api.Node -> Prelude.Maybe Alternative
+type AlternativeUP = AlternativeU AST.Extension.ParsePhase
+
+cast_Alternative :: Api.Node -> Prelude.Maybe (Alternative ext)
 cast_Alternative dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "alternative")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -591,13 +1000,13 @@ cast_Alternative dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Alternative where
+instance AST.Node.HasDynNode (Alternative ext) where
   getDynNode (Alternative {dynNode}) = dynNode
 
-instance AST.Cast.Cast Alternative where
+instance AST.Cast.Cast (Alternative ext) where
   cast = cast_Alternative
 
-unwrap_Alternative :: Alternative -> AST.Err.Err AlternativeU
+unwrap_Alternative :: Alternative ext -> AST.Err.Err (AlternativeU ext)
 unwrap_Alternative node = do
   binds <- AST.Runtime.unwrapMaybe node.binds
   match <- AST.Runtime.unwrapNonEmpty node.match
@@ -612,29 +1021,33 @@ unwrap_Alternative node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode AlternativeU where
+instance AST.Node.HasDynNode (AlternativeU ext) where
   getDynNode (AlternativeU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Alternative AlternativeU where
+instance AST.Unwrap.Unwrap (Alternative ext) (AlternativeU ext) where
   unwrap = unwrap_Alternative
 
-data Alternatives = Alternatives
-  { alternative :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Alternative))),
+data Alternatives ext = Alternatives
+  { alternative :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Alternative ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Alternatives)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Alternatives)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Alternatives ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Alternatives ext))
   deriving (GHC.Generics.Generic)
 
-data AlternativesU = AlternativesU
-  { alternative :: AST.Runtime.List (Alternative),
+type AlternativesP = Alternatives AST.Extension.ParsePhase
+
+data AlternativesU ext = AlternativesU
+  { alternative :: AST.Runtime.List ((Alternative ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AlternativesU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AlternativesU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AlternativesU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AlternativesU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Alternatives :: Api.Node -> Prelude.Maybe Alternatives
+type AlternativesUP = AlternativesU AST.Extension.ParsePhase
+
+cast_Alternatives :: Api.Node -> Prelude.Maybe (Alternatives ext)
 cast_Alternatives dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "alternatives")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -646,13 +1059,13 @@ cast_Alternatives dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Alternatives where
+instance AST.Node.HasDynNode (Alternatives ext) where
   getDynNode (Alternatives {dynNode}) = dynNode
 
-instance AST.Cast.Cast Alternatives where
+instance AST.Cast.Cast (Alternatives ext) where
   cast = cast_Alternatives
 
-unwrap_Alternatives :: Alternatives -> AST.Err.Err AlternativesU
+unwrap_Alternatives :: Alternatives ext -> AST.Err.Err (AlternativesU ext)
 unwrap_Alternatives node = do
   alternative <- AST.Runtime.unwrapList node.alternative
   Prelude.pure
@@ -661,31 +1074,35 @@ unwrap_Alternatives node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode AlternativesU where
+instance AST.Node.HasDynNode (AlternativesU ext) where
   getDynNode (AlternativesU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Alternatives AlternativesU where
+instance AST.Unwrap.Unwrap (Alternatives ext) (AlternativesU ext) where
   unwrap = unwrap_Alternatives
 
-data Annotated = Annotated
-  { children :: ((AST.Err.Err (TypeParam))),
-    kind :: ((AST.Err.Err (QuantifiedType))),
+data Annotated ext = Annotated
+  { children :: ((AST.Err.Err ((TypeParam ext)))),
+    kind :: ((AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Annotated)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Annotated)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Annotated ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Annotated ext))
   deriving (GHC.Generics.Generic)
 
-data AnnotatedU = AnnotatedU
-  { children :: (TypeParam),
-    kind :: (QuantifiedType),
+type AnnotatedP = Annotated AST.Extension.ParsePhase
+
+data AnnotatedU ext = AnnotatedU
+  { children :: ((TypeParam ext)),
+    kind :: ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AnnotatedU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AnnotatedU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AnnotatedU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AnnotatedU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Annotated :: Api.Node -> Prelude.Maybe Annotated
+type AnnotatedUP = AnnotatedU AST.Extension.ParsePhase
+
+cast_Annotated :: Api.Node -> Prelude.Maybe (Annotated ext)
 cast_Annotated dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "annotated")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -699,13 +1116,13 @@ cast_Annotated dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Annotated where
+instance AST.Node.HasDynNode (Annotated ext) where
   getDynNode (Annotated {dynNode}) = dynNode
 
-instance AST.Cast.Cast Annotated where
+instance AST.Cast.Cast (Annotated ext) where
   cast = cast_Annotated
 
-unwrap_Annotated :: Annotated -> AST.Err.Err AnnotatedU
+unwrap_Annotated :: Annotated ext -> AST.Err.Err (AnnotatedU ext)
 unwrap_Annotated node = do
   children <- AST.Runtime.unwrapSingle node.children
   kind <- AST.Runtime.unwrapSingle node.kind
@@ -716,33 +1133,37 @@ unwrap_Annotated node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode AnnotatedU where
+instance AST.Node.HasDynNode (AnnotatedU ext) where
   getDynNode (AnnotatedU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Annotated AnnotatedU where
+instance AST.Unwrap.Unwrap (Annotated ext) (AnnotatedU ext) where
   unwrap = unwrap_Annotated
 
-data Apply = Apply
-  { argument :: ((AST.Err.Err ((ExplicitType Sum.:+ Expression Sum.:+ KindApplication Sum.:+ Pattern Sum.:+ Type Sum.:+ TypeApplication Sum.:+ TypeBinder Sum.:+ Sum.Nil)))),
-    constructor :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constraint Sum.:+ Type Sum.:+ Sum.Nil)))),
-    function :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Pattern Sum.:+ Sum.Nil)))),
+data Apply ext = Apply
+  { argument :: ((AST.Err.Err (((ExplicitType ext) Sum.:+ (Expression ext) Sum.:+ (KindApplication ext) Sum.:+ (Pattern ext) Sum.:+ (Type ext) Sum.:+ (TypeApplication ext) Sum.:+ (TypeBinder ext) Sum.:+ Sum.Nil)))),
+    constructor :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Constraint ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)))),
+    function :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Apply)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Apply)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Apply ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Apply ext))
   deriving (GHC.Generics.Generic)
 
-data ApplyU = ApplyU
-  { argument :: ((ExplicitType Sum.:+ Expression Sum.:+ KindApplication Sum.:+ Pattern Sum.:+ Type Sum.:+ TypeApplication Sum.:+ TypeBinder Sum.:+ Sum.Nil)),
-    constructor :: Prelude.Maybe ((Constraint Sum.:+ Type Sum.:+ Sum.Nil)),
-    function :: Prelude.Maybe ((Expression Sum.:+ Pattern Sum.:+ Sum.Nil)),
+type ApplyP = Apply AST.Extension.ParsePhase
+
+data ApplyU ext = ApplyU
+  { argument :: (((ExplicitType ext) Sum.:+ (Expression ext) Sum.:+ (KindApplication ext) Sum.:+ (Pattern ext) Sum.:+ (Type ext) Sum.:+ (TypeApplication ext) Sum.:+ (TypeBinder ext) Sum.:+ Sum.Nil)),
+    constructor :: Prelude.Maybe (((Constraint ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)),
+    function :: Prelude.Maybe (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ApplyU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ApplyU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ApplyU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ApplyU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Apply :: Api.Node -> Prelude.Maybe Apply
+type ApplyUP = ApplyU AST.Extension.ParsePhase
+
+cast_Apply :: Api.Node -> Prelude.Maybe (Apply ext)
 cast_Apply dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "apply")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -760,13 +1181,13 @@ cast_Apply dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Apply where
+instance AST.Node.HasDynNode (Apply ext) where
   getDynNode (Apply {dynNode}) = dynNode
 
-instance AST.Cast.Cast Apply where
+instance AST.Cast.Cast (Apply ext) where
   cast = cast_Apply
 
-unwrap_Apply :: Apply -> AST.Err.Err ApplyU
+unwrap_Apply :: Apply ext -> AST.Err.Err (ApplyU ext)
 unwrap_Apply node = do
   argument <- AST.Runtime.unwrapSingle node.argument
   constructor <- AST.Runtime.unwrapMaybe node.constructor
@@ -779,33 +1200,37 @@ unwrap_Apply node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ApplyU where
+instance AST.Node.HasDynNode (ApplyU ext) where
   getDynNode (ApplyU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Apply ApplyU where
+instance AST.Unwrap.Unwrap (Apply ext) (ApplyU ext) where
   unwrap = unwrap_Apply
 
-data ArithmeticSequence = ArithmeticSequence
-  { from :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    step :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    to :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data ArithmeticSequence ext = ArithmeticSequence
+  { from :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    step :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    to :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ArithmeticSequence)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ArithmeticSequence)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ArithmeticSequence ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ArithmeticSequence ext))
   deriving (GHC.Generics.Generic)
 
-data ArithmeticSequenceU = ArithmeticSequenceU
-  { from :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    step :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    to :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type ArithmeticSequenceP = ArithmeticSequence AST.Extension.ParsePhase
+
+data ArithmeticSequenceU ext = ArithmeticSequenceU
+  { from :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    step :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    to :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ArithmeticSequenceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ArithmeticSequenceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ArithmeticSequenceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ArithmeticSequenceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ArithmeticSequence :: Api.Node -> Prelude.Maybe ArithmeticSequence
+type ArithmeticSequenceUP = ArithmeticSequenceU AST.Extension.ParsePhase
+
+cast_ArithmeticSequence :: Api.Node -> Prelude.Maybe (ArithmeticSequence ext)
 cast_ArithmeticSequence dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "arithmetic_sequence")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -823,13 +1248,13 @@ cast_ArithmeticSequence dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ArithmeticSequence where
+instance AST.Node.HasDynNode (ArithmeticSequence ext) where
   getDynNode (ArithmeticSequence {dynNode}) = dynNode
 
-instance AST.Cast.Cast ArithmeticSequence where
+instance AST.Cast.Cast (ArithmeticSequence ext) where
   cast = cast_ArithmeticSequence
 
-unwrap_ArithmeticSequence :: ArithmeticSequence -> AST.Err.Err ArithmeticSequenceU
+unwrap_ArithmeticSequence :: ArithmeticSequence ext -> AST.Err.Err (ArithmeticSequenceU ext)
 unwrap_ArithmeticSequence node = do
   from <- AST.Runtime.unwrapSingle node.from
   step <- AST.Runtime.unwrapMaybe node.step
@@ -842,31 +1267,35 @@ unwrap_ArithmeticSequence node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ArithmeticSequenceU where
+instance AST.Node.HasDynNode (ArithmeticSequenceU ext) where
   getDynNode (ArithmeticSequenceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ArithmeticSequence ArithmeticSequenceU where
+instance AST.Unwrap.Unwrap (ArithmeticSequence ext) (ArithmeticSequenceU ext) where
   unwrap = unwrap_ArithmeticSequence
 
-data As = As
-  { bind :: ((AST.Err.Err (Variable))),
-    pattern' :: ((AST.Err.Err (Pattern))),
+data As ext = As
+  { bind :: ((AST.Err.Err ((Variable ext)))),
+    pattern' :: ((AST.Err.Err ((Pattern ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode As)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode As)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (As ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (As ext))
   deriving (GHC.Generics.Generic)
 
-data AsU = AsU
-  { bind :: (Variable),
-    pattern' :: (Pattern),
+type AsP = As AST.Extension.ParsePhase
+
+data AsU ext = AsU
+  { bind :: ((Variable ext)),
+    pattern' :: ((Pattern ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_As :: Api.Node -> Prelude.Maybe As
+type AsUP = AsU AST.Extension.ParsePhase
+
+cast_As :: Api.Node -> Prelude.Maybe (As ext)
 cast_As dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "as")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -881,13 +1310,13 @@ cast_As dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode As where
+instance AST.Node.HasDynNode (As ext) where
   getDynNode (As {dynNode}) = dynNode
 
-instance AST.Cast.Cast As where
+instance AST.Cast.Cast (As ext) where
   cast = cast_As
 
-unwrap_As :: As -> AST.Err.Err AsU
+unwrap_As :: As ext -> AST.Err.Err (AsU ext)
 unwrap_As node = do
   bind <- AST.Runtime.unwrapSingle node.bind
   pattern' <- AST.Runtime.unwrapSingle node.pattern'
@@ -898,31 +1327,35 @@ unwrap_As node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode AsU where
+instance AST.Node.HasDynNode (AsU ext) where
   getDynNode (AsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap As AsU where
+instance AST.Unwrap.Unwrap (As ext) (AsU ext) where
   unwrap = unwrap_As
 
-data AssociatedType = AssociatedType
+data AssociatedType ext = AssociatedType
   { namespace :: ((AST.Err.Err ((AST.Token.Token "type")))),
-    type' :: ((AST.Err.Err ((Name Sum.:+ Qualified Sum.:+ Sum.Nil)))),
+    type' :: ((AST.Err.Err (((Name ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AssociatedType)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AssociatedType)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AssociatedType ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AssociatedType ext))
   deriving (GHC.Generics.Generic)
 
-data AssociatedTypeU = AssociatedTypeU
+type AssociatedTypeP = AssociatedType AST.Extension.ParsePhase
+
+data AssociatedTypeU ext = AssociatedTypeU
   { namespace :: ((AST.Token.Token "type")),
-    type' :: ((Name Sum.:+ Qualified Sum.:+ Sum.Nil)),
+    type' :: (((Name ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AssociatedTypeU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AssociatedTypeU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AssociatedTypeU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AssociatedTypeU ext))
   deriving (GHC.Generics.Generic)
 
-cast_AssociatedType :: Api.Node -> Prelude.Maybe AssociatedType
+type AssociatedTypeUP = AssociatedTypeU AST.Extension.ParsePhase
+
+cast_AssociatedType :: Api.Node -> Prelude.Maybe (AssociatedType ext)
 cast_AssociatedType dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "associated_type")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -937,13 +1370,13 @@ cast_AssociatedType dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode AssociatedType where
+instance AST.Node.HasDynNode (AssociatedType ext) where
   getDynNode (AssociatedType {dynNode}) = dynNode
 
-instance AST.Cast.Cast AssociatedType where
+instance AST.Cast.Cast (AssociatedType ext) where
   cast = cast_AssociatedType
 
-unwrap_AssociatedType :: AssociatedType -> AST.Err.Err AssociatedTypeU
+unwrap_AssociatedType :: AssociatedType ext -> AST.Err.Err (AssociatedTypeU ext)
 unwrap_AssociatedType node = do
   namespace <- AST.Runtime.unwrapSingle node.namespace
   type' <- AST.Runtime.unwrapSingle node.type'
@@ -954,41 +1387,45 @@ unwrap_AssociatedType node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode AssociatedTypeU where
+instance AST.Node.HasDynNode (AssociatedTypeU ext) where
   getDynNode (AssociatedTypeU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap AssociatedType AssociatedTypeU where
+instance AST.Unwrap.Unwrap (AssociatedType ext) (AssociatedTypeU ext) where
   unwrap = unwrap_AssociatedType
 
-data Bind = Bind
+data Bind ext = Bind
   { arrow :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((AST.Token.Token "<-") Sum.:+ (AST.Token.Token "←") Sum.:+ Sum.Nil)))),
-    binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (LocalBinds))),
-    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    implicit :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (ImplicitVariable))),
-    match :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Match))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
+    binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
+    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    implicit :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((ImplicitVariable ext)))),
+    match :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Match ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Bind)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Bind)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Bind ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Bind ext))
   deriving (GHC.Generics.Generic)
 
-data BindU = BindU
+type BindP = Bind AST.Extension.ParsePhase
+
+data BindU ext = BindU
   { arrow :: Prelude.Maybe (((AST.Token.Token "<-") Sum.:+ (AST.Token.Token "←") Sum.:+ Sum.Nil)),
-    binds :: Prelude.Maybe (LocalBinds),
-    expression :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    implicit :: Prelude.Maybe (ImplicitVariable),
-    match :: AST.Runtime.List (Match),
-    name :: Prelude.Maybe ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)),
-    pattern' :: Prelude.Maybe ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
+    binds :: Prelude.Maybe ((LocalBinds ext)),
+    expression :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    implicit :: Prelude.Maybe ((ImplicitVariable ext)),
+    match :: AST.Runtime.List ((Match ext)),
+    name :: Prelude.Maybe (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    pattern' :: Prelude.Maybe (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode BindU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode BindU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (BindU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (BindU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Bind :: Api.Node -> Prelude.Maybe Bind
+type BindUP = BindU AST.Extension.ParsePhase
+
+cast_Bind :: Api.Node -> Prelude.Maybe (Bind ext)
 cast_Bind dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "bind")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1018,13 +1455,13 @@ cast_Bind dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Bind where
+instance AST.Node.HasDynNode (Bind ext) where
   getDynNode (Bind {dynNode}) = dynNode
 
-instance AST.Cast.Cast Bind where
+instance AST.Cast.Cast (Bind ext) where
   cast = cast_Bind
 
-unwrap_Bind :: Bind -> AST.Err.Err BindU
+unwrap_Bind :: Bind ext -> AST.Err.Err (BindU ext)
 unwrap_Bind node = do
   arrow <- AST.Runtime.unwrapMaybe node.arrow
   binds <- AST.Runtime.unwrapMaybe node.binds
@@ -1045,29 +1482,33 @@ unwrap_Bind node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode BindU where
+instance AST.Node.HasDynNode (BindU ext) where
   getDynNode (BindU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Bind BindU where
+instance AST.Unwrap.Unwrap (Bind ext) (BindU ext) where
   unwrap = unwrap_Bind
 
-data BindingList = BindingList
-  { name :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Constructor Sum.:+ PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data BindingList ext = BindingList
+  { name :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode BindingList)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode BindingList)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (BindingList ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (BindingList ext))
   deriving (GHC.Generics.Generic)
 
-data BindingListU = BindingListU
-  { name :: Data.List.NonEmpty.NonEmpty ((Constructor Sum.:+ PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)),
+type BindingListP = BindingList AST.Extension.ParsePhase
+
+data BindingListU ext = BindingListU
+  { name :: Data.List.NonEmpty.NonEmpty (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode BindingListU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode BindingListU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (BindingListU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (BindingListU ext))
   deriving (GHC.Generics.Generic)
 
-cast_BindingList :: Api.Node -> Prelude.Maybe BindingList
+type BindingListUP = BindingListU AST.Extension.ParsePhase
+
+cast_BindingList :: Api.Node -> Prelude.Maybe (BindingList ext)
 cast_BindingList dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "binding_list")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1079,13 +1520,13 @@ cast_BindingList dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode BindingList where
+instance AST.Node.HasDynNode (BindingList ext) where
   getDynNode (BindingList {dynNode}) = dynNode
 
-instance AST.Cast.Cast BindingList where
+instance AST.Cast.Cast (BindingList ext) where
   cast = cast_BindingList
 
-unwrap_BindingList :: BindingList -> AST.Err.Err BindingListU
+unwrap_BindingList :: BindingList ext -> AST.Err.Err (BindingListU ext)
 unwrap_BindingList node = do
   name <- AST.Runtime.unwrapNonEmpty node.name
   Prelude.pure
@@ -1094,29 +1535,33 @@ unwrap_BindingList node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode BindingListU where
+instance AST.Node.HasDynNode (BindingListU ext) where
   getDynNode (BindingListU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap BindingList BindingListU where
+instance AST.Unwrap.Unwrap (BindingList ext) (BindingListU ext) where
   unwrap = unwrap_BindingList
 
-data Boolean = Boolean
-  { children :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data Boolean ext = Boolean
+  { children :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Boolean)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Boolean)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Boolean ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Boolean ext))
   deriving (GHC.Generics.Generic)
 
-data BooleanU = BooleanU
-  { children :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type BooleanP = Boolean AST.Extension.ParsePhase
+
+data BooleanU ext = BooleanU
+  { children :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode BooleanU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode BooleanU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (BooleanU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (BooleanU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Boolean :: Api.Node -> Prelude.Maybe Boolean
+type BooleanUP = BooleanU AST.Extension.ParsePhase
+
+cast_Boolean :: Api.Node -> Prelude.Maybe (Boolean ext)
 cast_Boolean dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "boolean")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1127,13 +1572,13 @@ cast_Boolean dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Boolean where
+instance AST.Node.HasDynNode (Boolean ext) where
   getDynNode (Boolean {dynNode}) = dynNode
 
-instance AST.Cast.Cast Boolean where
+instance AST.Cast.Cast (Boolean ext) where
   cast = cast_Boolean
 
-unwrap_Boolean :: Boolean -> AST.Err.Err BooleanU
+unwrap_Boolean :: Boolean ext -> AST.Err.Err (BooleanU ext)
 unwrap_Boolean node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -1142,31 +1587,35 @@ unwrap_Boolean node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode BooleanU where
+instance AST.Node.HasDynNode (BooleanU ext) where
   getDynNode (BooleanU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Boolean BooleanU where
+instance AST.Unwrap.Unwrap (Boolean ext) (BooleanU ext) where
   unwrap = unwrap_Boolean
 
-data Case = Case
-  { children :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    alternatives :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Alternatives))),
+data Case ext = Case
+  { children :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    alternatives :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Alternatives ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Case)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Case)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Case ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Case ext))
   deriving (GHC.Generics.Generic)
 
-data CaseU = CaseU
-  { children :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    alternatives :: Prelude.Maybe (Alternatives),
+type CaseP = Case AST.Extension.ParsePhase
+
+data CaseU ext = CaseU
+  { children :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    alternatives :: Prelude.Maybe ((Alternatives ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode CaseU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode CaseU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (CaseU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (CaseU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Case :: Api.Node -> Prelude.Maybe Case
+type CaseUP = CaseU AST.Extension.ParsePhase
+
+cast_Case :: Api.Node -> Prelude.Maybe (Case ext)
 cast_Case dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "case")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1180,13 +1629,13 @@ cast_Case dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Case where
+instance AST.Node.HasDynNode (Case ext) where
   getDynNode (Case {dynNode}) = dynNode
 
-instance AST.Cast.Cast Case where
+instance AST.Cast.Cast (Case ext) where
   cast = cast_Case
 
-unwrap_Case :: Case -> AST.Err.Err CaseU
+unwrap_Case :: Case ext -> AST.Err.Err (CaseU ext)
 unwrap_Case node = do
   children <- AST.Runtime.unwrapSingle node.children
   alternatives <- AST.Runtime.unwrapMaybe node.alternatives
@@ -1197,29 +1646,33 @@ unwrap_Case node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode CaseU where
+instance AST.Node.HasDynNode (CaseU ext) where
   getDynNode (CaseU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Case CaseU where
+instance AST.Unwrap.Unwrap (Case ext) (CaseU ext) where
   unwrap = unwrap_Case
 
-data Children = Children
-  { element :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((AllNames Sum.:+ AssociatedType Sum.:+ Constructor Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data Children ext = Children
+  { element :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((AllNames ext) Sum.:+ (AssociatedType ext) Sum.:+ (Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Children)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Children)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Children ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Children ext))
   deriving (GHC.Generics.Generic)
 
-data ChildrenU = ChildrenU
-  { element :: AST.Runtime.List ((AllNames Sum.:+ AssociatedType Sum.:+ Constructor Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
+type ChildrenP = Children AST.Extension.ParsePhase
+
+data ChildrenU ext = ChildrenU
+  { element :: AST.Runtime.List (((AllNames ext) Sum.:+ (AssociatedType ext) Sum.:+ (Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ChildrenU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ChildrenU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ChildrenU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ChildrenU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Children :: Api.Node -> Prelude.Maybe Children
+type ChildrenUP = ChildrenU AST.Extension.ParsePhase
+
+cast_Children :: Api.Node -> Prelude.Maybe (Children ext)
 cast_Children dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "children")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1231,13 +1684,13 @@ cast_Children dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Children where
+instance AST.Node.HasDynNode (Children ext) where
   getDynNode (Children {dynNode}) = dynNode
 
-instance AST.Cast.Cast Children where
+instance AST.Cast.Cast (Children ext) where
   cast = cast_Children
 
-unwrap_Children :: Children -> AST.Err.Err ChildrenU
+unwrap_Children :: Children ext -> AST.Err.Err (ChildrenU ext)
 unwrap_Children node = do
   element <- AST.Runtime.unwrapList node.element
   Prelude.pure
@@ -1246,39 +1699,43 @@ unwrap_Children node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ChildrenU where
+instance AST.Node.HasDynNode (ChildrenU ext) where
   getDynNode (ChildrenU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Children ChildrenU where
+instance AST.Unwrap.Unwrap (Children ext) (ChildrenU ext) where
   unwrap = unwrap_Children
 
-data Class = Class
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    declarations :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (ClassDeclarations))),
-    fundeps :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Fundeps))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypeParams))),
+data Class ext = Class
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    declarations :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((ClassDeclarations ext)))),
+    fundeps :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Fundeps ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Class)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Class)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Class ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Class ext))
   deriving (GHC.Generics.Generic)
 
-data ClassU = ClassU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    context :: Prelude.Maybe (Context),
-    declarations :: Prelude.Maybe (ClassDeclarations),
-    fundeps :: Prelude.Maybe (Fundeps),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypeParams),
+type ClassP = Class AST.Extension.ParsePhase
+
+data ClassU ext = ClassU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    context :: Prelude.Maybe ((Context ext)),
+    declarations :: Prelude.Maybe ((ClassDeclarations ext)),
+    fundeps :: Prelude.Maybe ((Fundeps ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypeParams ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ClassU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ClassU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ClassU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ClassU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Class :: Api.Node -> Prelude.Maybe Class
+type ClassUP = ClassU AST.Extension.ParsePhase
+
+cast_Class :: Api.Node -> Prelude.Maybe (Class ext)
 cast_Class dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "class")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1304,13 +1761,13 @@ cast_Class dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Class where
+instance AST.Node.HasDynNode (Class ext) where
   getDynNode (Class {dynNode}) = dynNode
 
-instance AST.Cast.Cast Class where
+instance AST.Cast.Cast (Class ext) where
   cast = cast_Class
 
-unwrap_Class :: Class -> AST.Err.Err ClassU
+unwrap_Class :: Class ext -> AST.Err.Err (ClassU ext)
 unwrap_Class node = do
   children <- AST.Runtime.unwrapMaybe node.children
   context <- AST.Runtime.unwrapMaybe node.context
@@ -1329,29 +1786,33 @@ unwrap_Class node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ClassU where
+instance AST.Node.HasDynNode (ClassU ext) where
   getDynNode (ClassU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Class ClassU where
+instance AST.Unwrap.Unwrap (Class ext) (ClassU ext) where
   unwrap = unwrap_Class
 
-data ClassDeclarations = ClassDeclarations
-  { declaration :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (ClassDecl))),
+data ClassDeclarations ext = ClassDeclarations
+  { declaration :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((ClassDecl ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ClassDeclarations)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ClassDeclarations)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ClassDeclarations ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ClassDeclarations ext))
   deriving (GHC.Generics.Generic)
 
-data ClassDeclarationsU = ClassDeclarationsU
-  { declaration :: AST.Runtime.List (ClassDecl),
+type ClassDeclarationsP = ClassDeclarations AST.Extension.ParsePhase
+
+data ClassDeclarationsU ext = ClassDeclarationsU
+  { declaration :: AST.Runtime.List ((ClassDecl ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ClassDeclarationsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ClassDeclarationsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ClassDeclarationsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ClassDeclarationsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ClassDeclarations :: Api.Node -> Prelude.Maybe ClassDeclarations
+type ClassDeclarationsUP = ClassDeclarationsU AST.Extension.ParsePhase
+
+cast_ClassDeclarations :: Api.Node -> Prelude.Maybe (ClassDeclarations ext)
 cast_ClassDeclarations dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "class_declarations")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1363,13 +1824,13 @@ cast_ClassDeclarations dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ClassDeclarations where
+instance AST.Node.HasDynNode (ClassDeclarations ext) where
   getDynNode (ClassDeclarations {dynNode}) = dynNode
 
-instance AST.Cast.Cast ClassDeclarations where
+instance AST.Cast.Cast (ClassDeclarations ext) where
   cast = cast_ClassDeclarations
 
-unwrap_ClassDeclarations :: ClassDeclarations -> AST.Err.Err ClassDeclarationsU
+unwrap_ClassDeclarations :: ClassDeclarations ext -> AST.Err.Err (ClassDeclarationsU ext)
 unwrap_ClassDeclarations node = do
   declaration <- AST.Runtime.unwrapList node.declaration
   Prelude.pure
@@ -1378,33 +1839,37 @@ unwrap_ClassDeclarations node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ClassDeclarationsU where
+instance AST.Node.HasDynNode (ClassDeclarationsU ext) where
   getDynNode (ClassDeclarationsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ClassDeclarations ClassDeclarationsU where
+instance AST.Unwrap.Unwrap (ClassDeclarations ext) (ClassDeclarationsU ext) where
   unwrap = unwrap_ClassDeclarations
 
-data Conditional = Conditional
-  { else' :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    if' :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    then' :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data Conditional ext = Conditional
+  { else' :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    if' :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    then' :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Conditional)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Conditional)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Conditional ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Conditional ext))
   deriving (GHC.Generics.Generic)
 
-data ConditionalU = ConditionalU
-  { else' :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    if' :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    then' :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type ConditionalP = Conditional AST.Extension.ParsePhase
+
+data ConditionalU ext = ConditionalU
+  { else' :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    if' :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    then' :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ConditionalU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ConditionalU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ConditionalU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConditionalU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Conditional :: Api.Node -> Prelude.Maybe Conditional
+type ConditionalUP = ConditionalU AST.Extension.ParsePhase
+
+cast_Conditional :: Api.Node -> Prelude.Maybe (Conditional ext)
 cast_Conditional dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "conditional")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1422,13 +1887,13 @@ cast_Conditional dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Conditional where
+instance AST.Node.HasDynNode (Conditional ext) where
   getDynNode (Conditional {dynNode}) = dynNode
 
-instance AST.Cast.Cast Conditional where
+instance AST.Cast.Cast (Conditional ext) where
   cast = cast_Conditional
 
-unwrap_Conditional :: Conditional -> AST.Err.Err ConditionalU
+unwrap_Conditional :: Conditional ext -> AST.Err.Err (ConditionalU ext)
 unwrap_Conditional node = do
   else' <- AST.Runtime.unwrapSingle node.else'
   if' <- AST.Runtime.unwrapSingle node.if'
@@ -1441,50 +1906,66 @@ unwrap_Conditional node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ConditionalU where
+instance AST.Node.HasDynNode (ConditionalU ext) where
   getDynNode (ConditionalU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Conditional ConditionalU where
+instance AST.Unwrap.Unwrap (Conditional ext) (ConditionalU ext) where
   unwrap = unwrap_Conditional
 
-data ConstructorOperator = ConstructorOperator {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ConstructorOperator)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ConstructorOperator)
+data ConstructorOperator ext = ConstructorOperator {dynNode :: AST.Node.DynNode, ext :: (XConstructorOperator ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ConstructorOperator ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConstructorOperator ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode ConstructorOperator where
+type ConstructorOperatorP = ConstructorOperator AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (ConstructorOperator ext) where
   getDynNode (ConstructorOperator {dynNode}) = dynNode
 
-instance AST.Cast.Cast ConstructorOperator where
+instance AST.Cast.Cast (ConstructorOperator ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor_operator")
-    Prelude.pure (ConstructorOperator {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (ConstructorOperator {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data ConstructorSynonym = ConstructorSynonym
-  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (LocalBinds))),
-    implicit :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (ImplicitVariable))),
-    match :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Match))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
+type family XConstructorOperator ext
+
+type instance XConstructorOperator ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XConstructorOperator ext)) => Dynamic.Typeable (ConstructorOperator ext)
+
+data ConstructorSynonym ext = ConstructorSynonym
+  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
+    implicit :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((ImplicitVariable ext)))),
+    match :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Match ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ConstructorSynonym)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ConstructorSynonym)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ConstructorSynonym ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConstructorSynonym ext))
   deriving (GHC.Generics.Generic)
 
-data ConstructorSynonymU = ConstructorSynonymU
-  { binds :: Prelude.Maybe (LocalBinds),
-    implicit :: Prelude.Maybe (ImplicitVariable),
-    match :: Data.List.NonEmpty.NonEmpty (Match),
-    name :: Prelude.Maybe ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)),
-    pattern' :: Prelude.Maybe ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
+type ConstructorSynonymP = ConstructorSynonym AST.Extension.ParsePhase
+
+data ConstructorSynonymU ext = ConstructorSynonymU
+  { binds :: Prelude.Maybe ((LocalBinds ext)),
+    implicit :: Prelude.Maybe ((ImplicitVariable ext)),
+    match :: Data.List.NonEmpty.NonEmpty ((Match ext)),
+    name :: Prelude.Maybe (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    pattern' :: Prelude.Maybe (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ConstructorSynonymU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ConstructorSynonymU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ConstructorSynonymU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConstructorSynonymU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ConstructorSynonym :: Api.Node -> Prelude.Maybe ConstructorSynonym
+type ConstructorSynonymUP = ConstructorSynonymU AST.Extension.ParsePhase
+
+cast_ConstructorSynonym :: Api.Node -> Prelude.Maybe (ConstructorSynonym ext)
 cast_ConstructorSynonym dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor_synonym")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1508,13 +1989,13 @@ cast_ConstructorSynonym dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ConstructorSynonym where
+instance AST.Node.HasDynNode (ConstructorSynonym ext) where
   getDynNode (ConstructorSynonym {dynNode}) = dynNode
 
-instance AST.Cast.Cast ConstructorSynonym where
+instance AST.Cast.Cast (ConstructorSynonym ext) where
   cast = cast_ConstructorSynonym
 
-unwrap_ConstructorSynonym :: ConstructorSynonym -> AST.Err.Err ConstructorSynonymU
+unwrap_ConstructorSynonym :: ConstructorSynonym ext -> AST.Err.Err (ConstructorSynonymU ext)
 unwrap_ConstructorSynonym node = do
   binds <- AST.Runtime.unwrapMaybe node.binds
   implicit <- AST.Runtime.unwrapMaybe node.implicit
@@ -1531,29 +2012,33 @@ unwrap_ConstructorSynonym node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ConstructorSynonymU where
+instance AST.Node.HasDynNode (ConstructorSynonymU ext) where
   getDynNode (ConstructorSynonymU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ConstructorSynonym ConstructorSynonymU where
+instance AST.Unwrap.Unwrap (ConstructorSynonym ext) (ConstructorSynonymU ext) where
   unwrap = unwrap_ConstructorSynonym
 
-data ConstructorSynonyms = ConstructorSynonyms
-  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (ConstructorSynonym))),
+data ConstructorSynonyms ext = ConstructorSynonyms
+  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((ConstructorSynonym ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ConstructorSynonyms)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ConstructorSynonyms)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ConstructorSynonyms ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConstructorSynonyms ext))
   deriving (GHC.Generics.Generic)
 
-data ConstructorSynonymsU = ConstructorSynonymsU
-  { children :: AST.Runtime.List (ConstructorSynonym),
+type ConstructorSynonymsP = ConstructorSynonyms AST.Extension.ParsePhase
+
+data ConstructorSynonymsU ext = ConstructorSynonymsU
+  { children :: AST.Runtime.List ((ConstructorSynonym ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ConstructorSynonymsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ConstructorSynonymsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ConstructorSynonymsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConstructorSynonymsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ConstructorSynonyms :: Api.Node -> Prelude.Maybe ConstructorSynonyms
+type ConstructorSynonymsUP = ConstructorSynonymsU AST.Extension.ParsePhase
+
+cast_ConstructorSynonyms :: Api.Node -> Prelude.Maybe (ConstructorSynonyms ext)
 cast_ConstructorSynonyms dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor_synonyms")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1564,13 +2049,13 @@ cast_ConstructorSynonyms dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ConstructorSynonyms where
+instance AST.Node.HasDynNode (ConstructorSynonyms ext) where
   getDynNode (ConstructorSynonyms {dynNode}) = dynNode
 
-instance AST.Cast.Cast ConstructorSynonyms where
+instance AST.Cast.Cast (ConstructorSynonyms ext) where
   cast = cast_ConstructorSynonyms
 
-unwrap_ConstructorSynonyms :: ConstructorSynonyms -> AST.Err.Err ConstructorSynonymsU
+unwrap_ConstructorSynonyms :: ConstructorSynonyms ext -> AST.Err.Err (ConstructorSynonymsU ext)
 unwrap_ConstructorSynonyms node = do
   children <- AST.Runtime.unwrapList node.children
   Prelude.pure
@@ -1579,35 +2064,39 @@ unwrap_ConstructorSynonyms node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ConstructorSynonymsU where
+instance AST.Node.HasDynNode (ConstructorSynonymsU ext) where
   getDynNode (ConstructorSynonymsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ConstructorSynonyms ConstructorSynonymsU where
+instance AST.Unwrap.Unwrap (ConstructorSynonyms ext) (ConstructorSynonymsU ext) where
   unwrap = unwrap_ConstructorSynonyms
 
-data Context = Context
+data Context ext = Context
   { arrow :: ((AST.Err.Err (((AST.Token.Token "=>") Sum.:+ (AST.Token.Token "⇒") Sum.:+ Sum.Nil)))),
-    constraint :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Constraints))),
-    context :: ((AST.Err.Err (Constraint))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
+    constraint :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constraints ext)))),
+    context :: ((AST.Err.Err ((Constraint ext)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Context)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Context)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Context ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Context ext))
   deriving (GHC.Generics.Generic)
 
-data ContextU = ContextU
+type ContextP = Context AST.Extension.ParsePhase
+
+data ContextU ext = ContextU
   { arrow :: (((AST.Token.Token "=>") Sum.:+ (AST.Token.Token "⇒") Sum.:+ Sum.Nil)),
-    constraint :: Prelude.Maybe (Constraints),
-    context :: (Constraint),
-    type' :: Prelude.Maybe (QuantifiedType),
+    constraint :: Prelude.Maybe ((Constraints ext)),
+    context :: ((Constraint ext)),
+    type' :: Prelude.Maybe ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ContextU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ContextU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ContextU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ContextU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Context :: Api.Node -> Prelude.Maybe Context
+type ContextUP = ContextU AST.Extension.ParsePhase
+
+cast_Context :: Api.Node -> Prelude.Maybe (Context ext)
 cast_Context dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "context")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1628,13 +2117,13 @@ cast_Context dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Context where
+instance AST.Node.HasDynNode (Context ext) where
   getDynNode (Context {dynNode}) = dynNode
 
-instance AST.Cast.Cast Context where
+instance AST.Cast.Cast (Context ext) where
   cast = cast_Context
 
-unwrap_Context :: Context -> AST.Err.Err ContextU
+unwrap_Context :: Context ext -> AST.Err.Err (ContextU ext)
 unwrap_Context node = do
   arrow <- AST.Runtime.unwrapSingle node.arrow
   constraint <- AST.Runtime.unwrapMaybe node.constraint
@@ -1649,33 +2138,37 @@ unwrap_Context node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ContextU where
+instance AST.Node.HasDynNode (ContextU ext) where
   getDynNode (ContextU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Context ContextU where
+instance AST.Unwrap.Unwrap (Context ext) (ContextU ext) where
   unwrap = unwrap_Context
 
-data DataConstructor = DataConstructor
-  { constructor :: ((AST.Err.Err ((Infix Sum.:+ Prefix Sum.:+ Record Sum.:+ Special Sum.:+ Sum.Nil)))),
-    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
+data DataConstructor ext = DataConstructor
+  { constructor :: ((AST.Err.Err (((Infix ext) Sum.:+ (Prefix ext) Sum.:+ (Record ext) Sum.:+ (Special ext) Sum.:+ Sum.Nil)))),
+    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataConstructor)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataConstructor)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataConstructor ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataConstructor ext))
   deriving (GHC.Generics.Generic)
 
-data DataConstructorU = DataConstructorU
-  { constructor :: ((Infix Sum.:+ Prefix Sum.:+ Record Sum.:+ Special Sum.:+ Sum.Nil)),
-    context :: Prelude.Maybe (Context),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
+type DataConstructorP = DataConstructor AST.Extension.ParsePhase
+
+data DataConstructorU ext = DataConstructorU
+  { constructor :: (((Infix ext) Sum.:+ (Prefix ext) Sum.:+ (Record ext) Sum.:+ (Special ext) Sum.:+ Sum.Nil)),
+    context :: Prelude.Maybe ((Context ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataConstructorU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataConstructorU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataConstructorU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataConstructorU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DataConstructor :: Api.Node -> Prelude.Maybe DataConstructor
+type DataConstructorUP = DataConstructorU AST.Extension.ParsePhase
+
+cast_DataConstructor :: Api.Node -> Prelude.Maybe (DataConstructor ext)
 cast_DataConstructor dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "data_constructor")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1693,13 +2186,13 @@ cast_DataConstructor dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DataConstructor where
+instance AST.Node.HasDynNode (DataConstructor ext) where
   getDynNode (DataConstructor {dynNode}) = dynNode
 
-instance AST.Cast.Cast DataConstructor where
+instance AST.Cast.Cast (DataConstructor ext) where
   cast = cast_DataConstructor
 
-unwrap_DataConstructor :: DataConstructor -> AST.Err.Err DataConstructorU
+unwrap_DataConstructor :: DataConstructor ext -> AST.Err.Err (DataConstructorU ext)
 unwrap_DataConstructor node = do
   constructor <- AST.Runtime.unwrapSingle node.constructor
   context <- AST.Runtime.unwrapMaybe node.context
@@ -1712,29 +2205,33 @@ unwrap_DataConstructor node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DataConstructorU where
+instance AST.Node.HasDynNode (DataConstructorU ext) where
   getDynNode (DataConstructorU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DataConstructor DataConstructorU where
+instance AST.Unwrap.Unwrap (DataConstructor ext) (DataConstructorU ext) where
   unwrap = unwrap_DataConstructor
 
-data DataConstructors = DataConstructors
-  { constructor :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (DataConstructor))),
+data DataConstructors ext = DataConstructors
+  { constructor :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((DataConstructor ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataConstructors)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataConstructors)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataConstructors ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataConstructors ext))
   deriving (GHC.Generics.Generic)
 
-data DataConstructorsU = DataConstructorsU
-  { constructor :: Data.List.NonEmpty.NonEmpty (DataConstructor),
+type DataConstructorsP = DataConstructors AST.Extension.ParsePhase
+
+data DataConstructorsU ext = DataConstructorsU
+  { constructor :: Data.List.NonEmpty.NonEmpty ((DataConstructor ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataConstructorsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataConstructorsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataConstructorsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataConstructorsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DataConstructors :: Api.Node -> Prelude.Maybe DataConstructors
+type DataConstructorsUP = DataConstructorsU AST.Extension.ParsePhase
+
+cast_DataConstructors :: Api.Node -> Prelude.Maybe (DataConstructors ext)
 cast_DataConstructors dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "data_constructors")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1746,13 +2243,13 @@ cast_DataConstructors dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DataConstructors where
+instance AST.Node.HasDynNode (DataConstructors ext) where
   getDynNode (DataConstructors {dynNode}) = dynNode
 
-instance AST.Cast.Cast DataConstructors where
+instance AST.Cast.Cast (DataConstructors ext) where
   cast = cast_DataConstructors
 
-unwrap_DataConstructors :: DataConstructors -> AST.Err.Err DataConstructorsU
+unwrap_DataConstructors :: DataConstructors ext -> AST.Err.Err (DataConstructorsU ext)
 unwrap_DataConstructors node = do
   constructor <- AST.Runtime.unwrapNonEmpty node.constructor
   Prelude.pure
@@ -1761,35 +2258,39 @@ unwrap_DataConstructors node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DataConstructorsU where
+instance AST.Node.HasDynNode (DataConstructorsU ext) where
   getDynNode (DataConstructorsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DataConstructors DataConstructorsU where
+instance AST.Unwrap.Unwrap (DataConstructors ext) (DataConstructorsU ext) where
   unwrap = unwrap_DataConstructors
 
-data DataFamily = DataFamily
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypeParams))),
+data DataFamily ext = DataFamily
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataFamily)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataFamily)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataFamily ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataFamily ext))
   deriving (GHC.Generics.Generic)
 
-data DataFamilyU = DataFamilyU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    kind :: Prelude.Maybe (QuantifiedType),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypeParams),
+type DataFamilyP = DataFamily AST.Extension.ParsePhase
+
+data DataFamilyU ext = DataFamilyU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    kind :: Prelude.Maybe ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypeParams ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataFamilyU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataFamilyU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataFamilyU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataFamilyU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DataFamily :: Api.Node -> Prelude.Maybe DataFamily
+type DataFamilyUP = DataFamilyU AST.Extension.ParsePhase
+
+cast_DataFamily :: Api.Node -> Prelude.Maybe (DataFamily ext)
 cast_DataFamily dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "data_family")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1809,13 +2310,13 @@ cast_DataFamily dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DataFamily where
+instance AST.Node.HasDynNode (DataFamily ext) where
   getDynNode (DataFamily {dynNode}) = dynNode
 
-instance AST.Cast.Cast DataFamily where
+instance AST.Cast.Cast (DataFamily ext) where
   cast = cast_DataFamily
 
-unwrap_DataFamily :: DataFamily -> AST.Err.Err DataFamilyU
+unwrap_DataFamily :: DataFamily ext -> AST.Err.Err (DataFamilyU ext)
 unwrap_DataFamily node = do
   children <- AST.Runtime.unwrapMaybe node.children
   kind <- AST.Runtime.unwrapMaybe node.kind
@@ -1830,29 +2331,33 @@ unwrap_DataFamily node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DataFamilyU where
+instance AST.Node.HasDynNode (DataFamilyU ext) where
   getDynNode (DataFamilyU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DataFamily DataFamilyU where
+instance AST.Unwrap.Unwrap (DataFamily ext) (DataFamilyU ext) where
   unwrap = unwrap_DataFamily
 
-data DataInstance = DataInstance
-  { children :: ((AST.Err.Err ((DataType Sum.:+ Newtype Sum.:+ Sum.Nil)))),
+data DataInstance ext = DataInstance
+  { children :: ((AST.Err.Err (((DataType ext) Sum.:+ (Newtype ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataInstance)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataInstance)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataInstance ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataInstance ext))
   deriving (GHC.Generics.Generic)
 
-data DataInstanceU = DataInstanceU
-  { children :: ((DataType Sum.:+ Newtype Sum.:+ Sum.Nil)),
+type DataInstanceP = DataInstance AST.Extension.ParsePhase
+
+data DataInstanceU ext = DataInstanceU
+  { children :: (((DataType ext) Sum.:+ (Newtype ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataInstanceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataInstanceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataInstanceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataInstanceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DataInstance :: Api.Node -> Prelude.Maybe DataInstance
+type DataInstanceUP = DataInstanceU AST.Extension.ParsePhase
+
+cast_DataInstance :: Api.Node -> Prelude.Maybe (DataInstance ext)
 cast_DataInstance dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "data_instance")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1863,13 +2368,13 @@ cast_DataInstance dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DataInstance where
+instance AST.Node.HasDynNode (DataInstance ext) where
   getDynNode (DataInstance {dynNode}) = dynNode
 
-instance AST.Cast.Cast DataInstance where
+instance AST.Cast.Cast (DataInstance ext) where
   cast = cast_DataInstance
 
-unwrap_DataInstance :: DataInstance -> AST.Err.Err DataInstanceU
+unwrap_DataInstance :: DataInstance ext -> AST.Err.Err (DataInstanceU ext)
 unwrap_DataInstance node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -1878,43 +2383,47 @@ unwrap_DataInstance node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DataInstanceU where
+instance AST.Node.HasDynNode (DataInstanceU ext) where
   getDynNode (DataInstanceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DataInstance DataInstanceU where
+instance AST.Unwrap.Unwrap (DataInstance ext) (DataInstanceU ext) where
   unwrap = unwrap_DataInstance
 
-data DataType = DataType
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    constructors :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((DataConstructors Sum.:+ GadtConstructors Sum.:+ Sum.Nil)))),
-    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    deriving' :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Deriving))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Qualified Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams Sum.:+ TypePatterns Sum.:+ Sum.Nil)))),
+data DataType ext = DataType
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    constructors :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((DataConstructors ext) Sum.:+ (GadtConstructors ext) Sum.:+ Sum.Nil)))),
+    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    deriving' :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Deriving ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Qualified ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((TypeParams ext) Sum.:+ (TypePatterns ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataType)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataType)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataType ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataType ext))
   deriving (GHC.Generics.Generic)
 
-data DataTypeU = DataTypeU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    constructors :: Prelude.Maybe ((DataConstructors Sum.:+ GadtConstructors Sum.:+ Sum.Nil)),
-    context :: Prelude.Maybe (Context),
-    deriving' :: AST.Runtime.List (Deriving),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    kind :: Prelude.Maybe (QuantifiedType),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Qualified Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe ((TypeParams Sum.:+ TypePatterns Sum.:+ Sum.Nil)),
+type DataTypeP = DataType AST.Extension.ParsePhase
+
+data DataTypeU ext = DataTypeU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    constructors :: Prelude.Maybe (((DataConstructors ext) Sum.:+ (GadtConstructors ext) Sum.:+ Sum.Nil)),
+    context :: Prelude.Maybe ((Context ext)),
+    deriving' :: AST.Runtime.List ((Deriving ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    kind :: Prelude.Maybe ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Qualified ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe (((TypeParams ext) Sum.:+ (TypePatterns ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DataTypeU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DataTypeU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DataTypeU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DataTypeU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DataType :: Api.Node -> Prelude.Maybe DataType
+type DataTypeUP = DataTypeU AST.Extension.ParsePhase
+
+cast_DataType :: Api.Node -> Prelude.Maybe (DataType ext)
 cast_DataType dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "data_type")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -1946,13 +2455,13 @@ cast_DataType dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DataType where
+instance AST.Node.HasDynNode (DataType ext) where
   getDynNode (DataType {dynNode}) = dynNode
 
-instance AST.Cast.Cast DataType where
+instance AST.Cast.Cast (DataType ext) where
   cast = cast_DataType
 
-unwrap_DataType :: DataType -> AST.Err.Err DataTypeU
+unwrap_DataType :: DataType ext -> AST.Err.Err (DataTypeU ext)
 unwrap_DataType node = do
   children <- AST.Runtime.unwrapMaybe node.children
   constructors <- AST.Runtime.unwrapMaybe node.constructors
@@ -1975,29 +2484,33 @@ unwrap_DataType node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DataTypeU where
+instance AST.Node.HasDynNode (DataTypeU ext) where
   getDynNode (DataTypeU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DataType DataTypeU where
+instance AST.Unwrap.Unwrap (DataType ext) (DataTypeU ext) where
   unwrap = unwrap_DataType
 
-data Declarations = Declarations
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Declaration Sum.:+ Import Sum.:+ Sum.Nil)))),
+data Declarations ext = Declarations
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((Declaration ext) Sum.:+ (Import ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Declarations)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Declarations)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Declarations ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Declarations ext))
   deriving (GHC.Generics.Generic)
 
-data DeclarationsU = DeclarationsU
-  { children :: Data.List.NonEmpty.NonEmpty ((Declaration Sum.:+ Import Sum.:+ Sum.Nil)),
+type DeclarationsP = Declarations AST.Extension.ParsePhase
+
+data DeclarationsU ext = DeclarationsU
+  { children :: Data.List.NonEmpty.NonEmpty (((Declaration ext) Sum.:+ (Import ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DeclarationsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DeclarationsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DeclarationsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DeclarationsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Declarations :: Api.Node -> Prelude.Maybe Declarations
+type DeclarationsUP = DeclarationsU AST.Extension.ParsePhase
+
+cast_Declarations :: Api.Node -> Prelude.Maybe (Declarations ext)
 cast_Declarations dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "declarations")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2008,13 +2521,13 @@ cast_Declarations dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Declarations where
+instance AST.Node.HasDynNode (Declarations ext) where
   getDynNode (Declarations {dynNode}) = dynNode
 
-instance AST.Cast.Cast Declarations where
+instance AST.Cast.Cast (Declarations ext) where
   cast = cast_Declarations
 
-unwrap_Declarations :: Declarations -> AST.Err.Err DeclarationsU
+unwrap_Declarations :: Declarations ext -> AST.Err.Err (DeclarationsU ext)
 unwrap_Declarations node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   Prelude.pure
@@ -2023,29 +2536,33 @@ unwrap_Declarations node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DeclarationsU where
+instance AST.Node.HasDynNode (DeclarationsU ext) where
   getDynNode (DeclarationsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Declarations DeclarationsU where
+instance AST.Unwrap.Unwrap (Declarations ext) (DeclarationsU ext) where
   unwrap = unwrap_Declarations
 
-data DefaultSignature = DefaultSignature
-  { signature :: ((AST.Err.Err (Signature))),
+data DefaultSignature ext = DefaultSignature
+  { signature :: ((AST.Err.Err ((Signature ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DefaultSignature)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DefaultSignature)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DefaultSignature ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DefaultSignature ext))
   deriving (GHC.Generics.Generic)
 
-data DefaultSignatureU = DefaultSignatureU
-  { signature :: (Signature),
+type DefaultSignatureP = DefaultSignature AST.Extension.ParsePhase
+
+data DefaultSignatureU ext = DefaultSignatureU
+  { signature :: ((Signature ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DefaultSignatureU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DefaultSignatureU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DefaultSignatureU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DefaultSignatureU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DefaultSignature :: Api.Node -> Prelude.Maybe DefaultSignature
+type DefaultSignatureUP = DefaultSignatureU AST.Extension.ParsePhase
+
+cast_DefaultSignature :: Api.Node -> Prelude.Maybe (DefaultSignature ext)
 cast_DefaultSignature dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "default_signature")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2057,13 +2574,13 @@ cast_DefaultSignature dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DefaultSignature where
+instance AST.Node.HasDynNode (DefaultSignature ext) where
   getDynNode (DefaultSignature {dynNode}) = dynNode
 
-instance AST.Cast.Cast DefaultSignature where
+instance AST.Cast.Cast (DefaultSignature ext) where
   cast = cast_DefaultSignature
 
-unwrap_DefaultSignature :: DefaultSignature -> AST.Err.Err DefaultSignatureU
+unwrap_DefaultSignature :: DefaultSignature ext -> AST.Err.Err (DefaultSignatureU ext)
 unwrap_DefaultSignature node = do
   signature <- AST.Runtime.unwrapSingle node.signature
   Prelude.pure
@@ -2072,29 +2589,33 @@ unwrap_DefaultSignature node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DefaultSignatureU where
+instance AST.Node.HasDynNode (DefaultSignatureU ext) where
   getDynNode (DefaultSignatureU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DefaultSignature DefaultSignatureU where
+instance AST.Unwrap.Unwrap (DefaultSignature ext) (DefaultSignatureU ext) where
   unwrap = unwrap_DefaultSignature
 
-data DefaultTypes = DefaultTypes
-  { type' :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data DefaultTypes ext = DefaultTypes
+  { type' :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DefaultTypes)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DefaultTypes)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DefaultTypes ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DefaultTypes ext))
   deriving (GHC.Generics.Generic)
 
-data DefaultTypesU = DefaultTypesU
-  { type' :: AST.Runtime.List ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)),
+type DefaultTypesP = DefaultTypes AST.Extension.ParsePhase
+
+data DefaultTypesU ext = DefaultTypesU
+  { type' :: AST.Runtime.List (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DefaultTypesU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DefaultTypesU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DefaultTypesU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DefaultTypesU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DefaultTypes :: Api.Node -> Prelude.Maybe DefaultTypes
+type DefaultTypesUP = DefaultTypesU AST.Extension.ParsePhase
+
+cast_DefaultTypes :: Api.Node -> Prelude.Maybe (DefaultTypes ext)
 cast_DefaultTypes dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "default_types")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2106,13 +2627,13 @@ cast_DefaultTypes dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DefaultTypes where
+instance AST.Node.HasDynNode (DefaultTypes ext) where
   getDynNode (DefaultTypes {dynNode}) = dynNode
 
-instance AST.Cast.Cast DefaultTypes where
+instance AST.Cast.Cast (DefaultTypes ext) where
   cast = cast_DefaultTypes
 
-unwrap_DefaultTypes :: DefaultTypes -> AST.Err.Err DefaultTypesU
+unwrap_DefaultTypes :: DefaultTypes ext -> AST.Err.Err (DefaultTypesU ext)
 unwrap_DefaultTypes node = do
   type' <- AST.Runtime.unwrapList node.type'
   Prelude.pure
@@ -2121,33 +2642,37 @@ unwrap_DefaultTypes node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DefaultTypesU where
+instance AST.Node.HasDynNode (DefaultTypesU ext) where
   getDynNode (DefaultTypesU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DefaultTypes DefaultTypesU where
+instance AST.Unwrap.Unwrap (DefaultTypes ext) (DefaultTypesU ext) where
   unwrap = unwrap_DefaultTypes
 
-data Deriving = Deriving
-  { classes :: ((AST.Err.Err (Constraint))),
-    strategy :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (DerivingStrategy))),
-    via :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Via))),
+data Deriving ext = Deriving
+  { classes :: ((AST.Err.Err ((Constraint ext)))),
+    strategy :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((DerivingStrategy ext)))),
+    via :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Via ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Deriving)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Deriving)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Deriving ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Deriving ext))
   deriving (GHC.Generics.Generic)
 
-data DerivingU = DerivingU
-  { classes :: (Constraint),
-    strategy :: Prelude.Maybe (DerivingStrategy),
-    via :: Prelude.Maybe (Via),
+type DerivingP = Deriving AST.Extension.ParsePhase
+
+data DerivingU ext = DerivingU
+  { classes :: ((Constraint ext)),
+    strategy :: Prelude.Maybe ((DerivingStrategy ext)),
+    via :: Prelude.Maybe ((Via ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DerivingU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DerivingU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DerivingU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DerivingU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Deriving :: Api.Node -> Prelude.Maybe Deriving
+type DerivingUP = DerivingU AST.Extension.ParsePhase
+
+cast_Deriving :: Api.Node -> Prelude.Maybe (Deriving ext)
 cast_Deriving dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "deriving")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2165,13 +2690,13 @@ cast_Deriving dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Deriving where
+instance AST.Node.HasDynNode (Deriving ext) where
   getDynNode (Deriving {dynNode}) = dynNode
 
-instance AST.Cast.Cast Deriving where
+instance AST.Cast.Cast (Deriving ext) where
   cast = cast_Deriving
 
-unwrap_Deriving :: Deriving -> AST.Err.Err DerivingU
+unwrap_Deriving :: Deriving ext -> AST.Err.Err (DerivingU ext)
 unwrap_Deriving node = do
   classes <- AST.Runtime.unwrapSingle node.classes
   strategy <- AST.Runtime.unwrapMaybe node.strategy
@@ -2184,41 +2709,45 @@ unwrap_Deriving node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DerivingU where
+instance AST.Node.HasDynNode (DerivingU ext) where
   getDynNode (DerivingU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Deriving DerivingU where
+instance AST.Unwrap.Unwrap (Deriving ext) (DerivingU ext) where
   unwrap = unwrap_Deriving
 
-data DerivingInstance = DerivingInstance
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypePatterns))),
-    strategy :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (DerivingStrategy))),
-    via :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Via))),
+data DerivingInstance ext = DerivingInstance
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypePatterns ext)))),
+    strategy :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((DerivingStrategy ext)))),
+    via :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Via ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DerivingInstance)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DerivingInstance)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DerivingInstance ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DerivingInstance ext))
   deriving (GHC.Generics.Generic)
 
-data DerivingInstanceU = DerivingInstanceU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    context :: Prelude.Maybe (Context),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypePatterns),
-    strategy :: Prelude.Maybe (DerivingStrategy),
-    via :: Prelude.Maybe (Via),
+type DerivingInstanceP = DerivingInstance AST.Extension.ParsePhase
+
+data DerivingInstanceU ext = DerivingInstanceU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    context :: Prelude.Maybe ((Context ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypePatterns ext)),
+    strategy :: Prelude.Maybe ((DerivingStrategy ext)),
+    via :: Prelude.Maybe ((Via ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DerivingInstanceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DerivingInstanceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DerivingInstanceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DerivingInstanceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DerivingInstance :: Api.Node -> Prelude.Maybe DerivingInstance
+type DerivingInstanceUP = DerivingInstanceU AST.Extension.ParsePhase
+
+cast_DerivingInstance :: Api.Node -> Prelude.Maybe (DerivingInstance ext)
 cast_DerivingInstance dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "deriving_instance")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2247,13 +2776,13 @@ cast_DerivingInstance dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DerivingInstance where
+instance AST.Node.HasDynNode (DerivingInstance ext) where
   getDynNode (DerivingInstance {dynNode}) = dynNode
 
-instance AST.Cast.Cast DerivingInstance where
+instance AST.Cast.Cast (DerivingInstance ext) where
   cast = cast_DerivingInstance
 
-unwrap_DerivingInstance :: DerivingInstance -> AST.Err.Err DerivingInstanceU
+unwrap_DerivingInstance :: DerivingInstance ext -> AST.Err.Err (DerivingInstanceU ext)
 unwrap_DerivingInstance node = do
   children <- AST.Runtime.unwrapMaybe node.children
   context <- AST.Runtime.unwrapMaybe node.context
@@ -2274,44 +2803,60 @@ unwrap_DerivingInstance node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DerivingInstanceU where
+instance AST.Node.HasDynNode (DerivingInstanceU ext) where
   getDynNode (DerivingInstanceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DerivingInstance DerivingInstanceU where
+instance AST.Unwrap.Unwrap (DerivingInstance ext) (DerivingInstanceU ext) where
   unwrap = unwrap_DerivingInstance
 
-data DerivingStrategy = DerivingStrategy {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DerivingStrategy)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DerivingStrategy)
+data DerivingStrategy ext = DerivingStrategy {dynNode :: AST.Node.DynNode, ext :: (XDerivingStrategy ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DerivingStrategy ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DerivingStrategy ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode DerivingStrategy where
+type DerivingStrategyP = DerivingStrategy AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (DerivingStrategy ext) where
   getDynNode (DerivingStrategy {dynNode}) = dynNode
 
-instance AST.Cast.Cast DerivingStrategy where
+instance AST.Cast.Cast (DerivingStrategy ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "deriving_strategy")
-    Prelude.pure (DerivingStrategy {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (DerivingStrategy {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Do = Do
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (DoModule))),
-    statement :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Statement))),
+type family XDerivingStrategy ext
+
+type instance XDerivingStrategy ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XDerivingStrategy ext)) => Dynamic.Typeable (DerivingStrategy ext)
+
+data Do ext = Do
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((DoModule ext)))),
+    statement :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Statement ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Do)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Do)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Do ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Do ext))
   deriving (GHC.Generics.Generic)
 
-data DoU = DoU
-  { children :: Prelude.Maybe (DoModule),
-    statement :: AST.Runtime.List (Statement),
+type DoP = Do AST.Extension.ParsePhase
+
+data DoU ext = DoU
+  { children :: Prelude.Maybe ((DoModule ext)),
+    statement :: AST.Runtime.List ((Statement ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DoU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DoU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DoU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DoU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Do :: Api.Node -> Prelude.Maybe Do
+type DoUP = DoU AST.Extension.ParsePhase
+
+cast_Do :: Api.Node -> Prelude.Maybe (Do ext)
 cast_Do dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "do")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2325,13 +2870,13 @@ cast_Do dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Do where
+instance AST.Node.HasDynNode (Do ext) where
   getDynNode (Do {dynNode}) = dynNode
 
-instance AST.Cast.Cast Do where
+instance AST.Cast.Cast (Do ext) where
   cast = cast_Do
 
-unwrap_Do :: Do -> AST.Err.Err DoU
+unwrap_Do :: Do ext -> AST.Err.Err (DoU ext)
 unwrap_Do node = do
   children <- AST.Runtime.unwrapMaybe node.children
   statement <- AST.Runtime.unwrapList node.statement
@@ -2342,31 +2887,35 @@ unwrap_Do node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DoU where
+instance AST.Node.HasDynNode (DoU ext) where
   getDynNode (DoU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Do DoU where
+instance AST.Unwrap.Unwrap (Do ext) (DoU ext) where
   unwrap = unwrap_Do
 
-data DoModule = DoModule
+data DoModule ext = DoModule
   { id :: ((AST.Err.Err (((AST.Token.Token "do") Sum.:+ (AST.Token.Token "mdo") Sum.:+ Sum.Nil)))),
-    module' :: ((AST.Err.Err (Module))),
+    module' :: ((AST.Err.Err ((Module ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DoModule)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DoModule)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DoModule ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DoModule ext))
   deriving (GHC.Generics.Generic)
 
-data DoModuleU = DoModuleU
+type DoModuleP = DoModule AST.Extension.ParsePhase
+
+data DoModuleU ext = DoModuleU
   { id :: (((AST.Token.Token "do") Sum.:+ (AST.Token.Token "mdo") Sum.:+ Sum.Nil)),
-    module' :: (Module),
+    module' :: ((Module ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode DoModuleU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode DoModuleU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (DoModuleU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (DoModuleU ext))
   deriving (GHC.Generics.Generic)
 
-cast_DoModule :: Api.Node -> Prelude.Maybe DoModule
+type DoModuleUP = DoModuleU AST.Extension.ParsePhase
+
+cast_DoModule :: Api.Node -> Prelude.Maybe (DoModule ext)
 cast_DoModule dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "do_module")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2381,13 +2930,13 @@ cast_DoModule dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode DoModule where
+instance AST.Node.HasDynNode (DoModule ext) where
   getDynNode (DoModule {dynNode}) = dynNode
 
-instance AST.Cast.Cast DoModule where
+instance AST.Cast.Cast (DoModule ext) where
   cast = cast_DoModule
 
-unwrap_DoModule :: DoModule -> AST.Err.Err DoModuleU
+unwrap_DoModule :: DoModule ext -> AST.Err.Err (DoModuleU ext)
 unwrap_DoModule node = do
   id <- AST.Runtime.unwrapSingle node.id
   module' <- AST.Runtime.unwrapSingle node.module'
@@ -2398,42 +2947,58 @@ unwrap_DoModule node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode DoModuleU where
+instance AST.Node.HasDynNode (DoModuleU ext) where
   getDynNode (DoModuleU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap DoModule DoModuleU where
+instance AST.Unwrap.Unwrap (DoModule ext) (DoModuleU ext) where
   unwrap = unwrap_DoModule
 
-data EmptyList = EmptyList {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode EmptyList)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode EmptyList)
+data EmptyList ext = EmptyList {dynNode :: AST.Node.DynNode, ext :: (XEmptyList ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (EmptyList ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (EmptyList ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode EmptyList where
+type EmptyListP = EmptyList AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (EmptyList ext) where
   getDynNode (EmptyList {dynNode}) = dynNode
 
-instance AST.Cast.Cast EmptyList where
+instance AST.Cast.Cast (EmptyList ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "empty_list")
-    Prelude.pure (EmptyList {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (EmptyList {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Entity = Entity
-  { children :: ((AST.Err.Err (String))),
+type family XEmptyList ext
+
+type instance XEmptyList ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XEmptyList ext)) => Dynamic.Typeable (EmptyList ext)
+
+data Entity ext = Entity
+  { children :: ((AST.Err.Err ((String ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Entity)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Entity)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Entity ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Entity ext))
   deriving (GHC.Generics.Generic)
 
-data EntityU = EntityU
-  { children :: (String),
+type EntityP = Entity AST.Extension.ParsePhase
+
+data EntityU ext = EntityU
+  { children :: ((String ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode EntityU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode EntityU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (EntityU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (EntityU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Entity :: Api.Node -> Prelude.Maybe Entity
+type EntityUP = EntityU AST.Extension.ParsePhase
+
+cast_Entity :: Api.Node -> Prelude.Maybe (Entity ext)
 cast_Entity dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "entity")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2444,13 +3009,13 @@ cast_Entity dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Entity where
+instance AST.Node.HasDynNode (Entity ext) where
   getDynNode (Entity {dynNode}) = dynNode
 
-instance AST.Cast.Cast Entity where
+instance AST.Cast.Cast (Entity ext) where
   cast = cast_Entity
 
-unwrap_Entity :: Entity -> AST.Err.Err EntityU
+unwrap_Entity :: Entity ext -> AST.Err.Err (EntityU ext)
 unwrap_Entity node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -2459,41 +3024,45 @@ unwrap_Entity node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode EntityU where
+instance AST.Node.HasDynNode (EntityU ext) where
   getDynNode (EntityU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Entity EntityU where
+instance AST.Unwrap.Unwrap (Entity ext) (EntityU ext) where
   unwrap = unwrap_Entity
 
-data Equation = Equation
-  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ QuantifiedType Sum.:+ Sum.Nil)))),
-    constructors :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (ConstructorSynonyms))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypePatterns))),
-    synonym :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Pattern))),
+data Equation ext = Equation
+  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ (QuantifiedType ext) Sum.:+ Sum.Nil)))),
+    constructors :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((ConstructorSynonyms ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypePatterns ext)))),
+    synonym :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Equation)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Equation)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Equation ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Equation ext))
   deriving (GHC.Generics.Generic)
 
-data EquationU = EquationU
-  { children :: AST.Runtime.List ((Infix Sum.:+ Parens Sum.:+ QuantifiedType Sum.:+ Sum.Nil)),
-    constructors :: Prelude.Maybe (ConstructorSynonyms),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    pattern' :: Prelude.Maybe ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypePatterns),
-    synonym :: Prelude.Maybe (Pattern),
+type EquationP = Equation AST.Extension.ParsePhase
+
+data EquationU ext = EquationU
+  { children :: AST.Runtime.List (((Infix ext) Sum.:+ (Parens ext) Sum.:+ (QuantifiedType ext) Sum.:+ Sum.Nil)),
+    constructors :: Prelude.Maybe ((ConstructorSynonyms ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    pattern' :: Prelude.Maybe (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypePatterns ext)),
+    synonym :: Prelude.Maybe ((Pattern ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode EquationU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode EquationU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (EquationU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (EquationU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Equation :: Api.Node -> Prelude.Maybe Equation
+type EquationUP = EquationU AST.Extension.ParsePhase
+
+cast_Equation :: Api.Node -> Prelude.Maybe (Equation ext)
 cast_Equation dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "equation")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2522,13 +3091,13 @@ cast_Equation dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Equation where
+instance AST.Node.HasDynNode (Equation ext) where
   getDynNode (Equation {dynNode}) = dynNode
 
-instance AST.Cast.Cast Equation where
+instance AST.Cast.Cast (Equation ext) where
   cast = cast_Equation
 
-unwrap_Equation :: Equation -> AST.Err.Err EquationU
+unwrap_Equation :: Equation ext -> AST.Err.Err (EquationU ext)
 unwrap_Equation node = do
   children <- AST.Runtime.unwrapList node.children
   constructors <- AST.Runtime.unwrapMaybe node.constructors
@@ -2549,29 +3118,33 @@ unwrap_Equation node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode EquationU where
+instance AST.Node.HasDynNode (EquationU ext) where
   getDynNode (EquationU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Equation EquationU where
+instance AST.Unwrap.Unwrap (Equation ext) (EquationU ext) where
   unwrap = unwrap_Equation
 
-data Equations = Equations
-  { equation :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Equation))),
+data Equations ext = Equations
+  { equation :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Equation ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Equations)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Equations)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Equations ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Equations ext))
   deriving (GHC.Generics.Generic)
 
-data EquationsU = EquationsU
-  { equation :: AST.Runtime.List (Equation),
+type EquationsP = Equations AST.Extension.ParsePhase
+
+data EquationsU ext = EquationsU
+  { equation :: AST.Runtime.List ((Equation ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode EquationsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode EquationsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (EquationsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (EquationsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Equations :: Api.Node -> Prelude.Maybe Equations
+type EquationsUP = EquationsU AST.Extension.ParsePhase
+
+cast_Equations :: Api.Node -> Prelude.Maybe (Equations ext)
 cast_Equations dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "equations")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2583,13 +3156,13 @@ cast_Equations dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Equations where
+instance AST.Node.HasDynNode (Equations ext) where
   getDynNode (Equations {dynNode}) = dynNode
 
-instance AST.Cast.Cast Equations where
+instance AST.Cast.Cast (Equations ext) where
   cast = cast_Equations
 
-unwrap_Equations :: Equations -> AST.Err.Err EquationsU
+unwrap_Equations :: Equations ext -> AST.Err.Err (EquationsU ext)
 unwrap_Equations node = do
   equation <- AST.Runtime.unwrapList node.equation
   Prelude.pure
@@ -2598,29 +3171,33 @@ unwrap_Equations node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode EquationsU where
+instance AST.Node.HasDynNode (EquationsU ext) where
   getDynNode (EquationsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Equations EquationsU where
+instance AST.Unwrap.Unwrap (Equations ext) (EquationsU ext) where
   unwrap = unwrap_Equations
 
-data Exp = Exp
-  { children :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data Exp ext = Exp
+  { children :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Exp)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Exp)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Exp ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Exp ext))
   deriving (GHC.Generics.Generic)
 
-data ExpU = ExpU
-  { children :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type ExpP = Exp AST.Extension.ParsePhase
+
+data ExpU ext = ExpU
+  { children :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ExpU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ExpU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ExpU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ExpU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Exp :: Api.Node -> Prelude.Maybe Exp
+type ExpUP = ExpU AST.Extension.ParsePhase
+
+cast_Exp :: Api.Node -> Prelude.Maybe (Exp ext)
 cast_Exp dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "exp")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2631,13 +3208,13 @@ cast_Exp dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Exp where
+instance AST.Node.HasDynNode (Exp ext) where
   getDynNode (Exp {dynNode}) = dynNode
 
-instance AST.Cast.Cast Exp where
+instance AST.Cast.Cast (Exp ext) where
   cast = cast_Exp
 
-unwrap_Exp :: Exp -> AST.Err.Err ExpU
+unwrap_Exp :: Exp ext -> AST.Err.Err (ExpU ext)
 unwrap_Exp node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -2646,29 +3223,33 @@ unwrap_Exp node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ExpU where
+instance AST.Node.HasDynNode (ExpU ext) where
   getDynNode (ExpU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Exp ExpU where
+instance AST.Unwrap.Unwrap (Exp ext) (ExpU ext) where
   unwrap = unwrap_Exp
 
-data ExplicitType = ExplicitType
-  { type' :: ((AST.Err.Err (Type))),
+data ExplicitType ext = ExplicitType
+  { type' :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ExplicitType)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ExplicitType)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ExplicitType ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ExplicitType ext))
   deriving (GHC.Generics.Generic)
 
-data ExplicitTypeU = ExplicitTypeU
-  { type' :: (Type),
+type ExplicitTypeP = ExplicitType AST.Extension.ParsePhase
+
+data ExplicitTypeU ext = ExplicitTypeU
+  { type' :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ExplicitTypeU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ExplicitTypeU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ExplicitTypeU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ExplicitTypeU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ExplicitType :: Api.Node -> Prelude.Maybe ExplicitType
+type ExplicitTypeUP = ExplicitTypeU AST.Extension.ParsePhase
+
+cast_ExplicitType :: Api.Node -> Prelude.Maybe (ExplicitType ext)
 cast_ExplicitType dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "explicit_type")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2680,13 +3261,13 @@ cast_ExplicitType dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ExplicitType where
+instance AST.Node.HasDynNode (ExplicitType ext) where
   getDynNode (ExplicitType {dynNode}) = dynNode
 
-instance AST.Cast.Cast ExplicitType where
+instance AST.Cast.Cast (ExplicitType ext) where
   cast = cast_ExplicitType
 
-unwrap_ExplicitType :: ExplicitType -> AST.Err.Err ExplicitTypeU
+unwrap_ExplicitType :: ExplicitType ext -> AST.Err.Err (ExplicitTypeU ext)
 unwrap_ExplicitType node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -2695,37 +3276,41 @@ unwrap_ExplicitType node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ExplicitTypeU where
+instance AST.Node.HasDynNode (ExplicitTypeU ext) where
   getDynNode (ExplicitTypeU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ExplicitType ExplicitTypeU where
+instance AST.Unwrap.Unwrap (ExplicitType ext) (ExplicitTypeU ext) where
   unwrap = unwrap_ExplicitType
 
-data Export = Export
-  { children' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Children))),
-    namespace :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Namespace))),
-    operator :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (PrefixId))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    variable :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data Export ext = Export
+  { children' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Children ext)))),
+    namespace :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Namespace ext)))),
+    operator :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId ext)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    variable :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Export)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Export)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Export ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Export ext))
   deriving (GHC.Generics.Generic)
 
-data ExportU = ExportU
-  { children' :: Prelude.Maybe (Children),
-    namespace :: Prelude.Maybe (Namespace),
-    operator :: Prelude.Maybe (PrefixId),
-    type' :: Prelude.Maybe ((Name Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    variable :: Prelude.Maybe ((Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
+type ExportP = Export AST.Extension.ParsePhase
+
+data ExportU ext = ExportU
+  { children' :: Prelude.Maybe ((Children ext)),
+    namespace :: Prelude.Maybe ((Namespace ext)),
+    operator :: Prelude.Maybe ((PrefixId ext)),
+    type' :: Prelude.Maybe (((Name ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    variable :: Prelude.Maybe (((Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ExportU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ExportU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ExportU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ExportU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Export :: Api.Node -> Prelude.Maybe Export
+type ExportUP = ExportU AST.Extension.ParsePhase
+
+cast_Export :: Api.Node -> Prelude.Maybe (Export ext)
 cast_Export dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "export")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2749,13 +3334,13 @@ cast_Export dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Export where
+instance AST.Node.HasDynNode (Export ext) where
   getDynNode (Export {dynNode}) = dynNode
 
-instance AST.Cast.Cast Export where
+instance AST.Cast.Cast (Export ext) where
   cast = cast_Export
 
-unwrap_Export :: Export -> AST.Err.Err ExportU
+unwrap_Export :: Export ext -> AST.Err.Err (ExportU ext)
 unwrap_Export node = do
   children' <- AST.Runtime.unwrapMaybe node.children'
   namespace <- AST.Runtime.unwrapMaybe node.namespace
@@ -2772,31 +3357,35 @@ unwrap_Export node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ExportU where
+instance AST.Node.HasDynNode (ExportU ext) where
   getDynNode (ExportU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Export ExportU where
+instance AST.Unwrap.Unwrap (Export ext) (ExportU ext) where
   unwrap = unwrap_Export
 
-data Exports = Exports
-  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (ModuleExport))),
-    export :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Export))),
+data Exports ext = Exports
+  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((ModuleExport ext)))),
+    export :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Export ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Exports)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Exports)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Exports ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Exports ext))
   deriving (GHC.Generics.Generic)
 
-data ExportsU = ExportsU
-  { children :: AST.Runtime.List (ModuleExport),
-    export :: AST.Runtime.List (Export),
+type ExportsP = Exports AST.Extension.ParsePhase
+
+data ExportsU ext = ExportsU
+  { children :: AST.Runtime.List ((ModuleExport ext)),
+    export :: AST.Runtime.List ((Export ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ExportsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ExportsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ExportsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ExportsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Exports :: Api.Node -> Prelude.Maybe Exports
+type ExportsUP = ExportsU AST.Extension.ParsePhase
+
+cast_Exports :: Api.Node -> Prelude.Maybe (Exports ext)
 cast_Exports dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "exports")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2810,13 +3399,13 @@ cast_Exports dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Exports where
+instance AST.Node.HasDynNode (Exports ext) where
   getDynNode (Exports {dynNode}) = dynNode
 
-instance AST.Cast.Cast Exports where
+instance AST.Cast.Cast (Exports ext) where
   cast = cast_Exports
 
-unwrap_Exports :: Exports -> AST.Err.Err ExportsU
+unwrap_Exports :: Exports ext -> AST.Err.Err (ExportsU ext)
 unwrap_Exports node = do
   children <- AST.Runtime.unwrapList node.children
   export <- AST.Runtime.unwrapList node.export
@@ -2827,35 +3416,39 @@ unwrap_Exports node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ExportsU where
+instance AST.Node.HasDynNode (ExportsU ext) where
   getDynNode (ExportsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Exports ExportsU where
+instance AST.Unwrap.Unwrap (Exports ext) (ExportsU ext) where
   unwrap = unwrap_Exports
 
-data Field = Field
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Type))),
-    name :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (FieldName))),
-    parameter :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)))),
+data Field ext = Field
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Type ext)))),
+    name :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((FieldName ext)))),
+    parameter :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Field)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Field)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Field ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Field ext))
   deriving (GHC.Generics.Generic)
 
-data FieldU = FieldU
-  { children :: Prelude.Maybe (Type),
-    name :: AST.Runtime.List (FieldName),
-    parameter :: Prelude.Maybe ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)),
+type FieldP = Field AST.Extension.ParsePhase
+
+data FieldU ext = FieldU
+  { children :: Prelude.Maybe ((Type ext)),
+    name :: AST.Runtime.List ((FieldName ext)),
+    parameter :: Prelude.Maybe (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)),
+    type' :: Prelude.Maybe (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Field :: Api.Node -> Prelude.Maybe Field
+type FieldUP = FieldU AST.Extension.ParsePhase
+
+cast_Field :: Api.Node -> Prelude.Maybe (Field ext)
 cast_Field dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "field")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2875,13 +3468,13 @@ cast_Field dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Field where
+instance AST.Node.HasDynNode (Field ext) where
   getDynNode (Field {dynNode}) = dynNode
 
-instance AST.Cast.Cast Field where
+instance AST.Cast.Cast (Field ext) where
   cast = cast_Field
 
-unwrap_Field :: Field -> AST.Err.Err FieldU
+unwrap_Field :: Field ext -> AST.Err.Err (FieldU ext)
 unwrap_Field node = do
   children <- AST.Runtime.unwrapMaybe node.children
   name <- AST.Runtime.unwrapList node.name
@@ -2896,29 +3489,33 @@ unwrap_Field node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FieldU where
+instance AST.Node.HasDynNode (FieldU ext) where
   getDynNode (FieldU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Field FieldU where
+instance AST.Unwrap.Unwrap (Field ext) (FieldU ext) where
   unwrap = unwrap_Field
 
-data FieldName = FieldName
-  { children :: ((AST.Err.Err (Variable))),
+data FieldName ext = FieldName
+  { children :: ((AST.Err.Err ((Variable ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldName)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldName)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldName ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldName ext))
   deriving (GHC.Generics.Generic)
 
-data FieldNameU = FieldNameU
-  { children :: (Variable),
+type FieldNameP = FieldName AST.Extension.ParsePhase
+
+data FieldNameU ext = FieldNameU
+  { children :: ((Variable ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldNameU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldNameU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldNameU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldNameU ext))
   deriving (GHC.Generics.Generic)
 
-cast_FieldName :: Api.Node -> Prelude.Maybe FieldName
+type FieldNameUP = FieldNameU AST.Extension.ParsePhase
+
+cast_FieldName :: Api.Node -> Prelude.Maybe (FieldName ext)
 cast_FieldName dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "field_name")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2929,13 +3526,13 @@ cast_FieldName dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode FieldName where
+instance AST.Node.HasDynNode (FieldName ext) where
   getDynNode (FieldName {dynNode}) = dynNode
 
-instance AST.Cast.Cast FieldName where
+instance AST.Cast.Cast (FieldName ext) where
   cast = cast_FieldName
 
-unwrap_FieldName :: FieldName -> AST.Err.Err FieldNameU
+unwrap_FieldName :: FieldName ext -> AST.Err.Err (FieldNameU ext)
 unwrap_FieldName node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -2944,31 +3541,35 @@ unwrap_FieldName node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FieldNameU where
+instance AST.Node.HasDynNode (FieldNameU ext) where
   getDynNode (FieldNameU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap FieldName FieldNameU where
+instance AST.Unwrap.Unwrap (FieldName ext) (FieldNameU ext) where
   unwrap = unwrap_FieldName
 
-data FieldPath = FieldPath
-  { field :: ((AST.Err.Err ((FieldName Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    subfield :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (FieldName))),
+data FieldPath ext = FieldPath
+  { field :: ((AST.Err.Err (((FieldName ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    subfield :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((FieldName ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldPath)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldPath)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldPath ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldPath ext))
   deriving (GHC.Generics.Generic)
 
-data FieldPathU = FieldPathU
-  { field :: ((FieldName Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    subfield :: Data.List.NonEmpty.NonEmpty (FieldName),
+type FieldPathP = FieldPath AST.Extension.ParsePhase
+
+data FieldPathU ext = FieldPathU
+  { field :: (((FieldName ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    subfield :: Data.List.NonEmpty.NonEmpty ((FieldName ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldPathU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldPathU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldPathU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldPathU ext))
   deriving (GHC.Generics.Generic)
 
-cast_FieldPath :: Api.Node -> Prelude.Maybe FieldPath
+type FieldPathUP = FieldPathU AST.Extension.ParsePhase
+
+cast_FieldPath :: Api.Node -> Prelude.Maybe (FieldPath ext)
 cast_FieldPath dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "field_path")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -2983,13 +3584,13 @@ cast_FieldPath dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode FieldPath where
+instance AST.Node.HasDynNode (FieldPath ext) where
   getDynNode (FieldPath {dynNode}) = dynNode
 
-instance AST.Cast.Cast FieldPath where
+instance AST.Cast.Cast (FieldPath ext) where
   cast = cast_FieldPath
 
-unwrap_FieldPath :: FieldPath -> AST.Err.Err FieldPathU
+unwrap_FieldPath :: FieldPath ext -> AST.Err.Err (FieldPathU ext)
 unwrap_FieldPath node = do
   field <- AST.Runtime.unwrapSingle node.field
   subfield <- AST.Runtime.unwrapNonEmpty node.subfield
@@ -3000,33 +3601,37 @@ unwrap_FieldPath node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FieldPathU where
+instance AST.Node.HasDynNode (FieldPathU ext) where
   getDynNode (FieldPathU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap FieldPath FieldPathU where
+instance AST.Unwrap.Unwrap (FieldPath ext) (FieldPathU ext) where
   unwrap = unwrap_FieldPath
 
-data FieldPattern = FieldPattern
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Wildcard))),
-    field :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((FieldName Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
+data FieldPattern ext = FieldPattern
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Wildcard ext)))),
+    field :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((FieldName ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldPattern)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldPattern)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldPattern ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldPattern ext))
   deriving (GHC.Generics.Generic)
 
-data FieldPatternU = FieldPatternU
-  { children :: Prelude.Maybe (Wildcard),
-    field :: Prelude.Maybe ((FieldName Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    pattern' :: Prelude.Maybe ((Pattern Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
+type FieldPatternP = FieldPattern AST.Extension.ParsePhase
+
+data FieldPatternU ext = FieldPatternU
+  { children :: Prelude.Maybe ((Wildcard ext)),
+    field :: Prelude.Maybe (((FieldName ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    pattern' :: Prelude.Maybe (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldPatternU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldPatternU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldPatternU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldPatternU ext))
   deriving (GHC.Generics.Generic)
 
-cast_FieldPattern :: Api.Node -> Prelude.Maybe FieldPattern
+type FieldPatternUP = FieldPatternU AST.Extension.ParsePhase
+
+cast_FieldPattern :: Api.Node -> Prelude.Maybe (FieldPattern ext)
 cast_FieldPattern dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "field_pattern")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3043,13 +3648,13 @@ cast_FieldPattern dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode FieldPattern where
+instance AST.Node.HasDynNode (FieldPattern ext) where
   getDynNode (FieldPattern {dynNode}) = dynNode
 
-instance AST.Cast.Cast FieldPattern where
+instance AST.Cast.Cast (FieldPattern ext) where
   cast = cast_FieldPattern
 
-unwrap_FieldPattern :: FieldPattern -> AST.Err.Err FieldPatternU
+unwrap_FieldPattern :: FieldPattern ext -> AST.Err.Err (FieldPatternU ext)
 unwrap_FieldPattern node = do
   children <- AST.Runtime.unwrapMaybe node.children
   field <- AST.Runtime.unwrapMaybe node.field
@@ -3062,33 +3667,37 @@ unwrap_FieldPattern node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FieldPatternU where
+instance AST.Node.HasDynNode (FieldPatternU ext) where
   getDynNode (FieldPatternU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap FieldPattern FieldPatternU where
+instance AST.Unwrap.Unwrap (FieldPattern ext) (FieldPatternU ext) where
   unwrap = unwrap_FieldPattern
 
-data FieldUpdate = FieldUpdate
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Wildcard))),
-    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    field :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((FieldName Sum.:+ FieldPath Sum.:+ Qualified Sum.:+ Sum.Nil)))),
+data FieldUpdate ext = FieldUpdate
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Wildcard ext)))),
+    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    field :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((FieldName ext) Sum.:+ (FieldPath ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldUpdate)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldUpdate)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldUpdate ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldUpdate ext))
   deriving (GHC.Generics.Generic)
 
-data FieldUpdateU = FieldUpdateU
-  { children :: Prelude.Maybe (Wildcard),
-    expression :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    field :: Prelude.Maybe ((FieldName Sum.:+ FieldPath Sum.:+ Qualified Sum.:+ Sum.Nil)),
+type FieldUpdateP = FieldUpdate AST.Extension.ParsePhase
+
+data FieldUpdateU ext = FieldUpdateU
+  { children :: Prelude.Maybe ((Wildcard ext)),
+    expression :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    field :: Prelude.Maybe (((FieldName ext) Sum.:+ (FieldPath ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldUpdateU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldUpdateU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldUpdateU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldUpdateU ext))
   deriving (GHC.Generics.Generic)
 
-cast_FieldUpdate :: Api.Node -> Prelude.Maybe FieldUpdate
+type FieldUpdateUP = FieldUpdateU AST.Extension.ParsePhase
+
+cast_FieldUpdate :: Api.Node -> Prelude.Maybe (FieldUpdate ext)
 cast_FieldUpdate dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "field_update")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3105,13 +3714,13 @@ cast_FieldUpdate dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode FieldUpdate where
+instance AST.Node.HasDynNode (FieldUpdate ext) where
   getDynNode (FieldUpdate {dynNode}) = dynNode
 
-instance AST.Cast.Cast FieldUpdate where
+instance AST.Cast.Cast (FieldUpdate ext) where
   cast = cast_FieldUpdate
 
-unwrap_FieldUpdate :: FieldUpdate -> AST.Err.Err FieldUpdateU
+unwrap_FieldUpdate :: FieldUpdate ext -> AST.Err.Err (FieldUpdateU ext)
 unwrap_FieldUpdate node = do
   children <- AST.Runtime.unwrapMaybe node.children
   expression <- AST.Runtime.unwrapMaybe node.expression
@@ -3124,29 +3733,33 @@ unwrap_FieldUpdate node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FieldUpdateU where
+instance AST.Node.HasDynNode (FieldUpdateU ext) where
   getDynNode (FieldUpdateU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap FieldUpdate FieldUpdateU where
+instance AST.Unwrap.Unwrap (FieldUpdate ext) (FieldUpdateU ext) where
   unwrap = unwrap_FieldUpdate
 
-data Fields = Fields
-  { field :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Field))),
+data Fields ext = Fields
+  { field :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Field ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Fields)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Fields)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Fields ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Fields ext))
   deriving (GHC.Generics.Generic)
 
-data FieldsU = FieldsU
-  { field :: AST.Runtime.List (Field),
+type FieldsP = Fields AST.Extension.ParsePhase
+
+data FieldsU ext = FieldsU
+  { field :: AST.Runtime.List ((Field ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FieldsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FieldsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FieldsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FieldsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Fields :: Api.Node -> Prelude.Maybe Fields
+type FieldsUP = FieldsU AST.Extension.ParsePhase
+
+cast_Fields :: Api.Node -> Prelude.Maybe (Fields ext)
 cast_Fields dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "fields")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3158,13 +3771,13 @@ cast_Fields dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Fields where
+instance AST.Node.HasDynNode (Fields ext) where
   getDynNode (Fields {dynNode}) = dynNode
 
-instance AST.Cast.Cast Fields where
+instance AST.Cast.Cast (Fields ext) where
   cast = cast_Fields
 
-unwrap_Fields :: Fields -> AST.Err.Err FieldsU
+unwrap_Fields :: Fields ext -> AST.Err.Err (FieldsU ext)
 unwrap_Fields node = do
   field <- AST.Runtime.unwrapList node.field
   Prelude.pure
@@ -3173,33 +3786,37 @@ unwrap_Fields node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FieldsU where
+instance AST.Node.HasDynNode (FieldsU ext) where
   getDynNode (FieldsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Fields FieldsU where
+instance AST.Unwrap.Unwrap (Fields ext) (FieldsU ext) where
   unwrap = unwrap_Fields
 
-data Fixity = Fixity
+data Fixity ext = Fixity
   { associativity :: ((AST.Err.Err (((AST.Token.Token "infix") Sum.:+ (AST.Token.Token "infixl") Sum.:+ (AST.Token.Token "infixr") Sum.:+ Sum.Nil)))),
-    operator :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((AST.Token.Token ",") Sum.:+ ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Sum.Nil)))),
-    precedence :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Integer))),
+    operator :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((AST.Token.Token ",") Sum.:+ (ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ Sum.Nil)))),
+    precedence :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Integer ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Fixity)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Fixity)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Fixity ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Fixity ext))
   deriving (GHC.Generics.Generic)
 
-data FixityU = FixityU
+type FixityP = Fixity AST.Extension.ParsePhase
+
+data FixityU ext = FixityU
   { associativity :: (((AST.Token.Token "infix") Sum.:+ (AST.Token.Token "infixl") Sum.:+ (AST.Token.Token "infixr") Sum.:+ Sum.Nil)),
-    operator :: Data.List.NonEmpty.NonEmpty (((AST.Token.Token ",") Sum.:+ ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Sum.Nil)),
-    precedence :: Prelude.Maybe (Integer),
+    operator :: Data.List.NonEmpty.NonEmpty (((AST.Token.Token ",") Sum.:+ (ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ Sum.Nil)),
+    precedence :: Prelude.Maybe ((Integer ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FixityU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FixityU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FixityU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FixityU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Fixity :: Api.Node -> Prelude.Maybe Fixity
+type FixityUP = FixityU AST.Extension.ParsePhase
+
+cast_Fixity :: Api.Node -> Prelude.Maybe (Fixity ext)
 cast_Fixity dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "fixity")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3217,13 +3834,13 @@ cast_Fixity dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Fixity where
+instance AST.Node.HasDynNode (Fixity ext) where
   getDynNode (Fixity {dynNode}) = dynNode
 
-instance AST.Cast.Cast Fixity where
+instance AST.Cast.Cast (Fixity ext) where
   cast = cast_Fixity
 
-unwrap_Fixity :: Fixity -> AST.Err.Err FixityU
+unwrap_Fixity :: Fixity ext -> AST.Err.Err (FixityU ext)
 unwrap_Fixity node = do
   associativity <- AST.Runtime.unwrapSingle node.associativity
   operator <- AST.Runtime.unwrapNonEmpty node.operator
@@ -3236,35 +3853,39 @@ unwrap_Fixity node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FixityU where
+instance AST.Node.HasDynNode (FixityU ext) where
   getDynNode (FixityU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Fixity FixityU where
+instance AST.Unwrap.Unwrap (Fixity ext) (FixityU ext) where
   unwrap = unwrap_Fixity
 
-data Forall = Forall
-  { constraint :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Constraints))),
+data Forall ext = Forall
+  { constraint :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constraints ext)))),
     quantifier :: ((AST.Err.Err (((AST.Token.Token "forall") Sum.:+ (AST.Token.Token "∀") Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    variables :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedVariables))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    variables :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedVariables ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Forall)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Forall)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Forall ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Forall ext))
   deriving (GHC.Generics.Generic)
 
-data ForallU = ForallU
-  { constraint :: Prelude.Maybe (Constraints),
+type ForallP = Forall AST.Extension.ParsePhase
+
+data ForallU ext = ForallU
+  { constraint :: Prelude.Maybe ((Constraints ext)),
     quantifier :: (((AST.Token.Token "forall") Sum.:+ (AST.Token.Token "∀") Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe (QuantifiedType),
-    variables :: Prelude.Maybe (QuantifiedVariables),
+    type' :: Prelude.Maybe ((QuantifiedType ext)),
+    variables :: Prelude.Maybe ((QuantifiedVariables ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForallU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForallU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForallU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForallU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Forall :: Api.Node -> Prelude.Maybe Forall
+type ForallUP = ForallU AST.Extension.ParsePhase
+
+cast_Forall :: Api.Node -> Prelude.Maybe (Forall ext)
 cast_Forall dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "forall")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3285,13 +3906,13 @@ cast_Forall dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Forall where
+instance AST.Node.HasDynNode (Forall ext) where
   getDynNode (Forall {dynNode}) = dynNode
 
-instance AST.Cast.Cast Forall where
+instance AST.Cast.Cast (Forall ext) where
   cast = cast_Forall
 
-unwrap_Forall :: Forall -> AST.Err.Err ForallU
+unwrap_Forall :: Forall ext -> AST.Err.Err (ForallU ext)
 unwrap_Forall node = do
   constraint <- AST.Runtime.unwrapMaybe node.constraint
   quantifier <- AST.Runtime.unwrapSingle node.quantifier
@@ -3306,33 +3927,37 @@ unwrap_Forall node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ForallU where
+instance AST.Node.HasDynNode (ForallU ext) where
   getDynNode (ForallU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Forall ForallU where
+instance AST.Unwrap.Unwrap (Forall ext) (ForallU ext) where
   unwrap = unwrap_Forall
 
-data ForallRequired = ForallRequired
+data ForallRequired ext = ForallRequired
   { quantifier :: ((AST.Err.Err (((AST.Token.Token "forall") Sum.:+ (AST.Token.Token "∀") Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    variables :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedVariables))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    variables :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedVariables ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForallRequired)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForallRequired)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForallRequired ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForallRequired ext))
   deriving (GHC.Generics.Generic)
 
-data ForallRequiredU = ForallRequiredU
+type ForallRequiredP = ForallRequired AST.Extension.ParsePhase
+
+data ForallRequiredU ext = ForallRequiredU
   { quantifier :: (((AST.Token.Token "forall") Sum.:+ (AST.Token.Token "∀") Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe (QuantifiedType),
-    variables :: Prelude.Maybe (QuantifiedVariables),
+    type' :: Prelude.Maybe ((QuantifiedType ext)),
+    variables :: Prelude.Maybe ((QuantifiedVariables ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForallRequiredU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForallRequiredU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForallRequiredU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForallRequiredU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ForallRequired :: Api.Node -> Prelude.Maybe ForallRequired
+type ForallRequiredUP = ForallRequiredU AST.Extension.ParsePhase
+
+cast_ForallRequired :: Api.Node -> Prelude.Maybe (ForallRequired ext)
 cast_ForallRequired dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "forall_required")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3350,13 +3975,13 @@ cast_ForallRequired dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ForallRequired where
+instance AST.Node.HasDynNode (ForallRequired ext) where
   getDynNode (ForallRequired {dynNode}) = dynNode
 
-instance AST.Cast.Cast ForallRequired where
+instance AST.Cast.Cast (ForallRequired ext) where
   cast = cast_ForallRequired
 
-unwrap_ForallRequired :: ForallRequired -> AST.Err.Err ForallRequiredU
+unwrap_ForallRequired :: ForallRequired ext -> AST.Err.Err (ForallRequiredU ext)
 unwrap_ForallRequired node = do
   quantifier <- AST.Runtime.unwrapSingle node.quantifier
   type' <- AST.Runtime.unwrapMaybe node.type'
@@ -3369,33 +3994,37 @@ unwrap_ForallRequired node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ForallRequiredU where
+instance AST.Node.HasDynNode (ForallRequiredU ext) where
   getDynNode (ForallRequiredU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ForallRequired ForallRequiredU where
+instance AST.Unwrap.Unwrap (ForallRequired ext) (ForallRequiredU ext) where
   unwrap = unwrap_ForallRequired
 
-data ForeignExport = ForeignExport
-  { callingConvention :: ((AST.Err.Err (CallingConvention))),
-    entity :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Entity))),
-    signature :: ((AST.Err.Err (Signature))),
+data ForeignExport ext = ForeignExport
+  { callingConvention :: ((AST.Err.Err ((CallingConvention ext)))),
+    entity :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Entity ext)))),
+    signature :: ((AST.Err.Err ((Signature ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForeignExport)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForeignExport)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForeignExport ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForeignExport ext))
   deriving (GHC.Generics.Generic)
 
-data ForeignExportU = ForeignExportU
-  { callingConvention :: (CallingConvention),
-    entity :: Prelude.Maybe (Entity),
-    signature :: (Signature),
+type ForeignExportP = ForeignExport AST.Extension.ParsePhase
+
+data ForeignExportU ext = ForeignExportU
+  { callingConvention :: ((CallingConvention ext)),
+    entity :: Prelude.Maybe ((Entity ext)),
+    signature :: ((Signature ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForeignExportU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForeignExportU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForeignExportU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForeignExportU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ForeignExport :: Api.Node -> Prelude.Maybe ForeignExport
+type ForeignExportUP = ForeignExportU AST.Extension.ParsePhase
+
+cast_ForeignExport :: Api.Node -> Prelude.Maybe (ForeignExport ext)
 cast_ForeignExport dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "foreign_export")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3413,13 +4042,13 @@ cast_ForeignExport dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ForeignExport where
+instance AST.Node.HasDynNode (ForeignExport ext) where
   getDynNode (ForeignExport {dynNode}) = dynNode
 
-instance AST.Cast.Cast ForeignExport where
+instance AST.Cast.Cast (ForeignExport ext) where
   cast = cast_ForeignExport
 
-unwrap_ForeignExport :: ForeignExport -> AST.Err.Err ForeignExportU
+unwrap_ForeignExport :: ForeignExport ext -> AST.Err.Err (ForeignExportU ext)
 unwrap_ForeignExport node = do
   callingConvention <- AST.Runtime.unwrapSingle node.callingConvention
   entity <- AST.Runtime.unwrapMaybe node.entity
@@ -3432,35 +4061,39 @@ unwrap_ForeignExport node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ForeignExportU where
+instance AST.Node.HasDynNode (ForeignExportU ext) where
   getDynNode (ForeignExportU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ForeignExport ForeignExportU where
+instance AST.Unwrap.Unwrap (ForeignExport ext) (ForeignExportU ext) where
   unwrap = unwrap_ForeignExport
 
-data ForeignImport = ForeignImport
-  { callingConvention :: ((AST.Err.Err (CallingConvention))),
-    entity :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Entity))),
-    safety :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Safety))),
-    signature :: ((AST.Err.Err (Signature))),
+data ForeignImport ext = ForeignImport
+  { callingConvention :: ((AST.Err.Err ((CallingConvention ext)))),
+    entity :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Entity ext)))),
+    safety :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Safety ext)))),
+    signature :: ((AST.Err.Err ((Signature ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForeignImport)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForeignImport)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForeignImport ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForeignImport ext))
   deriving (GHC.Generics.Generic)
 
-data ForeignImportU = ForeignImportU
-  { callingConvention :: (CallingConvention),
-    entity :: Prelude.Maybe (Entity),
-    safety :: Prelude.Maybe (Safety),
-    signature :: (Signature),
+type ForeignImportP = ForeignImport AST.Extension.ParsePhase
+
+data ForeignImportU ext = ForeignImportU
+  { callingConvention :: ((CallingConvention ext)),
+    entity :: Prelude.Maybe ((Entity ext)),
+    safety :: Prelude.Maybe ((Safety ext)),
+    signature :: ((Signature ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ForeignImportU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ForeignImportU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ForeignImportU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ForeignImportU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ForeignImport :: Api.Node -> Prelude.Maybe ForeignImport
+type ForeignImportUP = ForeignImportU AST.Extension.ParsePhase
+
+cast_ForeignImport :: Api.Node -> Prelude.Maybe (ForeignImport ext)
 cast_ForeignImport dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "foreign_import")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3481,13 +4114,13 @@ cast_ForeignImport dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ForeignImport where
+instance AST.Node.HasDynNode (ForeignImport ext) where
   getDynNode (ForeignImport {dynNode}) = dynNode
 
-instance AST.Cast.Cast ForeignImport where
+instance AST.Cast.Cast (ForeignImport ext) where
   cast = cast_ForeignImport
 
-unwrap_ForeignImport :: ForeignImport -> AST.Err.Err ForeignImportU
+unwrap_ForeignImport :: ForeignImport ext -> AST.Err.Err (ForeignImportU ext)
 unwrap_ForeignImport node = do
   callingConvention <- AST.Runtime.unwrapSingle node.callingConvention
   entity <- AST.Runtime.unwrapMaybe node.entity
@@ -3502,45 +4135,49 @@ unwrap_ForeignImport node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ForeignImportU where
+instance AST.Node.HasDynNode (ForeignImportU ext) where
   getDynNode (ForeignImportU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ForeignImport ForeignImportU where
+instance AST.Unwrap.Unwrap (ForeignImport ext) (ForeignImportU ext) where
   unwrap = unwrap_ForeignImport
 
-data Function = Function
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Infix))),
+data Function ext = Function
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix ext)))),
     arrow :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((AST.Token.Token "->") Sum.:+ (AST.Token.Token "→") Sum.:+ Sum.Nil)))),
-    binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (LocalBinds))),
-    match :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Match))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    parameter :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)))),
-    parens :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (FunctionHeadParens))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Patterns))),
-    result :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
+    binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
+    match :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Match ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    parameter :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)))),
+    parens :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((FunctionHeadParens ext)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Patterns ext)))),
+    result :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Function)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Function)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Function ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Function ext))
   deriving (GHC.Generics.Generic)
 
-data FunctionU = FunctionU
-  { children :: Prelude.Maybe (Infix),
+type FunctionP = Function AST.Extension.ParsePhase
+
+data FunctionU ext = FunctionU
+  { children :: Prelude.Maybe ((Infix ext)),
     arrow :: Prelude.Maybe (((AST.Token.Token "->") Sum.:+ (AST.Token.Token "→") Sum.:+ Sum.Nil)),
-    binds :: Prelude.Maybe (LocalBinds),
-    match :: AST.Runtime.List (Match),
-    name :: Prelude.Maybe ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)),
-    parameter :: Prelude.Maybe ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)),
-    parens :: Prelude.Maybe (FunctionHeadParens),
-    patterns :: Prelude.Maybe (Patterns),
-    result :: Prelude.Maybe (QuantifiedType),
+    binds :: Prelude.Maybe ((LocalBinds ext)),
+    match :: AST.Runtime.List ((Match ext)),
+    name :: Prelude.Maybe (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    parameter :: Prelude.Maybe (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)),
+    parens :: Prelude.Maybe ((FunctionHeadParens ext)),
+    patterns :: Prelude.Maybe ((Patterns ext)),
+    result :: Prelude.Maybe ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FunctionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FunctionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FunctionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FunctionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Function :: Api.Node -> Prelude.Maybe Function
+type FunctionUP = FunctionU AST.Extension.ParsePhase
+
+cast_Function :: Api.Node -> Prelude.Maybe (Function ext)
 cast_Function dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "function")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3575,13 +4212,13 @@ cast_Function dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Function where
+instance AST.Node.HasDynNode (Function ext) where
   getDynNode (Function {dynNode}) = dynNode
 
-instance AST.Cast.Cast Function where
+instance AST.Cast.Cast (Function ext) where
   cast = cast_Function
 
-unwrap_Function :: Function -> AST.Err.Err FunctionU
+unwrap_Function :: Function ext -> AST.Err.Err (FunctionU ext)
 unwrap_Function node = do
   children <- AST.Runtime.unwrapMaybe node.children
   arrow <- AST.Runtime.unwrapMaybe node.arrow
@@ -3606,35 +4243,39 @@ unwrap_Function node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FunctionU where
+instance AST.Node.HasDynNode (FunctionU ext) where
   getDynNode (FunctionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Function FunctionU where
+instance AST.Unwrap.Unwrap (Function ext) (FunctionU ext) where
   unwrap = unwrap_Function
 
-data FunctionHeadParens = FunctionHeadParens
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Infix))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    parens :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (FunctionHeadParens))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Patterns))),
+data FunctionHeadParens ext = FunctionHeadParens
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    parens :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((FunctionHeadParens ext)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Patterns ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FunctionHeadParens)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FunctionHeadParens)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FunctionHeadParens ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FunctionHeadParens ext))
   deriving (GHC.Generics.Generic)
 
-data FunctionHeadParensU = FunctionHeadParensU
-  { children :: Prelude.Maybe (Infix),
-    name :: Prelude.Maybe ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)),
-    parens :: Prelude.Maybe (FunctionHeadParens),
-    patterns :: Prelude.Maybe (Patterns),
+type FunctionHeadParensP = FunctionHeadParens AST.Extension.ParsePhase
+
+data FunctionHeadParensU ext = FunctionHeadParensU
+  { children :: Prelude.Maybe ((Infix ext)),
+    name :: Prelude.Maybe (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    parens :: Prelude.Maybe ((FunctionHeadParens ext)),
+    patterns :: Prelude.Maybe ((Patterns ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FunctionHeadParensU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FunctionHeadParensU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FunctionHeadParensU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FunctionHeadParensU ext))
   deriving (GHC.Generics.Generic)
 
-cast_FunctionHeadParens :: Api.Node -> Prelude.Maybe FunctionHeadParens
+type FunctionHeadParensUP = FunctionHeadParensU AST.Extension.ParsePhase
+
+cast_FunctionHeadParens :: Api.Node -> Prelude.Maybe (FunctionHeadParens ext)
 cast_FunctionHeadParens dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "function_head_parens")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3654,13 +4295,13 @@ cast_FunctionHeadParens dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode FunctionHeadParens where
+instance AST.Node.HasDynNode (FunctionHeadParens ext) where
   getDynNode (FunctionHeadParens {dynNode}) = dynNode
 
-instance AST.Cast.Cast FunctionHeadParens where
+instance AST.Cast.Cast (FunctionHeadParens ext) where
   cast = cast_FunctionHeadParens
 
-unwrap_FunctionHeadParens :: FunctionHeadParens -> AST.Err.Err FunctionHeadParensU
+unwrap_FunctionHeadParens :: FunctionHeadParens ext -> AST.Err.Err (FunctionHeadParensU ext)
 unwrap_FunctionHeadParens node = do
   children <- AST.Runtime.unwrapMaybe node.children
   name <- AST.Runtime.unwrapMaybe node.name
@@ -3675,31 +4316,35 @@ unwrap_FunctionHeadParens node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FunctionHeadParensU where
+instance AST.Node.HasDynNode (FunctionHeadParensU ext) where
   getDynNode (FunctionHeadParensU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap FunctionHeadParens FunctionHeadParensU where
+instance AST.Unwrap.Unwrap (FunctionHeadParens ext) (FunctionHeadParensU ext) where
   unwrap = unwrap_FunctionHeadParens
 
-data Fundep = Fundep
-  { determined :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Variable))),
-    matched :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Variable))),
+data Fundep ext = Fundep
+  { determined :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Variable ext)))),
+    matched :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Variable ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Fundep)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Fundep)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Fundep ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Fundep ext))
   deriving (GHC.Generics.Generic)
 
-data FundepU = FundepU
-  { determined :: Data.List.NonEmpty.NonEmpty (Variable),
-    matched :: Data.List.NonEmpty.NonEmpty (Variable),
+type FundepP = Fundep AST.Extension.ParsePhase
+
+data FundepU ext = FundepU
+  { determined :: Data.List.NonEmpty.NonEmpty ((Variable ext)),
+    matched :: Data.List.NonEmpty.NonEmpty ((Variable ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FundepU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FundepU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FundepU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FundepU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Fundep :: Api.Node -> Prelude.Maybe Fundep
+type FundepUP = FundepU AST.Extension.ParsePhase
+
+cast_Fundep :: Api.Node -> Prelude.Maybe (Fundep ext)
 cast_Fundep dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "fundep")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3714,13 +4359,13 @@ cast_Fundep dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Fundep where
+instance AST.Node.HasDynNode (Fundep ext) where
   getDynNode (Fundep {dynNode}) = dynNode
 
-instance AST.Cast.Cast Fundep where
+instance AST.Cast.Cast (Fundep ext) where
   cast = cast_Fundep
 
-unwrap_Fundep :: Fundep -> AST.Err.Err FundepU
+unwrap_Fundep :: Fundep ext -> AST.Err.Err (FundepU ext)
 unwrap_Fundep node = do
   determined <- AST.Runtime.unwrapNonEmpty node.determined
   matched <- AST.Runtime.unwrapNonEmpty node.matched
@@ -3731,29 +4376,33 @@ unwrap_Fundep node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FundepU where
+instance AST.Node.HasDynNode (FundepU ext) where
   getDynNode (FundepU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Fundep FundepU where
+instance AST.Unwrap.Unwrap (Fundep ext) (FundepU ext) where
   unwrap = unwrap_Fundep
 
-data Fundeps = Fundeps
-  { fundep :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Fundep))),
+data Fundeps ext = Fundeps
+  { fundep :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Fundep ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Fundeps)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Fundeps)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Fundeps ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Fundeps ext))
   deriving (GHC.Generics.Generic)
 
-data FundepsU = FundepsU
-  { fundep :: Data.List.NonEmpty.NonEmpty (Fundep),
+type FundepsP = Fundeps AST.Extension.ParsePhase
+
+data FundepsU ext = FundepsU
+  { fundep :: Data.List.NonEmpty.NonEmpty ((Fundep ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode FundepsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode FundepsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (FundepsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (FundepsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Fundeps :: Api.Node -> Prelude.Maybe Fundeps
+type FundepsUP = FundepsU AST.Extension.ParsePhase
+
+cast_Fundeps :: Api.Node -> Prelude.Maybe (Fundeps ext)
 cast_Fundeps dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "fundeps")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3765,13 +4414,13 @@ cast_Fundeps dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Fundeps where
+instance AST.Node.HasDynNode (Fundeps ext) where
   getDynNode (Fundeps {dynNode}) = dynNode
 
-instance AST.Cast.Cast Fundeps where
+instance AST.Cast.Cast (Fundeps ext) where
   cast = cast_Fundeps
 
-unwrap_Fundeps :: Fundeps -> AST.Err.Err FundepsU
+unwrap_Fundeps :: Fundeps ext -> AST.Err.Err (FundepsU ext)
 unwrap_Fundeps node = do
   fundep <- AST.Runtime.unwrapNonEmpty node.fundep
   Prelude.pure
@@ -3780,37 +4429,41 @@ unwrap_Fundeps node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode FundepsU where
+instance AST.Node.HasDynNode (FundepsU ext) where
   getDynNode (FundepsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Fundeps FundepsU where
+instance AST.Unwrap.Unwrap (Fundeps ext) (FundepsU ext) where
   unwrap = unwrap_Fundeps
 
-data GadtConstructor = GadtConstructor
-  { context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)))),
-    names :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (BindingList))),
-    type' :: ((AST.Err.Err ((Prefix Sum.:+ Record Sum.:+ Sum.Nil)))),
+data GadtConstructor ext = GadtConstructor
+  { context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)))),
+    names :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((BindingList ext)))),
+    type' :: ((AST.Err.Err (((Prefix ext) Sum.:+ (Record ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GadtConstructor)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GadtConstructor)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GadtConstructor ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GadtConstructor ext))
   deriving (GHC.Generics.Generic)
 
-data GadtConstructorU = GadtConstructorU
-  { context :: Prelude.Maybe (Context),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)),
-    names :: Prelude.Maybe (BindingList),
-    type' :: ((Prefix Sum.:+ Record Sum.:+ Sum.Nil)),
+type GadtConstructorP = GadtConstructor AST.Extension.ParsePhase
+
+data GadtConstructorU ext = GadtConstructorU
+  { context :: Prelude.Maybe ((Context ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)),
+    names :: Prelude.Maybe ((BindingList ext)),
+    type' :: (((Prefix ext) Sum.:+ (Record ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GadtConstructorU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GadtConstructorU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GadtConstructorU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GadtConstructorU ext))
   deriving (GHC.Generics.Generic)
 
-cast_GadtConstructor :: Api.Node -> Prelude.Maybe GadtConstructor
+type GadtConstructorUP = GadtConstructorU AST.Extension.ParsePhase
+
+cast_GadtConstructor :: Api.Node -> Prelude.Maybe (GadtConstructor ext)
 cast_GadtConstructor dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "gadt_constructor")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3834,13 +4487,13 @@ cast_GadtConstructor dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode GadtConstructor where
+instance AST.Node.HasDynNode (GadtConstructor ext) where
   getDynNode (GadtConstructor {dynNode}) = dynNode
 
-instance AST.Cast.Cast GadtConstructor where
+instance AST.Cast.Cast (GadtConstructor ext) where
   cast = cast_GadtConstructor
 
-unwrap_GadtConstructor :: GadtConstructor -> AST.Err.Err GadtConstructorU
+unwrap_GadtConstructor :: GadtConstructor ext -> AST.Err.Err (GadtConstructorU ext)
 unwrap_GadtConstructor node = do
   context <- AST.Runtime.unwrapMaybe node.context
   forall' <- AST.Runtime.unwrapMaybe node.forall'
@@ -3857,29 +4510,33 @@ unwrap_GadtConstructor node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode GadtConstructorU where
+instance AST.Node.HasDynNode (GadtConstructorU ext) where
   getDynNode (GadtConstructorU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap GadtConstructor GadtConstructorU where
+instance AST.Unwrap.Unwrap (GadtConstructor ext) (GadtConstructorU ext) where
   unwrap = unwrap_GadtConstructor
 
-data GadtConstructors = GadtConstructors
-  { constructor :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (GadtConstructor))),
+data GadtConstructors ext = GadtConstructors
+  { constructor :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((GadtConstructor ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GadtConstructors)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GadtConstructors)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GadtConstructors ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GadtConstructors ext))
   deriving (GHC.Generics.Generic)
 
-data GadtConstructorsU = GadtConstructorsU
-  { constructor :: AST.Runtime.List (GadtConstructor),
+type GadtConstructorsP = GadtConstructors AST.Extension.ParsePhase
+
+data GadtConstructorsU ext = GadtConstructorsU
+  { constructor :: AST.Runtime.List ((GadtConstructor ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GadtConstructorsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GadtConstructorsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GadtConstructorsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GadtConstructorsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_GadtConstructors :: Api.Node -> Prelude.Maybe GadtConstructors
+type GadtConstructorsUP = GadtConstructorsU AST.Extension.ParsePhase
+
+cast_GadtConstructors :: Api.Node -> Prelude.Maybe (GadtConstructors ext)
 cast_GadtConstructors dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "gadt_constructors")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3891,13 +4548,13 @@ cast_GadtConstructors dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode GadtConstructors where
+instance AST.Node.HasDynNode (GadtConstructors ext) where
   getDynNode (GadtConstructors {dynNode}) = dynNode
 
-instance AST.Cast.Cast GadtConstructors where
+instance AST.Cast.Cast (GadtConstructors ext) where
   cast = cast_GadtConstructors
 
-unwrap_GadtConstructors :: GadtConstructors -> AST.Err.Err GadtConstructorsU
+unwrap_GadtConstructors :: GadtConstructors ext -> AST.Err.Err (GadtConstructorsU ext)
 unwrap_GadtConstructors node = do
   constructor <- AST.Runtime.unwrapList node.constructor
   Prelude.pure
@@ -3906,33 +4563,37 @@ unwrap_GadtConstructors node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode GadtConstructorsU where
+instance AST.Node.HasDynNode (GadtConstructorsU ext) where
   getDynNode (GadtConstructorsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap GadtConstructors GadtConstructorsU where
+instance AST.Unwrap.Unwrap (GadtConstructors ext) (GadtConstructorsU ext) where
   unwrap = unwrap_GadtConstructors
 
-data Generator = Generator
+data Generator ext = Generator
   { arrow :: ((AST.Err.Err (((AST.Token.Token "<-") Sum.:+ (AST.Token.Token "←") Sum.:+ Sum.Nil)))),
-    expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    pattern' :: ((AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
+    expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    pattern' :: ((AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Generator)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Generator)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Generator ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Generator ext))
   deriving (GHC.Generics.Generic)
 
-data GeneratorU = GeneratorU
+type GeneratorP = Generator AST.Extension.ParsePhase
+
+data GeneratorU ext = GeneratorU
   { arrow :: (((AST.Token.Token "<-") Sum.:+ (AST.Token.Token "←") Sum.:+ Sum.Nil)),
-    expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    pattern' :: ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
+    expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    pattern' :: (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GeneratorU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GeneratorU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GeneratorU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GeneratorU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Generator :: Api.Node -> Prelude.Maybe Generator
+type GeneratorUP = GeneratorU AST.Extension.ParsePhase
+
+cast_Generator :: Api.Node -> Prelude.Maybe (Generator ext)
 cast_Generator dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "generator")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -3950,13 +4611,13 @@ cast_Generator dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Generator where
+instance AST.Node.HasDynNode (Generator ext) where
   getDynNode (Generator {dynNode}) = dynNode
 
-instance AST.Cast.Cast Generator where
+instance AST.Cast.Cast (Generator ext) where
   cast = cast_Generator
 
-unwrap_Generator :: Generator -> AST.Err.Err GeneratorU
+unwrap_Generator :: Generator ext -> AST.Err.Err (GeneratorU ext)
 unwrap_Generator node = do
   arrow <- AST.Runtime.unwrapSingle node.arrow
   expression <- AST.Runtime.unwrapSingle node.expression
@@ -3969,31 +4630,35 @@ unwrap_Generator node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode GeneratorU where
+instance AST.Node.HasDynNode (GeneratorU ext) where
   getDynNode (GeneratorU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Generator GeneratorU where
+instance AST.Unwrap.Unwrap (Generator ext) (GeneratorU ext) where
   unwrap = unwrap_Generator
 
-data Group = Group
-  { classifier :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    key :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data Group ext = Group
+  { classifier :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    key :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Group)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Group)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Group ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Group ext))
   deriving (GHC.Generics.Generic)
 
-data GroupU = GroupU
-  { classifier :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    key :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type GroupP = Group AST.Extension.ParsePhase
+
+data GroupU ext = GroupU
+  { classifier :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    key :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GroupU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GroupU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GroupU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GroupU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Group :: Api.Node -> Prelude.Maybe Group
+type GroupUP = GroupU AST.Extension.ParsePhase
+
+cast_Group :: Api.Node -> Prelude.Maybe (Group ext)
 cast_Group dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "group")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4008,13 +4673,13 @@ cast_Group dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Group where
+instance AST.Node.HasDynNode (Group ext) where
   getDynNode (Group {dynNode}) = dynNode
 
-instance AST.Cast.Cast Group where
+instance AST.Cast.Cast (Group ext) where
   cast = cast_Group
 
-unwrap_Group :: Group -> AST.Err.Err GroupU
+unwrap_Group :: Group ext -> AST.Err.Err (GroupU ext)
 unwrap_Group node = do
   classifier <- AST.Runtime.unwrapSingle node.classifier
   key <- AST.Runtime.unwrapMaybe node.key
@@ -4025,29 +4690,33 @@ unwrap_Group node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode GroupU where
+instance AST.Node.HasDynNode (GroupU ext) where
   getDynNode (GroupU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Group GroupU where
+instance AST.Unwrap.Unwrap (Group ext) (GroupU ext) where
   unwrap = unwrap_Group
 
-data Guards = Guards
-  { guard :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Guard))),
+data Guards ext = Guards
+  { guard :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Guard ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Guards)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Guards)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Guards ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Guards ext))
   deriving (GHC.Generics.Generic)
 
-data GuardsU = GuardsU
-  { guard :: Data.List.NonEmpty.NonEmpty (Guard),
+type GuardsP = Guards AST.Extension.ParsePhase
+
+data GuardsU ext = GuardsU
+  { guard :: Data.List.NonEmpty.NonEmpty ((Guard ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode GuardsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode GuardsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (GuardsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (GuardsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Guards :: Api.Node -> Prelude.Maybe Guards
+type GuardsUP = GuardsU AST.Extension.ParsePhase
+
+cast_Guards :: Api.Node -> Prelude.Maybe (Guards ext)
 cast_Guards dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "guards")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4059,13 +4728,13 @@ cast_Guards dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Guards where
+instance AST.Node.HasDynNode (Guards ext) where
   getDynNode (Guards {dynNode}) = dynNode
 
-instance AST.Cast.Cast Guards where
+instance AST.Cast.Cast (Guards ext) where
   cast = cast_Guards
 
-unwrap_Guards :: Guards -> AST.Err.Err GuardsU
+unwrap_Guards :: Guards ext -> AST.Err.Err (GuardsU ext)
 unwrap_Guards node = do
   guard <- AST.Runtime.unwrapNonEmpty node.guard
   Prelude.pure
@@ -4074,33 +4743,37 @@ unwrap_Guards node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode GuardsU where
+instance AST.Node.HasDynNode (GuardsU ext) where
   getDynNode (GuardsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Guards GuardsU where
+instance AST.Unwrap.Unwrap (Guards ext) (GuardsU ext) where
   unwrap = unwrap_Guards
 
-data Haskell = Haskell
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Header))),
-    declarations :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Declarations))),
-    imports :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Imports))),
+data Haskell ext = Haskell
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Header ext)))),
+    declarations :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Declarations ext)))),
+    imports :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Imports ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Haskell)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Haskell)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Haskell ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Haskell ext))
   deriving (GHC.Generics.Generic)
 
-data HaskellU = HaskellU
-  { children :: Prelude.Maybe (Header),
-    declarations :: Prelude.Maybe (Declarations),
-    imports :: Prelude.Maybe (Imports),
+type HaskellP = Haskell AST.Extension.ParsePhase
+
+data HaskellU ext = HaskellU
+  { children :: Prelude.Maybe ((Header ext)),
+    declarations :: Prelude.Maybe ((Declarations ext)),
+    imports :: Prelude.Maybe ((Imports ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode HaskellU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode HaskellU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (HaskellU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (HaskellU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Haskell :: Api.Node -> Prelude.Maybe Haskell
+type HaskellUP = HaskellU AST.Extension.ParsePhase
+
+cast_Haskell :: Api.Node -> Prelude.Maybe (Haskell ext)
 cast_Haskell dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "haskell")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4117,13 +4790,13 @@ cast_Haskell dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Haskell where
+instance AST.Node.HasDynNode (Haskell ext) where
   getDynNode (Haskell {dynNode}) = dynNode
 
-instance AST.Cast.Cast Haskell where
+instance AST.Cast.Cast (Haskell ext) where
   cast = cast_Haskell
 
-unwrap_Haskell :: Haskell -> AST.Err.Err HaskellU
+unwrap_Haskell :: Haskell ext -> AST.Err.Err (HaskellU ext)
 unwrap_Haskell node = do
   children <- AST.Runtime.unwrapMaybe node.children
   declarations <- AST.Runtime.unwrapMaybe node.declarations
@@ -4136,31 +4809,35 @@ unwrap_Haskell node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode HaskellU where
+instance AST.Node.HasDynNode (HaskellU ext) where
   getDynNode (HaskellU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Haskell HaskellU where
+instance AST.Unwrap.Unwrap (Haskell ext) (HaskellU ext) where
   unwrap = unwrap_Haskell
 
-data Header = Header
-  { exports :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Exports))),
-    module' :: ((AST.Err.Err (Module))),
+data Header ext = Header
+  { exports :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Exports ext)))),
+    module' :: ((AST.Err.Err ((Module ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Header)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Header)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Header ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Header ext))
   deriving (GHC.Generics.Generic)
 
-data HeaderU = HeaderU
-  { exports :: Prelude.Maybe (Exports),
-    module' :: (Module),
+type HeaderP = Header AST.Extension.ParsePhase
+
+data HeaderU ext = HeaderU
+  { exports :: Prelude.Maybe ((Exports ext)),
+    module' :: ((Module ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode HeaderU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode HeaderU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (HeaderU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (HeaderU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Header :: Api.Node -> Prelude.Maybe Header
+type HeaderUP = HeaderU AST.Extension.ParsePhase
+
+cast_Header :: Api.Node -> Prelude.Maybe (Header ext)
 cast_Header dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "header")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4175,13 +4852,13 @@ cast_Header dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Header where
+instance AST.Node.HasDynNode (Header ext) where
   getDynNode (Header {dynNode}) = dynNode
 
-instance AST.Cast.Cast Header where
+instance AST.Cast.Cast (Header ext) where
   cast = cast_Header
 
-unwrap_Header :: Header -> AST.Err.Err HeaderU
+unwrap_Header :: Header ext -> AST.Err.Err (HeaderU ext)
 unwrap_Header node = do
   exports <- AST.Runtime.unwrapMaybe node.exports
   module' <- AST.Runtime.unwrapSingle node.module'
@@ -4192,31 +4869,35 @@ unwrap_Header node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode HeaderU where
+instance AST.Node.HasDynNode (HeaderU ext) where
   getDynNode (HeaderU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Header HeaderU where
+instance AST.Unwrap.Unwrap (Header ext) (HeaderU ext) where
   unwrap = unwrap_Header
 
-data ImplicitParameter = ImplicitParameter
-  { name :: ((AST.Err.Err (ImplicitVariable))),
-    type' :: ((AST.Err.Err (QuantifiedType))),
+data ImplicitParameter ext = ImplicitParameter
+  { name :: ((AST.Err.Err ((ImplicitVariable ext)))),
+    type' :: ((AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImplicitParameter)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImplicitParameter)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImplicitParameter ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImplicitParameter ext))
   deriving (GHC.Generics.Generic)
 
-data ImplicitParameterU = ImplicitParameterU
-  { name :: (ImplicitVariable),
-    type' :: (QuantifiedType),
+type ImplicitParameterP = ImplicitParameter AST.Extension.ParsePhase
+
+data ImplicitParameterU ext = ImplicitParameterU
+  { name :: ((ImplicitVariable ext)),
+    type' :: ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImplicitParameterU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImplicitParameterU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImplicitParameterU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImplicitParameterU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ImplicitParameter :: Api.Node -> Prelude.Maybe ImplicitParameter
+type ImplicitParameterUP = ImplicitParameterU AST.Extension.ParsePhase
+
+cast_ImplicitParameter :: Api.Node -> Prelude.Maybe (ImplicitParameter ext)
 cast_ImplicitParameter dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "implicit_parameter")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4231,13 +4912,13 @@ cast_ImplicitParameter dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ImplicitParameter where
+instance AST.Node.HasDynNode (ImplicitParameter ext) where
   getDynNode (ImplicitParameter {dynNode}) = dynNode
 
-instance AST.Cast.Cast ImplicitParameter where
+instance AST.Cast.Cast (ImplicitParameter ext) where
   cast = cast_ImplicitParameter
 
-unwrap_ImplicitParameter :: ImplicitParameter -> AST.Err.Err ImplicitParameterU
+unwrap_ImplicitParameter :: ImplicitParameter ext -> AST.Err.Err (ImplicitParameterU ext)
 unwrap_ImplicitParameter node = do
   name <- AST.Runtime.unwrapSingle node.name
   type' <- AST.Runtime.unwrapSingle node.type'
@@ -4248,35 +4929,39 @@ unwrap_ImplicitParameter node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ImplicitParameterU where
+instance AST.Node.HasDynNode (ImplicitParameterU ext) where
   getDynNode (ImplicitParameterU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ImplicitParameter ImplicitParameterU where
+instance AST.Unwrap.Unwrap (ImplicitParameter ext) (ImplicitParameterU ext) where
   unwrap = unwrap_ImplicitParameter
 
-data Import = Import
-  { alias :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Module))),
-    module' :: ((AST.Err.Err (Module))),
-    names :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (ImportList))),
-    package :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (ImportPackage))),
+data Import ext = Import
+  { alias :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Module ext)))),
+    module' :: ((AST.Err.Err ((Module ext)))),
+    names :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((ImportList ext)))),
+    package :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((ImportPackage ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Import)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Import)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Import ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Import ext))
   deriving (GHC.Generics.Generic)
 
-data ImportU = ImportU
-  { alias :: Prelude.Maybe (Module),
-    module' :: (Module),
-    names :: Prelude.Maybe (ImportList),
-    package :: Prelude.Maybe (ImportPackage),
+type ImportP = Import AST.Extension.ParsePhase
+
+data ImportU ext = ImportU
+  { alias :: Prelude.Maybe ((Module ext)),
+    module' :: ((Module ext)),
+    names :: Prelude.Maybe ((ImportList ext)),
+    package :: Prelude.Maybe ((ImportPackage ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Import :: Api.Node -> Prelude.Maybe Import
+type ImportUP = ImportU AST.Extension.ParsePhase
+
+cast_Import :: Api.Node -> Prelude.Maybe (Import ext)
 cast_Import dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "import")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4297,13 +4982,13 @@ cast_Import dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Import where
+instance AST.Node.HasDynNode (Import ext) where
   getDynNode (Import {dynNode}) = dynNode
 
-instance AST.Cast.Cast Import where
+instance AST.Cast.Cast (Import ext) where
   cast = cast_Import
 
-unwrap_Import :: Import -> AST.Err.Err ImportU
+unwrap_Import :: Import ext -> AST.Err.Err (ImportU ext)
 unwrap_Import node = do
   alias <- AST.Runtime.unwrapMaybe node.alias
   module' <- AST.Runtime.unwrapSingle node.module'
@@ -4318,29 +5003,33 @@ unwrap_Import node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ImportU where
+instance AST.Node.HasDynNode (ImportU ext) where
   getDynNode (ImportU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Import ImportU where
+instance AST.Unwrap.Unwrap (Import ext) (ImportU ext) where
   unwrap = unwrap_Import
 
-data ImportList = ImportList
-  { name :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (ImportName))),
+data ImportList ext = ImportList
+  { name :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((ImportName ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportList)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportList)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportList ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportList ext))
   deriving (GHC.Generics.Generic)
 
-data ImportListU = ImportListU
-  { name :: AST.Runtime.List (ImportName),
+type ImportListP = ImportList AST.Extension.ParsePhase
+
+data ImportListU ext = ImportListU
+  { name :: AST.Runtime.List ((ImportName ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportListU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportListU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportListU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportListU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ImportList :: Api.Node -> Prelude.Maybe ImportList
+type ImportListUP = ImportListU AST.Extension.ParsePhase
+
+cast_ImportList :: Api.Node -> Prelude.Maybe (ImportList ext)
 cast_ImportList dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "import_list")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4352,13 +5041,13 @@ cast_ImportList dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ImportList where
+instance AST.Node.HasDynNode (ImportList ext) where
   getDynNode (ImportList {dynNode}) = dynNode
 
-instance AST.Cast.Cast ImportList where
+instance AST.Cast.Cast (ImportList ext) where
   cast = cast_ImportList
 
-unwrap_ImportList :: ImportList -> AST.Err.Err ImportListU
+unwrap_ImportList :: ImportList ext -> AST.Err.Err (ImportListU ext)
 unwrap_ImportList node = do
   name <- AST.Runtime.unwrapList node.name
   Prelude.pure
@@ -4367,37 +5056,41 @@ unwrap_ImportList node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ImportListU where
+instance AST.Node.HasDynNode (ImportListU ext) where
   getDynNode (ImportListU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ImportList ImportListU where
+instance AST.Unwrap.Unwrap (ImportList ext) (ImportListU ext) where
   unwrap = unwrap_ImportList
 
-data ImportName = ImportName
-  { children' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Children))),
-    namespace :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Namespace))),
-    operator :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (PrefixId))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    variable :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data ImportName ext = ImportName
+  { children' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Children ext)))),
+    namespace :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Namespace ext)))),
+    operator :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId ext)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    variable :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportName)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportName)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportName ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportName ext))
   deriving (GHC.Generics.Generic)
 
-data ImportNameU = ImportNameU
-  { children' :: Prelude.Maybe (Children),
-    namespace :: Prelude.Maybe (Namespace),
-    operator :: Prelude.Maybe (PrefixId),
-    type' :: Prelude.Maybe ((Name Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    variable :: Prelude.Maybe ((Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
+type ImportNameP = ImportName AST.Extension.ParsePhase
+
+data ImportNameU ext = ImportNameU
+  { children' :: Prelude.Maybe ((Children ext)),
+    namespace :: Prelude.Maybe ((Namespace ext)),
+    operator :: Prelude.Maybe ((PrefixId ext)),
+    type' :: Prelude.Maybe (((Name ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    variable :: Prelude.Maybe (((Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportNameU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportNameU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportNameU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportNameU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ImportName :: Api.Node -> Prelude.Maybe ImportName
+type ImportNameUP = ImportNameU AST.Extension.ParsePhase
+
+cast_ImportName :: Api.Node -> Prelude.Maybe (ImportName ext)
 cast_ImportName dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "import_name")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4421,13 +5114,13 @@ cast_ImportName dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ImportName where
+instance AST.Node.HasDynNode (ImportName ext) where
   getDynNode (ImportName {dynNode}) = dynNode
 
-instance AST.Cast.Cast ImportName where
+instance AST.Cast.Cast (ImportName ext) where
   cast = cast_ImportName
 
-unwrap_ImportName :: ImportName -> AST.Err.Err ImportNameU
+unwrap_ImportName :: ImportName ext -> AST.Err.Err (ImportNameU ext)
 unwrap_ImportName node = do
   children' <- AST.Runtime.unwrapMaybe node.children'
   namespace <- AST.Runtime.unwrapMaybe node.namespace
@@ -4444,29 +5137,33 @@ unwrap_ImportName node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ImportNameU where
+instance AST.Node.HasDynNode (ImportNameU ext) where
   getDynNode (ImportNameU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ImportName ImportNameU where
+instance AST.Unwrap.Unwrap (ImportName ext) (ImportNameU ext) where
   unwrap = unwrap_ImportName
 
-data Imports = Imports
-  { import' :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Import))),
+data Imports ext = Imports
+  { import' :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Import ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Imports)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Imports)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Imports ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Imports ext))
   deriving (GHC.Generics.Generic)
 
-data ImportsU = ImportsU
-  { import' :: Data.List.NonEmpty.NonEmpty (Import),
+type ImportsP = Imports AST.Extension.ParsePhase
+
+data ImportsU ext = ImportsU
+  { import' :: Data.List.NonEmpty.NonEmpty ((Import ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Imports :: Api.Node -> Prelude.Maybe Imports
+type ImportsUP = ImportsU AST.Extension.ParsePhase
+
+cast_Imports :: Api.Node -> Prelude.Maybe (Imports ext)
 cast_Imports dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "imports")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4478,13 +5175,13 @@ cast_Imports dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Imports where
+instance AST.Node.HasDynNode (Imports ext) where
   getDynNode (Imports {dynNode}) = dynNode
 
-instance AST.Cast.Cast Imports where
+instance AST.Cast.Cast (Imports ext) where
   cast = cast_Imports
 
-unwrap_Imports :: Imports -> AST.Err.Err ImportsU
+unwrap_Imports :: Imports ext -> AST.Err.Err (ImportsU ext)
 unwrap_Imports node = do
   import' <- AST.Runtime.unwrapNonEmpty node.import'
   Prelude.pure
@@ -4493,29 +5190,33 @@ unwrap_Imports node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ImportsU where
+instance AST.Node.HasDynNode (ImportsU ext) where
   getDynNode (ImportsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Imports ImportsU where
+instance AST.Unwrap.Unwrap (Imports ext) (ImportsU ext) where
   unwrap = unwrap_Imports
 
-data Inferred = Inferred
-  { children :: ((AST.Err.Err ((Annotated Sum.:+ TypeParam Sum.:+ Sum.Nil)))),
+data Inferred ext = Inferred
+  { children :: ((AST.Err.Err (((Annotated ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Inferred)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Inferred)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Inferred ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Inferred ext))
   deriving (GHC.Generics.Generic)
 
-data InferredU = InferredU
-  { children :: ((Annotated Sum.:+ TypeParam Sum.:+ Sum.Nil)),
+type InferredP = Inferred AST.Extension.ParsePhase
+
+data InferredU ext = InferredU
+  { children :: (((Annotated ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InferredU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InferredU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InferredU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InferredU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Inferred :: Api.Node -> Prelude.Maybe Inferred
+type InferredUP = InferredU AST.Extension.ParsePhase
+
+cast_Inferred :: Api.Node -> Prelude.Maybe (Inferred ext)
 cast_Inferred dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "inferred")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4526,13 +5227,13 @@ cast_Inferred dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Inferred where
+instance AST.Node.HasDynNode (Inferred ext) where
   getDynNode (Inferred {dynNode}) = dynNode
 
-instance AST.Cast.Cast Inferred where
+instance AST.Cast.Cast (Inferred ext) where
   cast = cast_Inferred
 
-unwrap_Inferred :: Inferred -> AST.Err.Err InferredU
+unwrap_Inferred :: Inferred ext -> AST.Err.Err (InferredU ext)
 unwrap_Inferred node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -4541,33 +5242,37 @@ unwrap_Inferred node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode InferredU where
+instance AST.Node.HasDynNode (InferredU ext) where
   getDynNode (InferredU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Inferred InferredU where
+instance AST.Unwrap.Unwrap (Inferred ext) (InferredU ext) where
   unwrap = unwrap_Inferred
 
-data Infix = Infix
-  { leftOperand :: ((AST.Err.Err ((Expression Sum.:+ LazyField Sum.:+ Pattern Sum.:+ StrictField Sum.:+ Type Sum.:+ TypeParam Sum.:+ Sum.Nil)))),
-    operator :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Promoted Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    rightOperand :: ((AST.Err.Err ((Expression Sum.:+ LazyField Sum.:+ Pattern Sum.:+ StrictField Sum.:+ Type Sum.:+ TypeParam Sum.:+ Sum.Nil)))),
+data Infix ext = Infix
+  { leftOperand :: ((AST.Err.Err (((Expression ext) Sum.:+ (LazyField ext) Sum.:+ (Pattern ext) Sum.:+ (StrictField ext) Sum.:+ (Type ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
+    operator :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ (Promoted ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    rightOperand :: ((AST.Err.Err (((Expression ext) Sum.:+ (LazyField ext) Sum.:+ (Pattern ext) Sum.:+ (StrictField ext) Sum.:+ (Type ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Infix)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Infix)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Infix ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Infix ext))
   deriving (GHC.Generics.Generic)
 
-data InfixU = InfixU
-  { leftOperand :: ((Expression Sum.:+ LazyField Sum.:+ Pattern Sum.:+ StrictField Sum.:+ Type Sum.:+ TypeParam Sum.:+ Sum.Nil)),
-    operator :: Data.List.NonEmpty.NonEmpty ((ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Promoted Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    rightOperand :: ((Expression Sum.:+ LazyField Sum.:+ Pattern Sum.:+ StrictField Sum.:+ Type Sum.:+ TypeParam Sum.:+ Sum.Nil)),
+type InfixP = Infix AST.Extension.ParsePhase
+
+data InfixU ext = InfixU
+  { leftOperand :: (((Expression ext) Sum.:+ (LazyField ext) Sum.:+ (Pattern ext) Sum.:+ (StrictField ext) Sum.:+ (Type ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)),
+    operator :: Data.List.NonEmpty.NonEmpty (((ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ (Promoted ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    rightOperand :: (((Expression ext) Sum.:+ (LazyField ext) Sum.:+ (Pattern ext) Sum.:+ (StrictField ext) Sum.:+ (Type ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InfixU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InfixU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InfixU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InfixU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Infix :: Api.Node -> Prelude.Maybe Infix
+type InfixUP = InfixU AST.Extension.ParsePhase
+
+cast_Infix :: Api.Node -> Prelude.Maybe (Infix ext)
 cast_Infix dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "infix")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4585,13 +5290,13 @@ cast_Infix dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Infix where
+instance AST.Node.HasDynNode (Infix ext) where
   getDynNode (Infix {dynNode}) = dynNode
 
-instance AST.Cast.Cast Infix where
+instance AST.Cast.Cast (Infix ext) where
   cast = cast_Infix
 
-unwrap_Infix :: Infix -> AST.Err.Err InfixU
+unwrap_Infix :: Infix ext -> AST.Err.Err (InfixU ext)
 unwrap_Infix node = do
   leftOperand <- AST.Runtime.unwrapSingle node.leftOperand
   operator <- AST.Runtime.unwrapNonEmpty node.operator
@@ -4604,29 +5309,33 @@ unwrap_Infix node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode InfixU where
+instance AST.Node.HasDynNode (InfixU ext) where
   getDynNode (InfixU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Infix InfixU where
+instance AST.Unwrap.Unwrap (Infix ext) (InfixU ext) where
   unwrap = unwrap_Infix
 
-data InfixId = InfixId
-  { children :: ((AST.Err.Err ((Constructor Sum.:+ Name Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data InfixId ext = InfixId
+  { children :: ((AST.Err.Err (((Constructor ext) Sum.:+ (Name ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InfixId)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InfixId)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InfixId ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InfixId ext))
   deriving (GHC.Generics.Generic)
 
-data InfixIdU = InfixIdU
-  { children :: ((Constructor Sum.:+ Name Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
+type InfixIdP = InfixId AST.Extension.ParsePhase
+
+data InfixIdU ext = InfixIdU
+  { children :: (((Constructor ext) Sum.:+ (Name ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InfixIdU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InfixIdU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InfixIdU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InfixIdU ext))
   deriving (GHC.Generics.Generic)
 
-cast_InfixId :: Api.Node -> Prelude.Maybe InfixId
+type InfixIdUP = InfixIdU AST.Extension.ParsePhase
+
+cast_InfixId :: Api.Node -> Prelude.Maybe (InfixId ext)
 cast_InfixId dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "infix_id")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4637,13 +5346,13 @@ cast_InfixId dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode InfixId where
+instance AST.Node.HasDynNode (InfixId ext) where
   getDynNode (InfixId {dynNode}) = dynNode
 
-instance AST.Cast.Cast InfixId where
+instance AST.Cast.Cast (InfixId ext) where
   cast = cast_InfixId
 
-unwrap_InfixId :: InfixId -> AST.Err.Err InfixIdU
+unwrap_InfixId :: InfixId ext -> AST.Err.Err (InfixIdU ext)
 unwrap_InfixId node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -4652,39 +5361,43 @@ unwrap_InfixId node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode InfixIdU where
+instance AST.Node.HasDynNode (InfixIdU ext) where
   getDynNode (InfixIdU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap InfixId InfixIdU where
+instance AST.Unwrap.Unwrap (InfixId ext) (InfixIdU ext) where
   unwrap = unwrap_InfixId
 
-data Instance = Instance
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    declarations :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (InstanceDeclarations))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypePatterns))),
+data Instance ext = Instance
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    declarations :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((InstanceDeclarations ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypePatterns ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Instance)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Instance)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Instance ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Instance ext))
   deriving (GHC.Generics.Generic)
 
-data InstanceU = InstanceU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    context :: Prelude.Maybe (Context),
-    declarations :: Prelude.Maybe (InstanceDeclarations),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypePatterns),
+type InstanceP = Instance AST.Extension.ParsePhase
+
+data InstanceU ext = InstanceU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    context :: Prelude.Maybe ((Context ext)),
+    declarations :: Prelude.Maybe ((InstanceDeclarations ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypePatterns ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InstanceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InstanceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InstanceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InstanceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Instance :: Api.Node -> Prelude.Maybe Instance
+type InstanceUP = InstanceU AST.Extension.ParsePhase
+
+cast_Instance :: Api.Node -> Prelude.Maybe (Instance ext)
 cast_Instance dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "instance")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4710,13 +5423,13 @@ cast_Instance dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Instance where
+instance AST.Node.HasDynNode (Instance ext) where
   getDynNode (Instance {dynNode}) = dynNode
 
-instance AST.Cast.Cast Instance where
+instance AST.Cast.Cast (Instance ext) where
   cast = cast_Instance
 
-unwrap_Instance :: Instance -> AST.Err.Err InstanceU
+unwrap_Instance :: Instance ext -> AST.Err.Err (InstanceU ext)
 unwrap_Instance node = do
   children <- AST.Runtime.unwrapMaybe node.children
   context <- AST.Runtime.unwrapMaybe node.context
@@ -4735,29 +5448,33 @@ unwrap_Instance node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode InstanceU where
+instance AST.Node.HasDynNode (InstanceU ext) where
   getDynNode (InstanceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Instance InstanceU where
+instance AST.Unwrap.Unwrap (Instance ext) (InstanceU ext) where
   unwrap = unwrap_Instance
 
-data InstanceDeclarations = InstanceDeclarations
-  { declaration :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (InstanceDecl))),
+data InstanceDeclarations ext = InstanceDeclarations
+  { declaration :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((InstanceDecl ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InstanceDeclarations)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InstanceDeclarations)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InstanceDeclarations ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InstanceDeclarations ext))
   deriving (GHC.Generics.Generic)
 
-data InstanceDeclarationsU = InstanceDeclarationsU
-  { declaration :: AST.Runtime.List (InstanceDecl),
+type InstanceDeclarationsP = InstanceDeclarations AST.Extension.ParsePhase
+
+data InstanceDeclarationsU ext = InstanceDeclarationsU
+  { declaration :: AST.Runtime.List ((InstanceDecl ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InstanceDeclarationsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InstanceDeclarationsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InstanceDeclarationsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InstanceDeclarationsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_InstanceDeclarations :: Api.Node -> Prelude.Maybe InstanceDeclarations
+type InstanceDeclarationsUP = InstanceDeclarationsU AST.Extension.ParsePhase
+
+cast_InstanceDeclarations :: Api.Node -> Prelude.Maybe (InstanceDeclarations ext)
 cast_InstanceDeclarations dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "instance_declarations")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4769,13 +5486,13 @@ cast_InstanceDeclarations dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode InstanceDeclarations where
+instance AST.Node.HasDynNode (InstanceDeclarations ext) where
   getDynNode (InstanceDeclarations {dynNode}) = dynNode
 
-instance AST.Cast.Cast InstanceDeclarations where
+instance AST.Cast.Cast (InstanceDeclarations ext) where
   cast = cast_InstanceDeclarations
 
-unwrap_InstanceDeclarations :: InstanceDeclarations -> AST.Err.Err InstanceDeclarationsU
+unwrap_InstanceDeclarations :: InstanceDeclarations ext -> AST.Err.Err (InstanceDeclarationsU ext)
 unwrap_InstanceDeclarations node = do
   declaration <- AST.Runtime.unwrapList node.declaration
   Prelude.pure
@@ -4784,42 +5501,58 @@ unwrap_InstanceDeclarations node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode InstanceDeclarationsU where
+instance AST.Node.HasDynNode (InstanceDeclarationsU ext) where
   getDynNode (InstanceDeclarationsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap InstanceDeclarations InstanceDeclarationsU where
+instance AST.Unwrap.Unwrap (InstanceDeclarations ext) (InstanceDeclarationsU ext) where
   unwrap = unwrap_InstanceDeclarations
 
-data Integer = Integer {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Integer)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Integer)
+data Integer ext = Integer {dynNode :: AST.Node.DynNode, ext :: (XInteger ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Integer ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Integer ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Integer where
+type IntegerP = Integer AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Integer ext) where
   getDynNode (Integer {dynNode}) = dynNode
 
-instance AST.Cast.Cast Integer where
+instance AST.Cast.Cast (Integer ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "integer")
-    Prelude.pure (Integer {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Integer {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Invisible = Invisible
-  { bind :: ((AST.Err.Err (TypeParam))),
+type family XInteger ext
+
+type instance XInteger ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XInteger ext)) => Dynamic.Typeable (Integer ext)
+
+data Invisible ext = Invisible
+  { bind :: ((AST.Err.Err ((TypeParam ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Invisible)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Invisible)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Invisible ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Invisible ext))
   deriving (GHC.Generics.Generic)
 
-data InvisibleU = InvisibleU
-  { bind :: (TypeParam),
+type InvisibleP = Invisible AST.Extension.ParsePhase
+
+data InvisibleU ext = InvisibleU
+  { bind :: ((TypeParam ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode InvisibleU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode InvisibleU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (InvisibleU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (InvisibleU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Invisible :: Api.Node -> Prelude.Maybe Invisible
+type InvisibleUP = InvisibleU AST.Extension.ParsePhase
+
+cast_Invisible :: Api.Node -> Prelude.Maybe (Invisible ext)
 cast_Invisible dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "invisible")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4831,13 +5564,13 @@ cast_Invisible dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Invisible where
+instance AST.Node.HasDynNode (Invisible ext) where
   getDynNode (Invisible {dynNode}) = dynNode
 
-instance AST.Cast.Cast Invisible where
+instance AST.Cast.Cast (Invisible ext) where
   cast = cast_Invisible
 
-unwrap_Invisible :: Invisible -> AST.Err.Err InvisibleU
+unwrap_Invisible :: Invisible ext -> AST.Err.Err (InvisibleU ext)
 unwrap_Invisible node = do
   bind <- AST.Runtime.unwrapSingle node.bind
   Prelude.pure
@@ -4846,29 +5579,33 @@ unwrap_Invisible node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode InvisibleU where
+instance AST.Node.HasDynNode (InvisibleU ext) where
   getDynNode (InvisibleU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Invisible InvisibleU where
+instance AST.Unwrap.Unwrap (Invisible ext) (InvisibleU ext) where
   unwrap = unwrap_Invisible
 
-data Irrefutable = Irrefutable
-  { pattern' :: ((AST.Err.Err (Pattern))),
+data Irrefutable ext = Irrefutable
+  { pattern' :: ((AST.Err.Err ((Pattern ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Irrefutable)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Irrefutable)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Irrefutable ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Irrefutable ext))
   deriving (GHC.Generics.Generic)
 
-data IrrefutableU = IrrefutableU
-  { pattern' :: (Pattern),
+type IrrefutableP = Irrefutable AST.Extension.ParsePhase
+
+data IrrefutableU ext = IrrefutableU
+  { pattern' :: ((Pattern ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode IrrefutableU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode IrrefutableU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (IrrefutableU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (IrrefutableU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Irrefutable :: Api.Node -> Prelude.Maybe Irrefutable
+type IrrefutableUP = IrrefutableU AST.Extension.ParsePhase
+
+cast_Irrefutable :: Api.Node -> Prelude.Maybe (Irrefutable ext)
 cast_Irrefutable dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "irrefutable")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4880,13 +5617,13 @@ cast_Irrefutable dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Irrefutable where
+instance AST.Node.HasDynNode (Irrefutable ext) where
   getDynNode (Irrefutable {dynNode}) = dynNode
 
-instance AST.Cast.Cast Irrefutable where
+instance AST.Cast.Cast (Irrefutable ext) where
   cast = cast_Irrefutable
 
-unwrap_Irrefutable :: Irrefutable -> AST.Err.Err IrrefutableU
+unwrap_Irrefutable :: Irrefutable ext -> AST.Err.Err (IrrefutableU ext)
 unwrap_Irrefutable node = do
   pattern' <- AST.Runtime.unwrapSingle node.pattern'
   Prelude.pure
@@ -4895,29 +5632,33 @@ unwrap_Irrefutable node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode IrrefutableU where
+instance AST.Node.HasDynNode (IrrefutableU ext) where
   getDynNode (IrrefutableU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Irrefutable IrrefutableU where
+instance AST.Unwrap.Unwrap (Irrefutable ext) (IrrefutableU ext) where
   unwrap = unwrap_Irrefutable
 
-data KindApplication = KindApplication
-  { type' :: ((AST.Err.Err (Type))),
+data KindApplication ext = KindApplication
+  { type' :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode KindApplication)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode KindApplication)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (KindApplication ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (KindApplication ext))
   deriving (GHC.Generics.Generic)
 
-data KindApplicationU = KindApplicationU
-  { type' :: (Type),
+type KindApplicationP = KindApplication AST.Extension.ParsePhase
+
+data KindApplicationU ext = KindApplicationU
+  { type' :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode KindApplicationU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode KindApplicationU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (KindApplicationU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (KindApplicationU ext))
   deriving (GHC.Generics.Generic)
 
-cast_KindApplication :: Api.Node -> Prelude.Maybe KindApplication
+type KindApplicationUP = KindApplicationU AST.Extension.ParsePhase
+
+cast_KindApplication :: Api.Node -> Prelude.Maybe (KindApplication ext)
 cast_KindApplication dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "kind_application")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4929,13 +5670,13 @@ cast_KindApplication dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode KindApplication where
+instance AST.Node.HasDynNode (KindApplication ext) where
   getDynNode (KindApplication {dynNode}) = dynNode
 
-instance AST.Cast.Cast KindApplication where
+instance AST.Cast.Cast (KindApplication ext) where
   cast = cast_KindApplication
 
-unwrap_KindApplication :: KindApplication -> AST.Err.Err KindApplicationU
+unwrap_KindApplication :: KindApplication ext -> AST.Err.Err (KindApplicationU ext)
 unwrap_KindApplication node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -4944,35 +5685,39 @@ unwrap_KindApplication node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode KindApplicationU where
+instance AST.Node.HasDynNode (KindApplicationU ext) where
   getDynNode (KindApplicationU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap KindApplication KindApplicationU where
+instance AST.Unwrap.Unwrap (KindApplication ext) (KindApplicationU ext) where
   unwrap = unwrap_KindApplication
 
-data KindSignature = KindSignature
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    kind :: ((AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypeParams))),
+data KindSignature ext = KindSignature
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    kind :: ((AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode KindSignature)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode KindSignature)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (KindSignature ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (KindSignature ext))
   deriving (GHC.Generics.Generic)
 
-data KindSignatureU = KindSignatureU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    kind :: (QuantifiedType),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypeParams),
+type KindSignatureP = KindSignature AST.Extension.ParsePhase
+
+data KindSignatureU ext = KindSignatureU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    kind :: ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypeParams ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode KindSignatureU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode KindSignatureU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (KindSignatureU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (KindSignatureU ext))
   deriving (GHC.Generics.Generic)
 
-cast_KindSignature :: Api.Node -> Prelude.Maybe KindSignature
+type KindSignatureUP = KindSignatureU AST.Extension.ParsePhase
+
+cast_KindSignature :: Api.Node -> Prelude.Maybe (KindSignature ext)
 cast_KindSignature dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "kind_signature")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -4992,13 +5737,13 @@ cast_KindSignature dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode KindSignature where
+instance AST.Node.HasDynNode (KindSignature ext) where
   getDynNode (KindSignature {dynNode}) = dynNode
 
-instance AST.Cast.Cast KindSignature where
+instance AST.Cast.Cast (KindSignature ext) where
   cast = cast_KindSignature
 
-unwrap_KindSignature :: KindSignature -> AST.Err.Err KindSignatureU
+unwrap_KindSignature :: KindSignature ext -> AST.Err.Err (KindSignatureU ext)
 unwrap_KindSignature node = do
   children <- AST.Runtime.unwrapMaybe node.children
   kind <- AST.Runtime.unwrapSingle node.kind
@@ -5013,31 +5758,35 @@ unwrap_KindSignature node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode KindSignatureU where
+instance AST.Node.HasDynNode (KindSignatureU ext) where
   getDynNode (KindSignatureU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap KindSignature KindSignatureU where
+instance AST.Unwrap.Unwrap (KindSignature ext) (KindSignatureU ext) where
   unwrap = unwrap_KindSignature
 
-data Lambda = Lambda
-  { expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    patterns :: ((AST.Err.Err (Patterns))),
+data Lambda ext = Lambda
+  { expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    patterns :: ((AST.Err.Err ((Patterns ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Lambda)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Lambda)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Lambda ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Lambda ext))
   deriving (GHC.Generics.Generic)
 
-data LambdaU = LambdaU
-  { expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    patterns :: (Patterns),
+type LambdaP = Lambda AST.Extension.ParsePhase
+
+data LambdaU ext = LambdaU
+  { expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    patterns :: ((Patterns ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LambdaU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LambdaU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LambdaU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LambdaU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Lambda :: Api.Node -> Prelude.Maybe Lambda
+type LambdaUP = LambdaU AST.Extension.ParsePhase
+
+cast_Lambda :: Api.Node -> Prelude.Maybe (Lambda ext)
 cast_Lambda dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "lambda")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5052,13 +5801,13 @@ cast_Lambda dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Lambda where
+instance AST.Node.HasDynNode (Lambda ext) where
   getDynNode (Lambda {dynNode}) = dynNode
 
-instance AST.Cast.Cast Lambda where
+instance AST.Cast.Cast (Lambda ext) where
   cast = cast_Lambda
 
-unwrap_Lambda :: Lambda -> AST.Err.Err LambdaU
+unwrap_Lambda :: Lambda ext -> AST.Err.Err (LambdaU ext)
 unwrap_Lambda node = do
   expression <- AST.Runtime.unwrapSingle node.expression
   patterns <- AST.Runtime.unwrapSingle node.patterns
@@ -5069,29 +5818,33 @@ unwrap_Lambda node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LambdaU where
+instance AST.Node.HasDynNode (LambdaU ext) where
   getDynNode (LambdaU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Lambda LambdaU where
+instance AST.Unwrap.Unwrap (Lambda ext) (LambdaU ext) where
   unwrap = unwrap_Lambda
 
-data LambdaCase = LambdaCase
-  { alternatives :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Alternatives))),
+data LambdaCase ext = LambdaCase
+  { alternatives :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Alternatives ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LambdaCase)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LambdaCase)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LambdaCase ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LambdaCase ext))
   deriving (GHC.Generics.Generic)
 
-data LambdaCaseU = LambdaCaseU
-  { alternatives :: Prelude.Maybe (Alternatives),
+type LambdaCaseP = LambdaCase AST.Extension.ParsePhase
+
+data LambdaCaseU ext = LambdaCaseU
+  { alternatives :: Prelude.Maybe ((Alternatives ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LambdaCaseU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LambdaCaseU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LambdaCaseU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LambdaCaseU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LambdaCase :: Api.Node -> Prelude.Maybe LambdaCase
+type LambdaCaseUP = LambdaCaseU AST.Extension.ParsePhase
+
+cast_LambdaCase :: Api.Node -> Prelude.Maybe (LambdaCase ext)
 cast_LambdaCase dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "lambda_case")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5103,13 +5856,13 @@ cast_LambdaCase dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LambdaCase where
+instance AST.Node.HasDynNode (LambdaCase ext) where
   getDynNode (LambdaCase {dynNode}) = dynNode
 
-instance AST.Cast.Cast LambdaCase where
+instance AST.Cast.Cast (LambdaCase ext) where
   cast = cast_LambdaCase
 
-unwrap_LambdaCase :: LambdaCase -> AST.Err.Err LambdaCaseU
+unwrap_LambdaCase :: LambdaCase ext -> AST.Err.Err (LambdaCaseU ext)
 unwrap_LambdaCase node = do
   alternatives <- AST.Runtime.unwrapMaybe node.alternatives
   Prelude.pure
@@ -5118,29 +5871,33 @@ unwrap_LambdaCase node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LambdaCaseU where
+instance AST.Node.HasDynNode (LambdaCaseU ext) where
   getDynNode (LambdaCaseU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LambdaCase LambdaCaseU where
+instance AST.Unwrap.Unwrap (LambdaCase ext) (LambdaCaseU ext) where
   unwrap = unwrap_LambdaCase
 
-data LambdaCases = LambdaCases
-  { alternatives :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Alternatives))),
+data LambdaCases ext = LambdaCases
+  { alternatives :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Alternatives ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LambdaCases)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LambdaCases)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LambdaCases ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LambdaCases ext))
   deriving (GHC.Generics.Generic)
 
-data LambdaCasesU = LambdaCasesU
-  { alternatives :: Prelude.Maybe (Alternatives),
+type LambdaCasesP = LambdaCases AST.Extension.ParsePhase
+
+data LambdaCasesU ext = LambdaCasesU
+  { alternatives :: Prelude.Maybe ((Alternatives ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LambdaCasesU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LambdaCasesU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LambdaCasesU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LambdaCasesU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LambdaCases :: Api.Node -> Prelude.Maybe LambdaCases
+type LambdaCasesUP = LambdaCasesU AST.Extension.ParsePhase
+
+cast_LambdaCases :: Api.Node -> Prelude.Maybe (LambdaCases ext)
 cast_LambdaCases dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "lambda_cases")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5152,13 +5909,13 @@ cast_LambdaCases dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LambdaCases where
+instance AST.Node.HasDynNode (LambdaCases ext) where
   getDynNode (LambdaCases {dynNode}) = dynNode
 
-instance AST.Cast.Cast LambdaCases where
+instance AST.Cast.Cast (LambdaCases ext) where
   cast = cast_LambdaCases
 
-unwrap_LambdaCases :: LambdaCases -> AST.Err.Err LambdaCasesU
+unwrap_LambdaCases :: LambdaCases ext -> AST.Err.Err (LambdaCasesU ext)
 unwrap_LambdaCases node = do
   alternatives <- AST.Runtime.unwrapMaybe node.alternatives
   Prelude.pure
@@ -5167,29 +5924,33 @@ unwrap_LambdaCases node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LambdaCasesU where
+instance AST.Node.HasDynNode (LambdaCasesU ext) where
   getDynNode (LambdaCasesU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LambdaCases LambdaCasesU where
+instance AST.Unwrap.Unwrap (LambdaCases ext) (LambdaCasesU ext) where
   unwrap = unwrap_LambdaCases
 
-data LazyField = LazyField
-  { type' :: ((AST.Err.Err (Type))),
+data LazyField ext = LazyField
+  { type' :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LazyField)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LazyField)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LazyField ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LazyField ext))
   deriving (GHC.Generics.Generic)
 
-data LazyFieldU = LazyFieldU
-  { type' :: (Type),
+type LazyFieldP = LazyField AST.Extension.ParsePhase
+
+data LazyFieldU ext = LazyFieldU
+  { type' :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LazyFieldU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LazyFieldU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LazyFieldU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LazyFieldU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LazyField :: Api.Node -> Prelude.Maybe LazyField
+type LazyFieldUP = LazyFieldU AST.Extension.ParsePhase
+
+cast_LazyField :: Api.Node -> Prelude.Maybe (LazyField ext)
 cast_LazyField dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "lazy_field")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5201,13 +5962,13 @@ cast_LazyField dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LazyField where
+instance AST.Node.HasDynNode (LazyField ext) where
   getDynNode (LazyField {dynNode}) = dynNode
 
-instance AST.Cast.Cast LazyField where
+instance AST.Cast.Cast (LazyField ext) where
   cast = cast_LazyField
 
-unwrap_LazyField :: LazyField -> AST.Err.Err LazyFieldU
+unwrap_LazyField :: LazyField ext -> AST.Err.Err (LazyFieldU ext)
 unwrap_LazyField node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -5216,31 +5977,35 @@ unwrap_LazyField node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LazyFieldU where
+instance AST.Node.HasDynNode (LazyFieldU ext) where
   getDynNode (LazyFieldU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LazyField LazyFieldU where
+instance AST.Unwrap.Unwrap (LazyField ext) (LazyFieldU ext) where
   unwrap = unwrap_LazyField
 
-data LeftSection = LeftSection
-  { leftOperand :: ((AST.Err.Err (Expression))),
-    operator :: ((AST.Err.Err ((ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Qualified Sum.:+ Sum.Nil)))),
+data LeftSection ext = LeftSection
+  { leftOperand :: ((AST.Err.Err ((Expression ext)))),
+    operator :: ((AST.Err.Err (((ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LeftSection)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LeftSection)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LeftSection ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LeftSection ext))
   deriving (GHC.Generics.Generic)
 
-data LeftSectionU = LeftSectionU
-  { leftOperand :: (Expression),
-    operator :: ((ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Qualified Sum.:+ Sum.Nil)),
+type LeftSectionP = LeftSection AST.Extension.ParsePhase
+
+data LeftSectionU ext = LeftSectionU
+  { leftOperand :: ((Expression ext)),
+    operator :: (((ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LeftSectionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LeftSectionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LeftSectionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LeftSectionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LeftSection :: Api.Node -> Prelude.Maybe LeftSection
+type LeftSectionUP = LeftSectionU AST.Extension.ParsePhase
+
+cast_LeftSection :: Api.Node -> Prelude.Maybe (LeftSection ext)
 cast_LeftSection dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "left_section")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5255,13 +6020,13 @@ cast_LeftSection dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LeftSection where
+instance AST.Node.HasDynNode (LeftSection ext) where
   getDynNode (LeftSection {dynNode}) = dynNode
 
-instance AST.Cast.Cast LeftSection where
+instance AST.Cast.Cast (LeftSection ext) where
   cast = cast_LeftSection
 
-unwrap_LeftSection :: LeftSection -> AST.Err.Err LeftSectionU
+unwrap_LeftSection :: LeftSection ext -> AST.Err.Err (LeftSectionU ext)
 unwrap_LeftSection node = do
   leftOperand <- AST.Runtime.unwrapSingle node.leftOperand
   operator <- AST.Runtime.unwrapSingle node.operator
@@ -5272,29 +6037,33 @@ unwrap_LeftSection node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LeftSectionU where
+instance AST.Node.HasDynNode (LeftSectionU ext) where
   getDynNode (LeftSectionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LeftSection LeftSectionU where
+instance AST.Unwrap.Unwrap (LeftSection ext) (LeftSectionU ext) where
   unwrap = unwrap_LeftSection
 
-data Let = Let
-  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (LocalBinds))),
+data Let ext = Let
+  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Let)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Let)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Let ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Let ext))
   deriving (GHC.Generics.Generic)
 
-data LetU = LetU
-  { binds :: Prelude.Maybe (LocalBinds),
+type LetP = Let AST.Extension.ParsePhase
+
+data LetU ext = LetU
+  { binds :: Prelude.Maybe ((LocalBinds ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LetU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LetU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LetU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LetU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Let :: Api.Node -> Prelude.Maybe Let
+type LetUP = LetU AST.Extension.ParsePhase
+
+cast_Let :: Api.Node -> Prelude.Maybe (Let ext)
 cast_Let dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "let")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5306,13 +6075,13 @@ cast_Let dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Let where
+instance AST.Node.HasDynNode (Let ext) where
   getDynNode (Let {dynNode}) = dynNode
 
-instance AST.Cast.Cast Let where
+instance AST.Cast.Cast (Let ext) where
   cast = cast_Let
 
-unwrap_Let :: Let -> AST.Err.Err LetU
+unwrap_Let :: Let ext -> AST.Err.Err (LetU ext)
 unwrap_Let node = do
   binds <- AST.Runtime.unwrapMaybe node.binds
   Prelude.pure
@@ -5321,31 +6090,35 @@ unwrap_Let node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LetU where
+instance AST.Node.HasDynNode (LetU ext) where
   getDynNode (LetU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Let LetU where
+instance AST.Unwrap.Unwrap (Let ext) (LetU ext) where
   unwrap = unwrap_Let
 
-data LetIn = LetIn
-  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (LocalBinds))),
-    expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data LetIn ext = LetIn
+  { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
+    expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LetIn)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LetIn)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LetIn ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LetIn ext))
   deriving (GHC.Generics.Generic)
 
-data LetInU = LetInU
-  { binds :: Prelude.Maybe (LocalBinds),
-    expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type LetInP = LetIn AST.Extension.ParsePhase
+
+data LetInU ext = LetInU
+  { binds :: Prelude.Maybe ((LocalBinds ext)),
+    expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LetInU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LetInU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LetInU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LetInU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LetIn :: Api.Node -> Prelude.Maybe LetIn
+type LetInUP = LetInU AST.Extension.ParsePhase
+
+cast_LetIn :: Api.Node -> Prelude.Maybe (LetIn ext)
 cast_LetIn dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "let_in")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5360,13 +6133,13 @@ cast_LetIn dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LetIn where
+instance AST.Node.HasDynNode (LetIn ext) where
   getDynNode (LetIn {dynNode}) = dynNode
 
-instance AST.Cast.Cast LetIn where
+instance AST.Cast.Cast (LetIn ext) where
   cast = cast_LetIn
 
-unwrap_LetIn :: LetIn -> AST.Err.Err LetInU
+unwrap_LetIn :: LetIn ext -> AST.Err.Err (LetInU ext)
 unwrap_LetIn node = do
   binds <- AST.Runtime.unwrapMaybe node.binds
   expression <- AST.Runtime.unwrapSingle node.expression
@@ -5377,35 +6150,39 @@ unwrap_LetIn node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LetInU where
+instance AST.Node.HasDynNode (LetInU ext) where
   getDynNode (LetInU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LetIn LetInU where
+instance AST.Unwrap.Unwrap (LetIn ext) (LetInU ext) where
   unwrap = unwrap_LetIn
 
-data LinearFunction = LinearFunction
+data LinearFunction ext = LinearFunction
   { arrow :: ((AST.Err.Err (((AST.Token.Token "->") Sum.:+ (AST.Token.Token "->.") Sum.:+ (AST.Token.Token "→") Sum.:+ (AST.Token.Token "⊸") Sum.:+ Sum.Nil)))),
-    multiplicity :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Modifier))),
-    parameter :: ((AST.Err.Err ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)))),
-    result :: ((AST.Err.Err (QuantifiedType))),
+    multiplicity :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Modifier ext)))),
+    parameter :: ((AST.Err.Err (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)))),
+    result :: ((AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LinearFunction)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LinearFunction)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LinearFunction ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LinearFunction ext))
   deriving (GHC.Generics.Generic)
 
-data LinearFunctionU = LinearFunctionU
+type LinearFunctionP = LinearFunction AST.Extension.ParsePhase
+
+data LinearFunctionU ext = LinearFunctionU
   { arrow :: (((AST.Token.Token "->") Sum.:+ (AST.Token.Token "->.") Sum.:+ (AST.Token.Token "→") Sum.:+ (AST.Token.Token "⊸") Sum.:+ Sum.Nil)),
-    multiplicity :: Prelude.Maybe (Modifier),
-    parameter :: ((LazyField Sum.:+ QuantifiedType Sum.:+ StrictField Sum.:+ Sum.Nil)),
-    result :: (QuantifiedType),
+    multiplicity :: Prelude.Maybe ((Modifier ext)),
+    parameter :: (((LazyField ext) Sum.:+ (QuantifiedType ext) Sum.:+ (StrictField ext) Sum.:+ Sum.Nil)),
+    result :: ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LinearFunctionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LinearFunctionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LinearFunctionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LinearFunctionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LinearFunction :: Api.Node -> Prelude.Maybe LinearFunction
+type LinearFunctionUP = LinearFunctionU AST.Extension.ParsePhase
+
+cast_LinearFunction :: Api.Node -> Prelude.Maybe (LinearFunction ext)
 cast_LinearFunction dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "linear_function")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5426,13 +6203,13 @@ cast_LinearFunction dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LinearFunction where
+instance AST.Node.HasDynNode (LinearFunction ext) where
   getDynNode (LinearFunction {dynNode}) = dynNode
 
-instance AST.Cast.Cast LinearFunction where
+instance AST.Cast.Cast (LinearFunction ext) where
   cast = cast_LinearFunction
 
-unwrap_LinearFunction :: LinearFunction -> AST.Err.Err LinearFunctionU
+unwrap_LinearFunction :: LinearFunction ext -> AST.Err.Err (LinearFunctionU ext)
 unwrap_LinearFunction node = do
   arrow <- AST.Runtime.unwrapSingle node.arrow
   multiplicity <- AST.Runtime.unwrapMaybe node.multiplicity
@@ -5447,29 +6224,33 @@ unwrap_LinearFunction node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LinearFunctionU where
+instance AST.Node.HasDynNode (LinearFunctionU ext) where
   getDynNode (LinearFunctionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LinearFunction LinearFunctionU where
+instance AST.Unwrap.Unwrap (LinearFunction ext) (LinearFunctionU ext) where
   unwrap = unwrap_LinearFunction
 
-data List = List
-  { element :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
+data List ext = List
+  { element :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode List)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode List)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (List ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (List ext))
   deriving (GHC.Generics.Generic)
 
-data ListU = ListU
-  { element :: AST.Runtime.List ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
+type ListP = List AST.Extension.ParsePhase
+
+data ListU ext = ListU
+  { element :: AST.Runtime.List (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ListU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ListU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ListU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ListU ext))
   deriving (GHC.Generics.Generic)
 
-cast_List :: Api.Node -> Prelude.Maybe List
+type ListUP = ListU AST.Extension.ParsePhase
+
+cast_List :: Api.Node -> Prelude.Maybe (List ext)
 cast_List dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "list")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5481,13 +6262,13 @@ cast_List dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode List where
+instance AST.Node.HasDynNode (List ext) where
   getDynNode (List {dynNode}) = dynNode
 
-instance AST.Cast.Cast List where
+instance AST.Cast.Cast (List ext) where
   cast = cast_List
 
-unwrap_List :: List -> AST.Err.Err ListU
+unwrap_List :: List ext -> AST.Err.Err (ListU ext)
 unwrap_List node = do
   element <- AST.Runtime.unwrapList node.element
   Prelude.pure
@@ -5496,31 +6277,35 @@ unwrap_List node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ListU where
+instance AST.Node.HasDynNode (ListU ext) where
   getDynNode (ListU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap List ListU where
+instance AST.Unwrap.Unwrap (List ext) (ListU ext) where
   unwrap = unwrap_List
 
-data ListComprehension = ListComprehension
-  { expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    qualifiers :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Qualifiers))),
+data ListComprehension ext = ListComprehension
+  { expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    qualifiers :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Qualifiers ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ListComprehension)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ListComprehension)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ListComprehension ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ListComprehension ext))
   deriving (GHC.Generics.Generic)
 
-data ListComprehensionU = ListComprehensionU
-  { expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    qualifiers :: Data.List.NonEmpty.NonEmpty (Qualifiers),
+type ListComprehensionP = ListComprehension AST.Extension.ParsePhase
+
+data ListComprehensionU ext = ListComprehensionU
+  { expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    qualifiers :: Data.List.NonEmpty.NonEmpty ((Qualifiers ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ListComprehensionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ListComprehensionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ListComprehensionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ListComprehensionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ListComprehension :: Api.Node -> Prelude.Maybe ListComprehension
+type ListComprehensionUP = ListComprehensionU AST.Extension.ParsePhase
+
+cast_ListComprehension :: Api.Node -> Prelude.Maybe (ListComprehension ext)
 cast_ListComprehension dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "list_comprehension")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5535,13 +6320,13 @@ cast_ListComprehension dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ListComprehension where
+instance AST.Node.HasDynNode (ListComprehension ext) where
   getDynNode (ListComprehension {dynNode}) = dynNode
 
-instance AST.Cast.Cast ListComprehension where
+instance AST.Cast.Cast (ListComprehension ext) where
   cast = cast_ListComprehension
 
-unwrap_ListComprehension :: ListComprehension -> AST.Err.Err ListComprehensionU
+unwrap_ListComprehension :: ListComprehension ext -> AST.Err.Err (ListComprehensionU ext)
 unwrap_ListComprehension node = do
   expression <- AST.Runtime.unwrapSingle node.expression
   qualifiers <- AST.Runtime.unwrapNonEmpty node.qualifiers
@@ -5552,29 +6337,33 @@ unwrap_ListComprehension node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ListComprehensionU where
+instance AST.Node.HasDynNode (ListComprehensionU ext) where
   getDynNode (ListComprehensionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ListComprehension ListComprehensionU where
+instance AST.Unwrap.Unwrap (ListComprehension ext) (ListComprehensionU ext) where
   unwrap = unwrap_ListComprehension
 
-data Literal = Literal
-  { children :: ((AST.Err.Err ((Char Sum.:+ Float Sum.:+ Integer Sum.:+ String Sum.:+ Sum.Nil)))),
+data Literal ext = Literal
+  { children :: ((AST.Err.Err (((Char ext) Sum.:+ (Float ext) Sum.:+ (Integer ext) Sum.:+ (String ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Literal)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Literal)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Literal ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Literal ext))
   deriving (GHC.Generics.Generic)
 
-data LiteralU = LiteralU
-  { children :: ((Char Sum.:+ Float Sum.:+ Integer Sum.:+ String Sum.:+ Sum.Nil)),
+type LiteralP = Literal AST.Extension.ParsePhase
+
+data LiteralU ext = LiteralU
+  { children :: (((Char ext) Sum.:+ (Float ext) Sum.:+ (Integer ext) Sum.:+ (String ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LiteralU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LiteralU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LiteralU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LiteralU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Literal :: Api.Node -> Prelude.Maybe Literal
+type LiteralUP = LiteralU AST.Extension.ParsePhase
+
+cast_Literal :: Api.Node -> Prelude.Maybe (Literal ext)
 cast_Literal dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "literal")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5585,13 +6374,13 @@ cast_Literal dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Literal where
+instance AST.Node.HasDynNode (Literal ext) where
   getDynNode (Literal {dynNode}) = dynNode
 
-instance AST.Cast.Cast Literal where
+instance AST.Cast.Cast (Literal ext) where
   cast = cast_Literal
 
-unwrap_Literal :: Literal -> AST.Err.Err LiteralU
+unwrap_Literal :: Literal ext -> AST.Err.Err (LiteralU ext)
 unwrap_Literal node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -5600,29 +6389,33 @@ unwrap_Literal node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LiteralU where
+instance AST.Node.HasDynNode (LiteralU ext) where
   getDynNode (LiteralU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Literal LiteralU where
+instance AST.Unwrap.Unwrap (Literal ext) (LiteralU ext) where
   unwrap = unwrap_Literal
 
-data LocalBinds = LocalBinds
-  { decl :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Decl Sum.:+ Fixity Sum.:+ Sum.Nil)))),
+data LocalBinds ext = LocalBinds
+  { decl :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((Decl ext) Sum.:+ (Fixity ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LocalBinds)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LocalBinds)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LocalBinds ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LocalBinds ext))
   deriving (GHC.Generics.Generic)
 
-data LocalBindsU = LocalBindsU
-  { decl :: AST.Runtime.List ((Decl Sum.:+ Fixity Sum.:+ Sum.Nil)),
+type LocalBindsP = LocalBinds AST.Extension.ParsePhase
+
+data LocalBindsU ext = LocalBindsU
+  { decl :: AST.Runtime.List (((Decl ext) Sum.:+ (Fixity ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode LocalBindsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode LocalBindsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (LocalBindsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (LocalBindsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_LocalBinds :: Api.Node -> Prelude.Maybe LocalBinds
+type LocalBindsUP = LocalBindsU AST.Extension.ParsePhase
+
+cast_LocalBinds :: Api.Node -> Prelude.Maybe (LocalBinds ext)
 cast_LocalBinds dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "local_binds")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5634,13 +6427,13 @@ cast_LocalBinds dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode LocalBinds where
+instance AST.Node.HasDynNode (LocalBinds ext) where
   getDynNode (LocalBinds {dynNode}) = dynNode
 
-instance AST.Cast.Cast LocalBinds where
+instance AST.Cast.Cast (LocalBinds ext) where
   cast = cast_LocalBinds
 
-unwrap_LocalBinds :: LocalBinds -> AST.Err.Err LocalBindsU
+unwrap_LocalBinds :: LocalBinds ext -> AST.Err.Err (LocalBindsU ext)
 unwrap_LocalBinds node = do
   decl <- AST.Runtime.unwrapList node.decl
   Prelude.pure
@@ -5649,31 +6442,35 @@ unwrap_LocalBinds node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode LocalBindsU where
+instance AST.Node.HasDynNode (LocalBindsU ext) where
   getDynNode (LocalBindsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap LocalBinds LocalBindsU where
+instance AST.Unwrap.Unwrap (LocalBinds ext) (LocalBindsU ext) where
   unwrap = unwrap_LocalBinds
 
-data Match = Match
-  { expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    guards :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Guards))),
+data Match ext = Match
+  { expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    guards :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Guards ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Match)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Match)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Match ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Match ext))
   deriving (GHC.Generics.Generic)
 
-data MatchU = MatchU
-  { expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    guards :: Prelude.Maybe (Guards),
+type MatchP = Match AST.Extension.ParsePhase
+
+data MatchU ext = MatchU
+  { expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    guards :: Prelude.Maybe ((Guards ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode MatchU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode MatchU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (MatchU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (MatchU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Match :: Api.Node -> Prelude.Maybe Match
+type MatchUP = MatchU AST.Extension.ParsePhase
+
+cast_Match :: Api.Node -> Prelude.Maybe (Match ext)
 cast_Match dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "match")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5688,13 +6485,13 @@ cast_Match dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Match where
+instance AST.Node.HasDynNode (Match ext) where
   getDynNode (Match {dynNode}) = dynNode
 
-instance AST.Cast.Cast Match where
+instance AST.Cast.Cast (Match ext) where
   cast = cast_Match
 
-unwrap_Match :: Match -> AST.Err.Err MatchU
+unwrap_Match :: Match ext -> AST.Err.Err (MatchU ext)
 unwrap_Match node = do
   expression <- AST.Runtime.unwrapSingle node.expression
   guards <- AST.Runtime.unwrapMaybe node.guards
@@ -5705,29 +6502,33 @@ unwrap_Match node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode MatchU where
+instance AST.Node.HasDynNode (MatchU ext) where
   getDynNode (MatchU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Match MatchU where
+instance AST.Unwrap.Unwrap (Match ext) (MatchU ext) where
   unwrap = unwrap_Match
 
-data Modifier = Modifier
-  { children :: ((AST.Err.Err (Type))),
+data Modifier ext = Modifier
+  { children :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Modifier)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Modifier)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Modifier ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Modifier ext))
   deriving (GHC.Generics.Generic)
 
-data ModifierU = ModifierU
-  { children :: (Type),
+type ModifierP = Modifier AST.Extension.ParsePhase
+
+data ModifierU ext = ModifierU
+  { children :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ModifierU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ModifierU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ModifierU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ModifierU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Modifier :: Api.Node -> Prelude.Maybe Modifier
+type ModifierUP = ModifierU AST.Extension.ParsePhase
+
+cast_Modifier :: Api.Node -> Prelude.Maybe (Modifier ext)
 cast_Modifier dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "modifier")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5738,13 +6539,13 @@ cast_Modifier dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Modifier where
+instance AST.Node.HasDynNode (Modifier ext) where
   getDynNode (Modifier {dynNode}) = dynNode
 
-instance AST.Cast.Cast Modifier where
+instance AST.Cast.Cast (Modifier ext) where
   cast = cast_Modifier
 
-unwrap_Modifier :: Modifier -> AST.Err.Err ModifierU
+unwrap_Modifier :: Modifier ext -> AST.Err.Err (ModifierU ext)
 unwrap_Modifier node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -5753,29 +6554,33 @@ unwrap_Modifier node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ModifierU where
+instance AST.Node.HasDynNode (ModifierU ext) where
   getDynNode (ModifierU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Modifier ModifierU where
+instance AST.Unwrap.Unwrap (Modifier ext) (ModifierU ext) where
   unwrap = unwrap_Modifier
 
-data Module = Module
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (ModuleId))),
+data Module ext = Module
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((ModuleId ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Module)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Module)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Module ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Module ext))
   deriving (GHC.Generics.Generic)
 
-data ModuleU = ModuleU
-  { children :: Data.List.NonEmpty.NonEmpty (ModuleId),
+type ModuleP = Module AST.Extension.ParsePhase
+
+data ModuleU ext = ModuleU
+  { children :: Data.List.NonEmpty.NonEmpty ((ModuleId ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ModuleU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ModuleU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ModuleU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ModuleU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Module :: Api.Node -> Prelude.Maybe Module
+type ModuleUP = ModuleU AST.Extension.ParsePhase
+
+cast_Module :: Api.Node -> Prelude.Maybe (Module ext)
 cast_Module dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "module")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5786,13 +6591,13 @@ cast_Module dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Module where
+instance AST.Node.HasDynNode (Module ext) where
   getDynNode (Module {dynNode}) = dynNode
 
-instance AST.Cast.Cast Module where
+instance AST.Cast.Cast (Module ext) where
   cast = cast_Module
 
-unwrap_Module :: Module -> AST.Err.Err ModuleU
+unwrap_Module :: Module ext -> AST.Err.Err (ModuleU ext)
 unwrap_Module node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   Prelude.pure
@@ -5801,29 +6606,33 @@ unwrap_Module node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ModuleU where
+instance AST.Node.HasDynNode (ModuleU ext) where
   getDynNode (ModuleU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Module ModuleU where
+instance AST.Unwrap.Unwrap (Module ext) (ModuleU ext) where
   unwrap = unwrap_Module
 
-data ModuleExport = ModuleExport
-  { module' :: ((AST.Err.Err (Module))),
+data ModuleExport ext = ModuleExport
+  { module' :: ((AST.Err.Err ((Module ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ModuleExport)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ModuleExport)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ModuleExport ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ModuleExport ext))
   deriving (GHC.Generics.Generic)
 
-data ModuleExportU = ModuleExportU
-  { module' :: (Module),
+type ModuleExportP = ModuleExport AST.Extension.ParsePhase
+
+data ModuleExportU ext = ModuleExportU
+  { module' :: ((Module ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ModuleExportU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ModuleExportU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ModuleExportU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ModuleExportU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ModuleExport :: Api.Node -> Prelude.Maybe ModuleExport
+type ModuleExportUP = ModuleExportU AST.Extension.ParsePhase
+
+cast_ModuleExport :: Api.Node -> Prelude.Maybe (ModuleExport ext)
 cast_ModuleExport dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "module_export")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5835,13 +6644,13 @@ cast_ModuleExport dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ModuleExport where
+instance AST.Node.HasDynNode (ModuleExport ext) where
   getDynNode (ModuleExport {dynNode}) = dynNode
 
-instance AST.Cast.Cast ModuleExport where
+instance AST.Cast.Cast (ModuleExport ext) where
   cast = cast_ModuleExport
 
-unwrap_ModuleExport :: ModuleExport -> AST.Err.Err ModuleExportU
+unwrap_ModuleExport :: ModuleExport ext -> AST.Err.Err (ModuleExportU ext)
 unwrap_ModuleExport node = do
   module' <- AST.Runtime.unwrapSingle node.module'
   Prelude.pure
@@ -5850,29 +6659,33 @@ unwrap_ModuleExport node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ModuleExportU where
+instance AST.Node.HasDynNode (ModuleExportU ext) where
   getDynNode (ModuleExportU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ModuleExport ModuleExportU where
+instance AST.Unwrap.Unwrap (ModuleExport ext) (ModuleExportU ext) where
   unwrap = unwrap_ModuleExport
 
-data MultiWayIf = MultiWayIf
-  { match :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Match))),
+data MultiWayIf ext = MultiWayIf
+  { match :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Match ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode MultiWayIf)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode MultiWayIf)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (MultiWayIf ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (MultiWayIf ext))
   deriving (GHC.Generics.Generic)
 
-data MultiWayIfU = MultiWayIfU
-  { match :: AST.Runtime.List (Match),
+type MultiWayIfP = MultiWayIf AST.Extension.ParsePhase
+
+data MultiWayIfU ext = MultiWayIfU
+  { match :: AST.Runtime.List ((Match ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode MultiWayIfU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode MultiWayIfU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (MultiWayIfU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (MultiWayIfU ext))
   deriving (GHC.Generics.Generic)
 
-cast_MultiWayIf :: Api.Node -> Prelude.Maybe MultiWayIf
+type MultiWayIfUP = MultiWayIfU AST.Extension.ParsePhase
+
+cast_MultiWayIf :: Api.Node -> Prelude.Maybe (MultiWayIf ext)
 cast_MultiWayIf dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "multi_way_if")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5884,13 +6697,13 @@ cast_MultiWayIf dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode MultiWayIf where
+instance AST.Node.HasDynNode (MultiWayIf ext) where
   getDynNode (MultiWayIf {dynNode}) = dynNode
 
-instance AST.Cast.Cast MultiWayIf where
+instance AST.Cast.Cast (MultiWayIf ext) where
   cast = cast_MultiWayIf
 
-unwrap_MultiWayIf :: MultiWayIf -> AST.Err.Err MultiWayIfU
+unwrap_MultiWayIf :: MultiWayIf ext -> AST.Err.Err (MultiWayIfU ext)
 unwrap_MultiWayIf node = do
   match <- AST.Runtime.unwrapList node.match
   Prelude.pure
@@ -5899,46 +6712,62 @@ unwrap_MultiWayIf node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode MultiWayIfU where
+instance AST.Node.HasDynNode (MultiWayIfU ext) where
   getDynNode (MultiWayIfU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap MultiWayIf MultiWayIfU where
+instance AST.Unwrap.Unwrap (MultiWayIf ext) (MultiWayIfU ext) where
   unwrap = unwrap_MultiWayIf
 
-data Namespace = Namespace {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Namespace)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Namespace)
+data Namespace ext = Namespace {dynNode :: AST.Node.DynNode, ext :: (XNamespace ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Namespace ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Namespace ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Namespace where
+type NamespaceP = Namespace AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Namespace ext) where
   getDynNode (Namespace {dynNode}) = dynNode
 
-instance AST.Cast.Cast Namespace where
+instance AST.Cast.Cast (Namespace ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "namespace")
-    Prelude.pure (Namespace {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Namespace {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Negation = Negation
-  { expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Expression))),
+type family XNamespace ext
+
+type instance XNamespace ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XNamespace ext)) => Dynamic.Typeable (Namespace ext)
+
+data Negation ext = Negation
+  { expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression ext)))),
     minus :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((AST.Token.Token "-")))),
-    number :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Float Sum.:+ Integer Sum.:+ Sum.Nil)))),
+    number :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Float ext) Sum.:+ (Integer ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Negation)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Negation)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Negation ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Negation ext))
   deriving (GHC.Generics.Generic)
 
-data NegationU = NegationU
-  { expression :: Prelude.Maybe (Expression),
+type NegationP = Negation AST.Extension.ParsePhase
+
+data NegationU ext = NegationU
+  { expression :: Prelude.Maybe ((Expression ext)),
     minus :: Prelude.Maybe ((AST.Token.Token "-")),
-    number :: Prelude.Maybe ((Float Sum.:+ Integer Sum.:+ Sum.Nil)),
+    number :: Prelude.Maybe (((Float ext) Sum.:+ (Integer ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode NegationU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode NegationU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (NegationU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (NegationU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Negation :: Api.Node -> Prelude.Maybe Negation
+type NegationUP = NegationU AST.Extension.ParsePhase
+
+cast_Negation :: Api.Node -> Prelude.Maybe (Negation ext)
 cast_Negation dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "negation")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -5956,13 +6785,13 @@ cast_Negation dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Negation where
+instance AST.Node.HasDynNode (Negation ext) where
   getDynNode (Negation {dynNode}) = dynNode
 
-instance AST.Cast.Cast Negation where
+instance AST.Cast.Cast (Negation ext) where
   cast = cast_Negation
 
-unwrap_Negation :: Negation -> AST.Err.Err NegationU
+unwrap_Negation :: Negation ext -> AST.Err.Err (NegationU ext)
 unwrap_Negation node = do
   expression <- AST.Runtime.unwrapMaybe node.expression
   minus <- AST.Runtime.unwrapMaybe node.minus
@@ -5975,45 +6804,49 @@ unwrap_Negation node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode NegationU where
+instance AST.Node.HasDynNode (NegationU ext) where
   getDynNode (NegationU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Negation NegationU where
+instance AST.Unwrap.Unwrap (Negation ext) (NegationU ext) where
   unwrap = unwrap_Negation
 
-data Newtype = Newtype
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    constructor :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (NewtypeConstructor))),
-    constructors :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (GadtConstructors))),
-    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Context))),
-    deriving' :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Deriving))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Qualified Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams Sum.:+ TypePatterns Sum.:+ Sum.Nil)))),
+data Newtype ext = Newtype
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    constructor :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((NewtypeConstructor ext)))),
+    constructors :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((GadtConstructors ext)))),
+    context :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Context ext)))),
+    deriving' :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Deriving ext)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Qualified ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((TypeParams ext) Sum.:+ (TypePatterns ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Newtype)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Newtype)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Newtype ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Newtype ext))
   deriving (GHC.Generics.Generic)
 
-data NewtypeU = NewtypeU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    constructor :: Prelude.Maybe (NewtypeConstructor),
-    constructors :: Prelude.Maybe (GadtConstructors),
-    context :: Prelude.Maybe (Context),
-    deriving' :: AST.Runtime.List (Deriving),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    kind :: Prelude.Maybe (QuantifiedType),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Qualified Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe ((TypeParams Sum.:+ TypePatterns Sum.:+ Sum.Nil)),
+type NewtypeP = Newtype AST.Extension.ParsePhase
+
+data NewtypeU ext = NewtypeU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    constructor :: Prelude.Maybe ((NewtypeConstructor ext)),
+    constructors :: Prelude.Maybe ((GadtConstructors ext)),
+    context :: Prelude.Maybe ((Context ext)),
+    deriving' :: AST.Runtime.List ((Deriving ext)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    kind :: Prelude.Maybe ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Qualified ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe (((TypeParams ext) Sum.:+ (TypePatterns ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode NewtypeU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode NewtypeU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (NewtypeU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (NewtypeU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Newtype :: Api.Node -> Prelude.Maybe Newtype
+type NewtypeUP = NewtypeU AST.Extension.ParsePhase
+
+cast_Newtype :: Api.Node -> Prelude.Maybe (Newtype ext)
 cast_Newtype dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "newtype")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6048,13 +6881,13 @@ cast_Newtype dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Newtype where
+instance AST.Node.HasDynNode (Newtype ext) where
   getDynNode (Newtype {dynNode}) = dynNode
 
-instance AST.Cast.Cast Newtype where
+instance AST.Cast.Cast (Newtype ext) where
   cast = cast_Newtype
 
-unwrap_Newtype :: Newtype -> AST.Err.Err NewtypeU
+unwrap_Newtype :: Newtype ext -> AST.Err.Err (NewtypeU ext)
 unwrap_Newtype node = do
   children <- AST.Runtime.unwrapMaybe node.children
   constructor <- AST.Runtime.unwrapMaybe node.constructor
@@ -6079,31 +6912,35 @@ unwrap_Newtype node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode NewtypeU where
+instance AST.Node.HasDynNode (NewtypeU ext) where
   getDynNode (NewtypeU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Newtype NewtypeU where
+instance AST.Unwrap.Unwrap (Newtype ext) (NewtypeU ext) where
   unwrap = unwrap_Newtype
 
-data NewtypeConstructor = NewtypeConstructor
-  { field :: ((AST.Err.Err ((Field Sum.:+ Record Sum.:+ Sum.Nil)))),
-    name :: ((AST.Err.Err ((Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)))),
+data NewtypeConstructor ext = NewtypeConstructor
+  { field :: ((AST.Err.Err (((Field ext) Sum.:+ (Record ext) Sum.:+ Sum.Nil)))),
+    name :: ((AST.Err.Err (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode NewtypeConstructor)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode NewtypeConstructor)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (NewtypeConstructor ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (NewtypeConstructor ext))
   deriving (GHC.Generics.Generic)
 
-data NewtypeConstructorU = NewtypeConstructorU
-  { field :: ((Field Sum.:+ Record Sum.:+ Sum.Nil)),
-    name :: ((Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)),
+type NewtypeConstructorP = NewtypeConstructor AST.Extension.ParsePhase
+
+data NewtypeConstructorU ext = NewtypeConstructorU
+  { field :: (((Field ext) Sum.:+ (Record ext) Sum.:+ Sum.Nil)),
+    name :: (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode NewtypeConstructorU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode NewtypeConstructorU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (NewtypeConstructorU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (NewtypeConstructorU ext))
   deriving (GHC.Generics.Generic)
 
-cast_NewtypeConstructor :: Api.Node -> Prelude.Maybe NewtypeConstructor
+type NewtypeConstructorUP = NewtypeConstructorU AST.Extension.ParsePhase
+
+cast_NewtypeConstructor :: Api.Node -> Prelude.Maybe (NewtypeConstructor ext)
 cast_NewtypeConstructor dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "newtype_constructor")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6118,13 +6955,13 @@ cast_NewtypeConstructor dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode NewtypeConstructor where
+instance AST.Node.HasDynNode (NewtypeConstructor ext) where
   getDynNode (NewtypeConstructor {dynNode}) = dynNode
 
-instance AST.Cast.Cast NewtypeConstructor where
+instance AST.Cast.Cast (NewtypeConstructor ext) where
   cast = cast_NewtypeConstructor
 
-unwrap_NewtypeConstructor :: NewtypeConstructor -> AST.Err.Err NewtypeConstructorU
+unwrap_NewtypeConstructor :: NewtypeConstructor ext -> AST.Err.Err (NewtypeConstructorU ext)
 unwrap_NewtypeConstructor node = do
   field <- AST.Runtime.unwrapSingle node.field
   name <- AST.Runtime.unwrapSingle node.name
@@ -6135,54 +6972,70 @@ unwrap_NewtypeConstructor node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode NewtypeConstructorU where
+instance AST.Node.HasDynNode (NewtypeConstructorU ext) where
   getDynNode (NewtypeConstructorU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap NewtypeConstructor NewtypeConstructorU where
+instance AST.Unwrap.Unwrap (NewtypeConstructor ext) (NewtypeConstructorU ext) where
   unwrap = unwrap_NewtypeConstructor
 
-data Operator = Operator {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Operator)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Operator)
+data Operator ext = Operator {dynNode :: AST.Node.DynNode, ext :: (XOperator ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Operator ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Operator ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Operator where
+type OperatorP = Operator AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Operator ext) where
   getDynNode (Operator {dynNode}) = dynNode
 
-instance AST.Cast.Cast Operator where
+instance AST.Cast.Cast (Operator ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
-    Prelude.pure (Operator {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Operator {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Parens = Parens
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Annotated Sum.:+ Constraints Sum.:+ Infix Sum.:+ TypeParam Sum.:+ Sum.Nil)))),
-    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Qualified Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams Sum.:+ TypePatterns Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)))),
+type family XOperator ext
+
+type instance XOperator ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XOperator ext)) => Dynamic.Typeable (Operator ext)
+
+data Parens ext = Parens
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Annotated ext) Sum.:+ (Constraints ext) Sum.:+ (Infix ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
+    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Qualified ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((TypeParams ext) Sum.:+ (TypePatterns ext) Sum.:+ Sum.Nil)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Parens)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Parens)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Parens ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Parens ext))
   deriving (GHC.Generics.Generic)
 
-data ParensU = ParensU
-  { children :: Prelude.Maybe ((Annotated Sum.:+ Constraints Sum.:+ Infix Sum.:+ TypeParam Sum.:+ Sum.Nil)),
-    expression :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    kind :: Prelude.Maybe (QuantifiedType),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Qualified Sum.:+ Unit Sum.:+ Sum.Nil)),
-    pattern' :: Prelude.Maybe ((Pattern Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe ((TypeParams Sum.:+ TypePatterns Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)),
+type ParensP = Parens AST.Extension.ParsePhase
+
+data ParensU ext = ParensU
+  { children :: Prelude.Maybe (((Annotated ext) Sum.:+ (Constraints ext) Sum.:+ (Infix ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)),
+    expression :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    kind :: Prelude.Maybe ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Qualified ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    pattern' :: Prelude.Maybe (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe (((TypeParams ext) Sum.:+ (TypePatterns ext) Sum.:+ Sum.Nil)),
+    type' :: Prelude.Maybe (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ParensU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ParensU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ParensU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ParensU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Parens :: Api.Node -> Prelude.Maybe Parens
+type ParensUP = ParensU AST.Extension.ParsePhase
+
+cast_Parens :: Api.Node -> Prelude.Maybe (Parens ext)
 cast_Parens dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "parens")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6211,13 +7064,13 @@ cast_Parens dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Parens where
+instance AST.Node.HasDynNode (Parens ext) where
   getDynNode (Parens {dynNode}) = dynNode
 
-instance AST.Cast.Cast Parens where
+instance AST.Cast.Cast (Parens ext) where
   cast = cast_Parens
 
-unwrap_Parens :: Parens -> AST.Err.Err ParensU
+unwrap_Parens :: Parens ext -> AST.Err.Err (ParensU ext)
 unwrap_Parens node = do
   children <- AST.Runtime.unwrapMaybe node.children
   expression <- AST.Runtime.unwrapMaybe node.expression
@@ -6238,33 +7091,37 @@ unwrap_Parens node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ParensU where
+instance AST.Node.HasDynNode (ParensU ext) where
   getDynNode (ParensU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Parens ParensU where
+instance AST.Unwrap.Unwrap (Parens ext) (ParensU ext) where
   unwrap = unwrap_Parens
 
-data PatternGuard = PatternGuard
+data PatternGuard ext = PatternGuard
   { arrow :: ((AST.Err.Err (((AST.Token.Token "<-") Sum.:+ (AST.Token.Token "←") Sum.:+ Sum.Nil)))),
-    expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    pattern' :: ((AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
+    expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    pattern' :: ((AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PatternGuard)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PatternGuard)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PatternGuard ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PatternGuard ext))
   deriving (GHC.Generics.Generic)
 
-data PatternGuardU = PatternGuardU
+type PatternGuardP = PatternGuard AST.Extension.ParsePhase
+
+data PatternGuardU ext = PatternGuardU
   { arrow :: (((AST.Token.Token "<-") Sum.:+ (AST.Token.Token "←") Sum.:+ Sum.Nil)),
-    expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    pattern' :: ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
+    expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    pattern' :: (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PatternGuardU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PatternGuardU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PatternGuardU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PatternGuardU ext))
   deriving (GHC.Generics.Generic)
 
-cast_PatternGuard :: Api.Node -> Prelude.Maybe PatternGuard
+type PatternGuardUP = PatternGuardU AST.Extension.ParsePhase
+
+cast_PatternGuard :: Api.Node -> Prelude.Maybe (PatternGuard ext)
 cast_PatternGuard dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "pattern_guard")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6282,13 +7139,13 @@ cast_PatternGuard dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode PatternGuard where
+instance AST.Node.HasDynNode (PatternGuard ext) where
   getDynNode (PatternGuard {dynNode}) = dynNode
 
-instance AST.Cast.Cast PatternGuard where
+instance AST.Cast.Cast (PatternGuard ext) where
   cast = cast_PatternGuard
 
-unwrap_PatternGuard :: PatternGuard -> AST.Err.Err PatternGuardU
+unwrap_PatternGuard :: PatternGuard ext -> AST.Err.Err (PatternGuardU ext)
 unwrap_PatternGuard node = do
   arrow <- AST.Runtime.unwrapSingle node.arrow
   expression <- AST.Runtime.unwrapSingle node.expression
@@ -6301,29 +7158,33 @@ unwrap_PatternGuard node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode PatternGuardU where
+instance AST.Node.HasDynNode (PatternGuardU ext) where
   getDynNode (PatternGuardU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap PatternGuard PatternGuardU where
+instance AST.Unwrap.Unwrap (PatternGuard ext) (PatternGuardU ext) where
   unwrap = unwrap_PatternGuard
 
-data PatternSynonym = PatternSynonym
-  { children :: ((AST.Err.Err ((Equation Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data PatternSynonym ext = PatternSynonym
+  { children :: ((AST.Err.Err (((Equation ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PatternSynonym)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PatternSynonym)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PatternSynonym ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PatternSynonym ext))
   deriving (GHC.Generics.Generic)
 
-data PatternSynonymU = PatternSynonymU
-  { children :: ((Equation Sum.:+ Signature Sum.:+ Sum.Nil)),
+type PatternSynonymP = PatternSynonym AST.Extension.ParsePhase
+
+data PatternSynonymU ext = PatternSynonymU
+  { children :: (((Equation ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PatternSynonymU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PatternSynonymU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PatternSynonymU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PatternSynonymU ext))
   deriving (GHC.Generics.Generic)
 
-cast_PatternSynonym :: Api.Node -> Prelude.Maybe PatternSynonym
+type PatternSynonymUP = PatternSynonymU AST.Extension.ParsePhase
+
+cast_PatternSynonym :: Api.Node -> Prelude.Maybe (PatternSynonym ext)
 cast_PatternSynonym dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "pattern_synonym")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6334,13 +7195,13 @@ cast_PatternSynonym dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode PatternSynonym where
+instance AST.Node.HasDynNode (PatternSynonym ext) where
   getDynNode (PatternSynonym {dynNode}) = dynNode
 
-instance AST.Cast.Cast PatternSynonym where
+instance AST.Cast.Cast (PatternSynonym ext) where
   cast = cast_PatternSynonym
 
-unwrap_PatternSynonym :: PatternSynonym -> AST.Err.Err PatternSynonymU
+unwrap_PatternSynonym :: PatternSynonym ext -> AST.Err.Err (PatternSynonymU ext)
 unwrap_PatternSynonym node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -6349,29 +7210,33 @@ unwrap_PatternSynonym node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode PatternSynonymU where
+instance AST.Node.HasDynNode (PatternSynonymU ext) where
   getDynNode (PatternSynonymU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap PatternSynonym PatternSynonymU where
+instance AST.Unwrap.Unwrap (PatternSynonym ext) (PatternSynonymU ext) where
   unwrap = unwrap_PatternSynonym
 
-data Patterns = Patterns
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((ExplicitType Sum.:+ Pattern Sum.:+ TypeBinder Sum.:+ Sum.Nil)))),
+data Patterns ext = Patterns
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((ExplicitType ext) Sum.:+ (Pattern ext) Sum.:+ (TypeBinder ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Patterns)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Patterns)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Patterns ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Patterns ext))
   deriving (GHC.Generics.Generic)
 
-data PatternsU = PatternsU
-  { children :: Data.List.NonEmpty.NonEmpty ((ExplicitType Sum.:+ Pattern Sum.:+ TypeBinder Sum.:+ Sum.Nil)),
+type PatternsP = Patterns AST.Extension.ParsePhase
+
+data PatternsU ext = PatternsU
+  { children :: Data.List.NonEmpty.NonEmpty (((ExplicitType ext) Sum.:+ (Pattern ext) Sum.:+ (TypeBinder ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PatternsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PatternsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PatternsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PatternsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Patterns :: Api.Node -> Prelude.Maybe Patterns
+type PatternsUP = PatternsU AST.Extension.ParsePhase
+
+cast_Patterns :: Api.Node -> Prelude.Maybe (Patterns ext)
 cast_Patterns dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "patterns")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6382,13 +7247,13 @@ cast_Patterns dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Patterns where
+instance AST.Node.HasDynNode (Patterns ext) where
   getDynNode (Patterns {dynNode}) = dynNode
 
-instance AST.Cast.Cast Patterns where
+instance AST.Cast.Cast (Patterns ext) where
   cast = cast_Patterns
 
-unwrap_Patterns :: Patterns -> AST.Err.Err PatternsU
+unwrap_Patterns :: Patterns ext -> AST.Err.Err (PatternsU ext)
 unwrap_Patterns node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   Prelude.pure
@@ -6397,33 +7262,37 @@ unwrap_Patterns node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode PatternsU where
+instance AST.Node.HasDynNode (PatternsU ext) where
   getDynNode (PatternsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Patterns PatternsU where
+instance AST.Unwrap.Unwrap (Patterns ext) (PatternsU ext) where
   unwrap = unwrap_Patterns
 
-data Prefix = Prefix
-  { field :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((LazyField Sum.:+ StrictField Sum.:+ Type Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
+data Prefix ext = Prefix
+  { field :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((LazyField ext) Sum.:+ (StrictField ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Prefix)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Prefix)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Prefix ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Prefix ext))
   deriving (GHC.Generics.Generic)
 
-data PrefixU = PrefixU
-  { field :: AST.Runtime.List ((LazyField Sum.:+ StrictField Sum.:+ Type Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe (QuantifiedType),
+type PrefixP = Prefix AST.Extension.ParsePhase
+
+data PrefixU ext = PrefixU
+  { field :: AST.Runtime.List (((LazyField ext) Sum.:+ (StrictField ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)),
+    type' :: Prelude.Maybe ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Prefix :: Api.Node -> Prelude.Maybe Prefix
+type PrefixUP = PrefixU AST.Extension.ParsePhase
+
+cast_Prefix :: Api.Node -> Prelude.Maybe (Prefix ext)
 cast_Prefix dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6441,13 +7310,13 @@ cast_Prefix dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Prefix where
+instance AST.Node.HasDynNode (Prefix ext) where
   getDynNode (Prefix {dynNode}) = dynNode
 
-instance AST.Cast.Cast Prefix where
+instance AST.Cast.Cast (Prefix ext) where
   cast = cast_Prefix
 
-unwrap_Prefix :: Prefix -> AST.Err.Err PrefixU
+unwrap_Prefix :: Prefix ext -> AST.Err.Err (PrefixU ext)
 unwrap_Prefix node = do
   field <- AST.Runtime.unwrapList node.field
   name <- AST.Runtime.unwrapMaybe node.name
@@ -6460,29 +7329,33 @@ unwrap_Prefix node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode PrefixU where
+instance AST.Node.HasDynNode (PrefixU ext) where
   getDynNode (PrefixU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Prefix PrefixU where
+instance AST.Unwrap.Unwrap (Prefix ext) (PrefixU ext) where
   unwrap = unwrap_Prefix
 
-data PrefixId = PrefixId
-  { children :: ((AST.Err.Err ((ConstructorOperator Sum.:+ Operator Sum.:+ Qualified Sum.:+ Sum.Nil)))),
+data PrefixId ext = PrefixId
+  { children :: ((AST.Err.Err (((ConstructorOperator ext) Sum.:+ (Operator ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixId)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixId)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixId ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixId ext))
   deriving (GHC.Generics.Generic)
 
-data PrefixIdU = PrefixIdU
-  { children :: ((ConstructorOperator Sum.:+ Operator Sum.:+ Qualified Sum.:+ Sum.Nil)),
+type PrefixIdP = PrefixId AST.Extension.ParsePhase
+
+data PrefixIdU ext = PrefixIdU
+  { children :: (((ConstructorOperator ext) Sum.:+ (Operator ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixIdU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixIdU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixIdU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixIdU ext))
   deriving (GHC.Generics.Generic)
 
-cast_PrefixId :: Api.Node -> Prelude.Maybe PrefixId
+type PrefixIdUP = PrefixIdU AST.Extension.ParsePhase
+
+cast_PrefixId :: Api.Node -> Prelude.Maybe (PrefixId ext)
 cast_PrefixId dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_id")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6493,13 +7366,13 @@ cast_PrefixId dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode PrefixId where
+instance AST.Node.HasDynNode (PrefixId ext) where
   getDynNode (PrefixId {dynNode}) = dynNode
 
-instance AST.Cast.Cast PrefixId where
+instance AST.Cast.Cast (PrefixId ext) where
   cast = cast_PrefixId
 
-unwrap_PrefixId :: PrefixId -> AST.Err.Err PrefixIdU
+unwrap_PrefixId :: PrefixId ext -> AST.Err.Err (PrefixIdU ext)
 unwrap_PrefixId node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -6508,83 +7381,135 @@ unwrap_PrefixId node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode PrefixIdU where
+instance AST.Node.HasDynNode (PrefixIdU ext) where
   getDynNode (PrefixIdU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap PrefixId PrefixIdU where
+instance AST.Unwrap.Unwrap (PrefixId ext) (PrefixIdU ext) where
   unwrap = unwrap_PrefixId
 
-data PrefixList = PrefixList {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixList)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixList)
+data PrefixList ext = PrefixList {dynNode :: AST.Node.DynNode, ext :: (XPrefixList ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixList ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixList ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode PrefixList where
+type PrefixListP = PrefixList AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (PrefixList ext) where
   getDynNode (PrefixList {dynNode}) = dynNode
 
-instance AST.Cast.Cast PrefixList where
+instance AST.Cast.Cast (PrefixList ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_list")
-    Prelude.pure (PrefixList {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (PrefixList {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data PrefixTuple = PrefixTuple {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixTuple)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixTuple)
+type family XPrefixList ext
+
+type instance XPrefixList ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixList ext)) => Dynamic.Typeable (PrefixList ext)
+
+data PrefixTuple ext = PrefixTuple {dynNode :: AST.Node.DynNode, ext :: (XPrefixTuple ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixTuple ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixTuple ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode PrefixTuple where
+type PrefixTupleP = PrefixTuple AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (PrefixTuple ext) where
   getDynNode (PrefixTuple {dynNode}) = dynNode
 
-instance AST.Cast.Cast PrefixTuple where
+instance AST.Cast.Cast (PrefixTuple ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_tuple")
-    Prelude.pure (PrefixTuple {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (PrefixTuple {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data PrefixUnboxedSum = PrefixUnboxedSum {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixUnboxedSum)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixUnboxedSum)
+type family XPrefixTuple ext
+
+type instance XPrefixTuple ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixTuple ext)) => Dynamic.Typeable (PrefixTuple ext)
+
+data PrefixUnboxedSum ext = PrefixUnboxedSum {dynNode :: AST.Node.DynNode, ext :: (XPrefixUnboxedSum ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixUnboxedSum ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixUnboxedSum ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode PrefixUnboxedSum where
+type PrefixUnboxedSumP = PrefixUnboxedSum AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (PrefixUnboxedSum ext) where
   getDynNode (PrefixUnboxedSum {dynNode}) = dynNode
 
-instance AST.Cast.Cast PrefixUnboxedSum where
+instance AST.Cast.Cast (PrefixUnboxedSum ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_unboxed_sum")
-    Prelude.pure (PrefixUnboxedSum {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (PrefixUnboxedSum {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data PrefixUnboxedTuple = PrefixUnboxedTuple {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PrefixUnboxedTuple)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PrefixUnboxedTuple)
+type family XPrefixUnboxedSum ext
+
+type instance XPrefixUnboxedSum ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixUnboxedSum ext)) => Dynamic.Typeable (PrefixUnboxedSum ext)
+
+data PrefixUnboxedTuple ext = PrefixUnboxedTuple {dynNode :: AST.Node.DynNode, ext :: (XPrefixUnboxedTuple ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixUnboxedTuple ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixUnboxedTuple ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode PrefixUnboxedTuple where
+type PrefixUnboxedTupleP = PrefixUnboxedTuple AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (PrefixUnboxedTuple ext) where
   getDynNode (PrefixUnboxedTuple {dynNode}) = dynNode
 
-instance AST.Cast.Cast PrefixUnboxedTuple where
+instance AST.Cast.Cast (PrefixUnboxedTuple ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_unboxed_tuple")
-    Prelude.pure (PrefixUnboxedTuple {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (PrefixUnboxedTuple {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Projection = Projection
-  { expression :: ((AST.Err.Err (Expression))),
-    field :: ((AST.Err.Err (FieldName))),
+type family XPrefixUnboxedTuple ext
+
+type instance XPrefixUnboxedTuple ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixUnboxedTuple ext)) => Dynamic.Typeable (PrefixUnboxedTuple ext)
+
+data Projection ext = Projection
+  { expression :: ((AST.Err.Err ((Expression ext)))),
+    field :: ((AST.Err.Err ((FieldName ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Projection)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Projection)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Projection ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Projection ext))
   deriving (GHC.Generics.Generic)
 
-data ProjectionU = ProjectionU
-  { expression :: (Expression),
-    field :: (FieldName),
+type ProjectionP = Projection AST.Extension.ParsePhase
+
+data ProjectionU ext = ProjectionU
+  { expression :: ((Expression ext)),
+    field :: ((FieldName ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ProjectionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ProjectionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ProjectionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ProjectionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Projection :: Api.Node -> Prelude.Maybe Projection
+type ProjectionUP = ProjectionU AST.Extension.ParsePhase
+
+cast_Projection :: Api.Node -> Prelude.Maybe (Projection ext)
 cast_Projection dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "projection")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6599,13 +7524,13 @@ cast_Projection dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Projection where
+instance AST.Node.HasDynNode (Projection ext) where
   getDynNode (Projection {dynNode}) = dynNode
 
-instance AST.Cast.Cast Projection where
+instance AST.Cast.Cast (Projection ext) where
   cast = cast_Projection
 
-unwrap_Projection :: Projection -> AST.Err.Err ProjectionU
+unwrap_Projection :: Projection ext -> AST.Err.Err (ProjectionU ext)
 unwrap_Projection node = do
   expression <- AST.Runtime.unwrapSingle node.expression
   field <- AST.Runtime.unwrapSingle node.field
@@ -6616,29 +7541,33 @@ unwrap_Projection node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ProjectionU where
+instance AST.Node.HasDynNode (ProjectionU ext) where
   getDynNode (ProjectionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Projection ProjectionU where
+instance AST.Unwrap.Unwrap (Projection ext) (ProjectionU ext) where
   unwrap = unwrap_Projection
 
-data ProjectionSelector = ProjectionSelector
-  { field :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Variable))),
+data ProjectionSelector ext = ProjectionSelector
+  { field :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Variable ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ProjectionSelector)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ProjectionSelector)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ProjectionSelector ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ProjectionSelector ext))
   deriving (GHC.Generics.Generic)
 
-data ProjectionSelectorU = ProjectionSelectorU
-  { field :: Data.List.NonEmpty.NonEmpty (Variable),
+type ProjectionSelectorP = ProjectionSelector AST.Extension.ParsePhase
+
+data ProjectionSelectorU ext = ProjectionSelectorU
+  { field :: Data.List.NonEmpty.NonEmpty ((Variable ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ProjectionSelectorU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ProjectionSelectorU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ProjectionSelectorU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ProjectionSelectorU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ProjectionSelector :: Api.Node -> Prelude.Maybe ProjectionSelector
+type ProjectionSelectorUP = ProjectionSelectorU AST.Extension.ParsePhase
+
+cast_ProjectionSelector :: Api.Node -> Prelude.Maybe (ProjectionSelector ext)
 cast_ProjectionSelector dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "projection_selector")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6650,13 +7579,13 @@ cast_ProjectionSelector dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ProjectionSelector where
+instance AST.Node.HasDynNode (ProjectionSelector ext) where
   getDynNode (ProjectionSelector {dynNode}) = dynNode
 
-instance AST.Cast.Cast ProjectionSelector where
+instance AST.Cast.Cast (ProjectionSelector ext) where
   cast = cast_ProjectionSelector
 
-unwrap_ProjectionSelector :: ProjectionSelector -> AST.Err.Err ProjectionSelectorU
+unwrap_ProjectionSelector :: ProjectionSelector ext -> AST.Err.Err (ProjectionSelectorU ext)
 unwrap_ProjectionSelector node = do
   field <- AST.Runtime.unwrapNonEmpty node.field
   Prelude.pure
@@ -6665,29 +7594,33 @@ unwrap_ProjectionSelector node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ProjectionSelectorU where
+instance AST.Node.HasDynNode (ProjectionSelectorU ext) where
   getDynNode (ProjectionSelectorU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ProjectionSelector ProjectionSelectorU where
+instance AST.Unwrap.Unwrap (ProjectionSelector ext) (ProjectionSelectorU ext) where
   unwrap = unwrap_ProjectionSelector
 
-data Promoted = Promoted
-  { children :: ((AST.Err.Err ((Constructor Sum.:+ ConstructorOperator Sum.:+ EmptyList Sum.:+ InfixId Sum.:+ List Sum.:+ Operator Sum.:+ PrefixId Sum.:+ PrefixTuple Sum.:+ Qualified Sum.:+ Tuple Sum.:+ Unit Sum.:+ Sum.Nil)))),
+data Promoted ext = Promoted
+  { children :: ((AST.Err.Err (((Constructor ext) Sum.:+ (ConstructorOperator ext) Sum.:+ (EmptyList ext) Sum.:+ (InfixId ext) Sum.:+ (List ext) Sum.:+ (Operator ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixTuple ext) Sum.:+ (Qualified ext) Sum.:+ (Tuple ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Promoted)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Promoted)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Promoted ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Promoted ext))
   deriving (GHC.Generics.Generic)
 
-data PromotedU = PromotedU
-  { children :: ((Constructor Sum.:+ ConstructorOperator Sum.:+ EmptyList Sum.:+ InfixId Sum.:+ List Sum.:+ Operator Sum.:+ PrefixId Sum.:+ PrefixTuple Sum.:+ Qualified Sum.:+ Tuple Sum.:+ Unit Sum.:+ Sum.Nil)),
+type PromotedP = Promoted AST.Extension.ParsePhase
+
+data PromotedU ext = PromotedU
+  { children :: (((Constructor ext) Sum.:+ (ConstructorOperator ext) Sum.:+ (EmptyList ext) Sum.:+ (InfixId ext) Sum.:+ (List ext) Sum.:+ (Operator ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixTuple ext) Sum.:+ (Qualified ext) Sum.:+ (Tuple ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode PromotedU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode PromotedU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (PromotedU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (PromotedU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Promoted :: Api.Node -> Prelude.Maybe Promoted
+type PromotedUP = PromotedU AST.Extension.ParsePhase
+
+cast_Promoted :: Api.Node -> Prelude.Maybe (Promoted ext)
 cast_Promoted dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "promoted")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6698,13 +7631,13 @@ cast_Promoted dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Promoted where
+instance AST.Node.HasDynNode (Promoted ext) where
   getDynNode (Promoted {dynNode}) = dynNode
 
-instance AST.Cast.Cast Promoted where
+instance AST.Cast.Cast (Promoted ext) where
   cast = cast_Promoted
 
-unwrap_Promoted :: Promoted -> AST.Err.Err PromotedU
+unwrap_Promoted :: Promoted ext -> AST.Err.Err (PromotedU ext)
 unwrap_Promoted node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -6713,31 +7646,35 @@ unwrap_Promoted node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode PromotedU where
+instance AST.Node.HasDynNode (PromotedU ext) where
   getDynNode (PromotedU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Promoted PromotedU where
+instance AST.Unwrap.Unwrap (Promoted ext) (PromotedU ext) where
   unwrap = unwrap_Promoted
 
-data Qualified = Qualified
-  { id :: ((AST.Err.Err ((Constructor Sum.:+ ConstructorOperator Sum.:+ FieldName Sum.:+ Name Sum.:+ Operator Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    module' :: ((AST.Err.Err (Module))),
+data Qualified ext = Qualified
+  { id :: ((AST.Err.Err (((Constructor ext) Sum.:+ (ConstructorOperator ext) Sum.:+ (FieldName ext) Sum.:+ (Name ext) Sum.:+ (Operator ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    module' :: ((AST.Err.Err ((Module ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Qualified)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Qualified)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Qualified ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Qualified ext))
   deriving (GHC.Generics.Generic)
 
-data QualifiedU = QualifiedU
-  { id :: ((Constructor Sum.:+ ConstructorOperator Sum.:+ FieldName Sum.:+ Name Sum.:+ Operator Sum.:+ Variable Sum.:+ Sum.Nil)),
-    module' :: (Module),
+type QualifiedP = Qualified AST.Extension.ParsePhase
+
+data QualifiedU ext = QualifiedU
+  { id :: (((Constructor ext) Sum.:+ (ConstructorOperator ext) Sum.:+ (FieldName ext) Sum.:+ (Name ext) Sum.:+ (Operator ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    module' :: ((Module ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QualifiedU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QualifiedU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QualifiedU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QualifiedU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Qualified :: Api.Node -> Prelude.Maybe Qualified
+type QualifiedUP = QualifiedU AST.Extension.ParsePhase
+
+cast_Qualified :: Api.Node -> Prelude.Maybe (Qualified ext)
 cast_Qualified dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "qualified")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6752,13 +7689,13 @@ cast_Qualified dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Qualified where
+instance AST.Node.HasDynNode (Qualified ext) where
   getDynNode (Qualified {dynNode}) = dynNode
 
-instance AST.Cast.Cast Qualified where
+instance AST.Cast.Cast (Qualified ext) where
   cast = cast_Qualified
 
-unwrap_Qualified :: Qualified -> AST.Err.Err QualifiedU
+unwrap_Qualified :: Qualified ext -> AST.Err.Err (QualifiedU ext)
 unwrap_Qualified node = do
   id <- AST.Runtime.unwrapSingle node.id
   module' <- AST.Runtime.unwrapSingle node.module'
@@ -6769,29 +7706,33 @@ unwrap_Qualified node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QualifiedU where
+instance AST.Node.HasDynNode (QualifiedU ext) where
   getDynNode (QualifiedU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Qualified QualifiedU where
+instance AST.Unwrap.Unwrap (Qualified ext) (QualifiedU ext) where
   unwrap = unwrap_Qualified
 
-data Qualifiers = Qualifiers
-  { qualifier :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Qualifier))),
+data Qualifiers ext = Qualifiers
+  { qualifier :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Qualifier ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Qualifiers)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Qualifiers)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Qualifiers ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Qualifiers ext))
   deriving (GHC.Generics.Generic)
 
-data QualifiersU = QualifiersU
-  { qualifier :: Data.List.NonEmpty.NonEmpty (Qualifier),
+type QualifiersP = Qualifiers AST.Extension.ParsePhase
+
+data QualifiersU ext = QualifiersU
+  { qualifier :: Data.List.NonEmpty.NonEmpty ((Qualifier ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QualifiersU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QualifiersU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QualifiersU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QualifiersU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Qualifiers :: Api.Node -> Prelude.Maybe Qualifiers
+type QualifiersUP = QualifiersU AST.Extension.ParsePhase
+
+cast_Qualifiers :: Api.Node -> Prelude.Maybe (Qualifiers ext)
 cast_Qualifiers dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "qualifiers")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6803,13 +7744,13 @@ cast_Qualifiers dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Qualifiers where
+instance AST.Node.HasDynNode (Qualifiers ext) where
   getDynNode (Qualifiers {dynNode}) = dynNode
 
-instance AST.Cast.Cast Qualifiers where
+instance AST.Cast.Cast (Qualifiers ext) where
   cast = cast_Qualifiers
 
-unwrap_Qualifiers :: Qualifiers -> AST.Err.Err QualifiersU
+unwrap_Qualifiers :: Qualifiers ext -> AST.Err.Err (QualifiersU ext)
 unwrap_Qualifiers node = do
   qualifier <- AST.Runtime.unwrapNonEmpty node.qualifier
   Prelude.pure
@@ -6818,29 +7759,33 @@ unwrap_Qualifiers node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QualifiersU where
+instance AST.Node.HasDynNode (QualifiersU ext) where
   getDynNode (QualifiersU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Qualifiers QualifiersU where
+instance AST.Unwrap.Unwrap (Qualifiers ext) (QualifiersU ext) where
   unwrap = unwrap_Qualifiers
 
-data QuantifiedVariables = QuantifiedVariables
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Inferred Sum.:+ TypeParam Sum.:+ Sum.Nil)))),
+data QuantifiedVariables ext = QuantifiedVariables
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((Inferred ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuantifiedVariables)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuantifiedVariables)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuantifiedVariables ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuantifiedVariables ext))
   deriving (GHC.Generics.Generic)
 
-data QuantifiedVariablesU = QuantifiedVariablesU
-  { children :: Data.List.NonEmpty.NonEmpty ((Inferred Sum.:+ TypeParam Sum.:+ Sum.Nil)),
+type QuantifiedVariablesP = QuantifiedVariables AST.Extension.ParsePhase
+
+data QuantifiedVariablesU ext = QuantifiedVariablesU
+  { children :: Data.List.NonEmpty.NonEmpty (((Inferred ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuantifiedVariablesU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuantifiedVariablesU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuantifiedVariablesU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuantifiedVariablesU ext))
   deriving (GHC.Generics.Generic)
 
-cast_QuantifiedVariables :: Api.Node -> Prelude.Maybe QuantifiedVariables
+type QuantifiedVariablesUP = QuantifiedVariablesU AST.Extension.ParsePhase
+
+cast_QuantifiedVariables :: Api.Node -> Prelude.Maybe (QuantifiedVariables ext)
 cast_QuantifiedVariables dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quantified_variables")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6851,13 +7796,13 @@ cast_QuantifiedVariables dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode QuantifiedVariables where
+instance AST.Node.HasDynNode (QuantifiedVariables ext) where
   getDynNode (QuantifiedVariables {dynNode}) = dynNode
 
-instance AST.Cast.Cast QuantifiedVariables where
+instance AST.Cast.Cast (QuantifiedVariables ext) where
   cast = cast_QuantifiedVariables
 
-unwrap_QuantifiedVariables :: QuantifiedVariables -> AST.Err.Err QuantifiedVariablesU
+unwrap_QuantifiedVariables :: QuantifiedVariables ext -> AST.Err.Err (QuantifiedVariablesU ext)
 unwrap_QuantifiedVariables node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   Prelude.pure
@@ -6866,31 +7811,35 @@ unwrap_QuantifiedVariables node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuantifiedVariablesU where
+instance AST.Node.HasDynNode (QuantifiedVariablesU ext) where
   getDynNode (QuantifiedVariablesU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap QuantifiedVariables QuantifiedVariablesU where
+instance AST.Unwrap.Unwrap (QuantifiedVariables ext) (QuantifiedVariablesU ext) where
   unwrap = unwrap_QuantifiedVariables
 
-data Quasiquote = Quasiquote
-  { body :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuasiquoteBody))),
-    quoter :: ((AST.Err.Err (Quoter))),
+data Quasiquote ext = Quasiquote
+  { body :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuasiquoteBody ext)))),
+    quoter :: ((AST.Err.Err ((Quoter ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Quasiquote)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Quasiquote)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Quasiquote ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Quasiquote ext))
   deriving (GHC.Generics.Generic)
 
-data QuasiquoteU = QuasiquoteU
-  { body :: Prelude.Maybe (QuasiquoteBody),
-    quoter :: (Quoter),
+type QuasiquoteP = Quasiquote AST.Extension.ParsePhase
+
+data QuasiquoteU ext = QuasiquoteU
+  { body :: Prelude.Maybe ((QuasiquoteBody ext)),
+    quoter :: ((Quoter ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuasiquoteU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuasiquoteU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuasiquoteU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuasiquoteU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Quasiquote :: Api.Node -> Prelude.Maybe Quasiquote
+type QuasiquoteUP = QuasiquoteU AST.Extension.ParsePhase
+
+cast_Quasiquote :: Api.Node -> Prelude.Maybe (Quasiquote ext)
 cast_Quasiquote dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quasiquote")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6905,13 +7854,13 @@ cast_Quasiquote dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Quasiquote where
+instance AST.Node.HasDynNode (Quasiquote ext) where
   getDynNode (Quasiquote {dynNode}) = dynNode
 
-instance AST.Cast.Cast Quasiquote where
+instance AST.Cast.Cast (Quasiquote ext) where
   cast = cast_Quasiquote
 
-unwrap_Quasiquote :: Quasiquote -> AST.Err.Err QuasiquoteU
+unwrap_Quasiquote :: Quasiquote ext -> AST.Err.Err (QuasiquoteU ext)
 unwrap_Quasiquote node = do
   body <- AST.Runtime.unwrapMaybe node.body
   quoter <- AST.Runtime.unwrapSingle node.quoter
@@ -6922,31 +7871,35 @@ unwrap_Quasiquote node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuasiquoteU where
+instance AST.Node.HasDynNode (QuasiquoteU ext) where
   getDynNode (QuasiquoteU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Quasiquote QuasiquoteU where
+instance AST.Unwrap.Unwrap (Quasiquote ext) (QuasiquoteU ext) where
   unwrap = unwrap_Quasiquote
 
-data Quote = Quote
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuotedDecls Sum.:+ QuotedExpression Sum.:+ QuotedPattern Sum.:+ QuotedType Sum.:+ Sum.Nil)))),
+data Quote ext = Quote
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((QuotedDecls ext) Sum.:+ (QuotedExpression ext) Sum.:+ (QuotedPattern ext) Sum.:+ (QuotedType ext) Sum.:+ Sum.Nil)))),
     quoter :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((AST.Token.Token "d") Sum.:+ (AST.Token.Token "e") Sum.:+ (AST.Token.Token "p") Sum.:+ (AST.Token.Token "t") Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Quote)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Quote)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Quote ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Quote ext))
   deriving (GHC.Generics.Generic)
 
-data QuoteU = QuoteU
-  { children :: Prelude.Maybe ((QuotedDecls Sum.:+ QuotedExpression Sum.:+ QuotedPattern Sum.:+ QuotedType Sum.:+ Sum.Nil)),
+type QuoteP = Quote AST.Extension.ParsePhase
+
+data QuoteU ext = QuoteU
+  { children :: Prelude.Maybe (((QuotedDecls ext) Sum.:+ (QuotedExpression ext) Sum.:+ (QuotedPattern ext) Sum.:+ (QuotedType ext) Sum.:+ Sum.Nil)),
     quoter :: Prelude.Maybe (((AST.Token.Token "d") Sum.:+ (AST.Token.Token "e") Sum.:+ (AST.Token.Token "p") Sum.:+ (AST.Token.Token "t") Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuoteU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuoteU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuoteU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuoteU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Quote :: Api.Node -> Prelude.Maybe Quote
+type QuoteUP = QuoteU AST.Extension.ParsePhase
+
+cast_Quote :: Api.Node -> Prelude.Maybe (Quote ext)
 cast_Quote dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quote")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -6960,13 +7913,13 @@ cast_Quote dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Quote where
+instance AST.Node.HasDynNode (Quote ext) where
   getDynNode (Quote {dynNode}) = dynNode
 
-instance AST.Cast.Cast Quote where
+instance AST.Cast.Cast (Quote ext) where
   cast = cast_Quote
 
-unwrap_Quote :: Quote -> AST.Err.Err QuoteU
+unwrap_Quote :: Quote ext -> AST.Err.Err (QuoteU ext)
 unwrap_Quote node = do
   children <- AST.Runtime.unwrapMaybe node.children
   quoter <- AST.Runtime.unwrapMaybe node.quoter
@@ -6977,29 +7930,33 @@ unwrap_Quote node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuoteU where
+instance AST.Node.HasDynNode (QuoteU ext) where
   getDynNode (QuoteU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Quote QuoteU where
+instance AST.Unwrap.Unwrap (Quote ext) (QuoteU ext) where
   unwrap = unwrap_Quote
 
-data QuotedDecls = QuotedDecls
-  { declaration :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Declaration))),
+data QuotedDecls ext = QuotedDecls
+  { declaration :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Declaration ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedDecls)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedDecls)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedDecls ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedDecls ext))
   deriving (GHC.Generics.Generic)
 
-data QuotedDeclsU = QuotedDeclsU
-  { declaration :: AST.Runtime.List (Declaration),
+type QuotedDeclsP = QuotedDecls AST.Extension.ParsePhase
+
+data QuotedDeclsU ext = QuotedDeclsU
+  { declaration :: AST.Runtime.List ((Declaration ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedDeclsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedDeclsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedDeclsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedDeclsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_QuotedDecls :: Api.Node -> Prelude.Maybe QuotedDecls
+type QuotedDeclsUP = QuotedDeclsU AST.Extension.ParsePhase
+
+cast_QuotedDecls :: Api.Node -> Prelude.Maybe (QuotedDecls ext)
 cast_QuotedDecls dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quoted_decls")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7011,13 +7968,13 @@ cast_QuotedDecls dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode QuotedDecls where
+instance AST.Node.HasDynNode (QuotedDecls ext) where
   getDynNode (QuotedDecls {dynNode}) = dynNode
 
-instance AST.Cast.Cast QuotedDecls where
+instance AST.Cast.Cast (QuotedDecls ext) where
   cast = cast_QuotedDecls
 
-unwrap_QuotedDecls :: QuotedDecls -> AST.Err.Err QuotedDeclsU
+unwrap_QuotedDecls :: QuotedDecls ext -> AST.Err.Err (QuotedDeclsU ext)
 unwrap_QuotedDecls node = do
   declaration <- AST.Runtime.unwrapList node.declaration
   Prelude.pure
@@ -7026,29 +7983,33 @@ unwrap_QuotedDecls node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuotedDeclsU where
+instance AST.Node.HasDynNode (QuotedDeclsU ext) where
   getDynNode (QuotedDeclsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap QuotedDecls QuotedDeclsU where
+instance AST.Unwrap.Unwrap (QuotedDecls ext) (QuotedDeclsU ext) where
   unwrap = unwrap_QuotedDecls
 
-data QuotedExpression = QuotedExpression
-  { children :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data QuotedExpression ext = QuotedExpression
+  { children :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedExpression)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedExpression)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedExpression ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedExpression ext))
   deriving (GHC.Generics.Generic)
 
-data QuotedExpressionU = QuotedExpressionU
-  { children :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type QuotedExpressionP = QuotedExpression AST.Extension.ParsePhase
+
+data QuotedExpressionU ext = QuotedExpressionU
+  { children :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedExpressionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedExpressionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedExpressionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedExpressionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_QuotedExpression :: Api.Node -> Prelude.Maybe QuotedExpression
+type QuotedExpressionUP = QuotedExpressionU AST.Extension.ParsePhase
+
+cast_QuotedExpression :: Api.Node -> Prelude.Maybe (QuotedExpression ext)
 cast_QuotedExpression dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quoted_expression")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7059,13 +8020,13 @@ cast_QuotedExpression dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode QuotedExpression where
+instance AST.Node.HasDynNode (QuotedExpression ext) where
   getDynNode (QuotedExpression {dynNode}) = dynNode
 
-instance AST.Cast.Cast QuotedExpression where
+instance AST.Cast.Cast (QuotedExpression ext) where
   cast = cast_QuotedExpression
 
-unwrap_QuotedExpression :: QuotedExpression -> AST.Err.Err QuotedExpressionU
+unwrap_QuotedExpression :: QuotedExpression ext -> AST.Err.Err (QuotedExpressionU ext)
 unwrap_QuotedExpression node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -7074,29 +8035,33 @@ unwrap_QuotedExpression node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuotedExpressionU where
+instance AST.Node.HasDynNode (QuotedExpressionU ext) where
   getDynNode (QuotedExpressionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap QuotedExpression QuotedExpressionU where
+instance AST.Unwrap.Unwrap (QuotedExpression ext) (QuotedExpressionU ext) where
   unwrap = unwrap_QuotedExpression
 
-data QuotedPattern = QuotedPattern
-  { children :: ((AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data QuotedPattern ext = QuotedPattern
+  { children :: ((AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedPattern)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedPattern)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedPattern ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedPattern ext))
   deriving (GHC.Generics.Generic)
 
-data QuotedPatternU = QuotedPatternU
-  { children :: ((Pattern Sum.:+ Signature Sum.:+ Sum.Nil)),
+type QuotedPatternP = QuotedPattern AST.Extension.ParsePhase
+
+data QuotedPatternU ext = QuotedPatternU
+  { children :: (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedPatternU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedPatternU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedPatternU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedPatternU ext))
   deriving (GHC.Generics.Generic)
 
-cast_QuotedPattern :: Api.Node -> Prelude.Maybe QuotedPattern
+type QuotedPatternUP = QuotedPatternU AST.Extension.ParsePhase
+
+cast_QuotedPattern :: Api.Node -> Prelude.Maybe (QuotedPattern ext)
 cast_QuotedPattern dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quoted_pattern")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7107,13 +8072,13 @@ cast_QuotedPattern dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode QuotedPattern where
+instance AST.Node.HasDynNode (QuotedPattern ext) where
   getDynNode (QuotedPattern {dynNode}) = dynNode
 
-instance AST.Cast.Cast QuotedPattern where
+instance AST.Cast.Cast (QuotedPattern ext) where
   cast = cast_QuotedPattern
 
-unwrap_QuotedPattern :: QuotedPattern -> AST.Err.Err QuotedPatternU
+unwrap_QuotedPattern :: QuotedPattern ext -> AST.Err.Err (QuotedPatternU ext)
 unwrap_QuotedPattern node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -7122,29 +8087,33 @@ unwrap_QuotedPattern node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuotedPatternU where
+instance AST.Node.HasDynNode (QuotedPatternU ext) where
   getDynNode (QuotedPatternU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap QuotedPattern QuotedPatternU where
+instance AST.Unwrap.Unwrap (QuotedPattern ext) (QuotedPatternU ext) where
   unwrap = unwrap_QuotedPattern
 
-data QuotedType = QuotedType
-  { children :: ((AST.Err.Err ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data QuotedType ext = QuotedType
+  { children :: ((AST.Err.Err (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedType)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedType)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedType ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedType ext))
   deriving (GHC.Generics.Generic)
 
-data QuotedTypeU = QuotedTypeU
-  { children :: ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)),
+type QuotedTypeP = QuotedType AST.Extension.ParsePhase
+
+data QuotedTypeU ext = QuotedTypeU
+  { children :: (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuotedTypeU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuotedTypeU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuotedTypeU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuotedTypeU ext))
   deriving (GHC.Generics.Generic)
 
-cast_QuotedType :: Api.Node -> Prelude.Maybe QuotedType
+type QuotedTypeUP = QuotedTypeU AST.Extension.ParsePhase
+
+cast_QuotedType :: Api.Node -> Prelude.Maybe (QuotedType ext)
 cast_QuotedType dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quoted_type")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7155,13 +8124,13 @@ cast_QuotedType dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode QuotedType where
+instance AST.Node.HasDynNode (QuotedType ext) where
   getDynNode (QuotedType {dynNode}) = dynNode
 
-instance AST.Cast.Cast QuotedType where
+instance AST.Cast.Cast (QuotedType ext) where
   cast = cast_QuotedType
 
-unwrap_QuotedType :: QuotedType -> AST.Err.Err QuotedTypeU
+unwrap_QuotedType :: QuotedType ext -> AST.Err.Err (QuotedTypeU ext)
 unwrap_QuotedType node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -7170,29 +8139,33 @@ unwrap_QuotedType node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuotedTypeU where
+instance AST.Node.HasDynNode (QuotedTypeU ext) where
   getDynNode (QuotedTypeU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap QuotedType QuotedTypeU where
+instance AST.Unwrap.Unwrap (QuotedType ext) (QuotedTypeU ext) where
   unwrap = unwrap_QuotedType
 
-data Quoter = Quoter
-  { children :: ((AST.Err.Err ((Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data Quoter ext = Quoter
+  { children :: ((AST.Err.Err (((Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Quoter)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Quoter)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Quoter ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Quoter ext))
   deriving (GHC.Generics.Generic)
 
-data QuoterU = QuoterU
-  { children :: ((Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
+type QuoterP = Quoter AST.Extension.ParsePhase
+
+data QuoterU ext = QuoterU
+  { children :: (((Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuoterU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuoterU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuoterU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuoterU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Quoter :: Api.Node -> Prelude.Maybe Quoter
+type QuoterUP = QuoterU AST.Extension.ParsePhase
+
+cast_Quoter :: Api.Node -> Prelude.Maybe (Quoter ext)
 cast_Quoter dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "quoter")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7203,13 +8176,13 @@ cast_Quoter dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Quoter where
+instance AST.Node.HasDynNode (Quoter ext) where
   getDynNode (Quoter {dynNode}) = dynNode
 
-instance AST.Cast.Cast Quoter where
+instance AST.Cast.Cast (Quoter ext) where
   cast = cast_Quoter
 
-unwrap_Quoter :: Quoter -> AST.Err.Err QuoterU
+unwrap_Quoter :: Quoter ext -> AST.Err.Err (QuoterU ext)
 unwrap_Quoter node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -7218,29 +8191,33 @@ unwrap_Quoter node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode QuoterU where
+instance AST.Node.HasDynNode (QuoterU ext) where
   getDynNode (QuoterU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Quoter QuoterU where
+instance AST.Unwrap.Unwrap (Quoter ext) (QuoterU ext) where
   unwrap = unwrap_Quoter
 
-data Rec = Rec
-  { statement :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Statement))),
+data Rec ext = Rec
+  { statement :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Statement ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Rec)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Rec)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Rec ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Rec ext))
   deriving (GHC.Generics.Generic)
 
-data RecU = RecU
-  { statement :: AST.Runtime.List (Statement),
+type RecP = Rec AST.Extension.ParsePhase
+
+data RecU ext = RecU
+  { statement :: AST.Runtime.List ((Statement ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode RecU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode RecU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (RecU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (RecU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Rec :: Api.Node -> Prelude.Maybe Rec
+type RecUP = RecU AST.Extension.ParsePhase
+
+cast_Rec :: Api.Node -> Prelude.Maybe (Rec ext)
 cast_Rec dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "rec")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7252,13 +8229,13 @@ cast_Rec dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Rec where
+instance AST.Node.HasDynNode (Rec ext) where
   getDynNode (Rec {dynNode}) = dynNode
 
-instance AST.Cast.Cast Rec where
+instance AST.Cast.Cast (Rec ext) where
   cast = cast_Rec
 
-unwrap_Rec :: Rec -> AST.Err.Err RecU
+unwrap_Rec :: Rec ext -> AST.Err.Err (RecU ext)
 unwrap_Rec node = do
   statement <- AST.Runtime.unwrapList node.statement
   Prelude.pure
@@ -7267,41 +8244,45 @@ unwrap_Rec node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode RecU where
+instance AST.Node.HasDynNode (RecU ext) where
   getDynNode (RecU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Rec RecU where
+instance AST.Unwrap.Unwrap (Rec ext) (RecU ext) where
   unwrap = unwrap_Rec
 
-data Record = Record
+data Record ext = Record
   { arrow :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((AST.Token.Token "->") Sum.:+ (AST.Token.Token "→") Sum.:+ Sum.Nil)))),
-    constructor :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Pattern))),
-    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Expression))),
-    field :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Field Sum.:+ FieldPattern Sum.:+ FieldUpdate Sum.:+ Sum.Nil)))),
-    fields :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Fields))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Constructor))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
+    constructor :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern ext)))),
+    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression ext)))),
+    field :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((Field ext) Sum.:+ (FieldPattern ext) Sum.:+ (FieldUpdate ext) Sum.:+ Sum.Nil)))),
+    fields :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Fields ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constructor ext)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Record)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Record)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Record ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Record ext))
   deriving (GHC.Generics.Generic)
 
-data RecordU = RecordU
+type RecordP = Record AST.Extension.ParsePhase
+
+data RecordU ext = RecordU
   { arrow :: AST.Runtime.List (((AST.Token.Token "->") Sum.:+ (AST.Token.Token "→") Sum.:+ Sum.Nil)),
-    constructor :: Prelude.Maybe (Pattern),
-    expression :: Prelude.Maybe (Expression),
-    field :: AST.Runtime.List ((Field Sum.:+ FieldPattern Sum.:+ FieldUpdate Sum.:+ Sum.Nil)),
-    fields :: Prelude.Maybe (Fields),
-    name :: Prelude.Maybe (Constructor),
-    type' :: Prelude.Maybe (QuantifiedType),
+    constructor :: Prelude.Maybe ((Pattern ext)),
+    expression :: Prelude.Maybe ((Expression ext)),
+    field :: AST.Runtime.List (((Field ext) Sum.:+ (FieldPattern ext) Sum.:+ (FieldUpdate ext) Sum.:+ Sum.Nil)),
+    fields :: Prelude.Maybe ((Fields ext)),
+    name :: Prelude.Maybe ((Constructor ext)),
+    type' :: Prelude.Maybe ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode RecordU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode RecordU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (RecordU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (RecordU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Record :: Api.Node -> Prelude.Maybe Record
+type RecordUP = RecordU AST.Extension.ParsePhase
+
+cast_Record :: Api.Node -> Prelude.Maybe (Record ext)
 cast_Record dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "record")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7331,13 +8312,13 @@ cast_Record dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Record where
+instance AST.Node.HasDynNode (Record ext) where
   getDynNode (Record {dynNode}) = dynNode
 
-instance AST.Cast.Cast Record where
+instance AST.Cast.Cast (Record ext) where
   cast = cast_Record
 
-unwrap_Record :: Record -> AST.Err.Err RecordU
+unwrap_Record :: Record ext -> AST.Err.Err (RecordU ext)
 unwrap_Record node = do
   arrow <- AST.Runtime.unwrapList node.arrow
   constructor <- AST.Runtime.unwrapMaybe node.constructor
@@ -7358,31 +8339,35 @@ unwrap_Record node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode RecordU where
+instance AST.Node.HasDynNode (RecordU ext) where
   getDynNode (RecordU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Record RecordU where
+instance AST.Unwrap.Unwrap (Record ext) (RecordU ext) where
   unwrap = unwrap_Record
 
-data RightSection = RightSection
-  { children :: ((AST.Err.Err ((ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    rightOperand :: ((AST.Err.Err (Expression))),
+data RightSection ext = RightSection
+  { children :: ((AST.Err.Err (((ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    rightOperand :: ((AST.Err.Err ((Expression ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode RightSection)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode RightSection)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (RightSection ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (RightSection ext))
   deriving (GHC.Generics.Generic)
 
-data RightSectionU = RightSectionU
-  { children :: ((ConstructorOperator Sum.:+ InfixId Sum.:+ Operator Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    rightOperand :: (Expression),
+type RightSectionP = RightSection AST.Extension.ParsePhase
+
+data RightSectionU ext = RightSectionU
+  { children :: (((ConstructorOperator ext) Sum.:+ (InfixId ext) Sum.:+ (Operator ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    rightOperand :: ((Expression ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode RightSectionU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode RightSectionU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (RightSectionU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (RightSectionU ext))
   deriving (GHC.Generics.Generic)
 
-cast_RightSection :: Api.Node -> Prelude.Maybe RightSection
+type RightSectionUP = RightSectionU AST.Extension.ParsePhase
+
+cast_RightSection :: Api.Node -> Prelude.Maybe (RightSection ext)
 cast_RightSection dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "right_section")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7396,13 +8381,13 @@ cast_RightSection dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode RightSection where
+instance AST.Node.HasDynNode (RightSection ext) where
   getDynNode (RightSection {dynNode}) = dynNode
 
-instance AST.Cast.Cast RightSection where
+instance AST.Cast.Cast (RightSection ext) where
   cast = cast_RightSection
 
-unwrap_RightSection :: RightSection -> AST.Err.Err RightSectionU
+unwrap_RightSection :: RightSection ext -> AST.Err.Err (RightSectionU ext)
 unwrap_RightSection node = do
   children <- AST.Runtime.unwrapSingle node.children
   rightOperand <- AST.Runtime.unwrapSingle node.rightOperand
@@ -7413,31 +8398,35 @@ unwrap_RightSection node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode RightSectionU where
+instance AST.Node.HasDynNode (RightSectionU ext) where
   getDynNode (RightSectionU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap RightSection RightSectionU where
+instance AST.Unwrap.Unwrap (RightSection ext) (RightSectionU ext) where
   unwrap = unwrap_RightSection
 
-data RoleAnnotation = RoleAnnotation
-  { role :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (TypeRole))),
-    type' :: ((AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)))),
+data RoleAnnotation ext = RoleAnnotation
+  { role :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((TypeRole ext)))),
+    type' :: ((AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode RoleAnnotation)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode RoleAnnotation)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (RoleAnnotation ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (RoleAnnotation ext))
   deriving (GHC.Generics.Generic)
 
-data RoleAnnotationU = RoleAnnotationU
-  { role :: Data.List.NonEmpty.NonEmpty (TypeRole),
-    type' :: ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)),
+type RoleAnnotationP = RoleAnnotation AST.Extension.ParsePhase
+
+data RoleAnnotationU ext = RoleAnnotationU
+  { role :: Data.List.NonEmpty.NonEmpty ((TypeRole ext)),
+    type' :: (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode RoleAnnotationU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode RoleAnnotationU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (RoleAnnotationU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (RoleAnnotationU ext))
   deriving (GHC.Generics.Generic)
 
-cast_RoleAnnotation :: Api.Node -> Prelude.Maybe RoleAnnotation
+type RoleAnnotationUP = RoleAnnotationU AST.Extension.ParsePhase
+
+cast_RoleAnnotation :: Api.Node -> Prelude.Maybe (RoleAnnotation ext)
 cast_RoleAnnotation dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "role_annotation")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7452,13 +8441,13 @@ cast_RoleAnnotation dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode RoleAnnotation where
+instance AST.Node.HasDynNode (RoleAnnotation ext) where
   getDynNode (RoleAnnotation {dynNode}) = dynNode
 
-instance AST.Cast.Cast RoleAnnotation where
+instance AST.Cast.Cast (RoleAnnotation ext) where
   cast = cast_RoleAnnotation
 
-unwrap_RoleAnnotation :: RoleAnnotation -> AST.Err.Err RoleAnnotationU
+unwrap_RoleAnnotation :: RoleAnnotation ext -> AST.Err.Err (RoleAnnotationU ext)
 unwrap_RoleAnnotation node = do
   role <- AST.Runtime.unwrapNonEmpty node.role
   type' <- AST.Runtime.unwrapSingle node.type'
@@ -7469,43 +8458,47 @@ unwrap_RoleAnnotation node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode RoleAnnotationU where
+instance AST.Node.HasDynNode (RoleAnnotationU ext) where
   getDynNode (RoleAnnotationU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap RoleAnnotation RoleAnnotationU where
+instance AST.Unwrap.Unwrap (RoleAnnotation ext) (RoleAnnotationU ext) where
   unwrap = unwrap_RoleAnnotation
 
-data Signature = Signature
-  { constraint :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Constraints))),
-    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Expression))),
-    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    names :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (BindingList))),
-    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Pattern))),
-    synonym :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((BindingList Sum.:+ Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
+data Signature ext = Signature
+  { constraint :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constraints ext)))),
+    expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression ext)))),
+    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    names :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((BindingList ext)))),
+    pattern' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Pattern ext)))),
+    synonym :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((BindingList ext) Sum.:+ (Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Signature)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Signature)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Signature ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Signature ext))
   deriving (GHC.Generics.Generic)
 
-data SignatureU = SignatureU
-  { constraint :: Prelude.Maybe (Constraints),
-    expression :: Prelude.Maybe (Expression),
-    kind :: Prelude.Maybe (QuantifiedType),
-    name :: Prelude.Maybe ((PrefixId Sum.:+ Variable Sum.:+ Sum.Nil)),
-    names :: Prelude.Maybe (BindingList),
-    pattern' :: Prelude.Maybe (Pattern),
-    synonym :: Prelude.Maybe ((BindingList Sum.:+ Constructor Sum.:+ PrefixId Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe (QuantifiedType),
+type SignatureP = Signature AST.Extension.ParsePhase
+
+data SignatureU ext = SignatureU
+  { constraint :: Prelude.Maybe ((Constraints ext)),
+    expression :: Prelude.Maybe ((Expression ext)),
+    kind :: Prelude.Maybe ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((PrefixId ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    names :: Prelude.Maybe ((BindingList ext)),
+    pattern' :: Prelude.Maybe ((Pattern ext)),
+    synonym :: Prelude.Maybe (((BindingList ext) Sum.:+ (Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ Sum.Nil)),
+    type' :: Prelude.Maybe ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode SignatureU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode SignatureU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (SignatureU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (SignatureU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Signature :: Api.Node -> Prelude.Maybe Signature
+type SignatureUP = SignatureU AST.Extension.ParsePhase
+
+cast_Signature :: Api.Node -> Prelude.Maybe (Signature ext)
 cast_Signature dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "signature")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7538,13 +8531,13 @@ cast_Signature dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Signature where
+instance AST.Node.HasDynNode (Signature ext) where
   getDynNode (Signature {dynNode}) = dynNode
 
-instance AST.Cast.Cast Signature where
+instance AST.Cast.Cast (Signature ext) where
   cast = cast_Signature
 
-unwrap_Signature :: Signature -> AST.Err.Err SignatureU
+unwrap_Signature :: Signature ext -> AST.Err.Err (SignatureU ext)
 unwrap_Signature node = do
   constraint <- AST.Runtime.unwrapMaybe node.constraint
   expression <- AST.Runtime.unwrapMaybe node.expression
@@ -7567,29 +8560,33 @@ unwrap_Signature node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode SignatureU where
+instance AST.Node.HasDynNode (SignatureU ext) where
   getDynNode (SignatureU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Signature SignatureU where
+instance AST.Unwrap.Unwrap (Signature ext) (SignatureU ext) where
   unwrap = unwrap_Signature
 
-data Special = Special
-  { children :: ((AST.Err.Err ((EmptyList Sum.:+ Tuple Sum.:+ UnboxedSum Sum.:+ UnboxedTuple Sum.:+ UnboxedUnit Sum.:+ Unit Sum.:+ Sum.Nil)))),
+data Special ext = Special
+  { children :: ((AST.Err.Err (((EmptyList ext) Sum.:+ (Tuple ext) Sum.:+ (UnboxedSum ext) Sum.:+ (UnboxedTuple ext) Sum.:+ (UnboxedUnit ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Special)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Special)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Special ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Special ext))
   deriving (GHC.Generics.Generic)
 
-data SpecialU = SpecialU
-  { children :: ((EmptyList Sum.:+ Tuple Sum.:+ UnboxedSum Sum.:+ UnboxedTuple Sum.:+ UnboxedUnit Sum.:+ Unit Sum.:+ Sum.Nil)),
+type SpecialP = Special AST.Extension.ParsePhase
+
+data SpecialU ext = SpecialU
+  { children :: (((EmptyList ext) Sum.:+ (Tuple ext) Sum.:+ (UnboxedSum ext) Sum.:+ (UnboxedTuple ext) Sum.:+ (UnboxedUnit ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode SpecialU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode SpecialU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (SpecialU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (SpecialU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Special :: Api.Node -> Prelude.Maybe Special
+type SpecialUP = SpecialU AST.Extension.ParsePhase
+
+cast_Special :: Api.Node -> Prelude.Maybe (Special ext)
 cast_Special dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "special")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7600,13 +8597,13 @@ cast_Special dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Special where
+instance AST.Node.HasDynNode (Special ext) where
   getDynNode (Special {dynNode}) = dynNode
 
-instance AST.Cast.Cast Special where
+instance AST.Cast.Cast (Special ext) where
   cast = cast_Special
 
-unwrap_Special :: Special -> AST.Err.Err SpecialU
+unwrap_Special :: Special ext -> AST.Err.Err (SpecialU ext)
 unwrap_Special node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -7615,29 +8612,33 @@ unwrap_Special node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode SpecialU where
+instance AST.Node.HasDynNode (SpecialU ext) where
   getDynNode (SpecialU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Special SpecialU where
+instance AST.Unwrap.Unwrap (Special ext) (SpecialU ext) where
   unwrap = unwrap_Special
 
-data Splice = Splice
-  { expression :: ((AST.Err.Err ((Constructor Sum.:+ ImplicitVariable Sum.:+ Label Sum.:+ Literal Sum.:+ Parens Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
+data Splice ext = Splice
+  { expression :: ((AST.Err.Err (((Constructor ext) Sum.:+ (ImplicitVariable ext) Sum.:+ (Label ext) Sum.:+ (Literal ext) Sum.:+ (Parens ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Splice)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Splice)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Splice ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Splice ext))
   deriving (GHC.Generics.Generic)
 
-data SpliceU = SpliceU
-  { expression :: ((Constructor Sum.:+ ImplicitVariable Sum.:+ Label Sum.:+ Literal Sum.:+ Parens Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
+type SpliceP = Splice AST.Extension.ParsePhase
+
+data SpliceU ext = SpliceU
+  { expression :: (((Constructor ext) Sum.:+ (ImplicitVariable ext) Sum.:+ (Label ext) Sum.:+ (Literal ext) Sum.:+ (Parens ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode SpliceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode SpliceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (SpliceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (SpliceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Splice :: Api.Node -> Prelude.Maybe Splice
+type SpliceUP = SpliceU AST.Extension.ParsePhase
+
+cast_Splice :: Api.Node -> Prelude.Maybe (Splice ext)
 cast_Splice dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "splice")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7649,13 +8650,13 @@ cast_Splice dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Splice where
+instance AST.Node.HasDynNode (Splice ext) where
   getDynNode (Splice {dynNode}) = dynNode
 
-instance AST.Cast.Cast Splice where
+instance AST.Cast.Cast (Splice ext) where
   cast = cast_Splice
 
-unwrap_Splice :: Splice -> AST.Err.Err SpliceU
+unwrap_Splice :: Splice ext -> AST.Err.Err (SpliceU ext)
 unwrap_Splice node = do
   expression <- AST.Runtime.unwrapSingle node.expression
   Prelude.pure
@@ -7664,42 +8665,58 @@ unwrap_Splice node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode SpliceU where
+instance AST.Node.HasDynNode (SpliceU ext) where
   getDynNode (SpliceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Splice SpliceU where
+instance AST.Unwrap.Unwrap (Splice ext) (SpliceU ext) where
   unwrap = unwrap_Splice
 
-data Star = Star {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Star)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Star)
+data Star ext = Star {dynNode :: AST.Node.DynNode, ext :: (XStar ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Star ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Star ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Star where
+type StarP = Star AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Star ext) where
   getDynNode (Star {dynNode}) = dynNode
 
-instance AST.Cast.Cast Star where
+instance AST.Cast.Cast (Star ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "star")
-    Prelude.pure (Star {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Star {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Strict = Strict
-  { pattern' :: ((AST.Err.Err (Pattern))),
+type family XStar ext
+
+type instance XStar ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XStar ext)) => Dynamic.Typeable (Star ext)
+
+data Strict ext = Strict
+  { pattern' :: ((AST.Err.Err ((Pattern ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Strict)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Strict)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Strict ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Strict ext))
   deriving (GHC.Generics.Generic)
 
-data StrictU = StrictU
-  { pattern' :: (Pattern),
+type StrictP = Strict AST.Extension.ParsePhase
+
+data StrictU ext = StrictU
+  { pattern' :: ((Pattern ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode StrictU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode StrictU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (StrictU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (StrictU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Strict :: Api.Node -> Prelude.Maybe Strict
+type StrictUP = StrictU AST.Extension.ParsePhase
+
+cast_Strict :: Api.Node -> Prelude.Maybe (Strict ext)
 cast_Strict dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "strict")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7711,13 +8728,13 @@ cast_Strict dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Strict where
+instance AST.Node.HasDynNode (Strict ext) where
   getDynNode (Strict {dynNode}) = dynNode
 
-instance AST.Cast.Cast Strict where
+instance AST.Cast.Cast (Strict ext) where
   cast = cast_Strict
 
-unwrap_Strict :: Strict -> AST.Err.Err StrictU
+unwrap_Strict :: Strict ext -> AST.Err.Err (StrictU ext)
 unwrap_Strict node = do
   pattern' <- AST.Runtime.unwrapSingle node.pattern'
   Prelude.pure
@@ -7726,29 +8743,33 @@ unwrap_Strict node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode StrictU where
+instance AST.Node.HasDynNode (StrictU ext) where
   getDynNode (StrictU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Strict StrictU where
+instance AST.Unwrap.Unwrap (Strict ext) (StrictU ext) where
   unwrap = unwrap_Strict
 
-data StrictField = StrictField
-  { type' :: ((AST.Err.Err (Type))),
+data StrictField ext = StrictField
+  { type' :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode StrictField)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode StrictField)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (StrictField ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (StrictField ext))
   deriving (GHC.Generics.Generic)
 
-data StrictFieldU = StrictFieldU
-  { type' :: (Type),
+type StrictFieldP = StrictField AST.Extension.ParsePhase
+
+data StrictFieldU ext = StrictFieldU
+  { type' :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode StrictFieldU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode StrictFieldU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (StrictFieldU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (StrictFieldU ext))
   deriving (GHC.Generics.Generic)
 
-cast_StrictField :: Api.Node -> Prelude.Maybe StrictField
+type StrictFieldUP = StrictFieldU AST.Extension.ParsePhase
+
+cast_StrictField :: Api.Node -> Prelude.Maybe (StrictField ext)
 cast_StrictField dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "strict_field")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7760,13 +8781,13 @@ cast_StrictField dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode StrictField where
+instance AST.Node.HasDynNode (StrictField ext) where
   getDynNode (StrictField {dynNode}) = dynNode
 
-instance AST.Cast.Cast StrictField where
+instance AST.Cast.Cast (StrictField ext) where
   cast = cast_StrictField
 
-unwrap_StrictField :: StrictField -> AST.Err.Err StrictFieldU
+unwrap_StrictField :: StrictField ext -> AST.Err.Err (StrictFieldU ext)
 unwrap_StrictField node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -7775,31 +8796,35 @@ unwrap_StrictField node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode StrictFieldU where
+instance AST.Node.HasDynNode (StrictFieldU ext) where
   getDynNode (StrictFieldU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap StrictField StrictFieldU where
+instance AST.Unwrap.Unwrap (StrictField ext) (StrictFieldU ext) where
   unwrap = unwrap_StrictField
 
-data ThQuotedName = ThQuotedName
-  { name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Constructor Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)))),
-    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (Type))),
+data ThQuotedName ext = ThQuotedName
+  { name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)))),
+    type' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ThQuotedName)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ThQuotedName)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ThQuotedName ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ThQuotedName ext))
   deriving (GHC.Generics.Generic)
 
-data ThQuotedNameU = ThQuotedNameU
-  { name :: Prelude.Maybe ((Constructor Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Variable Sum.:+ Sum.Nil)),
-    type' :: Prelude.Maybe (Type),
+type ThQuotedNameP = ThQuotedName AST.Extension.ParsePhase
+
+data ThQuotedNameU ext = ThQuotedNameU
+  { name :: Prelude.Maybe (((Constructor ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ (Variable ext) Sum.:+ Sum.Nil)),
+    type' :: Prelude.Maybe ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ThQuotedNameU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ThQuotedNameU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ThQuotedNameU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ThQuotedNameU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ThQuotedName :: Api.Node -> Prelude.Maybe ThQuotedName
+type ThQuotedNameUP = ThQuotedNameU AST.Extension.ParsePhase
+
+cast_ThQuotedName :: Api.Node -> Prelude.Maybe (ThQuotedName ext)
 cast_ThQuotedName dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "th_quoted_name")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7814,13 +8839,13 @@ cast_ThQuotedName dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ThQuotedName where
+instance AST.Node.HasDynNode (ThQuotedName ext) where
   getDynNode (ThQuotedName {dynNode}) = dynNode
 
-instance AST.Cast.Cast ThQuotedName where
+instance AST.Cast.Cast (ThQuotedName ext) where
   cast = cast_ThQuotedName
 
-unwrap_ThQuotedName :: ThQuotedName -> AST.Err.Err ThQuotedNameU
+unwrap_ThQuotedName :: ThQuotedName ext -> AST.Err.Err (ThQuotedNameU ext)
 unwrap_ThQuotedName node = do
   name <- AST.Runtime.unwrapMaybe node.name
   type' <- AST.Runtime.unwrapMaybe node.type'
@@ -7831,29 +8856,33 @@ unwrap_ThQuotedName node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ThQuotedNameU where
+instance AST.Node.HasDynNode (ThQuotedNameU ext) where
   getDynNode (ThQuotedNameU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ThQuotedName ThQuotedNameU where
+instance AST.Unwrap.Unwrap (ThQuotedName ext) (ThQuotedNameU ext) where
   unwrap = unwrap_ThQuotedName
 
-data TopSplice = TopSplice
-  { children :: ((AST.Err.Err (Expression))),
+data TopSplice ext = TopSplice
+  { children :: ((AST.Err.Err ((Expression ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TopSplice)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TopSplice)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TopSplice ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TopSplice ext))
   deriving (GHC.Generics.Generic)
 
-data TopSpliceU = TopSpliceU
-  { children :: (Expression),
+type TopSpliceP = TopSplice AST.Extension.ParsePhase
+
+data TopSpliceU ext = TopSpliceU
+  { children :: ((Expression ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TopSpliceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TopSpliceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TopSpliceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TopSpliceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TopSplice :: Api.Node -> Prelude.Maybe TopSplice
+type TopSpliceUP = TopSpliceU AST.Extension.ParsePhase
+
+cast_TopSplice :: Api.Node -> Prelude.Maybe (TopSplice ext)
 cast_TopSplice dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "top_splice")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7864,13 +8893,13 @@ cast_TopSplice dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TopSplice where
+instance AST.Node.HasDynNode (TopSplice ext) where
   getDynNode (TopSplice {dynNode}) = dynNode
 
-instance AST.Cast.Cast TopSplice where
+instance AST.Cast.Cast (TopSplice ext) where
   cast = cast_TopSplice
 
-unwrap_TopSplice :: TopSplice -> AST.Err.Err TopSpliceU
+unwrap_TopSplice :: TopSplice ext -> AST.Err.Err (TopSpliceU ext)
 unwrap_TopSplice node = do
   children <- AST.Runtime.unwrapSingle node.children
   Prelude.pure
@@ -7879,31 +8908,35 @@ unwrap_TopSplice node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TopSpliceU where
+instance AST.Node.HasDynNode (TopSpliceU ext) where
   getDynNode (TopSpliceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TopSplice TopSpliceU where
+instance AST.Unwrap.Unwrap (TopSplice ext) (TopSpliceU ext) where
   unwrap = unwrap_TopSplice
 
-data Transform = Transform
-  { key :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    transformation :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
+data Transform ext = Transform
+  { key :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    transformation :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Transform)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Transform)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Transform ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Transform ext))
   deriving (GHC.Generics.Generic)
 
-data TransformU = TransformU
-  { key :: Prelude.Maybe ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    transformation :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
+type TransformP = Transform AST.Extension.ParsePhase
+
+data TransformU ext = TransformU
+  { key :: Prelude.Maybe (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    transformation :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TransformU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TransformU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TransformU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TransformU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Transform :: Api.Node -> Prelude.Maybe Transform
+type TransformUP = TransformU AST.Extension.ParsePhase
+
+cast_Transform :: Api.Node -> Prelude.Maybe (Transform ext)
 cast_Transform dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "transform")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7918,13 +8951,13 @@ cast_Transform dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Transform where
+instance AST.Node.HasDynNode (Transform ext) where
   getDynNode (Transform {dynNode}) = dynNode
 
-instance AST.Cast.Cast Transform where
+instance AST.Cast.Cast (Transform ext) where
   cast = cast_Transform
 
-unwrap_Transform :: Transform -> AST.Err.Err TransformU
+unwrap_Transform :: Transform ext -> AST.Err.Err (TransformU ext)
 unwrap_Transform node = do
   key <- AST.Runtime.unwrapMaybe node.key
   transformation <- AST.Runtime.unwrapSingle node.transformation
@@ -7935,31 +8968,35 @@ unwrap_Transform node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TransformU where
+instance AST.Node.HasDynNode (TransformU ext) where
   getDynNode (TransformU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Transform TransformU where
+instance AST.Unwrap.Unwrap (Transform ext) (TransformU ext) where
   unwrap = unwrap_Transform
 
-data Tuple = Tuple
-  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (Constraints))),
-    element :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
+data Tuple ext = Tuple
+  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Constraints ext)))),
+    element :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Tuple)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Tuple)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Tuple ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Tuple ext))
   deriving (GHC.Generics.Generic)
 
-data TupleU = TupleU
-  { children :: AST.Runtime.List (Constraints),
-    element :: AST.Runtime.List ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
+type TupleP = Tuple AST.Extension.ParsePhase
+
+data TupleU ext = TupleU
+  { children :: AST.Runtime.List ((Constraints ext)),
+    element :: AST.Runtime.List (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TupleU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TupleU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TupleU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TupleU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Tuple :: Api.Node -> Prelude.Maybe Tuple
+type TupleUP = TupleU AST.Extension.ParsePhase
+
+cast_Tuple :: Api.Node -> Prelude.Maybe (Tuple ext)
 cast_Tuple dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "tuple")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -7973,13 +9010,13 @@ cast_Tuple dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Tuple where
+instance AST.Node.HasDynNode (Tuple ext) where
   getDynNode (Tuple {dynNode}) = dynNode
 
-instance AST.Cast.Cast Tuple where
+instance AST.Cast.Cast (Tuple ext) where
   cast = cast_Tuple
 
-unwrap_Tuple :: Tuple -> AST.Err.Err TupleU
+unwrap_Tuple :: Tuple ext -> AST.Err.Err (TupleU ext)
 unwrap_Tuple node = do
   children <- AST.Runtime.unwrapList node.children
   element <- AST.Runtime.unwrapList node.element
@@ -7990,29 +9027,33 @@ unwrap_Tuple node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TupleU where
+instance AST.Node.HasDynNode (TupleU ext) where
   getDynNode (TupleU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Tuple TupleU where
+instance AST.Unwrap.Unwrap (Tuple ext) (TupleU ext) where
   unwrap = unwrap_Tuple
 
-data TypeApplication = TypeApplication
-  { type' :: ((AST.Err.Err (Type))),
+data TypeApplication ext = TypeApplication
+  { type' :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeApplication)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeApplication)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeApplication ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeApplication ext))
   deriving (GHC.Generics.Generic)
 
-data TypeApplicationU = TypeApplicationU
-  { type' :: (Type),
+type TypeApplicationP = TypeApplication AST.Extension.ParsePhase
+
+data TypeApplicationU ext = TypeApplicationU
+  { type' :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeApplicationU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeApplicationU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeApplicationU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeApplicationU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeApplication :: Api.Node -> Prelude.Maybe TypeApplication
+type TypeApplicationUP = TypeApplicationU AST.Extension.ParsePhase
+
+cast_TypeApplication :: Api.Node -> Prelude.Maybe (TypeApplication ext)
 cast_TypeApplication dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_application")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8024,13 +9065,13 @@ cast_TypeApplication dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeApplication where
+instance AST.Node.HasDynNode (TypeApplication ext) where
   getDynNode (TypeApplication {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeApplication where
+instance AST.Cast.Cast (TypeApplication ext) where
   cast = cast_TypeApplication
 
-unwrap_TypeApplication :: TypeApplication -> AST.Err.Err TypeApplicationU
+unwrap_TypeApplication :: TypeApplication ext -> AST.Err.Err (TypeApplicationU ext)
 unwrap_TypeApplication node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -8039,29 +9080,33 @@ unwrap_TypeApplication node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeApplicationU where
+instance AST.Node.HasDynNode (TypeApplicationU ext) where
   getDynNode (TypeApplicationU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeApplication TypeApplicationU where
+instance AST.Unwrap.Unwrap (TypeApplication ext) (TypeApplicationU ext) where
   unwrap = unwrap_TypeApplication
 
-data TypeBinder = TypeBinder
-  { type' :: ((AST.Err.Err (Type))),
+data TypeBinder ext = TypeBinder
+  { type' :: ((AST.Err.Err ((Type ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeBinder)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeBinder)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeBinder ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeBinder ext))
   deriving (GHC.Generics.Generic)
 
-data TypeBinderU = TypeBinderU
-  { type' :: (Type),
+type TypeBinderP = TypeBinder AST.Extension.ParsePhase
+
+data TypeBinderU ext = TypeBinderU
+  { type' :: ((Type ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeBinderU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeBinderU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeBinderU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeBinderU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeBinder :: Api.Node -> Prelude.Maybe TypeBinder
+type TypeBinderUP = TypeBinderU AST.Extension.ParsePhase
+
+cast_TypeBinder :: Api.Node -> Prelude.Maybe (TypeBinder ext)
 cast_TypeBinder dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_binder")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8073,13 +9118,13 @@ cast_TypeBinder dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeBinder where
+instance AST.Node.HasDynNode (TypeBinder ext) where
   getDynNode (TypeBinder {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeBinder where
+instance AST.Cast.Cast (TypeBinder ext) where
   cast = cast_TypeBinder
 
-unwrap_TypeBinder :: TypeBinder -> AST.Err.Err TypeBinderU
+unwrap_TypeBinder :: TypeBinder ext -> AST.Err.Err (TypeBinderU ext)
 unwrap_TypeBinder node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -8088,37 +9133,41 @@ unwrap_TypeBinder node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeBinderU where
+instance AST.Node.HasDynNode (TypeBinderU ext) where
   getDynNode (TypeBinderU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeBinder TypeBinderU where
+instance AST.Unwrap.Unwrap (TypeBinder ext) (TypeBinderU ext) where
   unwrap = unwrap_TypeBinder
 
-data TypeFamily = TypeFamily
-  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ TypeFamilyInjectivity Sum.:+ TypeFamilyResult Sum.:+ Sum.Nil)))),
-    closedFamily :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((AbstractFamily Sum.:+ Equations Sum.:+ Sum.Nil)))),
-    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuantifiedType))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypeParams))),
+data TypeFamily ext = TypeFamily
+  { children :: AST.Err.Err (AST.Runtime.List (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ (TypeFamilyInjectivity ext) Sum.:+ (TypeFamilyResult ext) Sum.:+ Sum.Nil)))),
+    closedFamily :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((AbstractFamily ext) Sum.:+ (Equations ext) Sum.:+ Sum.Nil)))),
+    kind :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuantifiedType ext)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeFamily)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeFamily)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeFamily ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeFamily ext))
   deriving (GHC.Generics.Generic)
 
-data TypeFamilyU = TypeFamilyU
-  { children :: AST.Runtime.List ((Infix Sum.:+ Parens Sum.:+ TypeFamilyInjectivity Sum.:+ TypeFamilyResult Sum.:+ Sum.Nil)),
-    closedFamily :: Prelude.Maybe ((AbstractFamily Sum.:+ Equations Sum.:+ Sum.Nil)),
-    kind :: Prelude.Maybe (QuantifiedType),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypeParams),
+type TypeFamilyP = TypeFamily AST.Extension.ParsePhase
+
+data TypeFamilyU ext = TypeFamilyU
+  { children :: AST.Runtime.List (((Infix ext) Sum.:+ (Parens ext) Sum.:+ (TypeFamilyInjectivity ext) Sum.:+ (TypeFamilyResult ext) Sum.:+ Sum.Nil)),
+    closedFamily :: Prelude.Maybe (((AbstractFamily ext) Sum.:+ (Equations ext) Sum.:+ Sum.Nil)),
+    kind :: Prelude.Maybe ((QuantifiedType ext)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypeParams ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeFamilyU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeFamilyU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeFamilyU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeFamilyU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeFamily :: Api.Node -> Prelude.Maybe TypeFamily
+type TypeFamilyUP = TypeFamilyU AST.Extension.ParsePhase
+
+cast_TypeFamily :: Api.Node -> Prelude.Maybe (TypeFamily ext)
 cast_TypeFamily dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_family")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8141,13 +9190,13 @@ cast_TypeFamily dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeFamily where
+instance AST.Node.HasDynNode (TypeFamily ext) where
   getDynNode (TypeFamily {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeFamily where
+instance AST.Cast.Cast (TypeFamily ext) where
   cast = cast_TypeFamily
 
-unwrap_TypeFamily :: TypeFamily -> AST.Err.Err TypeFamilyU
+unwrap_TypeFamily :: TypeFamily ext -> AST.Err.Err (TypeFamilyU ext)
 unwrap_TypeFamily node = do
   children <- AST.Runtime.unwrapList node.children
   closedFamily <- AST.Runtime.unwrapMaybe node.closedFamily
@@ -8164,31 +9213,35 @@ unwrap_TypeFamily node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeFamilyU where
+instance AST.Node.HasDynNode (TypeFamilyU ext) where
   getDynNode (TypeFamilyU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeFamily TypeFamilyU where
+instance AST.Unwrap.Unwrap (TypeFamily ext) (TypeFamilyU ext) where
   unwrap = unwrap_TypeFamily
 
-data TypeFamilyInjectivity = TypeFamilyInjectivity
-  { determined :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (Variable))),
-    result :: ((AST.Err.Err (Variable))),
+data TypeFamilyInjectivity ext = TypeFamilyInjectivity
+  { determined :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Variable ext)))),
+    result :: ((AST.Err.Err ((Variable ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeFamilyInjectivity)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeFamilyInjectivity)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeFamilyInjectivity ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeFamilyInjectivity ext))
   deriving (GHC.Generics.Generic)
 
-data TypeFamilyInjectivityU = TypeFamilyInjectivityU
-  { determined :: Data.List.NonEmpty.NonEmpty (Variable),
-    result :: (Variable),
+type TypeFamilyInjectivityP = TypeFamilyInjectivity AST.Extension.ParsePhase
+
+data TypeFamilyInjectivityU ext = TypeFamilyInjectivityU
+  { determined :: Data.List.NonEmpty.NonEmpty ((Variable ext)),
+    result :: ((Variable ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeFamilyInjectivityU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeFamilyInjectivityU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeFamilyInjectivityU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeFamilyInjectivityU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeFamilyInjectivity :: Api.Node -> Prelude.Maybe TypeFamilyInjectivity
+type TypeFamilyInjectivityUP = TypeFamilyInjectivityU AST.Extension.ParsePhase
+
+cast_TypeFamilyInjectivity :: Api.Node -> Prelude.Maybe (TypeFamilyInjectivity ext)
 cast_TypeFamilyInjectivity dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_family_injectivity")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8203,13 +9256,13 @@ cast_TypeFamilyInjectivity dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeFamilyInjectivity where
+instance AST.Node.HasDynNode (TypeFamilyInjectivity ext) where
   getDynNode (TypeFamilyInjectivity {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeFamilyInjectivity where
+instance AST.Cast.Cast (TypeFamilyInjectivity ext) where
   cast = cast_TypeFamilyInjectivity
 
-unwrap_TypeFamilyInjectivity :: TypeFamilyInjectivity -> AST.Err.Err TypeFamilyInjectivityU
+unwrap_TypeFamilyInjectivity :: TypeFamilyInjectivity ext -> AST.Err.Err (TypeFamilyInjectivityU ext)
 unwrap_TypeFamilyInjectivity node = do
   determined <- AST.Runtime.unwrapNonEmpty node.determined
   result <- AST.Runtime.unwrapSingle node.result
@@ -8220,29 +9273,33 @@ unwrap_TypeFamilyInjectivity node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeFamilyInjectivityU where
+instance AST.Node.HasDynNode (TypeFamilyInjectivityU ext) where
   getDynNode (TypeFamilyInjectivityU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeFamilyInjectivity TypeFamilyInjectivityU where
+instance AST.Unwrap.Unwrap (TypeFamilyInjectivity ext) (TypeFamilyInjectivityU ext) where
   unwrap = unwrap_TypeFamilyInjectivity
 
-data TypeFamilyResult = TypeFamilyResult
-  { result :: ((AST.Err.Err (QuantifiedType))),
+data TypeFamilyResult ext = TypeFamilyResult
+  { result :: ((AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeFamilyResult)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeFamilyResult)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeFamilyResult ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeFamilyResult ext))
   deriving (GHC.Generics.Generic)
 
-data TypeFamilyResultU = TypeFamilyResultU
-  { result :: (QuantifiedType),
+type TypeFamilyResultP = TypeFamilyResult AST.Extension.ParsePhase
+
+data TypeFamilyResultU ext = TypeFamilyResultU
+  { result :: ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeFamilyResultU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeFamilyResultU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeFamilyResultU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeFamilyResultU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeFamilyResult :: Api.Node -> Prelude.Maybe TypeFamilyResult
+type TypeFamilyResultUP = TypeFamilyResultU AST.Extension.ParsePhase
+
+cast_TypeFamilyResult :: Api.Node -> Prelude.Maybe (TypeFamilyResult ext)
 cast_TypeFamilyResult dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_family_result")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8254,13 +9311,13 @@ cast_TypeFamilyResult dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeFamilyResult where
+instance AST.Node.HasDynNode (TypeFamilyResult ext) where
   getDynNode (TypeFamilyResult {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeFamilyResult where
+instance AST.Cast.Cast (TypeFamilyResult ext) where
   cast = cast_TypeFamilyResult
 
-unwrap_TypeFamilyResult :: TypeFamilyResult -> AST.Err.Err TypeFamilyResultU
+unwrap_TypeFamilyResult :: TypeFamilyResult ext -> AST.Err.Err (TypeFamilyResultU ext)
 unwrap_TypeFamilyResult node = do
   result <- AST.Runtime.unwrapSingle node.result
   Prelude.pure
@@ -8269,35 +9326,39 @@ unwrap_TypeFamilyResult node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeFamilyResultU where
+instance AST.Node.HasDynNode (TypeFamilyResultU ext) where
   getDynNode (TypeFamilyResultU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeFamilyResult TypeFamilyResultU where
+instance AST.Unwrap.Unwrap (TypeFamilyResult ext) (TypeFamilyResultU ext) where
   unwrap = unwrap_TypeFamilyResult
 
-data TypeInstance = TypeInstance
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ QuantifiedType Sum.:+ Sum.Nil)))),
-    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypePatterns))),
+data TypeInstance ext = TypeInstance
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ (QuantifiedType ext) Sum.:+ Sum.Nil)))),
+    forall' :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypePatterns ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeInstance)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeInstance)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeInstance ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeInstance ext))
   deriving (GHC.Generics.Generic)
 
-data TypeInstanceU = TypeInstanceU
-  { children :: Data.List.NonEmpty.NonEmpty ((Infix Sum.:+ Parens Sum.:+ QuantifiedType Sum.:+ Sum.Nil)),
-    forall' :: Prelude.Maybe ((Forall Sum.:+ ForallRequired Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ Qualified Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypePatterns),
+type TypeInstanceP = TypeInstance AST.Extension.ParsePhase
+
+data TypeInstanceU ext = TypeInstanceU
+  { children :: Data.List.NonEmpty.NonEmpty (((Infix ext) Sum.:+ (Parens ext) Sum.:+ (QuantifiedType ext) Sum.:+ Sum.Nil)),
+    forall' :: Prelude.Maybe (((Forall ext) Sum.:+ (ForallRequired ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (Qualified ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypePatterns ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeInstanceU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeInstanceU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeInstanceU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeInstanceU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeInstance :: Api.Node -> Prelude.Maybe TypeInstance
+type TypeInstanceUP = TypeInstanceU AST.Extension.ParsePhase
+
+cast_TypeInstance :: Api.Node -> Prelude.Maybe (TypeInstance ext)
 cast_TypeInstance dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_instance")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8317,13 +9378,13 @@ cast_TypeInstance dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeInstance where
+instance AST.Node.HasDynNode (TypeInstance ext) where
   getDynNode (TypeInstance {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeInstance where
+instance AST.Cast.Cast (TypeInstance ext) where
   cast = cast_TypeInstance
 
-unwrap_TypeInstance :: TypeInstance -> AST.Err.Err TypeInstanceU
+unwrap_TypeInstance :: TypeInstance ext -> AST.Err.Err (TypeInstanceU ext)
 unwrap_TypeInstance node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   forall' <- AST.Runtime.unwrapMaybe node.forall'
@@ -8338,29 +9399,33 @@ unwrap_TypeInstance node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeInstanceU where
+instance AST.Node.HasDynNode (TypeInstanceU ext) where
   getDynNode (TypeInstanceU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeInstance TypeInstanceU where
+instance AST.Unwrap.Unwrap (TypeInstance ext) (TypeInstanceU ext) where
   unwrap = unwrap_TypeInstance
 
-data TypeParams = TypeParams
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (TypeParam))),
+data TypeParams ext = TypeParams
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((TypeParam ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeParams)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeParams)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeParams ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeParams ext))
   deriving (GHC.Generics.Generic)
 
-data TypeParamsU = TypeParamsU
-  { children :: Data.List.NonEmpty.NonEmpty (TypeParam),
+type TypeParamsP = TypeParams AST.Extension.ParsePhase
+
+data TypeParamsU ext = TypeParamsU
+  { children :: Data.List.NonEmpty.NonEmpty ((TypeParam ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeParamsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeParamsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeParamsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeParamsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeParams :: Api.Node -> Prelude.Maybe TypeParams
+type TypeParamsUP = TypeParamsU AST.Extension.ParsePhase
+
+cast_TypeParams :: Api.Node -> Prelude.Maybe (TypeParams ext)
 cast_TypeParams dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_params")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8371,13 +9436,13 @@ cast_TypeParams dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeParams where
+instance AST.Node.HasDynNode (TypeParams ext) where
   getDynNode (TypeParams {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeParams where
+instance AST.Cast.Cast (TypeParams ext) where
   cast = cast_TypeParams
 
-unwrap_TypeParams :: TypeParams -> AST.Err.Err TypeParamsU
+unwrap_TypeParams :: TypeParams ext -> AST.Err.Err (TypeParamsU ext)
 unwrap_TypeParams node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   Prelude.pure
@@ -8386,29 +9451,33 @@ unwrap_TypeParams node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeParamsU where
+instance AST.Node.HasDynNode (TypeParamsU ext) where
   getDynNode (TypeParamsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeParams TypeParamsU where
+instance AST.Unwrap.Unwrap (TypeParams ext) (TypeParamsU ext) where
   unwrap = unwrap_TypeParams
 
-data TypePatterns = TypePatterns
-  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((KindApplication Sum.:+ Type Sum.:+ Sum.Nil)))),
+data TypePatterns ext = TypePatterns
+  { children :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((KindApplication ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypePatterns)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypePatterns)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypePatterns ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypePatterns ext))
   deriving (GHC.Generics.Generic)
 
-data TypePatternsU = TypePatternsU
-  { children :: Data.List.NonEmpty.NonEmpty ((KindApplication Sum.:+ Type Sum.:+ Sum.Nil)),
+type TypePatternsP = TypePatterns AST.Extension.ParsePhase
+
+data TypePatternsU ext = TypePatternsU
+  { children :: Data.List.NonEmpty.NonEmpty (((KindApplication ext) Sum.:+ (Type ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypePatternsU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypePatternsU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypePatternsU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypePatternsU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypePatterns :: Api.Node -> Prelude.Maybe TypePatterns
+type TypePatternsUP = TypePatternsU AST.Extension.ParsePhase
+
+cast_TypePatterns :: Api.Node -> Prelude.Maybe (TypePatterns ext)
 cast_TypePatterns dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_patterns")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8419,13 +9488,13 @@ cast_TypePatterns dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypePatterns where
+instance AST.Node.HasDynNode (TypePatterns ext) where
   getDynNode (TypePatterns {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypePatterns where
+instance AST.Cast.Cast (TypePatterns ext) where
   cast = cast_TypePatterns
 
-unwrap_TypePatterns :: TypePatterns -> AST.Err.Err TypePatternsU
+unwrap_TypePatterns :: TypePatterns ext -> AST.Err.Err (TypePatternsU ext)
 unwrap_TypePatterns node = do
   children <- AST.Runtime.unwrapNonEmpty node.children
   Prelude.pure
@@ -8434,48 +9503,64 @@ unwrap_TypePatterns node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypePatternsU where
+instance AST.Node.HasDynNode (TypePatternsU ext) where
   getDynNode (TypePatternsU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypePatterns TypePatternsU where
+instance AST.Unwrap.Unwrap (TypePatterns ext) (TypePatternsU ext) where
   unwrap = unwrap_TypePatterns
 
-data TypeRole = TypeRole {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeRole)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeRole)
+data TypeRole ext = TypeRole {dynNode :: AST.Node.DynNode, ext :: (XTypeRole ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeRole ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeRole ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode TypeRole where
+type TypeRoleP = TypeRole AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (TypeRole ext) where
   getDynNode (TypeRole {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeRole where
+instance AST.Cast.Cast (TypeRole ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_role")
-    Prelude.pure (TypeRole {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (TypeRole {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data TypeSynomym = TypeSynomym
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)))),
-    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)))),
-    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (TypeParams))),
-    type' :: ((AST.Err.Err ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)))),
+type family XTypeRole ext
+
+type instance XTypeRole ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XTypeRole ext)) => Dynamic.Typeable (TypeRole ext)
+
+data TypeSynomym ext = TypeSynomym
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
+    name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
+    patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams ext)))),
+    type' :: ((AST.Err.Err (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeSynomym)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeSynomym)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeSynomym ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeSynomym ext))
   deriving (GHC.Generics.Generic)
 
-data TypeSynomymU = TypeSynomymU
-  { children :: Prelude.Maybe ((Infix Sum.:+ Parens Sum.:+ Sum.Nil)),
-    name :: Prelude.Maybe ((Name Sum.:+ PrefixId Sum.:+ PrefixList Sum.:+ Unit Sum.:+ Sum.Nil)),
-    patterns :: Prelude.Maybe (TypeParams),
-    type' :: ((QuantifiedType Sum.:+ Signature Sum.:+ Sum.Nil)),
+type TypeSynomymP = TypeSynomym AST.Extension.ParsePhase
+
+data TypeSynomymU ext = TypeSynomymU
+  { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
+    name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
+    patterns :: Prelude.Maybe ((TypeParams ext)),
+    type' :: (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypeSynomymU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypeSynomymU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeSynomymU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeSynomymU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypeSynomym :: Api.Node -> Prelude.Maybe TypeSynomym
+type TypeSynomymUP = TypeSynomymU AST.Extension.ParsePhase
+
+cast_TypeSynomym :: Api.Node -> Prelude.Maybe (TypeSynomym ext)
 cast_TypeSynomym dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_synomym")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8495,13 +9580,13 @@ cast_TypeSynomym dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypeSynomym where
+instance AST.Node.HasDynNode (TypeSynomym ext) where
   getDynNode (TypeSynomym {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypeSynomym where
+instance AST.Cast.Cast (TypeSynomym ext) where
   cast = cast_TypeSynomym
 
-unwrap_TypeSynomym :: TypeSynomym -> AST.Err.Err TypeSynomymU
+unwrap_TypeSynomym :: TypeSynomym ext -> AST.Err.Err (TypeSynomymU ext)
 unwrap_TypeSynomym node = do
   children <- AST.Runtime.unwrapMaybe node.children
   name <- AST.Runtime.unwrapMaybe node.name
@@ -8516,29 +9601,33 @@ unwrap_TypeSynomym node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypeSynomymU where
+instance AST.Node.HasDynNode (TypeSynomymU ext) where
   getDynNode (TypeSynomymU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypeSynomym TypeSynomymU where
+instance AST.Unwrap.Unwrap (TypeSynomym ext) (TypeSynomymU ext) where
   unwrap = unwrap_TypeSynomym
 
-data TypedQuote = TypedQuote
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (QuotedExpression))),
+data TypedQuote ext = TypedQuote
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuotedExpression ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypedQuote)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypedQuote)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypedQuote ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypedQuote ext))
   deriving (GHC.Generics.Generic)
 
-data TypedQuoteU = TypedQuoteU
-  { children :: Prelude.Maybe (QuotedExpression),
+type TypedQuoteP = TypedQuote AST.Extension.ParsePhase
+
+data TypedQuoteU ext = TypedQuoteU
+  { children :: Prelude.Maybe ((QuotedExpression ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode TypedQuoteU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode TypedQuoteU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypedQuoteU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypedQuoteU ext))
   deriving (GHC.Generics.Generic)
 
-cast_TypedQuote :: Api.Node -> Prelude.Maybe TypedQuote
+type TypedQuoteUP = TypedQuoteU AST.Extension.ParsePhase
+
+cast_TypedQuote :: Api.Node -> Prelude.Maybe (TypedQuote ext)
 cast_TypedQuote dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "typed_quote")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8549,13 +9638,13 @@ cast_TypedQuote dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode TypedQuote where
+instance AST.Node.HasDynNode (TypedQuote ext) where
   getDynNode (TypedQuote {dynNode}) = dynNode
 
-instance AST.Cast.Cast TypedQuote where
+instance AST.Cast.Cast (TypedQuote ext) where
   cast = cast_TypedQuote
 
-unwrap_TypedQuote :: TypedQuote -> AST.Err.Err TypedQuoteU
+unwrap_TypedQuote :: TypedQuote ext -> AST.Err.Err (TypedQuoteU ext)
 unwrap_TypedQuote node = do
   children <- AST.Runtime.unwrapMaybe node.children
   Prelude.pure
@@ -8564,29 +9653,33 @@ unwrap_TypedQuote node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode TypedQuoteU where
+instance AST.Node.HasDynNode (TypedQuoteU ext) where
   getDynNode (TypedQuoteU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap TypedQuote TypedQuoteU where
+instance AST.Unwrap.Unwrap (TypedQuote ext) (TypedQuoteU ext) where
   unwrap = unwrap_TypedQuote
 
-data UnboxedSum = UnboxedSum
-  { element :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
+data UnboxedSum ext = UnboxedSum
+  { element :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode UnboxedSum)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode UnboxedSum)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (UnboxedSum ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (UnboxedSum ext))
   deriving (GHC.Generics.Generic)
 
-data UnboxedSumU = UnboxedSumU
-  { element :: Data.List.NonEmpty.NonEmpty ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
+type UnboxedSumP = UnboxedSum AST.Extension.ParsePhase
+
+data UnboxedSumU ext = UnboxedSumU
+  { element :: Data.List.NonEmpty.NonEmpty (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode UnboxedSumU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode UnboxedSumU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (UnboxedSumU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (UnboxedSumU ext))
   deriving (GHC.Generics.Generic)
 
-cast_UnboxedSum :: Api.Node -> Prelude.Maybe UnboxedSum
+type UnboxedSumUP = UnboxedSumU AST.Extension.ParsePhase
+
+cast_UnboxedSum :: Api.Node -> Prelude.Maybe (UnboxedSum ext)
 cast_UnboxedSum dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "unboxed_sum")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8598,13 +9691,13 @@ cast_UnboxedSum dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode UnboxedSum where
+instance AST.Node.HasDynNode (UnboxedSum ext) where
   getDynNode (UnboxedSum {dynNode}) = dynNode
 
-instance AST.Cast.Cast UnboxedSum where
+instance AST.Cast.Cast (UnboxedSum ext) where
   cast = cast_UnboxedSum
 
-unwrap_UnboxedSum :: UnboxedSum -> AST.Err.Err UnboxedSumU
+unwrap_UnboxedSum :: UnboxedSum ext -> AST.Err.Err (UnboxedSumU ext)
 unwrap_UnboxedSum node = do
   element <- AST.Runtime.unwrapNonEmpty node.element
   Prelude.pure
@@ -8613,29 +9706,33 @@ unwrap_UnboxedSum node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode UnboxedSumU where
+instance AST.Node.HasDynNode (UnboxedSumU ext) where
   getDynNode (UnboxedSumU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap UnboxedSum UnboxedSumU where
+instance AST.Unwrap.Unwrap (UnboxedSum ext) (UnboxedSumU ext) where
   unwrap = unwrap_UnboxedSum
 
-data UnboxedTuple = UnboxedTuple
-  { element :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
+data UnboxedTuple ext = UnboxedTuple
+  { element :: AST.Err.Err (Data.List.NonEmpty.NonEmpty (AST.Err.Err (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode UnboxedTuple)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode UnboxedTuple)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (UnboxedTuple ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (UnboxedTuple ext))
   deriving (GHC.Generics.Generic)
 
-data UnboxedTupleU = UnboxedTupleU
-  { element :: Data.List.NonEmpty.NonEmpty ((Expression Sum.:+ Pattern Sum.:+ QuantifiedType Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
+type UnboxedTupleP = UnboxedTuple AST.Extension.ParsePhase
+
+data UnboxedTupleU ext = UnboxedTupleU
+  { element :: Data.List.NonEmpty.NonEmpty (((Expression ext) Sum.:+ (Pattern ext) Sum.:+ (QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode UnboxedTupleU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode UnboxedTupleU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (UnboxedTupleU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (UnboxedTupleU ext))
   deriving (GHC.Generics.Generic)
 
-cast_UnboxedTuple :: Api.Node -> Prelude.Maybe UnboxedTuple
+type UnboxedTupleUP = UnboxedTupleU AST.Extension.ParsePhase
+
+cast_UnboxedTuple :: Api.Node -> Prelude.Maybe (UnboxedTuple ext)
 cast_UnboxedTuple dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "unboxed_tuple")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8647,13 +9744,13 @@ cast_UnboxedTuple dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode UnboxedTuple where
+instance AST.Node.HasDynNode (UnboxedTuple ext) where
   getDynNode (UnboxedTuple {dynNode}) = dynNode
 
-instance AST.Cast.Cast UnboxedTuple where
+instance AST.Cast.Cast (UnboxedTuple ext) where
   cast = cast_UnboxedTuple
 
-unwrap_UnboxedTuple :: UnboxedTuple -> AST.Err.Err UnboxedTupleU
+unwrap_UnboxedTuple :: UnboxedTuple ext -> AST.Err.Err (UnboxedTupleU ext)
 unwrap_UnboxedTuple node = do
   element <- AST.Runtime.unwrapNonEmpty node.element
   Prelude.pure
@@ -8662,55 +9759,83 @@ unwrap_UnboxedTuple node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode UnboxedTupleU where
+instance AST.Node.HasDynNode (UnboxedTupleU ext) where
   getDynNode (UnboxedTupleU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap UnboxedTuple UnboxedTupleU where
+instance AST.Unwrap.Unwrap (UnboxedTuple ext) (UnboxedTupleU ext) where
   unwrap = unwrap_UnboxedTuple
 
-data UnboxedUnit = UnboxedUnit {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode UnboxedUnit)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode UnboxedUnit)
+data UnboxedUnit ext = UnboxedUnit {dynNode :: AST.Node.DynNode, ext :: (XUnboxedUnit ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (UnboxedUnit ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (UnboxedUnit ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode UnboxedUnit where
+type UnboxedUnitP = UnboxedUnit AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (UnboxedUnit ext) where
   getDynNode (UnboxedUnit {dynNode}) = dynNode
 
-instance AST.Cast.Cast UnboxedUnit where
+instance AST.Cast.Cast (UnboxedUnit ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "unboxed_unit")
-    Prelude.pure (UnboxedUnit {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (UnboxedUnit {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Unit = Unit {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Unit)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Unit)
+type family XUnboxedUnit ext
+
+type instance XUnboxedUnit ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XUnboxedUnit ext)) => Dynamic.Typeable (UnboxedUnit ext)
+
+data Unit ext = Unit {dynNode :: AST.Node.DynNode, ext :: (XUnit ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Unit ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Unit ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Unit where
+type UnitP = Unit AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Unit ext) where
   getDynNode (Unit {dynNode}) = dynNode
 
-instance AST.Cast.Cast Unit where
+instance AST.Cast.Cast (Unit ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "unit")
-    Prelude.pure (Unit {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Unit {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Via = Via
-  { type' :: ((AST.Err.Err (QuantifiedType))),
+type family XUnit ext
+
+type instance XUnit ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XUnit ext)) => Dynamic.Typeable (Unit ext)
+
+data Via ext = Via
+  { type' :: ((AST.Err.Err ((QuantifiedType ext)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Via)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Via)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Via ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Via ext))
   deriving (GHC.Generics.Generic)
 
-data ViaU = ViaU
-  { type' :: (QuantifiedType),
+type ViaP = Via AST.Extension.ParsePhase
+
+data ViaU ext = ViaU
+  { type' :: ((QuantifiedType ext)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ViaU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ViaU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ViaU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ViaU ext))
   deriving (GHC.Generics.Generic)
 
-cast_Via :: Api.Node -> Prelude.Maybe Via
+type ViaUP = ViaU AST.Extension.ParsePhase
+
+cast_Via :: Api.Node -> Prelude.Maybe (Via ext)
 cast_Via dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "via")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8722,13 +9847,13 @@ cast_Via dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode Via where
+instance AST.Node.HasDynNode (Via ext) where
   getDynNode (Via {dynNode}) = dynNode
 
-instance AST.Cast.Cast Via where
+instance AST.Cast.Cast (Via ext) where
   cast = cast_Via
 
-unwrap_Via :: Via -> AST.Err.Err ViaU
+unwrap_Via :: Via ext -> AST.Err.Err (ViaU ext)
 unwrap_Via node = do
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
@@ -8737,31 +9862,35 @@ unwrap_Via node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ViaU where
+instance AST.Node.HasDynNode (ViaU ext) where
   getDynNode (ViaU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap Via ViaU where
+instance AST.Unwrap.Unwrap (Via ext) (ViaU ext) where
   unwrap = unwrap_Via
 
-data ViewPattern = ViewPattern
-  { expression :: ((AST.Err.Err ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)))),
-    pattern' :: ((AST.Err.Err ((Pattern Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)))),
+data ViewPattern ext = ViewPattern
+  { expression :: ((AST.Err.Err (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
+    pattern' :: ((AST.Err.Err (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ViewPattern)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ViewPattern)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ViewPattern ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ViewPattern ext))
   deriving (GHC.Generics.Generic)
 
-data ViewPatternU = ViewPatternU
-  { expression :: ((Expression Sum.:+ Signature Sum.:+ Sum.Nil)),
-    pattern' :: ((Pattern Sum.:+ Signature Sum.:+ ViewPattern Sum.:+ Sum.Nil)),
+type ViewPatternP = ViewPattern AST.Extension.ParsePhase
+
+data ViewPatternU ext = ViewPatternU
+  { expression :: (((Expression ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
+    pattern' :: (((Pattern ext) Sum.:+ (Signature ext) Sum.:+ (ViewPattern ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ViewPatternU)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ViewPatternU)
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ViewPatternU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ViewPatternU ext))
   deriving (GHC.Generics.Generic)
 
-cast_ViewPattern :: Api.Node -> Prelude.Maybe ViewPattern
+type ViewPatternUP = ViewPatternU AST.Extension.ParsePhase
+
+cast_ViewPattern :: Api.Node -> Prelude.Maybe (ViewPattern ext)
 cast_ViewPattern dynNode = do
   Control.Monad.guard (Api.nodeType dynNode Prelude.== "view_pattern")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
@@ -8776,13 +9905,13 @@ cast_ViewPattern dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode ViewPattern where
+instance AST.Node.HasDynNode (ViewPattern ext) where
   getDynNode (ViewPattern {dynNode}) = dynNode
 
-instance AST.Cast.Cast ViewPattern where
+instance AST.Cast.Cast (ViewPattern ext) where
   cast = cast_ViewPattern
 
-unwrap_ViewPattern :: ViewPattern -> AST.Err.Err ViewPatternU
+unwrap_ViewPattern :: ViewPattern ext -> AST.Err.Err (ViewPatternU ext)
 unwrap_ViewPattern node = do
   expression <- AST.Runtime.unwrapSingle node.expression
   pattern' <- AST.Runtime.unwrapSingle node.pattern'
@@ -8793,255 +9922,483 @@ unwrap_ViewPattern node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode ViewPatternU where
+instance AST.Node.HasDynNode (ViewPatternU ext) where
   getDynNode (ViewPatternU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap ViewPattern ViewPatternU where
+instance AST.Unwrap.Unwrap (ViewPattern ext) (ViewPatternU ext) where
   unwrap = unwrap_ViewPattern
 
-data Wildcard = Wildcard {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Wildcard)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Wildcard)
+data Wildcard ext = Wildcard {dynNode :: AST.Node.DynNode, ext :: (XWildcard ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Wildcard ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Wildcard ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Wildcard where
+type WildcardP = Wildcard AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Wildcard ext) where
   getDynNode (Wildcard {dynNode}) = dynNode
 
-instance AST.Cast.Cast Wildcard where
+instance AST.Cast.Cast (Wildcard ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "wildcard")
-    Prelude.pure (Wildcard {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Wildcard {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data AllNames = AllNames {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode AllNames)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode AllNames)
+type family XWildcard ext
+
+type instance XWildcard ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XWildcard ext)) => Dynamic.Typeable (Wildcard ext)
+
+data AllNames ext = AllNames {dynNode :: AST.Node.DynNode, ext :: (XAllNames ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (AllNames ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (AllNames ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode AllNames where
+type AllNamesP = AllNames AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (AllNames ext) where
   getDynNode (AllNames {dynNode}) = dynNode
 
-instance AST.Cast.Cast AllNames where
+instance AST.Cast.Cast (AllNames ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "all_names")
-    Prelude.pure (AllNames {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (AllNames {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data CallingConvention = CallingConvention {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode CallingConvention)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode CallingConvention)
+type family XAllNames ext
+
+type instance XAllNames ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XAllNames ext)) => Dynamic.Typeable (AllNames ext)
+
+data CallingConvention ext = CallingConvention {dynNode :: AST.Node.DynNode, ext :: (XCallingConvention ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (CallingConvention ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (CallingConvention ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode CallingConvention where
+type CallingConventionP = CallingConvention AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (CallingConvention ext) where
   getDynNode (CallingConvention {dynNode}) = dynNode
 
-instance AST.Cast.Cast CallingConvention where
+instance AST.Cast.Cast (CallingConvention ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "calling_convention")
-    Prelude.pure (CallingConvention {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (CallingConvention {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Char = Char {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Char)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Char)
+type family XCallingConvention ext
+
+type instance XCallingConvention ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XCallingConvention ext)) => Dynamic.Typeable (CallingConvention ext)
+
+data Char ext = Char {dynNode :: AST.Node.DynNode, ext :: (XChar ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Char ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Char ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Char where
+type CharP = Char AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Char ext) where
   getDynNode (Char {dynNode}) = dynNode
 
-instance AST.Cast.Cast Char where
+instance AST.Cast.Cast (Char ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "char")
-    Prelude.pure (Char {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Char {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Comment = Comment {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Comment)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Comment)
+type family XChar ext
+
+type instance XChar ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XChar ext)) => Dynamic.Typeable (Char ext)
+
+data Comment ext = Comment {dynNode :: AST.Node.DynNode, ext :: (XComment ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Comment ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Comment ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Comment where
+type CommentP = Comment AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Comment ext) where
   getDynNode (Comment {dynNode}) = dynNode
 
-instance AST.Cast.Cast Comment where
+instance AST.Cast.Cast (Comment ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "comment")
-    Prelude.pure (Comment {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Comment {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Constructor = Constructor {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Constructor)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Constructor)
+type family XComment ext
+
+type instance XComment ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XComment ext)) => Dynamic.Typeable (Comment ext)
+
+data Constructor ext = Constructor {dynNode :: AST.Node.DynNode, ext :: (XConstructor ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Constructor ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Constructor ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Constructor where
+type ConstructorP = Constructor AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Constructor ext) where
   getDynNode (Constructor {dynNode}) = dynNode
 
-instance AST.Cast.Cast Constructor where
+instance AST.Cast.Cast (Constructor ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor")
-    Prelude.pure (Constructor {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Constructor {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Cpp = Cpp {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Cpp)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Cpp)
+type family XConstructor ext
+
+type instance XConstructor ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XConstructor ext)) => Dynamic.Typeable (Constructor ext)
+
+data Cpp ext = Cpp {dynNode :: AST.Node.DynNode, ext :: (XCpp ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Cpp ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Cpp ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Cpp where
+type CppP = Cpp AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Cpp ext) where
   getDynNode (Cpp {dynNode}) = dynNode
 
-instance AST.Cast.Cast Cpp where
+instance AST.Cast.Cast (Cpp ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "cpp")
-    Prelude.pure (Cpp {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Cpp {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Float = Float {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Float)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Float)
+type family XCpp ext
+
+type instance XCpp ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XCpp ext)) => Dynamic.Typeable (Cpp ext)
+
+data Float ext = Float {dynNode :: AST.Node.DynNode, ext :: (XFloat ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Float ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Float ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Float where
+type FloatP = Float AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Float ext) where
   getDynNode (Float {dynNode}) = dynNode
 
-instance AST.Cast.Cast Float where
+instance AST.Cast.Cast (Float ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "float")
-    Prelude.pure (Float {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Float {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Haddock = Haddock {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Haddock)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Haddock)
+type family XFloat ext
+
+type instance XFloat ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XFloat ext)) => Dynamic.Typeable (Float ext)
+
+data Haddock ext = Haddock {dynNode :: AST.Node.DynNode, ext :: (XHaddock ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Haddock ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Haddock ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Haddock where
+type HaddockP = Haddock AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Haddock ext) where
   getDynNode (Haddock {dynNode}) = dynNode
 
-instance AST.Cast.Cast Haddock where
+instance AST.Cast.Cast (Haddock ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "haddock")
-    Prelude.pure (Haddock {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Haddock {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data ImplicitVariable = ImplicitVariable {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImplicitVariable)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImplicitVariable)
+type family XHaddock ext
+
+type instance XHaddock ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XHaddock ext)) => Dynamic.Typeable (Haddock ext)
+
+data ImplicitVariable ext = ImplicitVariable {dynNode :: AST.Node.DynNode, ext :: (XImplicitVariable ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImplicitVariable ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImplicitVariable ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode ImplicitVariable where
+type ImplicitVariableP = ImplicitVariable AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (ImplicitVariable ext) where
   getDynNode (ImplicitVariable {dynNode}) = dynNode
 
-instance AST.Cast.Cast ImplicitVariable where
+instance AST.Cast.Cast (ImplicitVariable ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "implicit_variable")
-    Prelude.pure (ImplicitVariable {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (ImplicitVariable {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data ImportPackage = ImportPackage {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ImportPackage)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ImportPackage)
+type family XImplicitVariable ext
+
+type instance XImplicitVariable ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XImplicitVariable ext)) => Dynamic.Typeable (ImplicitVariable ext)
+
+data ImportPackage ext = ImportPackage {dynNode :: AST.Node.DynNode, ext :: (XImportPackage ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportPackage ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportPackage ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode ImportPackage where
+type ImportPackageP = ImportPackage AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (ImportPackage ext) where
   getDynNode (ImportPackage {dynNode}) = dynNode
 
-instance AST.Cast.Cast ImportPackage where
+instance AST.Cast.Cast (ImportPackage ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "import_package")
-    Prelude.pure (ImportPackage {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (ImportPackage {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Label = Label {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Label)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Label)
+type family XImportPackage ext
+
+type instance XImportPackage ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XImportPackage ext)) => Dynamic.Typeable (ImportPackage ext)
+
+data Label ext = Label {dynNode :: AST.Node.DynNode, ext :: (XLabel ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Label ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Label ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Label where
+type LabelP = Label AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Label ext) where
   getDynNode (Label {dynNode}) = dynNode
 
-instance AST.Cast.Cast Label where
+instance AST.Cast.Cast (Label ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "label")
-    Prelude.pure (Label {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Label {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data ModuleId = ModuleId {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode ModuleId)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode ModuleId)
+type family XLabel ext
+
+type instance XLabel ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XLabel ext)) => Dynamic.Typeable (Label ext)
+
+data ModuleId ext = ModuleId {dynNode :: AST.Node.DynNode, ext :: (XModuleId ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (ModuleId ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (ModuleId ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode ModuleId where
+type ModuleIdP = ModuleId AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (ModuleId ext) where
   getDynNode (ModuleId {dynNode}) = dynNode
 
-instance AST.Cast.Cast ModuleId where
+instance AST.Cast.Cast (ModuleId ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "module_id")
-    Prelude.pure (ModuleId {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (ModuleId {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Name = Name {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Name)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Name)
+type family XModuleId ext
+
+type instance XModuleId ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XModuleId ext)) => Dynamic.Typeable (ModuleId ext)
+
+data Name ext = Name {dynNode :: AST.Node.DynNode, ext :: (XName ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Name ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Name ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Name where
+type NameP = Name AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Name ext) where
   getDynNode (Name {dynNode}) = dynNode
 
-instance AST.Cast.Cast Name where
+instance AST.Cast.Cast (Name ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "name")
-    Prelude.pure (Name {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Name {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Pragma = Pragma {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Pragma)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Pragma)
+type family XName ext
+
+type instance XName ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XName ext)) => Dynamic.Typeable (Name ext)
+
+data Pragma ext = Pragma {dynNode :: AST.Node.DynNode, ext :: (XPragma ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Pragma ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Pragma ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Pragma where
+type PragmaP = Pragma AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Pragma ext) where
   getDynNode (Pragma {dynNode}) = dynNode
 
-instance AST.Cast.Cast Pragma where
+instance AST.Cast.Cast (Pragma ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "pragma")
-    Prelude.pure (Pragma {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Pragma {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data QuasiquoteBody = QuasiquoteBody {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode QuasiquoteBody)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode QuasiquoteBody)
+type family XPragma ext
+
+type instance XPragma ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPragma ext)) => Dynamic.Typeable (Pragma ext)
+
+data QuasiquoteBody ext = QuasiquoteBody {dynNode :: AST.Node.DynNode, ext :: (XQuasiquoteBody ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (QuasiquoteBody ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuasiquoteBody ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode QuasiquoteBody where
+type QuasiquoteBodyP = QuasiquoteBody AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (QuasiquoteBody ext) where
   getDynNode (QuasiquoteBody {dynNode}) = dynNode
 
-instance AST.Cast.Cast QuasiquoteBody where
+instance AST.Cast.Cast (QuasiquoteBody ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "quasiquote_body")
-    Prelude.pure (QuasiquoteBody {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (QuasiquoteBody {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Safety = Safety {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Safety)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Safety)
+type family XQuasiquoteBody ext
+
+type instance XQuasiquoteBody ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XQuasiquoteBody ext)) => Dynamic.Typeable (QuasiquoteBody ext)
+
+data Safety ext = Safety {dynNode :: AST.Node.DynNode, ext :: (XSafety ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Safety ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Safety ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Safety where
+type SafetyP = Safety AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Safety ext) where
   getDynNode (Safety {dynNode}) = dynNode
 
-instance AST.Cast.Cast Safety where
+instance AST.Cast.Cast (Safety ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "safety")
-    Prelude.pure (Safety {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Safety {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data String = String {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode String)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode String)
+type family XSafety ext
+
+type instance XSafety ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XSafety ext)) => Dynamic.Typeable (Safety ext)
+
+data String ext = String {dynNode :: AST.Node.DynNode, ext :: (XString ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (String ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (String ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode String where
+type StringP = String AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (String ext) where
   getDynNode (String {dynNode}) = dynNode
 
-instance AST.Cast.Cast String where
+instance AST.Cast.Cast (String ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "string")
-    Prelude.pure (String {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (String {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
 
-data Variable = Variable {dynNode :: AST.Node.DynNode}
-  deriving (Prelude.Show) via (AST.Node.OnDynNode Variable)
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode Variable)
+type family XString ext
+
+type instance XString ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XString ext)) => Dynamic.Typeable (String ext)
+
+data Variable ext = Variable {dynNode :: AST.Node.DynNode, ext :: (XVariable ext)}
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (Variable ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (Variable ext))
   deriving (GHC.Generics.Generic)
 
-instance AST.Node.HasDynNode Variable where
+type VariableP = Variable AST.Extension.ParsePhase
+
+instance AST.Node.HasDynNode (Variable ext) where
   getDynNode (Variable {dynNode}) = dynNode
 
-instance AST.Cast.Cast Variable where
+instance AST.Cast.Cast (Variable ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "variable")
-    Prelude.pure (Variable {dynNode = dynNode})
+    Prelude.fmap
+      ( \dynExt ->
+          (Variable {dynNode = dynNode, ext = dynExt})
+      )
+      (Dynamic.fromDynamic dynNode.nodeExt)
+
+type family XVariable ext
+
+type instance XVariable ext = AST.Extension.XDefault ext
+
+deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XVariable ext)) => Dynamic.Typeable (Variable ext)

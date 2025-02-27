@@ -17,6 +17,7 @@ import Test.Tasty
 import Test.Tasty.Expect
 import Test.Tasty.HUnit
 import Text.Pretty.Simple (pShowNoColor)
+import AST.Extension
 
 testParseDyn :: String -> Expect -> Text -> TestTree
 testParseDyn name ex source = test name ex $ do
@@ -73,7 +74,7 @@ main = do
               let hs = Haskell.parse emojiCode
               let node = AST.getDynNode hs
               let point = LineCol (Pos 4) (Pos 5)
-              let res = AST.getDeepestContainingLineCol @AST.Haskell.Literal (LineColRange.point point) node
+              let res = AST.getDeepestContainingLineCol @AST.Haskell.LiteralP (LineColRange.point point) node
               pure $ pShow (AST.FullDynNode <$> (AST.getDynNode <$> res))
         ),
         ( test
@@ -91,10 +92,10 @@ main = do
       ]
 
 type AutoImportTypes =
-  Haskell.Name
-    :+ Haskell.Constructor
-    :+ Haskell.Qualified
-    :+ Haskell.Variable
+  (Haskell.Name ParsePhase)
+    :+ (Haskell.Constructor ParsePhase)
+    :+ (Haskell.Qualified ParsePhase)
+    :+ (Haskell.Variable ParsePhase)
     :+ Nil
 
 pShow :: (Show a) => a -> Text

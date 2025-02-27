@@ -17,6 +17,7 @@ module AST.NodeTypes
     Named (..),
     Multiple (..),
     isProductType,
+    isLeafType,
   )
 where
 
@@ -53,6 +54,10 @@ data Datatype
 isProductType :: Datatype -> Bool
 isProductType ProductType {} = True
 isProductType _ = False
+
+isLeafType :: Datatype -> Bool
+isLeafType LeafType {} = True
+isLeafType _ = False
 
 instance FromJSON Datatype where
   parseJSON = withObject "Datatype" $ \v -> do

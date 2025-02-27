@@ -39,6 +39,7 @@ import Foreign.C
 import GHC.Generics (Generic)
 import System.IO.Unsafe (unsafePerformIO)
 import TreeSitter.Raw qualified as Raw
+import Data.Dynamic
 
 data SymbolType = Regular | Anonymous | Auxiliary
   deriving (Enum, Eq, Ord, Show, Generic)
@@ -81,7 +82,9 @@ data Node = Node
     nodeChildren :: [Node],
     -- this field ties the knot
     -- make sure not to force this field!!!
-    nodeParent :: Maybe Node
+    nodeParent :: Maybe Node,
+    -- | A special field that allows us to extend nodes with arbitrary data
+    nodeExt :: Dynamic
   }
   deriving (Generic)
 
@@ -151,6 +154,7 @@ convertNode
     -- If the original source is very large, we won't retain the entire string in memory,
     -- we will only retain the sliced part
     let nodeText = T.Encoding.decodeUtf8Lenient $ B.take (nodeEndByte - nodeStartByte) $ B.drop nodeStartByte source
+    let nodeExt = toDyn ()
     pure
       Node
         { nodeType,
@@ -162,7 +166,8 @@ convertNode
           nodeIsExtra = convertCBool nodeIsExtra,
           nodeText,
           nodeChildren = [],
-          nodeParent = Nothing
+          nodeParent = Nothing,
+          nodeExt
         }
 
 parse :: Ptr Raw.Language -> Text -> Node

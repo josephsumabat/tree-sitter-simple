@@ -21,6 +21,9 @@ import NeatInterpolation
 import System.Process (callProcess)
 import Text.Pretty.Simple qualified as PS
 
+parsePhase :: Text
+parsePhase = "AST.Extension.ParsePhase"
+
 main :: IO ()
 main = do
   nodeTypes <- Aeson.decodeFileStrict @NodeTypes "tree-sitter-haskell/vendor/tree-sitter-haskell/src/node-types.json"
@@ -57,6 +60,8 @@ generateAllM moduleName nodeTypes = do
   {-# LANGUAGE NoImplicitPrelude #-}
   {-# LANGUAGE DeriveAnyClass #-}
   {-# LANGUAGE DerivingVia #-}
+  {-# LANGUAGE TypeFamilies #-}
+  {-# LANGUAGE UndecidableInstances #-}
   {-# OPTIONS_GHC -Wno-unused-local-binds #-}
   {-# OPTIONS_GHC -Wno-name-shadowing #-}
   {-# HLINT ignore "Use camelCase" #-}
@@ -80,6 +85,10 @@ generateAllM moduleName nodeTypes = do
   import qualified Control.Monad
   import qualified AST.Err
   import qualified AST.Unwrap
+  import qualified AST.Extension
+  import Data.Dynamic qualified as Dynamic
+  import Data.Kind qualified as Kind
+  
   |]
 
   for_ nodeTypes \dt -> do
@@ -94,7 +103,10 @@ generateExportList nodeTypes = do
     let name = NT.datatypeName dt
     let hsName = T.pack (Symbol.toHaskellPascalCaseIdentifier (T.unpack name))
     let hsNameU = if NT.isProductType dt then ", " <> hsName <> "U" <> "(..)" else ""
-    emit [trimming|$hsName(..) $hsNameU|]
+    let hsNameUP = if NT.isProductType dt then ", " <> hsName <> "UP" <> "(..)" else ""
+    let hsNameP = "," <> hsName <> "P"
+    let xhsName = if NT.isLeafType dt then ", " <> "X" <> hsName else ""
+    emit [trimming|$hsName(..) $hsNameU $hsNameUP $hsNameP $xhsName|]
   emit ")"
 
 generate :: Bool -> NT.Datatype -> M ()
@@ -127,17 +139,20 @@ generateSumType name subtypes = do
   let hsName = T.pack (Symbol.toHaskellPascalCaseIdentifier (T.unpack name))
   let innerTy = nodeTypesToTy subtypes
   let commonDerive = mkCommonDerive hsName
+  let commonParseAlias = mkCommonParseAlias hsName
   emit
     [trimming|
-  data $hsName = $hsName { dynNode :: AST.Node.DynNode, $hsFieldGetter :: $innerTy }
+  data $hsName ext = $hsName { dynNode :: AST.Node.DynNode, $hsFieldGetter :: $innerTy }
     $commonDerive
 
-  instance AST.Cast.Cast $hsName where
+  $commonParseAlias
+
+  instance AST.Cast.Cast ($hsName ext) where
     cast dynNode = do
       $hsFieldGetter <- AST.Cast.cast dynNode
       Prelude.pure ($hsName { dynNode = dynNode, $hsFieldGetter })
 
-  instance AST.Node.HasDynNode $hsName where
+  instance AST.Node.HasDynNode ($hsName ext) where
     getDynNode ($hsName { dynNode }) = dynNode
   |]
   pure ()
@@ -181,7 +196,7 @@ generateProductType nodeName children fields = do
 generateProductDecl :: Text -> [(Text, NT.Field)] -> M ()
 generateProductDecl nodeName fields = do
   let name = convertName nodeName
-  emit [trimming|data $name = $name {|]
+  emit [trimming|data $name ext = $name {|]
   commaList fields \(hsFieldNameRenamed, field) -> do
     let hsFieldName = T.pack (Symbol.toHaskellCamelCaseIdentifier (T.unpack hsFieldNameRenamed))
     let tyPrefix = fieldToTyPrefix field
@@ -192,11 +207,13 @@ generateProductDecl nodeName fields = do
   emit "  }"
   let commonDerive = mkCommonDerive name
   emit [trimming| $commonDerive|]
+  let commonParseAlias = mkCommonParseAlias name
+  emit [trimming| $commonParseAlias|]
 
 generateUnwrappedProductDecl :: Text -> [(Text, NT.Field)] -> M ()
 generateUnwrappedProductDecl nodeName fields = do
   let name = convertName nodeName <> "U"
-  emit [trimming|data $name = $name {|]
+  emit [trimming|data $name ext = $name {|]
   commaList fields \(hsFieldNameRenamed, field) -> do
     let hsFieldName = T.pack (Symbol.toHaskellCamelCaseIdentifier (T.unpack hsFieldNameRenamed))
     let tyPrefix = fieldToTyPrefix field
@@ -206,6 +223,8 @@ generateUnwrappedProductDecl nodeName fields = do
   emit "  }"
   let commonDerive = mkCommonDerive name
   emit [trimming| $commonDerive|]
+  let commonParseAlias = mkCommonParseAlias name
+  emit [trimming| $commonParseAlias|]
 
 emitStmts :: M a -> M a
 emitStmts m = censor (\ls -> fmap (\l -> "; " <> l <> " ;") ls) m
@@ -217,7 +236,7 @@ genProductTypeCast nodeName fields children = do
   -- function start
   emit
     [trimming|
-  cast_$name :: Api.Node -> Prelude.Maybe $name
+  cast_$name :: Api.Node -> Prelude.Maybe ($name ext)
   cast_$name dynNode = do {
   |]
 
@@ -256,10 +275,10 @@ genProductTypeCast nodeName fields children = do
   -- instance start
   emit
     [trimming|
-    instance AST.Node.HasDynNode $name where
+    instance AST.Node.HasDynNode ($name ext) where
       getDynNode ($name { dynNode }) = dynNode
 
-    instance AST.Cast.Cast $name where
+    instance AST.Cast.Cast ($name ext) where
       cast = cast_$name
     |]
   -- instance end
@@ -273,7 +292,7 @@ genUnwrap nodeName fields = do
 
   emit
     [trimming|
-  unwrap_$name :: $name -> AST.Err.Err $nameU
+  unwrap_$name :: $name ext -> AST.Err.Err ($nameU ext)
   unwrap_$name node = do {
   |]
 
@@ -293,10 +312,10 @@ genUnwrap nodeName fields = do
 
   emit
     [trimming|
-    instance AST.Node.HasDynNode $nameU where
+    instance AST.Node.HasDynNode ($nameU ext) where
       getDynNode ($nameU { dynNode }) = dynNode
 
-    instance AST.Unwrap.Unwrap $name $nameU where
+    instance AST.Unwrap.Unwrap ($name ext) ($nameU ext) where
       unwrap = unwrap_$name
     |]
 
@@ -340,7 +359,7 @@ nodeTypeToTy :: NT.Type -> Text
 nodeTypeToTy ty = do
   let fieldType = NT.fieldType ty
   case NT.isNamed ty of
-    NT.Named -> convertName fieldType
+    NT.Named -> "(" <> convertName fieldType <> " ext)"
     NT.Anonymous -> [trimming|(AST.Token.Token "$fieldType")|]
 
 generateSkippedDatatype :: NT.Datatype -> M ()
@@ -362,18 +381,28 @@ generateLeafType :: Text -> NT.Named -> M ()
 generateLeafType name NT.Named = do
   let ident = T.pack (Symbol.toHaskellPascalCaseIdentifier (T.unpack name))
   let commonDerive = mkCommonDerive ident
+  let commonParseAlias = mkCommonParseAlias ident
   emit
     [trimming|
-    data $ident = $ident { dynNode :: AST.Node.DynNode }
+    data $ident ext = $ident { dynNode :: AST.Node.DynNode, ext :: (X$ident ext) }
       $commonDerive
 
-    instance AST.Node.HasDynNode $ident where
+    $commonParseAlias
+
+    instance AST.Node.HasDynNode ($ident ext) where
       getDynNode ($ident { dynNode }) = dynNode
 
-    instance AST.Cast.Cast $ident where
+    instance AST.Cast.Cast ($ident ext) where
       cast dynNode = do
         Control.Monad.guard (Api.nodeType dynNode Prelude.== "$name")
-        Prelude.pure ($ident { dynNode = dynNode })
+        Prelude.fmap
+          (\dynExt -> 
+            ($ident { dynNode = dynNode, ext = dynExt}))
+          (Dynamic.fromDynamic dynNode.nodeExt)
+
+    type family X$ident ext
+    type instance X$ident ext = AST.Extension.XDefault ext
+    deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (X$ident ext)) => Dynamic.Typeable ($ident ext)
       |]
 generateLeafType _name NT.Anonymous = pure ()
 
@@ -382,7 +411,14 @@ mkCommonDerive name =
   T.intercalate "\n" $
     fmap
       ("  " <>)
-      [ [untrimming|deriving Prelude.Show via (AST.Node.OnDynNode $name)|],
-        [untrimming|deriving Prelude.Eq via (AST.Node.OnDynNode $name)|],
+      [ [untrimming|deriving Prelude.Show via (AST.Node.OnDynNode ($name ext))|],
+        [untrimming|deriving Prelude.Eq via (AST.Node.OnDynNode ($name ext))|],
         [untrimming|deriving (GHC.Generics.Generic)|]
       ]
+
+mkCommonParseAlias :: Text -> Text
+mkCommonParseAlias name =
+    [trimming|
+      type ${name}P = $name $parsePhase
+    |]
+
