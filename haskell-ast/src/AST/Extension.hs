@@ -9,11 +9,11 @@ where
 import Data.Kind qualified as Kind
 import Data.Dynamic
   
-class DefaultX where
+class DefaultX ext where
   type XDefault ext :: Kind.Type
   type XDefault ext = ()
 
-instance Typeable () => DefaultX where
+instance Typeable () => DefaultX ext where
   type XDefault ext = ()
 
 data ParsePhase
