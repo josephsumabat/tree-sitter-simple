@@ -938,7 +938,7 @@ type AbstractFamilyP = AbstractFamily AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (AbstractFamily ext) where
   getDynNode (AbstractFamily {dynNode}) = dynNode
 
-instance AST.Cast.Cast (AbstractFamily ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (AbstractFamily ext))) => AST.Cast.Cast (AbstractFamily ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "abstract_family")
     Prelude.fmap
@@ -949,7 +949,7 @@ instance AST.Cast.Cast (AbstractFamily ext) where
 
 type family XAbstractFamily ext
 
-type instance XAbstractFamily ext = AST.Extension.XDefault ext
+type instance XAbstractFamily ext = AST.Extension.XNode (AbstractFamily ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XAbstractFamily ext)) => Dynamic.Typeable (AbstractFamily ext)
 
@@ -1922,7 +1922,7 @@ type ConstructorOperatorP = ConstructorOperator AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (ConstructorOperator ext) where
   getDynNode (ConstructorOperator {dynNode}) = dynNode
 
-instance AST.Cast.Cast (ConstructorOperator ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (ConstructorOperator ext))) => AST.Cast.Cast (ConstructorOperator ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor_operator")
     Prelude.fmap
@@ -1933,7 +1933,7 @@ instance AST.Cast.Cast (ConstructorOperator ext) where
 
 type family XConstructorOperator ext
 
-type instance XConstructorOperator ext = AST.Extension.XDefault ext
+type instance XConstructorOperator ext = AST.Extension.XNode (ConstructorOperator ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XConstructorOperator ext)) => Dynamic.Typeable (ConstructorOperator ext)
 
@@ -2819,7 +2819,7 @@ type DerivingStrategyP = DerivingStrategy AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (DerivingStrategy ext) where
   getDynNode (DerivingStrategy {dynNode}) = dynNode
 
-instance AST.Cast.Cast (DerivingStrategy ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (DerivingStrategy ext))) => AST.Cast.Cast (DerivingStrategy ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "deriving_strategy")
     Prelude.fmap
@@ -2830,7 +2830,7 @@ instance AST.Cast.Cast (DerivingStrategy ext) where
 
 type family XDerivingStrategy ext
 
-type instance XDerivingStrategy ext = AST.Extension.XDefault ext
+type instance XDerivingStrategy ext = AST.Extension.XNode (DerivingStrategy ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XDerivingStrategy ext)) => Dynamic.Typeable (DerivingStrategy ext)
 
@@ -2963,7 +2963,7 @@ type EmptyListP = EmptyList AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (EmptyList ext) where
   getDynNode (EmptyList {dynNode}) = dynNode
 
-instance AST.Cast.Cast (EmptyList ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (EmptyList ext))) => AST.Cast.Cast (EmptyList ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "empty_list")
     Prelude.fmap
@@ -2974,7 +2974,7 @@ instance AST.Cast.Cast (EmptyList ext) where
 
 type family XEmptyList ext
 
-type instance XEmptyList ext = AST.Extension.XDefault ext
+type instance XEmptyList ext = AST.Extension.XNode (EmptyList ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XEmptyList ext)) => Dynamic.Typeable (EmptyList ext)
 
@@ -5517,7 +5517,7 @@ type IntegerP = Integer AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Integer ext) where
   getDynNode (Integer {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Integer ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Integer ext))) => AST.Cast.Cast (Integer ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "integer")
     Prelude.fmap
@@ -5528,7 +5528,7 @@ instance AST.Cast.Cast (Integer ext) where
 
 type family XInteger ext
 
-type instance XInteger ext = AST.Extension.XDefault ext
+type instance XInteger ext = AST.Extension.XNode (Integer ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XInteger ext)) => Dynamic.Typeable (Integer ext)
 
@@ -6728,7 +6728,7 @@ type NamespaceP = Namespace AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Namespace ext) where
   getDynNode (Namespace {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Namespace ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Namespace ext))) => AST.Cast.Cast (Namespace ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "namespace")
     Prelude.fmap
@@ -6739,7 +6739,7 @@ instance AST.Cast.Cast (Namespace ext) where
 
 type family XNamespace ext
 
-type instance XNamespace ext = AST.Extension.XDefault ext
+type instance XNamespace ext = AST.Extension.XNode (Namespace ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XNamespace ext)) => Dynamic.Typeable (Namespace ext)
 
@@ -6988,7 +6988,7 @@ type OperatorP = Operator AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Operator ext) where
   getDynNode (Operator {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Operator ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Operator ext))) => AST.Cast.Cast (Operator ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
     Prelude.fmap
@@ -6999,7 +6999,7 @@ instance AST.Cast.Cast (Operator ext) where
 
 type family XOperator ext
 
-type instance XOperator ext = AST.Extension.XDefault ext
+type instance XOperator ext = AST.Extension.XNode (Operator ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XOperator ext)) => Dynamic.Typeable (Operator ext)
 
@@ -7397,7 +7397,7 @@ type PrefixListP = PrefixList AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (PrefixList ext) where
   getDynNode (PrefixList {dynNode}) = dynNode
 
-instance AST.Cast.Cast (PrefixList ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (PrefixList ext))) => AST.Cast.Cast (PrefixList ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_list")
     Prelude.fmap
@@ -7408,7 +7408,7 @@ instance AST.Cast.Cast (PrefixList ext) where
 
 type family XPrefixList ext
 
-type instance XPrefixList ext = AST.Extension.XDefault ext
+type instance XPrefixList ext = AST.Extension.XNode (PrefixList ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixList ext)) => Dynamic.Typeable (PrefixList ext)
 
@@ -7422,7 +7422,7 @@ type PrefixTupleP = PrefixTuple AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (PrefixTuple ext) where
   getDynNode (PrefixTuple {dynNode}) = dynNode
 
-instance AST.Cast.Cast (PrefixTuple ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (PrefixTuple ext))) => AST.Cast.Cast (PrefixTuple ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_tuple")
     Prelude.fmap
@@ -7433,7 +7433,7 @@ instance AST.Cast.Cast (PrefixTuple ext) where
 
 type family XPrefixTuple ext
 
-type instance XPrefixTuple ext = AST.Extension.XDefault ext
+type instance XPrefixTuple ext = AST.Extension.XNode (PrefixTuple ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixTuple ext)) => Dynamic.Typeable (PrefixTuple ext)
 
@@ -7447,7 +7447,7 @@ type PrefixUnboxedSumP = PrefixUnboxedSum AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (PrefixUnboxedSum ext) where
   getDynNode (PrefixUnboxedSum {dynNode}) = dynNode
 
-instance AST.Cast.Cast (PrefixUnboxedSum ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (PrefixUnboxedSum ext))) => AST.Cast.Cast (PrefixUnboxedSum ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_unboxed_sum")
     Prelude.fmap
@@ -7458,7 +7458,7 @@ instance AST.Cast.Cast (PrefixUnboxedSum ext) where
 
 type family XPrefixUnboxedSum ext
 
-type instance XPrefixUnboxedSum ext = AST.Extension.XDefault ext
+type instance XPrefixUnboxedSum ext = AST.Extension.XNode (PrefixUnboxedSum ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixUnboxedSum ext)) => Dynamic.Typeable (PrefixUnboxedSum ext)
 
@@ -7472,7 +7472,7 @@ type PrefixUnboxedTupleP = PrefixUnboxedTuple AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (PrefixUnboxedTuple ext) where
   getDynNode (PrefixUnboxedTuple {dynNode}) = dynNode
 
-instance AST.Cast.Cast (PrefixUnboxedTuple ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (PrefixUnboxedTuple ext))) => AST.Cast.Cast (PrefixUnboxedTuple ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_unboxed_tuple")
     Prelude.fmap
@@ -7483,7 +7483,7 @@ instance AST.Cast.Cast (PrefixUnboxedTuple ext) where
 
 type family XPrefixUnboxedTuple ext
 
-type instance XPrefixUnboxedTuple ext = AST.Extension.XDefault ext
+type instance XPrefixUnboxedTuple ext = AST.Extension.XNode (PrefixUnboxedTuple ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPrefixUnboxedTuple ext)) => Dynamic.Typeable (PrefixUnboxedTuple ext)
 
@@ -8681,7 +8681,7 @@ type StarP = Star AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Star ext) where
   getDynNode (Star {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Star ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Star ext))) => AST.Cast.Cast (Star ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "star")
     Prelude.fmap
@@ -8692,7 +8692,7 @@ instance AST.Cast.Cast (Star ext) where
 
 type family XStar ext
 
-type instance XStar ext = AST.Extension.XDefault ext
+type instance XStar ext = AST.Extension.XNode (Star ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XStar ext)) => Dynamic.Typeable (Star ext)
 
@@ -9519,7 +9519,7 @@ type TypeRoleP = TypeRole AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (TypeRole ext) where
   getDynNode (TypeRole {dynNode}) = dynNode
 
-instance AST.Cast.Cast (TypeRole ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (TypeRole ext))) => AST.Cast.Cast (TypeRole ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_role")
     Prelude.fmap
@@ -9530,7 +9530,7 @@ instance AST.Cast.Cast (TypeRole ext) where
 
 type family XTypeRole ext
 
-type instance XTypeRole ext = AST.Extension.XDefault ext
+type instance XTypeRole ext = AST.Extension.XNode (TypeRole ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XTypeRole ext)) => Dynamic.Typeable (TypeRole ext)
 
@@ -9775,7 +9775,7 @@ type UnboxedUnitP = UnboxedUnit AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (UnboxedUnit ext) where
   getDynNode (UnboxedUnit {dynNode}) = dynNode
 
-instance AST.Cast.Cast (UnboxedUnit ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (UnboxedUnit ext))) => AST.Cast.Cast (UnboxedUnit ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "unboxed_unit")
     Prelude.fmap
@@ -9786,7 +9786,7 @@ instance AST.Cast.Cast (UnboxedUnit ext) where
 
 type family XUnboxedUnit ext
 
-type instance XUnboxedUnit ext = AST.Extension.XDefault ext
+type instance XUnboxedUnit ext = AST.Extension.XNode (UnboxedUnit ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XUnboxedUnit ext)) => Dynamic.Typeable (UnboxedUnit ext)
 
@@ -9800,7 +9800,7 @@ type UnitP = Unit AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Unit ext) where
   getDynNode (Unit {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Unit ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Unit ext))) => AST.Cast.Cast (Unit ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "unit")
     Prelude.fmap
@@ -9811,7 +9811,7 @@ instance AST.Cast.Cast (Unit ext) where
 
 type family XUnit ext
 
-type instance XUnit ext = AST.Extension.XDefault ext
+type instance XUnit ext = AST.Extension.XNode (Unit ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XUnit ext)) => Dynamic.Typeable (Unit ext)
 
@@ -9938,7 +9938,7 @@ type WildcardP = Wildcard AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Wildcard ext) where
   getDynNode (Wildcard {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Wildcard ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Wildcard ext))) => AST.Cast.Cast (Wildcard ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "wildcard")
     Prelude.fmap
@@ -9949,7 +9949,7 @@ instance AST.Cast.Cast (Wildcard ext) where
 
 type family XWildcard ext
 
-type instance XWildcard ext = AST.Extension.XDefault ext
+type instance XWildcard ext = AST.Extension.XNode (Wildcard ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XWildcard ext)) => Dynamic.Typeable (Wildcard ext)
 
@@ -9963,7 +9963,7 @@ type AllNamesP = AllNames AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (AllNames ext) where
   getDynNode (AllNames {dynNode}) = dynNode
 
-instance AST.Cast.Cast (AllNames ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (AllNames ext))) => AST.Cast.Cast (AllNames ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "all_names")
     Prelude.fmap
@@ -9974,7 +9974,7 @@ instance AST.Cast.Cast (AllNames ext) where
 
 type family XAllNames ext
 
-type instance XAllNames ext = AST.Extension.XDefault ext
+type instance XAllNames ext = AST.Extension.XNode (AllNames ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XAllNames ext)) => Dynamic.Typeable (AllNames ext)
 
@@ -9988,7 +9988,7 @@ type CallingConventionP = CallingConvention AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (CallingConvention ext) where
   getDynNode (CallingConvention {dynNode}) = dynNode
 
-instance AST.Cast.Cast (CallingConvention ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (CallingConvention ext))) => AST.Cast.Cast (CallingConvention ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "calling_convention")
     Prelude.fmap
@@ -9999,7 +9999,7 @@ instance AST.Cast.Cast (CallingConvention ext) where
 
 type family XCallingConvention ext
 
-type instance XCallingConvention ext = AST.Extension.XDefault ext
+type instance XCallingConvention ext = AST.Extension.XNode (CallingConvention ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XCallingConvention ext)) => Dynamic.Typeable (CallingConvention ext)
 
@@ -10013,7 +10013,7 @@ type CharP = Char AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Char ext) where
   getDynNode (Char {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Char ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Char ext))) => AST.Cast.Cast (Char ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "char")
     Prelude.fmap
@@ -10024,7 +10024,7 @@ instance AST.Cast.Cast (Char ext) where
 
 type family XChar ext
 
-type instance XChar ext = AST.Extension.XDefault ext
+type instance XChar ext = AST.Extension.XNode (Char ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XChar ext)) => Dynamic.Typeable (Char ext)
 
@@ -10038,7 +10038,7 @@ type CommentP = Comment AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Comment ext) where
   getDynNode (Comment {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Comment ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Comment ext))) => AST.Cast.Cast (Comment ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "comment")
     Prelude.fmap
@@ -10049,7 +10049,7 @@ instance AST.Cast.Cast (Comment ext) where
 
 type family XComment ext
 
-type instance XComment ext = AST.Extension.XDefault ext
+type instance XComment ext = AST.Extension.XNode (Comment ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XComment ext)) => Dynamic.Typeable (Comment ext)
 
@@ -10063,7 +10063,7 @@ type ConstructorP = Constructor AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Constructor ext) where
   getDynNode (Constructor {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Constructor ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Constructor ext))) => AST.Cast.Cast (Constructor ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor")
     Prelude.fmap
@@ -10074,7 +10074,7 @@ instance AST.Cast.Cast (Constructor ext) where
 
 type family XConstructor ext
 
-type instance XConstructor ext = AST.Extension.XDefault ext
+type instance XConstructor ext = AST.Extension.XNode (Constructor ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XConstructor ext)) => Dynamic.Typeable (Constructor ext)
 
@@ -10088,7 +10088,7 @@ type CppP = Cpp AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Cpp ext) where
   getDynNode (Cpp {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Cpp ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Cpp ext))) => AST.Cast.Cast (Cpp ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "cpp")
     Prelude.fmap
@@ -10099,7 +10099,7 @@ instance AST.Cast.Cast (Cpp ext) where
 
 type family XCpp ext
 
-type instance XCpp ext = AST.Extension.XDefault ext
+type instance XCpp ext = AST.Extension.XNode (Cpp ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XCpp ext)) => Dynamic.Typeable (Cpp ext)
 
@@ -10113,7 +10113,7 @@ type FloatP = Float AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Float ext) where
   getDynNode (Float {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Float ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Float ext))) => AST.Cast.Cast (Float ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "float")
     Prelude.fmap
@@ -10124,7 +10124,7 @@ instance AST.Cast.Cast (Float ext) where
 
 type family XFloat ext
 
-type instance XFloat ext = AST.Extension.XDefault ext
+type instance XFloat ext = AST.Extension.XNode (Float ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XFloat ext)) => Dynamic.Typeable (Float ext)
 
@@ -10138,7 +10138,7 @@ type HaddockP = Haddock AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Haddock ext) where
   getDynNode (Haddock {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Haddock ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Haddock ext))) => AST.Cast.Cast (Haddock ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "haddock")
     Prelude.fmap
@@ -10149,7 +10149,7 @@ instance AST.Cast.Cast (Haddock ext) where
 
 type family XHaddock ext
 
-type instance XHaddock ext = AST.Extension.XDefault ext
+type instance XHaddock ext = AST.Extension.XNode (Haddock ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XHaddock ext)) => Dynamic.Typeable (Haddock ext)
 
@@ -10163,7 +10163,7 @@ type ImplicitVariableP = ImplicitVariable AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (ImplicitVariable ext) where
   getDynNode (ImplicitVariable {dynNode}) = dynNode
 
-instance AST.Cast.Cast (ImplicitVariable ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (ImplicitVariable ext))) => AST.Cast.Cast (ImplicitVariable ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "implicit_variable")
     Prelude.fmap
@@ -10174,7 +10174,7 @@ instance AST.Cast.Cast (ImplicitVariable ext) where
 
 type family XImplicitVariable ext
 
-type instance XImplicitVariable ext = AST.Extension.XDefault ext
+type instance XImplicitVariable ext = AST.Extension.XNode (ImplicitVariable ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XImplicitVariable ext)) => Dynamic.Typeable (ImplicitVariable ext)
 
@@ -10188,7 +10188,7 @@ type ImportPackageP = ImportPackage AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (ImportPackage ext) where
   getDynNode (ImportPackage {dynNode}) = dynNode
 
-instance AST.Cast.Cast (ImportPackage ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (ImportPackage ext))) => AST.Cast.Cast (ImportPackage ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "import_package")
     Prelude.fmap
@@ -10199,7 +10199,7 @@ instance AST.Cast.Cast (ImportPackage ext) where
 
 type family XImportPackage ext
 
-type instance XImportPackage ext = AST.Extension.XDefault ext
+type instance XImportPackage ext = AST.Extension.XNode (ImportPackage ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XImportPackage ext)) => Dynamic.Typeable (ImportPackage ext)
 
@@ -10213,7 +10213,7 @@ type LabelP = Label AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Label ext) where
   getDynNode (Label {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Label ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Label ext))) => AST.Cast.Cast (Label ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "label")
     Prelude.fmap
@@ -10224,7 +10224,7 @@ instance AST.Cast.Cast (Label ext) where
 
 type family XLabel ext
 
-type instance XLabel ext = AST.Extension.XDefault ext
+type instance XLabel ext = AST.Extension.XNode (Label ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XLabel ext)) => Dynamic.Typeable (Label ext)
 
@@ -10238,7 +10238,7 @@ type ModuleIdP = ModuleId AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (ModuleId ext) where
   getDynNode (ModuleId {dynNode}) = dynNode
 
-instance AST.Cast.Cast (ModuleId ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (ModuleId ext))) => AST.Cast.Cast (ModuleId ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "module_id")
     Prelude.fmap
@@ -10249,7 +10249,7 @@ instance AST.Cast.Cast (ModuleId ext) where
 
 type family XModuleId ext
 
-type instance XModuleId ext = AST.Extension.XDefault ext
+type instance XModuleId ext = AST.Extension.XNode (ModuleId ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XModuleId ext)) => Dynamic.Typeable (ModuleId ext)
 
@@ -10263,7 +10263,7 @@ type NameP = Name AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Name ext) where
   getDynNode (Name {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Name ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Name ext))) => AST.Cast.Cast (Name ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "name")
     Prelude.fmap
@@ -10274,7 +10274,7 @@ instance AST.Cast.Cast (Name ext) where
 
 type family XName ext
 
-type instance XName ext = AST.Extension.XDefault ext
+type instance XName ext = AST.Extension.XNode (Name ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XName ext)) => Dynamic.Typeable (Name ext)
 
@@ -10288,7 +10288,7 @@ type PragmaP = Pragma AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Pragma ext) where
   getDynNode (Pragma {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Pragma ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Pragma ext))) => AST.Cast.Cast (Pragma ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "pragma")
     Prelude.fmap
@@ -10299,7 +10299,7 @@ instance AST.Cast.Cast (Pragma ext) where
 
 type family XPragma ext
 
-type instance XPragma ext = AST.Extension.XDefault ext
+type instance XPragma ext = AST.Extension.XNode (Pragma ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XPragma ext)) => Dynamic.Typeable (Pragma ext)
 
@@ -10313,7 +10313,7 @@ type QuasiquoteBodyP = QuasiquoteBody AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (QuasiquoteBody ext) where
   getDynNode (QuasiquoteBody {dynNode}) = dynNode
 
-instance AST.Cast.Cast (QuasiquoteBody ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (QuasiquoteBody ext))) => AST.Cast.Cast (QuasiquoteBody ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "quasiquote_body")
     Prelude.fmap
@@ -10324,7 +10324,7 @@ instance AST.Cast.Cast (QuasiquoteBody ext) where
 
 type family XQuasiquoteBody ext
 
-type instance XQuasiquoteBody ext = AST.Extension.XDefault ext
+type instance XQuasiquoteBody ext = AST.Extension.XNode (QuasiquoteBody ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XQuasiquoteBody ext)) => Dynamic.Typeable (QuasiquoteBody ext)
 
@@ -10338,7 +10338,7 @@ type SafetyP = Safety AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Safety ext) where
   getDynNode (Safety {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Safety ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Safety ext))) => AST.Cast.Cast (Safety ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "safety")
     Prelude.fmap
@@ -10349,7 +10349,7 @@ instance AST.Cast.Cast (Safety ext) where
 
 type family XSafety ext
 
-type instance XSafety ext = AST.Extension.XDefault ext
+type instance XSafety ext = AST.Extension.XNode (Safety ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XSafety ext)) => Dynamic.Typeable (Safety ext)
 
@@ -10363,7 +10363,7 @@ type StringP = String AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (String ext) where
   getDynNode (String {dynNode}) = dynNode
 
-instance AST.Cast.Cast (String ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (String ext))) => AST.Cast.Cast (String ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "string")
     Prelude.fmap
@@ -10374,7 +10374,7 @@ instance AST.Cast.Cast (String ext) where
 
 type family XString ext
 
-type instance XString ext = AST.Extension.XDefault ext
+type instance XString ext = AST.Extension.XNode (String ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XString ext)) => Dynamic.Typeable (String ext)
 
@@ -10388,7 +10388,7 @@ type VariableP = Variable AST.Extension.ParsePhase
 instance AST.Node.HasDynNode (Variable ext) where
   getDynNode (Variable {dynNode}) = dynNode
 
-instance AST.Cast.Cast (Variable ext) where
+instance (Dynamic.Typeable (AST.Extension.XNode (Variable ext))) => AST.Cast.Cast (Variable ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "variable")
     Prelude.fmap
@@ -10399,6 +10399,6 @@ instance AST.Cast.Cast (Variable ext) where
 
 type family XVariable ext
 
-type instance XVariable ext = AST.Extension.XDefault ext
+type instance XVariable ext = AST.Extension.XNode (Variable ext)
 
 deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (XVariable ext)) => Dynamic.Typeable (Variable ext)

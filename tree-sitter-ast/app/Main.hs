@@ -392,7 +392,7 @@ generateLeafType name NT.Named = do
     instance AST.Node.HasDynNode ($ident ext) where
       getDynNode ($ident { dynNode }) = dynNode
 
-    instance AST.Cast.Cast ($ident ext) where
+    instance (Dynamic.Typeable (AST.Extension.XNode ($ident ext))) => AST.Cast.Cast ($ident ext) where
       cast dynNode = do
         Control.Monad.guard (Api.nodeType dynNode Prelude.== "$name")
         Prelude.fmap
@@ -401,7 +401,7 @@ generateLeafType name NT.Named = do
           (Dynamic.fromDynamic dynNode.nodeExt)
 
     type family X$ident ext
-    type instance X$ident ext = AST.Extension.XDefault ext
+    type instance X$ident ext = AST.Extension.XNode ($ident ext)
     deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (X$ident ext)) => Dynamic.Typeable ($ident ext)
       |]
 generateLeafType _name NT.Anonymous = pure ()

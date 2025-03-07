@@ -13,6 +13,8 @@ import Control.Monad qualified as Monad
 import Data.Text qualified as T
 import GHC.TypeLits (KnownSymbol, symbolVal)
 import TreeSitter.Api qualified as TS
+import Data.Dynamic
+import AST.Extension
 
 type DynNode = TS.Node
 

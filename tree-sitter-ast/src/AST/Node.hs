@@ -20,6 +20,7 @@ import Data.Text (Text)
 import Data.Text qualified as T
 import TreeSitter.Api (Node (..))
 import TreeSitter.Api qualified as TS
+import Data.Dynamic qualified as Dynamic
 
 -- import Data.Range (Data.Range.Range)
 
@@ -47,7 +48,8 @@ defaultNode =
       nodeIsExtra = False,
       nodeText = T.pack "",
       nodeChildren = [],
-      nodeParent = Nothing
+      nodeParent = Nothing,
+      nodeExt = Dynamic.toDyn ()
     }
 
 instance HasDynNode Nil where

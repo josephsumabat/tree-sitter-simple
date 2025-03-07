@@ -16,7 +16,6 @@ tested-with:
 
 library
   exposed-modules:
-      AST.Extension
       AST.Haskell
       AST.Haskell.Generated
   other-modules:

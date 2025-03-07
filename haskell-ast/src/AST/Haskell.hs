@@ -17,6 +17,14 @@ import Data.Text (Text)
 import TreeSitter.Api qualified as TS
 import TreeSitter.Haskell qualified as TS
 
+data RenamePhase 
+
+data ResolvedName = ResolvedName
+
+instance NodeX RenamePhase Name where
+  type XNode RenamePhase Name = ResolvedName
+  type XNode RenamePhase _ = ()
+
 parse :: Text -> HaskellP
 parse = parseWith TS.idConvertPos
 
