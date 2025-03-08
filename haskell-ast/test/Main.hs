@@ -17,7 +17,7 @@ import Test.Tasty
 import Test.Tasty.Expect
 import Test.Tasty.HUnit
 import Text.Pretty.Simple (pShowNoColor)
-import AST.Extension
+import AST.Extension (ParsePhase)
 
 testParseDyn :: String -> Expect -> Text -> TestTree
 testParseDyn name ex source = test name ex $ do

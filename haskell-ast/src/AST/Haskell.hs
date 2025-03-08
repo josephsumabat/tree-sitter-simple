@@ -4,7 +4,6 @@ module AST.Haskell
   ( module X,
     parse,
     parseWith,
-    HaskellP,
   )
 where
 

@@ -10,6 +10,17 @@ module AST.SumTH
     x7,
     x8,
     x9,
+    x10,
+    x11,
+    x12,
+    x13,
+    x14,
+    x15,
+    x16,
+    x17,
+    x18,
+    x19,
+    x20,
     rest1,
     rest2,
     rest3,
@@ -62,6 +73,39 @@ x8 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.var
 
 x9 :: TH.QuasiQuoter
 x9 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name))))))))))|]
+
+x10 :: TH.QuasiQuoter
+x10 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name)))))))))))|]
+
+x11 :: TH.QuasiQuoter
+x11 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name))))))))))))|]
+
+x12 :: TH.QuasiQuoter
+x12 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name)))))))))))))|]
+
+x13 :: TH.QuasiQuoter
+x13 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name))))))))))))))|]
+
+x14 :: TH.QuasiQuoter
+x14 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name)))))))))))))))|]
+
+x15 :: TH.QuasiQuoter
+x15 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name))))))))))))))))|]
+
+x16 :: TH.QuasiQuoter
+x16 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name)))))))))))))))))|]
+
+x17 :: TH.QuasiQuoter
+x17 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name))))))))))))))))))|]
+
+x18 :: TH.QuasiQuoter
+x18 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name)))))))))))))))))))|]
+
+x19 :: TH.QuasiQuoter
+x19 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name))))))))))))))))))))|]
+
+x20 :: TH.QuasiQuoter
+x20 = patQuote $ \name -> [p|Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (Rest (X $(TH.varP (TH.mkName name)))))))))))))))))))))|]
 
 rest1 :: TH.QuasiQuoter
 rest1 = patQuote $ \name -> [p|Rest $(TH.varP (TH.mkName name))|]

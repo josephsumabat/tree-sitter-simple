@@ -3,6 +3,7 @@
 
 module Main where
 
+import Data.Set qualified as Set
 import AST.NodeTypes (NodeTypes)
 import AST.NodeTypes qualified as NT
 import AST.Symbol qualified as Symbol
@@ -94,6 +95,8 @@ generateAllM moduleName nodeTypes = do
   for_ nodeTypes \dt -> do
     generate False dt
 
+  emit nodeExtensions
+
   pure ()
 
 generateExportList :: NodeTypes -> M ()
@@ -105,8 +108,9 @@ generateExportList nodeTypes = do
     let hsNameU = if NT.isProductType dt then ", " <> hsName <> "U" <> "(..)" else ""
     let hsNameUP = if NT.isProductType dt then ", " <> hsName <> "UP" <> "(..)" else ""
     let hsNameP = "," <> hsName <> "P"
-    let xhsName = if NT.isLeafType dt then ", " <> "X" <> hsName else ""
-    emit [trimming|$hsName(..) $hsNameU $hsNameUP $hsNameP $xhsName|]
+    let modifyFns = if isExtendable hsName then ", " <> "modify" <> hsName <> "Ext" else ""
+    emit [trimming|$hsName(..) $hsNameU $hsNameUP $hsNameP $modifyFns|]
+  emit ",NodeX(..)"
   emit ")"
 
 generate :: Bool -> NT.Datatype -> M ()
@@ -147,7 +151,7 @@ generateSumType name subtypes = do
 
   $commonParseAlias
 
-  instance AST.Cast.Cast ($hsName ext) where
+  instance ($typeableExtConstraint ext) => AST.Cast.Cast ($hsName ext) where
     cast dynNode = do
       $hsFieldGetter <- AST.Cast.cast dynNode
       Prelude.pure ($hsName { dynNode = dynNode, $hsFieldGetter })
@@ -236,7 +240,7 @@ genProductTypeCast nodeName fields children = do
   -- function start
   emit
     [trimming|
-  cast_$name :: Api.Node -> Prelude.Maybe ($name ext)
+  cast_$name :: ($typeableExtConstraint ext) => Api.Node -> Prelude.Maybe ($name ext)
   cast_$name dynNode = do {
   |]
 
@@ -278,7 +282,7 @@ genProductTypeCast nodeName fields children = do
     instance AST.Node.HasDynNode ($name ext) where
       getDynNode ($name { dynNode }) = dynNode
 
-    instance AST.Cast.Cast ($name ext) where
+    instance ($typeableExtConstraint ext) => AST.Cast.Cast ($name ext) where
       cast = cast_$name
     |]
   -- instance end
@@ -382,9 +386,38 @@ generateLeafType name NT.Named = do
   let ident = T.pack (Symbol.toHaskellPascalCaseIdentifier (T.unpack name))
   let commonDerive = mkCommonDerive ident
   let commonParseAlias = mkCommonParseAlias ident
+  let extData = if isExtendable ident then [trimming|, ext :: (X${ident} ext)|] else ""
+  let modifyExt = 
+        if isExtendable ident
+           then
+           [trimming|
+              modify${ident}Ext :: (Dynamic.Typeable (X$ident ext2)) => $ident ext1 -> (X$ident ext1 -> X$ident ext2) -> $ident ext2
+              modify${ident}Ext n1 f =
+                let newVal = f n1.ext in
+                  $ident
+                    {
+                      dynNode = n1.dynNode { Api.nodeExt = Dynamic.toDyn newVal }
+                    , ext = newVal
+                    }
+              
+           |]
+         else ""
+
+  let cast = if isExtendable ident
+              then 
+                [trimming|
+                      Prelude.fmap
+                        (\dynExt -> 
+                          ($ident { dynNode = dynNode, ext = dynExt}))
+                        (Dynamic.fromDynamic dynNode.nodeExt)
+                |]
+              else
+                [trimming|
+                      (Prelude.Just ($ident { dynNode = dynNode}))
+                |]
   emit
     [trimming|
-    data $ident ext = $ident { dynNode :: AST.Node.DynNode, ext :: (X$ident ext) }
+    data $ident ext = $ident { dynNode :: AST.Node.DynNode $extData }
       $commonDerive
 
     $commonParseAlias
@@ -392,18 +425,15 @@ generateLeafType name NT.Named = do
     instance AST.Node.HasDynNode ($ident ext) where
       getDynNode ($ident { dynNode }) = dynNode
 
-    instance AST.Cast.Cast ($ident ext) where
+    instance ($typeableExtConstraint ext) => AST.Cast.Cast ($ident ext) where
       cast dynNode = do
         Control.Monad.guard (Api.nodeType dynNode Prelude.== "$name")
-        Prelude.fmap
-          (\dynExt -> 
-            ($ident { dynNode = dynNode, ext = dynExt}))
-          (Dynamic.fromDynamic dynNode.nodeExt)
+        $cast
 
-    type family X$ident ext
-    type instance X$ident ext = AST.Extension.XDefault ext
-    deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (X$ident ext)) => Dynamic.Typeable ($ident ext)
+    $modifyExt
+
       |]
+    -- deriving instance (Dynamic.Typeable ext, Dynamic.Typeable (X$ident ext)) => Dynamic.Typeable ($ident ext)
 generateLeafType _name NT.Anonymous = pure ()
 
 mkCommonDerive :: Text -> Text
@@ -421,4 +451,35 @@ mkCommonParseAlias name =
     [trimming|
       type ${name}P = $name $parsePhase
     |]
+
+isExtendable dtName = Set.member dtName extendableNodes
+
+extendableNodes :: Set.Set Text
+extendableNodes = 
+  Set.fromList [ "Name" ]
+
+typeableExtConstraint :: Text
+typeableExtConstraint = "TypeableExt"
+
+nodeExtensions :: Text
+nodeExtensions =
+  [trimming|
+  class NodeX ext where
+    $nodeExts
+
+  $constraint
+  |]
+
+  where
+    nodeExts :: Text
+    nodeExts =
+      T.concat $
+        (\ident ->
+            [trimming|
+            type X$ident ext :: Kind.Type
+            type X$ident ext = ()
+            |]) <$>
+        (Set.toList extendableNodes)
+
+    constraint = "type " <> typeableExtConstraint <> " ext = (" <> T.intercalate "," ((\ident -> [trimming|Dynamic.Typeable (X${ident} ext)|]) <$> (Set.toList extendableNodes)) <> ")"
 

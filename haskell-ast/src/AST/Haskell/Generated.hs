@@ -652,6 +652,7 @@ module AST.Haskell.Generated
     ModuleIdP,
     Name (..),
     NameP,
+    modifyNameExt,
     Pragma (..),
     PragmaP,
     QuasiquoteBody (..),
@@ -9958,6 +9959,14 @@ instance (TypeableExt ext) => AST.Cast.Cast (Name ext) where
           (Name {dynNode = dynNode, ext = dynExt})
       )
       (Dynamic.fromDynamic dynNode.nodeExt)
+
+modifyNameExt :: (Dynamic.Typeable (XName ext2)) => Name ext1 -> (XName ext1 -> XName ext2) -> Name ext2
+modifyNameExt n1 f =
+  let newVal = f n1.ext
+   in Name
+        { dynNode = n1.dynNode {Api.nodeExt = Dynamic.toDyn newVal},
+          ext = newVal
+        }
 
 data Pragma ext = Pragma {dynNode :: AST.Node.DynNode}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Pragma ext))
