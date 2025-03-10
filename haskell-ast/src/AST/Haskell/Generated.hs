@@ -40,6 +40,7 @@ module AST.Haskell.Generated
     TypeParamP,
     AbstractFamily (..),
     AbstractFamilyP,
+    modifyAbstractFamilyExt,
     Alternative (..),
     AlternativeU (..),
     AlternativeUP (..),
@@ -102,6 +103,7 @@ module AST.Haskell.Generated
     ConditionalP,
     ConstructorOperator (..),
     ConstructorOperatorP,
+    modifyConstructorOperatorExt,
     ConstructorSynonym (..),
     ConstructorSynonymU (..),
     ConstructorSynonymUP (..),
@@ -156,6 +158,7 @@ module AST.Haskell.Generated
     DerivingInstanceP,
     DerivingStrategy (..),
     DerivingStrategyP,
+    modifyDerivingStrategyExt,
     Do (..),
     DoU (..),
     DoUP (..),
@@ -166,6 +169,7 @@ module AST.Haskell.Generated
     DoModuleP,
     EmptyList (..),
     EmptyListP,
+    modifyEmptyListExt,
     Entity (..),
     EntityU (..),
     EntityUP (..),
@@ -324,6 +328,7 @@ module AST.Haskell.Generated
     InstanceDeclarationsP,
     Integer (..),
     IntegerP,
+    modifyIntegerExt,
     Invisible (..),
     InvisibleU (..),
     InvisibleUP (..),
@@ -410,6 +415,7 @@ module AST.Haskell.Generated
     MultiWayIfP,
     Namespace (..),
     NamespaceP,
+    modifyNamespaceExt,
     Negation (..),
     NegationU (..),
     NegationUP (..),
@@ -424,6 +430,7 @@ module AST.Haskell.Generated
     NewtypeConstructorP,
     Operator (..),
     OperatorP,
+    modifyOperatorExt,
     Parens (..),
     ParensU (..),
     ParensUP (..),
@@ -450,12 +457,16 @@ module AST.Haskell.Generated
     PrefixIdP,
     PrefixList (..),
     PrefixListP,
+    modifyPrefixListExt,
     PrefixTuple (..),
     PrefixTupleP,
+    modifyPrefixTupleExt,
     PrefixUnboxedSum (..),
     PrefixUnboxedSumP,
+    modifyPrefixUnboxedSumExt,
     PrefixUnboxedTuple (..),
     PrefixUnboxedTupleP,
+    modifyPrefixUnboxedTupleExt,
     Projection (..),
     ProjectionU (..),
     ProjectionUP (..),
@@ -538,6 +549,7 @@ module AST.Haskell.Generated
     SpliceP,
     Star (..),
     StarP,
+    modifyStarExt,
     Strict (..),
     StrictU (..),
     StrictUP (..),
@@ -596,6 +608,7 @@ module AST.Haskell.Generated
     TypePatternsP,
     TypeRole (..),
     TypeRoleP,
+    modifyTypeRoleExt,
     TypeSynomym (..),
     TypeSynomymU (..),
     TypeSynomymUP (..),
@@ -614,8 +627,10 @@ module AST.Haskell.Generated
     UnboxedTupleP,
     UnboxedUnit (..),
     UnboxedUnitP,
+    modifyUnboxedUnitExt,
     Unit (..),
     UnitP,
+    modifyUnitExt,
     Via (..),
     ViaU (..),
     ViaUP (..),
@@ -626,43 +641,61 @@ module AST.Haskell.Generated
     ViewPatternP,
     Wildcard (..),
     WildcardP,
+    modifyWildcardExt,
     AllNames (..),
     AllNamesP,
+    modifyAllNamesExt,
     CallingConvention (..),
     CallingConventionP,
+    modifyCallingConventionExt,
     Char (..),
     CharP,
+    modifyCharExt,
     Comment (..),
     CommentP,
+    modifyCommentExt,
     Constructor (..),
     ConstructorP,
+    modifyConstructorExt,
     Cpp (..),
     CppP,
+    modifyCppExt,
     Float (..),
     FloatP,
+    modifyFloatExt,
     Haddock (..),
     HaddockP,
+    modifyHaddockExt,
     ImplicitVariable (..),
     ImplicitVariableP,
+    modifyImplicitVariableExt,
     ImportPackage (..),
     ImportPackageP,
+    modifyImportPackageExt,
     Label (..),
     LabelP,
+    modifyLabelExt,
     ModuleId (..),
     ModuleIdP,
+    modifyModuleIdExt,
     Name (..),
     NameP,
     modifyNameExt,
     Pragma (..),
     PragmaP,
+    modifyPragmaExt,
     QuasiquoteBody (..),
     QuasiquoteBodyP,
+    modifyQuasiquoteBodyExt,
     Safety (..),
     SafetyP,
+    modifySafetyExt,
     String (..),
     StringP,
+    modifyStringExt,
     Variable (..),
     VariableP,
+    modifyVariableExt,
     NodeX (..),
   )
 where
@@ -896,7 +929,7 @@ instance (TypeableExt ext) => AST.Cast.Cast (TypeParam ext) where
 instance AST.Node.HasDynNode (TypeParam ext) where
   getDynNode (TypeParam {dynNode}) = dynNode
 
-data AbstractFamily ext = AbstractFamily {dynNode :: AST.Node.DynNode}
+data AbstractFamily ext = AbstractFamily {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XAbstractFamily ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (AbstractFamily ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (AbstractFamily ext))
   deriving (GHC.Generics.Generic)
@@ -909,7 +942,16 @@ instance AST.Node.HasDynNode (AbstractFamily ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (AbstractFamily ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "abstract_family")
-    (Prelude.Just (AbstractFamily {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (AbstractFamily {dynNode = dynNode, ext = dynExt})
+
+modifyAbstractFamilyExt :: (Dynamic.Typeable (XAbstractFamily ext2)) => AbstractFamily ext1 -> (XAbstractFamily ext1 -> XAbstractFamily ext2) -> AbstractFamily ext2
+modifyAbstractFamilyExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in AbstractFamily
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Alternative ext = Alternative
   { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
@@ -1870,7 +1912,7 @@ instance AST.Node.HasDynNode (ConditionalU ext) where
 instance AST.Unwrap.Unwrap (Conditional ext) (ConditionalU ext) where
   unwrap = unwrap_Conditional
 
-data ConstructorOperator ext = ConstructorOperator {dynNode :: AST.Node.DynNode}
+data ConstructorOperator ext = ConstructorOperator {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XConstructorOperator ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (ConstructorOperator ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (ConstructorOperator ext))
   deriving (GHC.Generics.Generic)
@@ -1883,7 +1925,16 @@ instance AST.Node.HasDynNode (ConstructorOperator ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (ConstructorOperator ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor_operator")
-    (Prelude.Just (ConstructorOperator {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (ConstructorOperator {dynNode = dynNode, ext = dynExt})
+
+modifyConstructorOperatorExt :: (Dynamic.Typeable (XConstructorOperator ext2)) => ConstructorOperator ext1 -> (XConstructorOperator ext1 -> XConstructorOperator ext2) -> ConstructorOperator ext2
+modifyConstructorOperatorExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in ConstructorOperator
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data ConstructorSynonym ext = ConstructorSynonym
   { binds :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((LocalBinds ext)))),
@@ -2757,7 +2808,7 @@ instance AST.Node.HasDynNode (DerivingInstanceU ext) where
 instance AST.Unwrap.Unwrap (DerivingInstance ext) (DerivingInstanceU ext) where
   unwrap = unwrap_DerivingInstance
 
-data DerivingStrategy ext = DerivingStrategy {dynNode :: AST.Node.DynNode}
+data DerivingStrategy ext = DerivingStrategy {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XDerivingStrategy ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (DerivingStrategy ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (DerivingStrategy ext))
   deriving (GHC.Generics.Generic)
@@ -2770,7 +2821,16 @@ instance AST.Node.HasDynNode (DerivingStrategy ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (DerivingStrategy ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "deriving_strategy")
-    (Prelude.Just (DerivingStrategy {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (DerivingStrategy {dynNode = dynNode, ext = dynExt})
+
+modifyDerivingStrategyExt :: (Dynamic.Typeable (XDerivingStrategy ext2)) => DerivingStrategy ext1 -> (XDerivingStrategy ext1 -> XDerivingStrategy ext2) -> DerivingStrategy ext2
+modifyDerivingStrategyExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in DerivingStrategy
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Do ext = Do
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((DoModule ext)))),
@@ -2891,7 +2951,7 @@ instance AST.Node.HasDynNode (DoModuleU ext) where
 instance AST.Unwrap.Unwrap (DoModule ext) (DoModuleU ext) where
   unwrap = unwrap_DoModule
 
-data EmptyList ext = EmptyList {dynNode :: AST.Node.DynNode}
+data EmptyList ext = EmptyList {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XEmptyList ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (EmptyList ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (EmptyList ext))
   deriving (GHC.Generics.Generic)
@@ -2904,7 +2964,16 @@ instance AST.Node.HasDynNode (EmptyList ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (EmptyList ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "empty_list")
-    (Prelude.Just (EmptyList {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (EmptyList {dynNode = dynNode, ext = dynExt})
+
+modifyEmptyListExt :: (Dynamic.Typeable (XEmptyList ext2)) => EmptyList ext1 -> (XEmptyList ext1 -> XEmptyList ext2) -> EmptyList ext2
+modifyEmptyListExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in EmptyList
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Entity ext = Entity
   { children :: ((AST.Err.Err ((String ext)))),
@@ -5435,7 +5504,7 @@ instance AST.Node.HasDynNode (InstanceDeclarationsU ext) where
 instance AST.Unwrap.Unwrap (InstanceDeclarations ext) (InstanceDeclarationsU ext) where
   unwrap = unwrap_InstanceDeclarations
 
-data Integer ext = Integer {dynNode :: AST.Node.DynNode}
+data Integer ext = Integer {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XInteger ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Integer ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Integer ext))
   deriving (GHC.Generics.Generic)
@@ -5448,7 +5517,16 @@ instance AST.Node.HasDynNode (Integer ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Integer ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "integer")
-    (Prelude.Just (Integer {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Integer {dynNode = dynNode, ext = dynExt})
+
+modifyIntegerExt :: (Dynamic.Typeable (XInteger ext2)) => Integer ext1 -> (XInteger ext1 -> XInteger ext2) -> Integer ext2
+modifyIntegerExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Integer
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Invisible ext = Invisible
   { bind :: ((AST.Err.Err ((TypeParam ext)))),
@@ -6636,7 +6714,7 @@ instance AST.Node.HasDynNode (MultiWayIfU ext) where
 instance AST.Unwrap.Unwrap (MultiWayIf ext) (MultiWayIfU ext) where
   unwrap = unwrap_MultiWayIf
 
-data Namespace ext = Namespace {dynNode :: AST.Node.DynNode}
+data Namespace ext = Namespace {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XNamespace ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Namespace ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Namespace ext))
   deriving (GHC.Generics.Generic)
@@ -6649,7 +6727,16 @@ instance AST.Node.HasDynNode (Namespace ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Namespace ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "namespace")
-    (Prelude.Just (Namespace {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Namespace {dynNode = dynNode, ext = dynExt})
+
+modifyNamespaceExt :: (Dynamic.Typeable (XNamespace ext2)) => Namespace ext1 -> (XNamespace ext1 -> XNamespace ext2) -> Namespace ext2
+modifyNamespaceExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Namespace
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Negation ext = Negation
   { expression :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Expression ext)))),
@@ -6886,7 +6973,7 @@ instance AST.Node.HasDynNode (NewtypeConstructorU ext) where
 instance AST.Unwrap.Unwrap (NewtypeConstructor ext) (NewtypeConstructorU ext) where
   unwrap = unwrap_NewtypeConstructor
 
-data Operator ext = Operator {dynNode :: AST.Node.DynNode}
+data Operator ext = Operator {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XOperator ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Operator ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Operator ext))
   deriving (GHC.Generics.Generic)
@@ -6899,7 +6986,16 @@ instance AST.Node.HasDynNode (Operator ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Operator ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
-    (Prelude.Just (Operator {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Operator {dynNode = dynNode, ext = dynExt})
+
+modifyOperatorExt :: (Dynamic.Typeable (XOperator ext2)) => Operator ext1 -> (XOperator ext1 -> XOperator ext2) -> Operator ext2
+modifyOperatorExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Operator
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Parens ext = Parens
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Annotated ext) Sum.:+ (Constraints ext) Sum.:+ (Infix ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
@@ -7285,7 +7381,7 @@ instance AST.Node.HasDynNode (PrefixIdU ext) where
 instance AST.Unwrap.Unwrap (PrefixId ext) (PrefixIdU ext) where
   unwrap = unwrap_PrefixId
 
-data PrefixList ext = PrefixList {dynNode :: AST.Node.DynNode}
+data PrefixList ext = PrefixList {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XPrefixList ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixList ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixList ext))
   deriving (GHC.Generics.Generic)
@@ -7298,9 +7394,18 @@ instance AST.Node.HasDynNode (PrefixList ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (PrefixList ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_list")
-    (Prelude.Just (PrefixList {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (PrefixList {dynNode = dynNode, ext = dynExt})
 
-data PrefixTuple ext = PrefixTuple {dynNode :: AST.Node.DynNode}
+modifyPrefixListExt :: (Dynamic.Typeable (XPrefixList ext2)) => PrefixList ext1 -> (XPrefixList ext1 -> XPrefixList ext2) -> PrefixList ext2
+modifyPrefixListExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in PrefixList
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data PrefixTuple ext = PrefixTuple {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XPrefixTuple ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixTuple ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixTuple ext))
   deriving (GHC.Generics.Generic)
@@ -7313,9 +7418,18 @@ instance AST.Node.HasDynNode (PrefixTuple ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (PrefixTuple ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_tuple")
-    (Prelude.Just (PrefixTuple {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (PrefixTuple {dynNode = dynNode, ext = dynExt})
 
-data PrefixUnboxedSum ext = PrefixUnboxedSum {dynNode :: AST.Node.DynNode}
+modifyPrefixTupleExt :: (Dynamic.Typeable (XPrefixTuple ext2)) => PrefixTuple ext1 -> (XPrefixTuple ext1 -> XPrefixTuple ext2) -> PrefixTuple ext2
+modifyPrefixTupleExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in PrefixTuple
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data PrefixUnboxedSum ext = PrefixUnboxedSum {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XPrefixUnboxedSum ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixUnboxedSum ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixUnboxedSum ext))
   deriving (GHC.Generics.Generic)
@@ -7328,9 +7442,18 @@ instance AST.Node.HasDynNode (PrefixUnboxedSum ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (PrefixUnboxedSum ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_unboxed_sum")
-    (Prelude.Just (PrefixUnboxedSum {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (PrefixUnboxedSum {dynNode = dynNode, ext = dynExt})
 
-data PrefixUnboxedTuple ext = PrefixUnboxedTuple {dynNode :: AST.Node.DynNode}
+modifyPrefixUnboxedSumExt :: (Dynamic.Typeable (XPrefixUnboxedSum ext2)) => PrefixUnboxedSum ext1 -> (XPrefixUnboxedSum ext1 -> XPrefixUnboxedSum ext2) -> PrefixUnboxedSum ext2
+modifyPrefixUnboxedSumExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in PrefixUnboxedSum
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data PrefixUnboxedTuple ext = PrefixUnboxedTuple {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XPrefixUnboxedTuple ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (PrefixUnboxedTuple ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (PrefixUnboxedTuple ext))
   deriving (GHC.Generics.Generic)
@@ -7343,7 +7466,16 @@ instance AST.Node.HasDynNode (PrefixUnboxedTuple ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (PrefixUnboxedTuple ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "prefix_unboxed_tuple")
-    (Prelude.Just (PrefixUnboxedTuple {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (PrefixUnboxedTuple {dynNode = dynNode, ext = dynExt})
+
+modifyPrefixUnboxedTupleExt :: (Dynamic.Typeable (XPrefixUnboxedTuple ext2)) => PrefixUnboxedTuple ext1 -> (XPrefixUnboxedTuple ext1 -> XPrefixUnboxedTuple ext2) -> PrefixUnboxedTuple ext2
+modifyPrefixUnboxedTupleExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in PrefixUnboxedTuple
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Projection ext = Projection
   { expression :: ((AST.Err.Err ((Expression ext)))),
@@ -8529,7 +8661,7 @@ instance AST.Node.HasDynNode (SpliceU ext) where
 instance AST.Unwrap.Unwrap (Splice ext) (SpliceU ext) where
   unwrap = unwrap_Splice
 
-data Star ext = Star {dynNode :: AST.Node.DynNode}
+data Star ext = Star {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XStar ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Star ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Star ext))
   deriving (GHC.Generics.Generic)
@@ -8542,7 +8674,16 @@ instance AST.Node.HasDynNode (Star ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Star ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "star")
-    (Prelude.Just (Star {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Star {dynNode = dynNode, ext = dynExt})
+
+modifyStarExt :: (Dynamic.Typeable (XStar ext2)) => Star ext1 -> (XStar ext1 -> XStar ext2) -> Star ext2
+modifyStarExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Star
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Strict ext = Strict
   { pattern' :: ((AST.Err.Err ((Pattern ext)))),
@@ -9357,7 +9498,7 @@ instance AST.Node.HasDynNode (TypePatternsU ext) where
 instance AST.Unwrap.Unwrap (TypePatterns ext) (TypePatternsU ext) where
   unwrap = unwrap_TypePatterns
 
-data TypeRole ext = TypeRole {dynNode :: AST.Node.DynNode}
+data TypeRole ext = TypeRole {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XTypeRole ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeRole ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeRole ext))
   deriving (GHC.Generics.Generic)
@@ -9370,7 +9511,16 @@ instance AST.Node.HasDynNode (TypeRole ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (TypeRole ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_role")
-    (Prelude.Just (TypeRole {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (TypeRole {dynNode = dynNode, ext = dynExt})
+
+modifyTypeRoleExt :: (Dynamic.Typeable (XTypeRole ext2)) => TypeRole ext1 -> (XTypeRole ext1 -> XTypeRole ext2) -> TypeRole ext2
+modifyTypeRoleExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in TypeRole
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data TypeSynomym ext = TypeSynomym
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
@@ -9603,7 +9753,7 @@ instance AST.Node.HasDynNode (UnboxedTupleU ext) where
 instance AST.Unwrap.Unwrap (UnboxedTuple ext) (UnboxedTupleU ext) where
   unwrap = unwrap_UnboxedTuple
 
-data UnboxedUnit ext = UnboxedUnit {dynNode :: AST.Node.DynNode}
+data UnboxedUnit ext = UnboxedUnit {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XUnboxedUnit ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (UnboxedUnit ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (UnboxedUnit ext))
   deriving (GHC.Generics.Generic)
@@ -9616,9 +9766,18 @@ instance AST.Node.HasDynNode (UnboxedUnit ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (UnboxedUnit ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "unboxed_unit")
-    (Prelude.Just (UnboxedUnit {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (UnboxedUnit {dynNode = dynNode, ext = dynExt})
 
-data Unit ext = Unit {dynNode :: AST.Node.DynNode}
+modifyUnboxedUnitExt :: (Dynamic.Typeable (XUnboxedUnit ext2)) => UnboxedUnit ext1 -> (XUnboxedUnit ext1 -> XUnboxedUnit ext2) -> UnboxedUnit ext2
+modifyUnboxedUnitExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in UnboxedUnit
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Unit ext = Unit {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XUnit ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Unit ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Unit ext))
   deriving (GHC.Generics.Generic)
@@ -9631,7 +9790,16 @@ instance AST.Node.HasDynNode (Unit ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Unit ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "unit")
-    (Prelude.Just (Unit {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Unit {dynNode = dynNode, ext = dynExt})
+
+modifyUnitExt :: (Dynamic.Typeable (XUnit ext2)) => Unit ext1 -> (XUnit ext1 -> XUnit ext2) -> Unit ext2
+modifyUnitExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Unit
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Via ext = Via
   { type' :: ((AST.Err.Err ((QuantifiedType ext)))),
@@ -9746,7 +9914,7 @@ instance AST.Node.HasDynNode (ViewPatternU ext) where
 instance AST.Unwrap.Unwrap (ViewPattern ext) (ViewPatternU ext) where
   unwrap = unwrap_ViewPattern
 
-data Wildcard ext = Wildcard {dynNode :: AST.Node.DynNode}
+data Wildcard ext = Wildcard {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XWildcard ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Wildcard ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Wildcard ext))
   deriving (GHC.Generics.Generic)
@@ -9759,9 +9927,18 @@ instance AST.Node.HasDynNode (Wildcard ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Wildcard ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "wildcard")
-    (Prelude.Just (Wildcard {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Wildcard {dynNode = dynNode, ext = dynExt})
 
-data AllNames ext = AllNames {dynNode :: AST.Node.DynNode}
+modifyWildcardExt :: (Dynamic.Typeable (XWildcard ext2)) => Wildcard ext1 -> (XWildcard ext1 -> XWildcard ext2) -> Wildcard ext2
+modifyWildcardExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Wildcard
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data AllNames ext = AllNames {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XAllNames ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (AllNames ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (AllNames ext))
   deriving (GHC.Generics.Generic)
@@ -9774,9 +9951,18 @@ instance AST.Node.HasDynNode (AllNames ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (AllNames ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "all_names")
-    (Prelude.Just (AllNames {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (AllNames {dynNode = dynNode, ext = dynExt})
 
-data CallingConvention ext = CallingConvention {dynNode :: AST.Node.DynNode}
+modifyAllNamesExt :: (Dynamic.Typeable (XAllNames ext2)) => AllNames ext1 -> (XAllNames ext1 -> XAllNames ext2) -> AllNames ext2
+modifyAllNamesExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in AllNames
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data CallingConvention ext = CallingConvention {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XCallingConvention ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (CallingConvention ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (CallingConvention ext))
   deriving (GHC.Generics.Generic)
@@ -9789,9 +9975,18 @@ instance AST.Node.HasDynNode (CallingConvention ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (CallingConvention ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "calling_convention")
-    (Prelude.Just (CallingConvention {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (CallingConvention {dynNode = dynNode, ext = dynExt})
 
-data Char ext = Char {dynNode :: AST.Node.DynNode}
+modifyCallingConventionExt :: (Dynamic.Typeable (XCallingConvention ext2)) => CallingConvention ext1 -> (XCallingConvention ext1 -> XCallingConvention ext2) -> CallingConvention ext2
+modifyCallingConventionExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in CallingConvention
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Char ext = Char {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XChar ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Char ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Char ext))
   deriving (GHC.Generics.Generic)
@@ -9804,9 +9999,18 @@ instance AST.Node.HasDynNode (Char ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Char ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "char")
-    (Prelude.Just (Char {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Char {dynNode = dynNode, ext = dynExt})
 
-data Comment ext = Comment {dynNode :: AST.Node.DynNode}
+modifyCharExt :: (Dynamic.Typeable (XChar ext2)) => Char ext1 -> (XChar ext1 -> XChar ext2) -> Char ext2
+modifyCharExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Char
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Comment ext = Comment {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XComment ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Comment ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Comment ext))
   deriving (GHC.Generics.Generic)
@@ -9819,9 +10023,18 @@ instance AST.Node.HasDynNode (Comment ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Comment ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "comment")
-    (Prelude.Just (Comment {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Comment {dynNode = dynNode, ext = dynExt})
 
-data Constructor ext = Constructor {dynNode :: AST.Node.DynNode}
+modifyCommentExt :: (Dynamic.Typeable (XComment ext2)) => Comment ext1 -> (XComment ext1 -> XComment ext2) -> Comment ext2
+modifyCommentExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Comment
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Constructor ext = Constructor {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XConstructor ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Constructor ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Constructor ext))
   deriving (GHC.Generics.Generic)
@@ -9834,9 +10047,18 @@ instance AST.Node.HasDynNode (Constructor ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Constructor ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "constructor")
-    (Prelude.Just (Constructor {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Constructor {dynNode = dynNode, ext = dynExt})
 
-data Cpp ext = Cpp {dynNode :: AST.Node.DynNode}
+modifyConstructorExt :: (Dynamic.Typeable (XConstructor ext2)) => Constructor ext1 -> (XConstructor ext1 -> XConstructor ext2) -> Constructor ext2
+modifyConstructorExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Constructor
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Cpp ext = Cpp {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XCpp ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Cpp ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Cpp ext))
   deriving (GHC.Generics.Generic)
@@ -9849,9 +10071,18 @@ instance AST.Node.HasDynNode (Cpp ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Cpp ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "cpp")
-    (Prelude.Just (Cpp {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Cpp {dynNode = dynNode, ext = dynExt})
 
-data Float ext = Float {dynNode :: AST.Node.DynNode}
+modifyCppExt :: (Dynamic.Typeable (XCpp ext2)) => Cpp ext1 -> (XCpp ext1 -> XCpp ext2) -> Cpp ext2
+modifyCppExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Cpp
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Float ext = Float {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XFloat ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Float ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Float ext))
   deriving (GHC.Generics.Generic)
@@ -9864,9 +10095,18 @@ instance AST.Node.HasDynNode (Float ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Float ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "float")
-    (Prelude.Just (Float {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Float {dynNode = dynNode, ext = dynExt})
 
-data Haddock ext = Haddock {dynNode :: AST.Node.DynNode}
+modifyFloatExt :: (Dynamic.Typeable (XFloat ext2)) => Float ext1 -> (XFloat ext1 -> XFloat ext2) -> Float ext2
+modifyFloatExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Float
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Haddock ext = Haddock {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XHaddock ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Haddock ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Haddock ext))
   deriving (GHC.Generics.Generic)
@@ -9879,9 +10119,18 @@ instance AST.Node.HasDynNode (Haddock ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Haddock ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "haddock")
-    (Prelude.Just (Haddock {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Haddock {dynNode = dynNode, ext = dynExt})
 
-data ImplicitVariable ext = ImplicitVariable {dynNode :: AST.Node.DynNode}
+modifyHaddockExt :: (Dynamic.Typeable (XHaddock ext2)) => Haddock ext1 -> (XHaddock ext1 -> XHaddock ext2) -> Haddock ext2
+modifyHaddockExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Haddock
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data ImplicitVariable ext = ImplicitVariable {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XImplicitVariable ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (ImplicitVariable ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImplicitVariable ext))
   deriving (GHC.Generics.Generic)
@@ -9894,9 +10143,18 @@ instance AST.Node.HasDynNode (ImplicitVariable ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (ImplicitVariable ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "implicit_variable")
-    (Prelude.Just (ImplicitVariable {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (ImplicitVariable {dynNode = dynNode, ext = dynExt})
 
-data ImportPackage ext = ImportPackage {dynNode :: AST.Node.DynNode}
+modifyImplicitVariableExt :: (Dynamic.Typeable (XImplicitVariable ext2)) => ImplicitVariable ext1 -> (XImplicitVariable ext1 -> XImplicitVariable ext2) -> ImplicitVariable ext2
+modifyImplicitVariableExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in ImplicitVariable
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data ImportPackage ext = ImportPackage {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XImportPackage ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (ImportPackage ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (ImportPackage ext))
   deriving (GHC.Generics.Generic)
@@ -9909,9 +10167,18 @@ instance AST.Node.HasDynNode (ImportPackage ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (ImportPackage ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "import_package")
-    (Prelude.Just (ImportPackage {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (ImportPackage {dynNode = dynNode, ext = dynExt})
 
-data Label ext = Label {dynNode :: AST.Node.DynNode}
+modifyImportPackageExt :: (Dynamic.Typeable (XImportPackage ext2)) => ImportPackage ext1 -> (XImportPackage ext1 -> XImportPackage ext2) -> ImportPackage ext2
+modifyImportPackageExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in ImportPackage
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Label ext = Label {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XLabel ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Label ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Label ext))
   deriving (GHC.Generics.Generic)
@@ -9924,9 +10191,18 @@ instance AST.Node.HasDynNode (Label ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Label ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "label")
-    (Prelude.Just (Label {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Label {dynNode = dynNode, ext = dynExt})
 
-data ModuleId ext = ModuleId {dynNode :: AST.Node.DynNode}
+modifyLabelExt :: (Dynamic.Typeable (XLabel ext2)) => Label ext1 -> (XLabel ext1 -> XLabel ext2) -> Label ext2
+modifyLabelExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Label
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data ModuleId ext = ModuleId {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XModuleId ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (ModuleId ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (ModuleId ext))
   deriving (GHC.Generics.Generic)
@@ -9939,9 +10215,18 @@ instance AST.Node.HasDynNode (ModuleId ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (ModuleId ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "module_id")
-    (Prelude.Just (ModuleId {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (ModuleId {dynNode = dynNode, ext = dynExt})
 
-data Name ext = Name {dynNode :: AST.Node.DynNode, ext :: (XName ext)}
+modifyModuleIdExt :: (Dynamic.Typeable (XModuleId ext2)) => ModuleId ext1 -> (XModuleId ext1 -> XModuleId ext2) -> ModuleId ext2
+modifyModuleIdExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in ModuleId
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Name ext = Name {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XName ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Name ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Name ext))
   deriving (GHC.Generics.Generic)
@@ -9954,21 +10239,18 @@ instance AST.Node.HasDynNode (Name ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Name ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "name")
-    Prelude.fmap
-      ( \dynExt ->
-          (Name {dynNode = dynNode, ext = dynExt})
-      )
-      (Dynamic.fromDynamic dynNode.nodeExt)
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Name {dynNode = dynNode, ext = dynExt})
 
 modifyNameExt :: (Dynamic.Typeable (XName ext2)) => Name ext1 -> (XName ext1 -> XName ext2) -> Name ext2
 modifyNameExt n1 f =
-  let newVal = f n1.ext
+  let newVal = Prelude.fmap f n1.ext
    in Name
-        { dynNode = n1.dynNode {Api.nodeExt = Dynamic.toDyn newVal},
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
           ext = newVal
         }
 
-data Pragma ext = Pragma {dynNode :: AST.Node.DynNode}
+data Pragma ext = Pragma {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XPragma ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Pragma ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Pragma ext))
   deriving (GHC.Generics.Generic)
@@ -9981,9 +10263,18 @@ instance AST.Node.HasDynNode (Pragma ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Pragma ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "pragma")
-    (Prelude.Just (Pragma {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Pragma {dynNode = dynNode, ext = dynExt})
 
-data QuasiquoteBody ext = QuasiquoteBody {dynNode :: AST.Node.DynNode}
+modifyPragmaExt :: (Dynamic.Typeable (XPragma ext2)) => Pragma ext1 -> (XPragma ext1 -> XPragma ext2) -> Pragma ext2
+modifyPragmaExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Pragma
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data QuasiquoteBody ext = QuasiquoteBody {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XQuasiquoteBody ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (QuasiquoteBody ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (QuasiquoteBody ext))
   deriving (GHC.Generics.Generic)
@@ -9996,9 +10287,18 @@ instance AST.Node.HasDynNode (QuasiquoteBody ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (QuasiquoteBody ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "quasiquote_body")
-    (Prelude.Just (QuasiquoteBody {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (QuasiquoteBody {dynNode = dynNode, ext = dynExt})
 
-data Safety ext = Safety {dynNode :: AST.Node.DynNode}
+modifyQuasiquoteBodyExt :: (Dynamic.Typeable (XQuasiquoteBody ext2)) => QuasiquoteBody ext1 -> (XQuasiquoteBody ext1 -> XQuasiquoteBody ext2) -> QuasiquoteBody ext2
+modifyQuasiquoteBodyExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in QuasiquoteBody
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Safety ext = Safety {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XSafety ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Safety ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Safety ext))
   deriving (GHC.Generics.Generic)
@@ -10011,9 +10311,18 @@ instance AST.Node.HasDynNode (Safety ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Safety ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "safety")
-    (Prelude.Just (Safety {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Safety {dynNode = dynNode, ext = dynExt})
 
-data String ext = String {dynNode :: AST.Node.DynNode}
+modifySafetyExt :: (Dynamic.Typeable (XSafety ext2)) => Safety ext1 -> (XSafety ext1 -> XSafety ext2) -> Safety ext2
+modifySafetyExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Safety
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data String ext = String {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XString ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (String ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (String ext))
   deriving (GHC.Generics.Generic)
@@ -10026,9 +10335,18 @@ instance AST.Node.HasDynNode (String ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (String ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "string")
-    (Prelude.Just (String {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (String {dynNode = dynNode, ext = dynExt})
 
-data Variable ext = Variable {dynNode :: AST.Node.DynNode}
+modifyStringExt :: (Dynamic.Typeable (XString ext2)) => String ext1 -> (XString ext1 -> XString ext2) -> String ext2
+modifyStringExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in String
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+data Variable ext = Variable {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XVariable ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Variable ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Variable ext))
   deriving (GHC.Generics.Generic)
@@ -10041,10 +10359,93 @@ instance AST.Node.HasDynNode (Variable ext) where
 instance (TypeableExt ext) => AST.Cast.Cast (Variable ext) where
   cast dynNode = do
     Control.Monad.guard (Api.nodeType dynNode Prelude.== "variable")
-    (Prelude.Just (Variable {dynNode = dynNode}))
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Variable {dynNode = dynNode, ext = dynExt})
+
+modifyVariableExt :: (Dynamic.Typeable (XVariable ext2)) => Variable ext1 -> (XVariable ext1 -> XVariable ext2) -> Variable ext2
+modifyVariableExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Variable
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
+
+type TypeableExt ext = (Cx1 ext, Cx2 ext, Cx3 ext, Cx4 ext)
+
+type Cx1 ext = (Dynamic.Typeable (XAbstractFamily ext), Dynamic.Typeable (XConstructorOperator ext), Dynamic.Typeable (XDerivingStrategy ext), Dynamic.Typeable (XEmptyList ext), Dynamic.Typeable (XInteger ext), Dynamic.Typeable (XNamespace ext), Dynamic.Typeable (XOperator ext), Dynamic.Typeable (XPrefixList ext))
+
+type Cx2 ext = (Dynamic.Typeable (XPrefixTuple ext), Dynamic.Typeable (XPrefixUnboxedSum ext), Dynamic.Typeable (XPrefixUnboxedTuple ext), Dynamic.Typeable (XStar ext), Dynamic.Typeable (XTypeRole ext), Dynamic.Typeable (XUnboxedUnit ext), Dynamic.Typeable (XUnit ext), Dynamic.Typeable (XWildcard ext), Dynamic.Typeable (XAllNames ext))
+
+type Cx3 ext = (Dynamic.Typeable (XCallingConvention ext), Dynamic.Typeable (XChar ext), Dynamic.Typeable (XComment ext), Dynamic.Typeable (XConstructor ext), Dynamic.Typeable (XCpp ext), Dynamic.Typeable (XFloat ext), Dynamic.Typeable (XHaddock ext), Dynamic.Typeable (XImplicitVariable ext))
+
+type Cx4 ext = (Dynamic.Typeable (XImportPackage ext), Dynamic.Typeable (XLabel ext), Dynamic.Typeable (XModuleId ext), Dynamic.Typeable (XName ext), Dynamic.Typeable (XPragma ext), Dynamic.Typeable (XQuasiquoteBody ext), Dynamic.Typeable (XSafety ext), Dynamic.Typeable (XString ext), Dynamic.Typeable (XVariable ext))
 
 class NodeX ext where
+  type XAbstractFamily ext :: Kind.Type
+  type XAbstractFamily ext = ()
+  type XConstructorOperator ext :: Kind.Type
+  type XConstructorOperator ext = ()
+  type XDerivingStrategy ext :: Kind.Type
+  type XDerivingStrategy ext = ()
+  type XEmptyList ext :: Kind.Type
+  type XEmptyList ext = ()
+  type XInteger ext :: Kind.Type
+  type XInteger ext = ()
+  type XNamespace ext :: Kind.Type
+  type XNamespace ext = ()
+  type XOperator ext :: Kind.Type
+  type XOperator ext = ()
+  type XPrefixList ext :: Kind.Type
+  type XPrefixList ext = ()
+  type XPrefixTuple ext :: Kind.Type
+  type XPrefixTuple ext = ()
+  type XPrefixUnboxedSum ext :: Kind.Type
+  type XPrefixUnboxedSum ext = ()
+  type XPrefixUnboxedTuple ext :: Kind.Type
+  type XPrefixUnboxedTuple ext = ()
+  type XStar ext :: Kind.Type
+  type XStar ext = ()
+  type XTypeRole ext :: Kind.Type
+  type XTypeRole ext = ()
+  type XUnboxedUnit ext :: Kind.Type
+  type XUnboxedUnit ext = ()
+  type XUnit ext :: Kind.Type
+  type XUnit ext = ()
+  type XWildcard ext :: Kind.Type
+  type XWildcard ext = ()
+  type XAllNames ext :: Kind.Type
+  type XAllNames ext = ()
+  type XCallingConvention ext :: Kind.Type
+  type XCallingConvention ext = ()
+  type XChar ext :: Kind.Type
+  type XChar ext = ()
+  type XComment ext :: Kind.Type
+  type XComment ext = ()
+  type XConstructor ext :: Kind.Type
+  type XConstructor ext = ()
+  type XCpp ext :: Kind.Type
+  type XCpp ext = ()
+  type XFloat ext :: Kind.Type
+  type XFloat ext = ()
+  type XHaddock ext :: Kind.Type
+  type XHaddock ext = ()
+  type XImplicitVariable ext :: Kind.Type
+  type XImplicitVariable ext = ()
+  type XImportPackage ext :: Kind.Type
+  type XImportPackage ext = ()
+  type XLabel ext :: Kind.Type
+  type XLabel ext = ()
+  type XModuleId ext :: Kind.Type
+  type XModuleId ext = ()
   type XName ext :: Kind.Type
   type XName ext = ()
-
-type TypeableExt ext = (Dynamic.Typeable (XName ext))
+  type XPragma ext :: Kind.Type
+  type XPragma ext = ()
+  type XQuasiquoteBody ext :: Kind.Type
+  type XQuasiquoteBody ext = ()
+  type XSafety ext :: Kind.Type
+  type XSafety ext = ()
+  type XString ext :: Kind.Type
+  type XString ext = ()
+  type XVariable ext :: Kind.Type
+  type XVariable ext = ()

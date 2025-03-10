@@ -25,7 +25,12 @@ import Text.Pretty.Simple qualified as PS
 parsePhase :: Text
 parsePhase = "AST.Extension.ParsePhase"
 
+nodeHsNames :: NodeTypes -> [Text]
+nodeHsNames nodeTypes =
+    let toHsName dtname = T.pack (Symbol.toHaskellPascalCaseIdentifier (T.unpack $ NT.datatypeName dtname)) in
+      fmap toHsName (List.filter ((== NT.Named) . NT.datatypeNameStatus) nodeTypes)
 main :: IO ()
+
 main = do
   nodeTypes <- Aeson.decodeFileStrict @NodeTypes "tree-sitter-haskell/vendor/tree-sitter-haskell/src/node-types.json"
   nodeTypes <- case nodeTypes of
@@ -95,7 +100,7 @@ generateAllM moduleName nodeTypes = do
   for_ nodeTypes \dt -> do
     generate False dt
 
-  emit nodeExtensions
+  emit (nodeExtensions nodeTypes)
 
   pure ()
 
@@ -108,7 +113,7 @@ generateExportList nodeTypes = do
     let hsNameU = if NT.isProductType dt then ", " <> hsName <> "U" <> "(..)" else ""
     let hsNameUP = if NT.isProductType dt then ", " <> hsName <> "UP" <> "(..)" else ""
     let hsNameP = "," <> hsName <> "P"
-    let modifyFns = if isExtendable hsName then ", " <> "modify" <> hsName <> "Ext" else ""
+    let modifyFns = if NT.isLeafType dt then ", " <> "modify" <> hsName <> "Ext" else ""
     emit [trimming|$hsName(..) $hsNameU $hsNameUP $hsNameP $modifyFns|]
   emit ",NodeX(..)"
   emit ")"
@@ -386,35 +391,10 @@ generateLeafType name NT.Named = do
   let ident = T.pack (Symbol.toHaskellPascalCaseIdentifier (T.unpack name))
   let commonDerive = mkCommonDerive ident
   let commonParseAlias = mkCommonParseAlias ident
-  let extData = if isExtendable ident then [trimming|, ext :: (X${ident} ext)|] else ""
-  let modifyExt = 
-        if isExtendable ident
-           then
-           [trimming|
-              modify${ident}Ext :: (Dynamic.Typeable (X$ident ext2)) => $ident ext1 -> (X$ident ext1 -> X$ident ext2) -> $ident ext2
-              modify${ident}Ext n1 f =
-                let newVal = f n1.ext in
-                  $ident
-                    {
-                      dynNode = n1.dynNode { Api.nodeExt = Dynamic.toDyn newVal }
-                    , ext = newVal
-                    }
-              
-           |]
-         else ""
+  let extData = mkExtData ident
+  let modifyExt = mkModifyExt ident
+  let cast = mkCastExt ident
 
-  let cast = if isExtendable ident
-              then 
-                [trimming|
-                      Prelude.fmap
-                        (\dynExt -> 
-                          ($ident { dynNode = dynNode, ext = dynExt}))
-                        (Dynamic.fromDynamic dynNode.nodeExt)
-                |]
-              else
-                [trimming|
-                      (Prelude.Just ($ident { dynNode = dynNode}))
-                |]
   emit
     [trimming|
     data $ident ext = $ident { dynNode :: AST.Node.DynNode $extData }
@@ -452,25 +432,22 @@ mkCommonParseAlias name =
       type ${name}P = $name $parsePhase
     |]
 
-isExtendable dtName = Set.member dtName extendableNodes
-
-extendableNodes :: Set.Set Text
-extendableNodes = 
-  Set.fromList [ "Name" ]
-
 typeableExtConstraint :: Text
 typeableExtConstraint = "TypeableExt"
 
-nodeExtensions :: Text
-nodeExtensions =
+nodeExtensions :: NodeTypes -> Text
+nodeExtensions nodeTypes =
   [trimming|
+  $constraint
+
   class NodeX ext where
     $nodeExts
 
-  $constraint
   |]
 
   where
+    extendNodes = nodeHsNames $ filter NT.isLeafType nodeTypes
+
     nodeExts :: Text
     nodeExts =
       T.concat $
@@ -478,8 +455,48 @@ nodeExtensions =
             [trimming|
             type X$ident ext :: Kind.Type
             type X$ident ext = ()
-            |]) <$>
-        (Set.toList extendableNodes)
+            |] <> "\n") <$>
+        extendNodes
 
-    constraint = "type " <> typeableExtConstraint <> " ext = (" <> T.intercalate "," ((\ident -> [trimming|Dynamic.Typeable (X${ident} ext)|]) <$> (Set.toList extendableNodes)) <> ")"
+    --constraint = "type " <> typeableExtConstraint <> " ext = (" <> T.intercalate "," ((\ident -> [trimming|Dynamic.Typeable (X${ident} ext)|]) <$> extendNodes) <> ")"
+    constraint =
+      [trimming|
+        type ${typeableExtConstraint} ext = (Cx1 ext, Cx2 ext, Cx3 ext, Cx4 ext)
+        $c1
+        $c2
+        $c3
+        $c4
+      |]
 
+    -- Hack to get around ghc tuple limit
+    ((q1, q2),(q3,q4)) = (\(half, otherHalf) -> (halfLst half, halfLst otherHalf)) $ halfLst extendNodes
+    c1 = toConstraint 1 q1
+    c2 = toConstraint 2 q2
+    c3 = toConstraint 3 q3
+    c4 = toConstraint 4 q4
+    
+    halfLst lst = splitAt ((length lst) `div` 2) lst
+    
+    toConstraint n lst = "type Cx" <> (T.pack $ show n) <> " ext = (" <> T.intercalate "," ((\ident -> [trimming|Dynamic.Typeable (X${ident} ext)|]) <$> lst) <> ")"
+
+mkExtData :: Text -> Text
+mkExtData ident = [trimming|, ext :: Prelude.Maybe (X${ident} ext)|] 
+
+mkModifyExt :: Text -> Text
+mkModifyExt ident =
+           [trimming|
+              modify${ident}Ext :: (Dynamic.Typeable (X$ident ext2)) => $ident ext1 -> (X$ident ext1 -> X$ident ext2) -> $ident ext2
+              modify${ident}Ext n1 f =
+                let newVal = Prelude.fmap f n1.ext in
+                  $ident
+                    {
+                      dynNode = n1.dynNode { Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal) }
+                    , ext = newVal
+                    }
+              
+           |]
+mkCastExt ident =
+                [trimming|
+                        let dynExt= (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+                        Prelude.Just ($ident { dynNode = dynNode, ext = dynExt })
+                |]

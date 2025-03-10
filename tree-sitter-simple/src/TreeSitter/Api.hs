@@ -84,7 +84,7 @@ data Node = Node
     -- make sure not to force this field!!!
     nodeParent :: Maybe Node,
     -- | A special field that allows us to extend nodes with arbitrary data
-    nodeExt :: Dynamic
+    nodeExt :: Maybe Dynamic
   }
   deriving (Generic)
 
@@ -154,7 +154,7 @@ convertNode
     -- If the original source is very large, we won't retain the entire string in memory,
     -- we will only retain the sliced part
     let nodeText = T.Encoding.decodeUtf8Lenient $ B.take (nodeEndByte - nodeStartByte) $ B.drop nodeStartByte source
-    let nodeExt = toDyn ()
+    let nodeExt = Just $ toDyn ()
     pure
       Node
         { nodeType,

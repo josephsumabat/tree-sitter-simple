@@ -47,7 +47,8 @@ defaultNode =
       nodeIsExtra = False,
       nodeText = T.pack "",
       nodeChildren = [],
-      nodeParent = Nothing
+      nodeParent = Nothing,
+      nodeExt = Nothing
     }
 
 instance HasDynNode Nil where
