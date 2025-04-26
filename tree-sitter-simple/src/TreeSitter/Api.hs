@@ -194,16 +194,17 @@ convertTree convertPos language tree source = do
         parent <- convertNode convertPos language node source
         children <- getChildNodes node
         children <- mapM go children
-        pure $
-          parent
-            { nodeChildren =
-                -- tie the knot here
-                fmap
-                  ( \child ->
-                      child {nodeParent = Just parent}
-                  )
-                  children
-            }
+        let tiedParent =
+              parent
+                { nodeChildren =
+                    -- tie the knot here
+                    fmap
+                      ( \child ->
+                          child {nodeParent = Just tiedParent}
+                      )
+                      children
+                }
+        pure tiedParent
   go rootNode
 
 treeRootNode :: Ptr Raw.Tree -> IO Raw.Node
