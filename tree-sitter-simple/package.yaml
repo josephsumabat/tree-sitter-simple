@@ -35,4 +35,4 @@ library:
     - src/bridge.c
     - vendor/tree-sitter/lib/src/lib.c
   cc-options:
-    - -std=c99
+    - -std=gnu99

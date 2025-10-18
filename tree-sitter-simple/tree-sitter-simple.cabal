@@ -46,12 +46,14 @@ extra-source-files:
     vendor/tree-sitter/lib/src/lexer.h
     vendor/tree-sitter/lib/src/parser.h
     vendor/tree-sitter/lib/src/point.h
+    vendor/tree-sitter/lib/src/portable/endian.h
     vendor/tree-sitter/lib/src/reduce_action.h
     vendor/tree-sitter/lib/src/reusable_node.h
     vendor/tree-sitter/lib/src/stack.h
     vendor/tree-sitter/lib/src/subtree.h
     vendor/tree-sitter/lib/src/tree.h
     vendor/tree-sitter/lib/src/tree_cursor.h
+    vendor/tree-sitter/lib/src/ts_assert.h
     vendor/tree-sitter/lib/src/unicode.h
     vendor/tree-sitter/lib/src/unicode/ptypes.h
     vendor/tree-sitter/lib/src/unicode/umachine.h
@@ -114,7 +116,7 @@ library
       DeepSubsumption
       OverloadedRecordDot
   ghc-options: -Wall -Wno-name-shadowing
-  cc-options: -std=c99
+  cc-options: -std=gnu99
   include-dirs:
       vendor/tree-sitter/lib/include
       vendor/tree-sitter/lib/src
