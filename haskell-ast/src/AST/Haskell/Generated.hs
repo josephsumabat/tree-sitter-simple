@@ -429,8 +429,9 @@ module AST.Haskell.Generated
     NewtypeConstructorUP (..),
     NewtypeConstructorP,
     Operator (..),
+    OperatorU (..),
+    OperatorUP (..),
     OperatorP,
-    modifyOperatorExt,
     Parens (..),
     ParensU (..),
     ParensUP (..),
@@ -6973,29 +6974,57 @@ instance AST.Node.HasDynNode (NewtypeConstructorU ext) where
 instance AST.Unwrap.Unwrap (NewtypeConstructor ext) (NewtypeConstructorU ext) where
   unwrap = unwrap_NewtypeConstructor
 
-data Operator ext = Operator {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XOperator ext)}
+data Operator ext = Operator
+  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Operator ext)))),
+    dynNode :: AST.Node.DynNode
+  }
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Operator ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Operator ext))
   deriving (GHC.Generics.Generic)
 
 type OperatorP = Operator AST.Extension.ParsePhase
 
+data OperatorU ext = OperatorU
+  { children :: Prelude.Maybe ((Operator ext)),
+    dynNode :: AST.Node.DynNode
+  }
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (OperatorU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (OperatorU ext))
+  deriving (GHC.Generics.Generic)
+
+type OperatorUP = OperatorU AST.Extension.ParsePhase
+
+cast_Operator :: (TypeableExt ext) => Api.Node -> Prelude.Maybe (Operator ext)
+cast_Operator dynNode = do
+  Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
+  let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
+  children <- Prelude.pure (AST.Runtime.castManyToMaybe (Prelude.fmap AST.Cast.castErr positional))
+  Prelude.pure
+    Operator
+      { children,
+        dynNode = dynNode
+      }
+
 instance AST.Node.HasDynNode (Operator ext) where
   getDynNode (Operator {dynNode}) = dynNode
 
 instance (TypeableExt ext) => AST.Cast.Cast (Operator ext) where
-  cast dynNode = do
-    Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
-    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
-    Prelude.Just (Operator {dynNode = dynNode, ext = dynExt})
+  cast = cast_Operator
 
-modifyOperatorExt :: (Dynamic.Typeable (XOperator ext2)) => Operator ext1 -> (XOperator ext1 -> XOperator ext2) -> Operator ext2
-modifyOperatorExt n1 f =
-  let newVal = Prelude.fmap f n1.ext
-   in Operator
-        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
-          ext = newVal
-        }
+unwrap_Operator :: Operator ext -> AST.Err.Err (OperatorU ext)
+unwrap_Operator node = do
+  children <- AST.Runtime.unwrapMaybe node.children
+  Prelude.pure
+    OperatorU
+      { children,
+        dynNode = node.dynNode
+      }
+
+instance AST.Node.HasDynNode (OperatorU ext) where
+  getDynNode (OperatorU {dynNode}) = dynNode
+
+instance AST.Unwrap.Unwrap (Operator ext) (OperatorU ext) where
+  unwrap = unwrap_Operator
 
 data Parens ext = Parens
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Annotated ext) Sum.:+ (Constraints ext) Sum.:+ (Infix ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
@@ -10372,9 +10401,9 @@ modifyVariableExt n1 f =
 
 type TypeableExt ext = (Cx1 ext, Cx2 ext, Cx3 ext, Cx4 ext)
 
-type Cx1 ext = (Dynamic.Typeable (XAbstractFamily ext), Dynamic.Typeable (XConstructorOperator ext), Dynamic.Typeable (XDerivingStrategy ext), Dynamic.Typeable (XEmptyList ext), Dynamic.Typeable (XInteger ext), Dynamic.Typeable (XNamespace ext), Dynamic.Typeable (XOperator ext), Dynamic.Typeable (XPrefixList ext))
+type Cx1 ext = (Dynamic.Typeable (XAbstractFamily ext), Dynamic.Typeable (XConstructorOperator ext), Dynamic.Typeable (XDerivingStrategy ext), Dynamic.Typeable (XEmptyList ext), Dynamic.Typeable (XInteger ext), Dynamic.Typeable (XNamespace ext), Dynamic.Typeable (XPrefixList ext), Dynamic.Typeable (XPrefixTuple ext))
 
-type Cx2 ext = (Dynamic.Typeable (XPrefixTuple ext), Dynamic.Typeable (XPrefixUnboxedSum ext), Dynamic.Typeable (XPrefixUnboxedTuple ext), Dynamic.Typeable (XStar ext), Dynamic.Typeable (XTypeRole ext), Dynamic.Typeable (XUnboxedUnit ext), Dynamic.Typeable (XUnit ext), Dynamic.Typeable (XWildcard ext), Dynamic.Typeable (XAllNames ext))
+type Cx2 ext = (Dynamic.Typeable (XPrefixUnboxedSum ext), Dynamic.Typeable (XPrefixUnboxedTuple ext), Dynamic.Typeable (XStar ext), Dynamic.Typeable (XTypeRole ext), Dynamic.Typeable (XUnboxedUnit ext), Dynamic.Typeable (XUnit ext), Dynamic.Typeable (XWildcard ext), Dynamic.Typeable (XAllNames ext))
 
 type Cx3 ext = (Dynamic.Typeable (XCallingConvention ext), Dynamic.Typeable (XChar ext), Dynamic.Typeable (XComment ext), Dynamic.Typeable (XConstructor ext), Dynamic.Typeable (XCpp ext), Dynamic.Typeable (XFloat ext), Dynamic.Typeable (XHaddock ext), Dynamic.Typeable (XImplicitVariable ext))
 
@@ -10393,8 +10422,6 @@ class NodeX ext where
   type XInteger ext = ()
   type XNamespace ext :: Kind.Type
   type XNamespace ext = ()
-  type XOperator ext :: Kind.Type
-  type XOperator ext = ()
   type XPrefixList ext :: Kind.Type
   type XPrefixList ext = ()
   type XPrefixTuple ext :: Kind.Type
