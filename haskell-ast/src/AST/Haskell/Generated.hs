@@ -429,9 +429,8 @@ module AST.Haskell.Generated
     NewtypeConstructorUP (..),
     NewtypeConstructorP,
     Operator (..),
-    OperatorU (..),
-    OperatorUP (..),
     OperatorP,
+    modifyOperatorExt,
     Parens (..),
     ParensU (..),
     ParensUP (..),
@@ -610,10 +609,10 @@ module AST.Haskell.Generated
     TypeRole (..),
     TypeRoleP,
     modifyTypeRoleExt,
-    TypeSynomym (..),
-    TypeSynomymU (..),
-    TypeSynomymUP (..),
-    TypeSynomymP,
+    TypeSynonym (..),
+    TypeSynonymU (..),
+    TypeSynonymUP (..),
+    TypeSynonymP,
     TypedQuote (..),
     TypedQuoteU (..),
     TypedQuoteUP (..),
@@ -780,7 +779,7 @@ instance (TypeableExt ext) => AST.Cast.Cast (Decl ext) where
 instance AST.Node.HasDynNode (Decl ext) where
   getDynNode (Decl {dynNode}) = dynNode
 
-data Declaration ext = Declaration {dynNode :: AST.Node.DynNode, getDeclaration :: ((Class ext) Sum.:+ (DataFamily ext) Sum.:+ (DataInstance ext) Sum.:+ (DataType ext) Sum.:+ (Decl ext) Sum.:+ (DefaultTypes ext) Sum.:+ (DerivingInstance ext) Sum.:+ (Fixity ext) Sum.:+ (ForeignExport ext) Sum.:+ (ForeignImport ext) Sum.:+ (Instance ext) Sum.:+ (KindSignature ext) Sum.:+ (Newtype ext) Sum.:+ (PatternSynonym ext) Sum.:+ (RoleAnnotation ext) Sum.:+ (TopSplice ext) Sum.:+ (TypeFamily ext) Sum.:+ (TypeInstance ext) Sum.:+ (TypeSynomym ext) Sum.:+ Sum.Nil)}
+data Declaration ext = Declaration {dynNode :: AST.Node.DynNode, getDeclaration :: ((Class ext) Sum.:+ (DataFamily ext) Sum.:+ (DataInstance ext) Sum.:+ (DataType ext) Sum.:+ (Decl ext) Sum.:+ (DefaultTypes ext) Sum.:+ (DerivingInstance ext) Sum.:+ (Fixity ext) Sum.:+ (ForeignExport ext) Sum.:+ (ForeignImport ext) Sum.:+ (Instance ext) Sum.:+ (KindSignature ext) Sum.:+ (Newtype ext) Sum.:+ (PatternSynonym ext) Sum.:+ (RoleAnnotation ext) Sum.:+ (TopSplice ext) Sum.:+ (TypeFamily ext) Sum.:+ (TypeInstance ext) Sum.:+ (TypeSynonym ext) Sum.:+ Sum.Nil)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Declaration ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Declaration ext))
   deriving (GHC.Generics.Generic)
@@ -6974,57 +6973,29 @@ instance AST.Node.HasDynNode (NewtypeConstructorU ext) where
 instance AST.Unwrap.Unwrap (NewtypeConstructor ext) (NewtypeConstructorU ext) where
   unwrap = unwrap_NewtypeConstructor
 
-data Operator ext = Operator
-  { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((Operator ext)))),
-    dynNode :: AST.Node.DynNode
-  }
+data Operator ext = Operator {dynNode :: AST.Node.DynNode, ext :: Prelude.Maybe (XOperator ext)}
   deriving (Prelude.Show) via (AST.Node.OnDynNode (Operator ext))
   deriving (Prelude.Eq) via (AST.Node.OnDynNode (Operator ext))
   deriving (GHC.Generics.Generic)
 
 type OperatorP = Operator AST.Extension.ParsePhase
 
-data OperatorU ext = OperatorU
-  { children :: Prelude.Maybe ((Operator ext)),
-    dynNode :: AST.Node.DynNode
-  }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode (OperatorU ext))
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode (OperatorU ext))
-  deriving (GHC.Generics.Generic)
-
-type OperatorUP = OperatorU AST.Extension.ParsePhase
-
-cast_Operator :: (TypeableExt ext) => Api.Node -> Prelude.Maybe (Operator ext)
-cast_Operator dynNode = do
-  Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
-  let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
-  children <- Prelude.pure (AST.Runtime.castManyToMaybe (Prelude.fmap AST.Cast.castErr positional))
-  Prelude.pure
-    Operator
-      { children,
-        dynNode = dynNode
-      }
-
 instance AST.Node.HasDynNode (Operator ext) where
   getDynNode (Operator {dynNode}) = dynNode
 
 instance (TypeableExt ext) => AST.Cast.Cast (Operator ext) where
-  cast = cast_Operator
+  cast dynNode = do
+    Control.Monad.guard (Api.nodeType dynNode Prelude.== "operator")
+    let dynExt = (Dynamic.fromDynamic Prelude.=<< dynNode.nodeExt)
+    Prelude.Just (Operator {dynNode = dynNode, ext = dynExt})
 
-unwrap_Operator :: Operator ext -> AST.Err.Err (OperatorU ext)
-unwrap_Operator node = do
-  children <- AST.Runtime.unwrapMaybe node.children
-  Prelude.pure
-    OperatorU
-      { children,
-        dynNode = node.dynNode
-      }
-
-instance AST.Node.HasDynNode (OperatorU ext) where
-  getDynNode (OperatorU {dynNode}) = dynNode
-
-instance AST.Unwrap.Unwrap (Operator ext) (OperatorU ext) where
-  unwrap = unwrap_Operator
+modifyOperatorExt :: (Dynamic.Typeable (XOperator ext2)) => Operator ext1 -> (XOperator ext1 -> XOperator ext2) -> Operator ext2
+modifyOperatorExt n1 f =
+  let newVal = Prelude.fmap f n1.ext
+   in Operator
+        { dynNode = n1.dynNode {Api.nodeExt = (Prelude.fmap Dynamic.toDyn newVal)},
+          ext = newVal
+        }
 
 data Parens ext = Parens
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Annotated ext) Sum.:+ (Constraints ext) Sum.:+ (Infix ext) Sum.:+ (TypeParam ext) Sum.:+ Sum.Nil)))),
@@ -9551,35 +9522,35 @@ modifyTypeRoleExt n1 f =
           ext = newVal
         }
 
-data TypeSynomym ext = TypeSynomym
+data TypeSynonym ext = TypeSynonym
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)))),
     name :: AST.Err.Err (Prelude.Maybe (AST.Err.Err (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)))),
     patterns :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((TypeParams ext)))),
     type' :: ((AST.Err.Err (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)))),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeSynomym ext))
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeSynomym ext))
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeSynonym ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeSynonym ext))
   deriving (GHC.Generics.Generic)
 
-type TypeSynomymP = TypeSynomym AST.Extension.ParsePhase
+type TypeSynonymP = TypeSynonym AST.Extension.ParsePhase
 
-data TypeSynomymU ext = TypeSynomymU
+data TypeSynonymU ext = TypeSynonymU
   { children :: Prelude.Maybe (((Infix ext) Sum.:+ (Parens ext) Sum.:+ Sum.Nil)),
     name :: Prelude.Maybe (((Name ext) Sum.:+ (PrefixId ext) Sum.:+ (PrefixList ext) Sum.:+ (Unit ext) Sum.:+ Sum.Nil)),
     patterns :: Prelude.Maybe ((TypeParams ext)),
     type' :: (((QuantifiedType ext) Sum.:+ (Signature ext) Sum.:+ Sum.Nil)),
     dynNode :: AST.Node.DynNode
   }
-  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeSynomymU ext))
-  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeSynomymU ext))
+  deriving (Prelude.Show) via (AST.Node.OnDynNode (TypeSynonymU ext))
+  deriving (Prelude.Eq) via (AST.Node.OnDynNode (TypeSynonymU ext))
   deriving (GHC.Generics.Generic)
 
-type TypeSynomymUP = TypeSynomymU AST.Extension.ParsePhase
+type TypeSynonymUP = TypeSynonymU AST.Extension.ParsePhase
 
-cast_TypeSynomym :: (TypeableExt ext) => Api.Node -> Prelude.Maybe (TypeSynomym ext)
-cast_TypeSynomym dynNode = do
-  Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_synomym")
+cast_TypeSynonym :: (TypeableExt ext) => Api.Node -> Prelude.Maybe (TypeSynonym ext)
+cast_TypeSynonym dynNode = do
+  Control.Monad.guard (Api.nodeType dynNode Prelude.== "type_synonym")
   let (extraNodes, positional, namedMap) = AST.Runtime.getChildDescription dynNode
   name <- Prelude.pure (AST.Runtime.flattenMaybeList (Data.Map.Strict.lookup "name" namedMap))
   name <- Prelude.pure (AST.Runtime.castManyToMaybe (Prelude.fmap AST.Cast.castErr name))
@@ -9589,7 +9560,7 @@ cast_TypeSynomym dynNode = do
   type' <- Prelude.pure (AST.Runtime.castManyToSingle (Prelude.fmap AST.Cast.castErr type'))
   children <- Prelude.pure (AST.Runtime.castManyToMaybe (Prelude.fmap AST.Cast.castErr positional))
   Prelude.pure
-    TypeSynomym
+    TypeSynonym
       { children,
         name,
         patterns,
@@ -9597,20 +9568,20 @@ cast_TypeSynomym dynNode = do
         dynNode = dynNode
       }
 
-instance AST.Node.HasDynNode (TypeSynomym ext) where
-  getDynNode (TypeSynomym {dynNode}) = dynNode
+instance AST.Node.HasDynNode (TypeSynonym ext) where
+  getDynNode (TypeSynonym {dynNode}) = dynNode
 
-instance (TypeableExt ext) => AST.Cast.Cast (TypeSynomym ext) where
-  cast = cast_TypeSynomym
+instance (TypeableExt ext) => AST.Cast.Cast (TypeSynonym ext) where
+  cast = cast_TypeSynonym
 
-unwrap_TypeSynomym :: TypeSynomym ext -> AST.Err.Err (TypeSynomymU ext)
-unwrap_TypeSynomym node = do
+unwrap_TypeSynonym :: TypeSynonym ext -> AST.Err.Err (TypeSynonymU ext)
+unwrap_TypeSynonym node = do
   children <- AST.Runtime.unwrapMaybe node.children
   name <- AST.Runtime.unwrapMaybe node.name
   patterns <- AST.Runtime.unwrapMaybe node.patterns
   type' <- AST.Runtime.unwrapSingle node.type'
   Prelude.pure
-    TypeSynomymU
+    TypeSynonymU
       { children,
         name,
         patterns,
@@ -9618,11 +9589,11 @@ unwrap_TypeSynomym node = do
         dynNode = node.dynNode
       }
 
-instance AST.Node.HasDynNode (TypeSynomymU ext) where
-  getDynNode (TypeSynomymU {dynNode}) = dynNode
+instance AST.Node.HasDynNode (TypeSynonymU ext) where
+  getDynNode (TypeSynonymU {dynNode}) = dynNode
 
-instance AST.Unwrap.Unwrap (TypeSynomym ext) (TypeSynomymU ext) where
-  unwrap = unwrap_TypeSynomym
+instance AST.Unwrap.Unwrap (TypeSynonym ext) (TypeSynonymU ext) where
+  unwrap = unwrap_TypeSynonym
 
 data TypedQuote ext = TypedQuote
   { children :: AST.Err.Err (Prelude.Maybe (AST.Err.Err ((QuotedExpression ext)))),
@@ -10401,9 +10372,9 @@ modifyVariableExt n1 f =
 
 type TypeableExt ext = (Cx1 ext, Cx2 ext, Cx3 ext, Cx4 ext)
 
-type Cx1 ext = (Dynamic.Typeable (XAbstractFamily ext), Dynamic.Typeable (XConstructorOperator ext), Dynamic.Typeable (XDerivingStrategy ext), Dynamic.Typeable (XEmptyList ext), Dynamic.Typeable (XInteger ext), Dynamic.Typeable (XNamespace ext), Dynamic.Typeable (XPrefixList ext), Dynamic.Typeable (XPrefixTuple ext))
+type Cx1 ext = (Dynamic.Typeable (XAbstractFamily ext), Dynamic.Typeable (XConstructorOperator ext), Dynamic.Typeable (XDerivingStrategy ext), Dynamic.Typeable (XEmptyList ext), Dynamic.Typeable (XInteger ext), Dynamic.Typeable (XNamespace ext), Dynamic.Typeable (XOperator ext), Dynamic.Typeable (XPrefixList ext))
 
-type Cx2 ext = (Dynamic.Typeable (XPrefixUnboxedSum ext), Dynamic.Typeable (XPrefixUnboxedTuple ext), Dynamic.Typeable (XStar ext), Dynamic.Typeable (XTypeRole ext), Dynamic.Typeable (XUnboxedUnit ext), Dynamic.Typeable (XUnit ext), Dynamic.Typeable (XWildcard ext), Dynamic.Typeable (XAllNames ext))
+type Cx2 ext = (Dynamic.Typeable (XPrefixTuple ext), Dynamic.Typeable (XPrefixUnboxedSum ext), Dynamic.Typeable (XPrefixUnboxedTuple ext), Dynamic.Typeable (XStar ext), Dynamic.Typeable (XTypeRole ext), Dynamic.Typeable (XUnboxedUnit ext), Dynamic.Typeable (XUnit ext), Dynamic.Typeable (XWildcard ext), Dynamic.Typeable (XAllNames ext))
 
 type Cx3 ext = (Dynamic.Typeable (XCallingConvention ext), Dynamic.Typeable (XChar ext), Dynamic.Typeable (XComment ext), Dynamic.Typeable (XConstructor ext), Dynamic.Typeable (XCpp ext), Dynamic.Typeable (XFloat ext), Dynamic.Typeable (XHaddock ext), Dynamic.Typeable (XImplicitVariable ext))
 
@@ -10422,6 +10393,8 @@ class NodeX ext where
   type XInteger ext = ()
   type XNamespace ext :: Kind.Type
   type XNamespace ext = ()
+  type XOperator ext :: Kind.Type
+  type XOperator ext = ()
   type XPrefixList ext :: Kind.Type
   type XPrefixList ext = ()
   type XPrefixTuple ext :: Kind.Type

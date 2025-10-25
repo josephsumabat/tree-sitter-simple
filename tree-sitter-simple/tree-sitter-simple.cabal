@@ -27,17 +27,16 @@ extra-source-files:
     vendor/tree-sitter/lib/src/lib.c
     vendor/tree-sitter/lib/src/node.c
     vendor/tree-sitter/lib/src/parser.c
+    vendor/tree-sitter/lib/src/point.c
     vendor/tree-sitter/lib/src/query.c
     vendor/tree-sitter/lib/src/stack.c
     vendor/tree-sitter/lib/src/subtree.c
     vendor/tree-sitter/lib/src/tree.c
     vendor/tree-sitter/lib/src/tree_cursor.c
-    vendor/tree-sitter/lib/src/wasm/stdlib.c
     vendor/tree-sitter/lib/src/wasm_store.c
     vendor/tree-sitter/lib/src/alloc.h
     vendor/tree-sitter/lib/src/array.h
     vendor/tree-sitter/lib/src/atomic.h
-    vendor/tree-sitter/lib/src/clock.h
     vendor/tree-sitter/lib/src/error_costs.h
     vendor/tree-sitter/lib/src/get_changed_ranges.h
     vendor/tree-sitter/lib/src/host.h
