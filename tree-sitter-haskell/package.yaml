@@ -45,6 +45,7 @@ tests:
       - QuickCheck
       - quickcheck-instances
       - quickcheck-classes-base
+
 executables:
   demo:
     main: Demo.hs
@@ -52,6 +53,15 @@ executables:
     ghc-options:
       - -threaded
       - -main-is Demo
+    dependencies:
+      - tree-sitter-haskell
+      - tree-sitter-simple
+  query-demo:
+    main: Query.hs
+    source-dirs: examples
+    ghc-options:
+      - -threaded
+      - -main-is Query
     dependencies:
       - tree-sitter-haskell
       - tree-sitter-simple
