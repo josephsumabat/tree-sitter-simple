@@ -36,3 +36,11 @@ library:
     - vendor/tree-sitter/lib/src/lib.c
   cc-options:
     - -std=gnu99
+
+tests:
+  tests:
+    <<: *default_test
+    dependencies:
+      - tree-sitter-simple
+      - base
+      - hedgehog
