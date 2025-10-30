@@ -71,6 +71,7 @@ library
       TreeSitter.Raw.Language
       TreeSitter.Raw.Node
       TreeSitter.Raw.Parser
+      TreeSitter.Raw.Struct
       TreeSitter.Raw.Symbol
       TreeSitter.Raw.Tree
   other-modules:
