@@ -80,6 +80,13 @@ size_t sizeof_tstreecursor() {
   return sizeof(TSTreeCursor);
 }
 
+size_t sizeof_tsquerycapture() {
+  return sizeof(TSQueryCapture);
+}
+
+size_t sizeof_tsquerymatch() {
+  return sizeof(TSQueryMatch);
+}
 
 void ts_tree_cursor_new_p(TSNode *node, TSTreeCursor *outCursor) {
   assert(node != NULL);
@@ -101,4 +108,12 @@ bool ts_tree_cursor_current_node_p(const TSTreeCursor *cursor, Node *outNode) {
     ts_node_poke(ts_tree_cursor_current_field_name(cursor), tsNode, outNode);
   }
   return false;
+}
+
+void ts_query_cursor_exec_p(TSQueryCursor *cursor, const TSQuery *query, const TSNode *node) {
+  assert(cursor != NULL);
+  assert(query != NULL);
+  assert(node != NULL);
+
+  ts_query_cursor_exec(cursor, query, *node);
 }

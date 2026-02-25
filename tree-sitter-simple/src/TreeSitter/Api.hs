@@ -45,7 +45,7 @@ data SymbolType = Regular | Anonymous | Auxiliary
   deriving (Enum, Eq, Ord, Show, Generic)
 
 instance NFData SymbolType where
-  rnf !st = ()
+  rnf !_st = ()
 
 data Symbol = Symbol
   { symbolType :: !SymbolType,
@@ -55,7 +55,7 @@ data Symbol = Symbol
   deriving (Show, Eq, Ord, Generic)
 
 instance NFData Symbol where
-  rnf !s = ()
+  rnf !_s = ()
 
 convertPoint :: Raw.TSPoint -> LineCol
 convertPoint Raw.TSPoint {pointRow, pointColumn} = LineCol (Pos (fromIntegral pointRow)) (Pos (fromIntegral pointColumn))
@@ -189,7 +189,7 @@ tupleToConvertPos = ConvertPos
 
 convertTree :: ConvertPos -> Ptr Raw.Language -> Ptr Raw.Tree -> ByteString -> IO Node
 convertTree convertPos language tree source = do
-  rootNode <- treeRootNode tree
+  rootNode <- Raw.withRootNode tree peek
   let go node = do
         parent <- convertNode convertPos language node source
         children <- getChildNodes node
@@ -206,12 +206,6 @@ convertTree convertPos language tree source = do
                 }
         pure tiedParent
   go rootNode
-
-treeRootNode :: Ptr Raw.Tree -> IO Raw.Node
-treeRootNode tree = do
-  n <- malloc
-  Raw.ts_tree_root_node_p tree n
-  peek n
 
 getChildNodes :: Raw.Node -> IO [Raw.Node]
 getChildNodes node = do
