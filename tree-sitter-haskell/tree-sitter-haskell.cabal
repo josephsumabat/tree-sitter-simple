@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.36.0.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -14,12 +14,19 @@ author:         Max Brunsfeld, Tim Clem, Rob Rix, Josh Vera, Rick Winfrey, Ayman
 maintainer:     tclem@github.com
 copyright:      2019 GitHub
 license:        BSD-3-Clause
-build-type:     Simple
+build-type:     Custom
 tested-with:
     GHC == 9.4.4
   , GHC == 9.6.3
 extra-source-files:
     ChangeLog.md
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base >=4.12 && <5
+    , directory
+    , process
 
 library
   exposed-modules:

@@ -2,6 +2,7 @@
 
 name: tree-sitter-haskell
 version: 0.3.0.2
+build-type: Custom
 synopsis: Tree-sitter grammar/parser for Haskell (with GHC extensions)
 description: This package provides a parser for Haskell suitable for use with the tree-sitter package.
 license: BSD-3-Clause
@@ -15,7 +16,14 @@ extra-source-files: ChangeLog.md
 dependencies:
   - base >= 4.12 && < 5
   - tree-sitter-simple
-    
+
+custom-setup:
+  dependencies:
+    - base >= 4.12 && < 5
+    - Cabal
+    - directory
+    - process
+
 library:
   <<: *default_library
   include-dirs: vendor/tree-sitter-haskell/src
