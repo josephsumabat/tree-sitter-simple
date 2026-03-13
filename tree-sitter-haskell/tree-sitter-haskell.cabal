@@ -81,7 +81,7 @@ library
       tree_sitter/array.h
       unicode.h
   c-sources:
-      vendor/tree-sitter-haskell/src/parser.c
+      cbits/parser.c
       vendor/tree-sitter-haskell/src/scanner.c
   build-depends:
       base >=4.12 && <5

@@ -1,5 +1,5 @@
 import Distribution.Simple
-import System.Directory (doesFileExist, getCurrentDirectory, setCurrentDirectory)
+import System.Directory (doesFileExist, getCurrentDirectory, setCurrentDirectory, createDirectoryIfMissing)
 import System.Process (callCommand)
 import System.Exit (exitFailure)
 import System.IO (hPutStrLn, stderr)
@@ -17,7 +17,7 @@ main = defaultMainWithHooks simpleUserHooks
 generateParser :: IO ()
 generateParser = do
   let grammarDir = "vendor/tree-sitter-haskell"
-      parserFile = grammarDir ++ "/src/parser.c"
+      parserFile = "cbits/parser.c"
 
   -- Check if parser.c already exists
   parserExists <- doesFileExist parserFile
@@ -30,14 +30,14 @@ generateParser = do
       -- Save current directory
       origDir <- getCurrentDirectory
 
-      -- Change to grammar directory
+      -- Change to grammar directory and generate
       setCurrentDirectory grammarDir
-
-      -- Generate the parser
       callCommand "tree-sitter generate"
-
-      -- Return to original directory
       setCurrentDirectory origDir
+
+      -- Copy generated parser.c to cbits/
+      createDirectoryIfMissing True "cbits"
+      callCommand $ "cp " ++ grammarDir ++ "/src/parser.c " ++ parserFile
 
       -- Verify parser was generated
       parserGenerated <- doesFileExist parserFile
